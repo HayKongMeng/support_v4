@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Support Portal</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+        .header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--tg-theme-hint-color, #e0e0e0);
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .btn {
+            background: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn:active {
+            opacity: 0.8;
+        }
+        .btn-secondary {
+            background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000000);
+        }
+        .ticket-card {
+            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .ticket-card:active {
+            transform: scale(0.98);
+        }
+        .ticket-card strong {
+            font-size: 16px;
+            color: var(--tg-theme-link-color, #3390ec);
+        }
+        .ticket-card p {
+            margin: 8px 0;
+            font-size: 15px;
+            word-break: break-word;
+        }
+        .ticket-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+            max-height: 300px;
+        }
+        .ticket-card a {
+            color: var(--tg-theme-link-color, #3390ec);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .ticket-card small {
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 13px;
+        }
+        .form-group {
+            margin: 16px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--tg-theme-hint-color, #e0e0e0);
+            border-radius: 10px;
+            font-size: 16px;
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .status-open { background: #e3f2fd; color: #1976d2; }
+        .status-pending { background: #fff3e0; color: #f57c00; }
+        .status-in_progress { background: #e8f5e9; color: #388e3c; }
+        .status-resolved { background: #f3e5f5; color: #7b1fa2; }
+        .status-closed { background: #eeeeee; color: #616161; }
+        .message-card {
+            background: var(--tg-theme-bg-color, #ffffff);
+            border: 1px solid var(--tg-theme-hint-color, #e0e0e0);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        .message-card strong {
+            color: var(--tg-theme-link-color, #3390ec);
+            font-size: 14px;
+        }
+        .message-card p {
+            margin: 8px 0;
+            font-size: 15px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .message-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+            max-height: 300px;
+        }
+        .message-card a {
+            color: var(--tg-theme-link-color, #3390ec);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .audio-preview {
+            margin-top: 8px;
+        }
+        .record-status {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #999999);
+            margin-top: 6px;
+        }
+        .message-card small {
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 12px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .empty-state p {
+            color: var(--tg-theme-hint-color, #999999);
+            margin: 12px 0;
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        h3 {
+            font-size: 18px;
+            margin: 20px 0 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <h1>🎫 Support Portal</h1>
+            <p id="user-info">Loading...</p>
+        </div>
+        
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.enableClosingConfirmation();
+
+        let newTicketVoiceFile = null;
+        let replyVoiceFile = null;
+        
+        // API endpoint - change to your domain
+        const API_BASE = 'https://harmonistic-imaginary-luanne.ngrok-free.dev/api/telegram/miniapp';
+        const DOMAIN = 'https://harmonistic-imaginary-luanne.ngrok-free.dev';
+
+        const isNgrok = window.location.host.includes('ngrok');
+        const ngrokHeader = { 'ngrok-skip-browser-warning': 'true' };
+
+        function buildHeaders(extra) {
+            return Object.assign({}, isNgrok ? ngrokHeader : {}, extra || {});
+        }
+        
+        // Get user data from Telegram
+        const initData = tg.initData;
+        const user = tg.initDataUnsafe.user || {};
+        const userName = (user.first_name || '') + ' ' + (user.last_name || '');
+        
+        document.getElementById('user-info').textContent = `សួស្តី ${userName.trim()}`;
+        
+        // Utility functions
+        function showLoading() {
+            document.getElementById('content').innerHTML = '<div class="loading">កំពុងផ្ទុក...</div>';
+        }
+        
+        function formatMessage(text) {
+            // Escape HTML characters first
+            let html = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+            
+            // Find full URLs (http/https)
+            const urlRegex = /(https?:\/\/[^\s<>&]+)/g;
+            html = html.replace(urlRegex, function(url) {
+                // Check if it's an image
+                if (/\.(jpg|jpeg|png|gif|webp)$/i.test(url)) {
+                    return '<img src="' + url + '" alt="Image" style="max-width: 100%; border-radius: 8px;" />';
+                }
+                // Otherwise make it a link
+                return '<a href="' + url + '" target="_blank">📎 ' + url + '</a>';
+            });
+            
+            // Find relative image URLs (e.g., /uploads/tickets/file.jpg) and convert to absolute
+            const relativeImageRegex = /(\/[^\s<>&]*\.(jpg|jpeg|png|gif|webp))(?=[\s<>&]|$)/gi;
+            html = html.replace(relativeImageRegex, function(url) {
+                const absoluteUrl = DOMAIN + url;
+                return '<img src="' + absoluteUrl + '" alt="Image" style="max-width: 100%; border-radius: 8px;" />';
+            });
+            
+            // Convert line breaks
+            html = html.replace(/\n/g, '<br>');
+            
+            return html;
+        }
+
+        function renderAttachments(attachments) {
+            if (!attachments || attachments.length === 0) {
+                return '';
+            }
+
+            let html = '<div style="margin-top: 8px;">';
+            attachments.forEach(att => {
+                const url = DOMAIN + '/uploads/' + att.path;
+                if (att.mime_type && att.mime_type.startsWith('image/')) {
+                    html += `<img src="${url}" alt="Attachment" style="max-width: 100%; border-radius: 8px; margin-top: 6px;" />`;
+                } else if (att.mime_type && att.mime_type.startsWith('audio/')) {
+                    html += `<audio class="audio-preview" controls src="${url}"></audio>`;
+                } else {
+                    const name = att.original_name || att.filename || 'Attachment';
+                    html += `<div style="margin-top: 6px;"><a href="${url}" target="_blank">📎 ${name}</a></div>`;
+                }
+            });
+            html += '</div>';
+            return html;
+        }
+
+        async function initVoiceRecorder(buttonId, previewId, onFileReady) {
+            const button = document.getElementById(buttonId);
+            const preview = document.getElementById(previewId);
+            if (!button || !preview) {
+                return;
+            }
+
+            let mediaRecorder = null;
+            let chunks = [];
+            let recording = false;
+
+            const resetPreview = () => {
+                preview.innerHTML = '';
+            };
+
+            button.addEventListener('click', async () => {
+                if (!recording) {
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        const preferredTypes = [
+                            'audio/ogg;codecs=opus',
+                            'audio/webm;codecs=opus',
+                            'audio/webm',
+                            'video/webm'
+                        ];
+                        const selectedType = preferredTypes.find(type => MediaRecorder.isTypeSupported(type)) || '';
+                        const recorderOptions = selectedType ? { mimeType: selectedType } : undefined;
+                        mediaRecorder = new MediaRecorder(stream, recorderOptions);
+                        chunks = [];
+
+                        mediaRecorder.ondataavailable = (event) => {
+                            if (event.data && event.data.size > 0) {
+                                chunks.push(event.data);
+                            }
+                        };
+
+                        mediaRecorder.onstop = () => {
+                            const mimeType = selectedType || 'audio/webm';
+                            const blob = new Blob(chunks, { type: mimeType });
+                            const extension = mimeType.includes('ogg') ? '.ogg'
+                                : (mimeType.includes('webm') ? '.webm' : '.webm');
+                            const file = new File([blob], `voice_${Date.now()}${extension}`, { type: blob.type });
+                            onFileReady(file);
+                            preview.innerHTML = `
+                                <audio class="audio-preview" controls src="${URL.createObjectURL(blob)}"></audio>
+                                <div class="record-status">✓ Voice recorded (${Math.round(blob.size / 1024)}KB)</div>
+                            `;
+
+                            stream.getTracks().forEach(track => track.stop());
+                        };
+
+                        mediaRecorder.start();
+                        recording = true;
+                        button.textContent = '⏹ Stop Recording';
+                        resetPreview();
+                    } catch (error) {
+                        console.error('Voice record error:', error);
+                        tg.showAlert('Cannot access microphone. Please allow mic permission.');
+                    }
+                } else if (mediaRecorder) {
+                    mediaRecorder.stop();
+                    recording = false;
+                    button.textContent = '🎙 Start Recording';
+                }
+            });
+        }
+        
+        function getStatusBadge(status) {
+            const statusMap = {
+                'open': 'បើក',
+                'pending': 'រង់ចាំ',
+                'in_progress': 'កំពុងដំណើរការ',
+                'resolved': 'បានដោះស្រាយ',
+                'closed': 'បិទ'
+            };
+            return `<span class="status-badge status-${status}">${statusMap[status] || status}</span>`;
+        }
+        
+        // Main menu
+        function showMainMenu() {
+            document.getElementById('content').innerHTML = `
+                <button class="btn" onclick="showNewTicketForm()">
+                    <span>🆕</span>
+                    <span>បង្កើតសំណើថ្មី</span>
+                </button>
+                <button class="btn" onclick="showMyTickets()">
+                    <span>📋</span>
+                    <span>សំណើរបស់ខ្ញុំ</span>
+                </button>
+                <button class="btn btn-secondary" onclick="showLinkEmailForm()">
+                    <span>🔗</span>
+                    <span>ភ្ជាប់អ៊ីមែល</span>
+                </button>
+            `;
+            tg.MainButton.hide();
+        }
+        
+        // New ticket form
+        function showNewTicketForm() {
+            document.getElementById('content').innerHTML = `
+                <h2>បង្កើតសំណើថ្មី</h2>
+                <div class="form-group">
+                    <label>ប្រធានបទ *</label>
+                    <input type="text" id="subject" placeholder="ប្រធានបទនៃបញ្ហារបស់អ្នក">
+                </div>
+                <div class="form-group">
+                    <label>ពិពណ៌នា *</label>
+                    <textarea id="description" placeholder="ពិពណ៌នាលម្អិតអំពីបញ្ហារបស់អ្នក"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>📎 ភ្ជាប់ឯកសារ (រូបភាព, PDF, ឬ សម្លេង)</label>
+                    <input type="file" id="attachment" accept="image/*,.pdf,audio/*,.ogg,.mp3,.m4a" style="padding: 8px;">
+                    <small style="color: var(--tg-theme-hint-color);">ទំហំអតិបរមា 10MB</small>
+                    <div id="attachment-preview" style="margin-top: 8px;"></div>
+                </div>
+                <div class="form-group">
+                    <label>🎙 កត់សម្លេង</label>
+                    <button class="btn btn-secondary" id="record-btn">🎙 Start Recording</button>
+                    <div id="voice-preview"></div>
+                </div>
+                <button class="btn" onclick="submitTicket()">
+                    <span>📤</span>
+                    <span>ផ្ញើសំណើ</span>
+                </button>
+                <button class="btn btn-secondary" onclick="showMainMenu()">
+                    <span>🔙</span>
+                    <span>ត្រឡប់ក្រោយ</span>
+                </button>
+            `;
+            
+            // Handle file selection
+            document.getElementById('attachment').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const preview = document.getElementById('attachment-preview');
+                if (file) {
+                    preview.innerHTML = `<small>✓ ឯកសារ: ${file.name} (${(file.size / 1024).toFixed(0)}KB)</small>`;
+                    newTicketVoiceFile = null;
+                    const voicePreview = document.getElementById('voice-preview');
+                    if (voicePreview) {
+                        voicePreview.innerHTML = '';
+                    }
+                } else {
+                    preview.innerHTML = '';
+                }
+            });
+
+            initVoiceRecorder('record-btn', 'voice-preview', (file) => {
+                newTicketVoiceFile = file;
+                const attachmentInput = document.getElementById('attachment');
+                if (attachmentInput) {
+                    attachmentInput.value = '';
+                }
+                document.getElementById('attachment-preview').innerHTML = '';
+            });
+        }
+
+        // Link email form
+        function showLinkEmailForm() {
+            document.getElementById('content').innerHTML = `
+                <h2>ភ្ជាប់អ៊ីមែល</h2>
+                <div class="form-group">
+                    <label>អាស័យដ្ឋានអ៊ីមែល *</label>
+                    <input type="email" id="link-email" placeholder="your@email.com">
+                </div>
+                <button class="btn" onclick="submitLinkEmail()">
+                    <span>🔗</span>
+                    <span>ភ្ជាប់គណនី</span>
+                </button>
+                <button class="btn btn-secondary" onclick="showMainMenu()">
+                    <span>🔙</span>
+                    <span>ត្រឡប់ក្រោយ</span>
+                </button>
+            `;
+        }
+
+        async function submitLinkEmail() {
+            const email = document.getElementById('link-email').value.trim();
+
+            if (!email) {
+                tg.showAlert('សូមបញ្ចូលអ៊ីមែល');
+                return;
+            }
+
+            tg.MainButton.setText('កំពុងភ្ជាប់...');
+            tg.MainButton.show();
+            tg.MainButton.showProgress();
+
+            try {
+                const response = await fetch(API_BASE + '/link-email', {
+                    method: 'POST',
+                    headers: buildHeaders({
+                        'Content-Type': 'application/json',
+                    }),
+                    body: JSON.stringify({
+                        initData: initData,
+                        email: email
+                    })
+                });
+
+                const responseText = await response.text();
+
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status);
+                }
+
+                const result = JSON.parse(responseText);
+
+                if (result.success) {
+                    tg.showAlert(result.message || 'គណនីរបស់អ្នកបានតភ្ជាប់ដោយជោគជ័យ!', () => {
+                        showMainMenu();
+                    });
+                } else {
+                    tg.showAlert('កំហុស: ' + (result.message || 'មិនអាចភ្ជាប់បានទេ'));
+                }
+            } catch (error) {
+                console.error('Error in submitLinkEmail:', error);
+                tg.showAlert('កំហុសក្នុងការភ្ជាប់: ' + error.message);
+            } finally {
+                tg.MainButton.hideProgress();
+                tg.MainButton.hide();
+            }
+        }
+        
+        // Submit ticket
+        async function submitTicket() {
+            const subject = document.getElementById('subject').value.trim();
+            let description = document.getElementById('description').value.trim();
+            const attachmentInput = document.getElementById('attachment');
+            const file = attachmentInput ? attachmentInput.files[0] : null;
+            const uploadFile = newTicketVoiceFile || file;
+            
+            if (!subject || (!description && !uploadFile)) {
+                tg.showAlert('សូមបំពេញព័ត៌មានទាំងអស់');
+                return;
+            }
+            
+            if (subject.length < 5) {
+                tg.showAlert('ប្រធានបទត្រូវមានយ៉ាងហោចណាស់ 5 តួអក្សរ');
+                return;
+            }
+            
+            if (!description && uploadFile) {
+                description = 'Voice message attached.';
+            }
+
+            if (description.length < 10) {
+                tg.showAlert('ពិពណ៌នាត្រូវមានយ៉ាងហោចណាស់ 10 តួអក្សរ');
+                return;
+            }
+            
+            tg.MainButton.setText('កំពុងផ្ញើ...');
+            tg.MainButton.show();
+            tg.MainButton.showProgress();
+            
+            try {
+                console.log('Creating ticket:', { subject, description: description.substring(0, 30) });
+                
+                const response = await fetch(API_BASE + '/create-ticket', {
+                    method: 'POST',
+                    headers: buildHeaders({
+                        'Content-Type': 'application/json',
+                    }),
+                    body: JSON.stringify({
+                        initData: initData,
+                        subject: subject,
+                        description: description
+                    })
+                });
+                
+                console.log('Create ticket response status:', response.status);
+                console.log('Content-Type:', response.headers.get('content-type'));
+                
+                const responseText = await response.text();
+                console.log('Create ticket response:', responseText);
+                
+                // Check if response is HTML error
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                }
+                
+                const result = JSON.parse(responseText);
+                
+                if (!result.success) {
+                    console.error('Create ticket failed:', result.message);
+                    tg.showAlert('កំហុស: ' + (result.message || 'មិនអាចបង្កើតសំណើបានទេ'));
+                    return;
+                }
+
+                if (uploadFile && result.ticket_id && result.message_id) {
+                    console.log('Uploading file for ticket:', result.ticket_id, 'message:', result.message_id);
+                    
+                    const formData = new FormData();
+                    formData.append('file', uploadFile);
+                    formData.append('initData', initData);
+                    formData.append('ticket_id', result.ticket_id);
+                    formData.append('message_id', result.message_id);
+                    
+                    const uploadResponse = await fetch(API_BASE + '/upload-file', {
+                        method: 'POST',
+                        headers: buildHeaders(),
+                        body: formData
+                    });
+                    
+                    console.log('Upload response status:', uploadResponse.status);
+                    const uploadText = await uploadResponse.text();
+                    console.log('Upload response:', uploadText);
+                    
+                    if (uploadText.trim().startsWith('<')) {
+                        throw new Error('Upload server error: ' + uploadText.substring(0, 100));
+                    }
+                    
+                    const uploadResult = JSON.parse(uploadText);
+                    if (!uploadResult.success) {
+                        throw new Error('Upload failed: ' + (uploadResult.message || 'Unknown error'));
+                    }
+                }
+                
+                tg.showAlert('សំណើបានបង្កើតដោយជោគជ័យ!\nលេខសំណើ: ' + result.ticket_number, () => {
+                    showMainMenu();
+                });
+            } catch (error) {
+                console.error('Error in submitTicket:', error);
+                tg.showAlert('កំហុសក្នុងការបង្កើតសំណើ: ' + error.message);
+            } finally {
+                tg.MainButton.hideProgress();
+                tg.MainButton.hide();
+            }
+        }
+        
+        // Show tickets
+        async function showMyTickets() {
+            showLoading();
+            
+            try {
+                console.log('API_BASE:', API_BASE);
+                console.log('initData:', initData ? initData.substring(0, 50) + '...' : 'EMPTY');
+                console.log('user:', user);
+                
+                const url = API_BASE + '/my-tickets?' + new URLSearchParams({
+                    initData: initData
+                });
+                console.log('Fetching:', url);
+                
+                const response = await fetch(url);
+                console.log('Response status:', response.status);
+                console.log('Content-Type:', response.headers.get('content-type'));
+                
+                const responseText = await response.text();
+                console.log('Response text:', responseText);
+                
+                // Check if response is HTML error
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                }
+                
+                const result = JSON.parse(responseText);
+                console.log('Parsed result:', result);
+                
+                if (result.success && result.tickets && result.tickets.length > 0) {
+                    let html = '<h2>សំណើរបស់ខ្ញុំ</h2>';
+                    result.tickets.forEach(ticket => {
+                        html += `
+                            <div class="ticket-card" onclick="viewTicket(${ticket.id})">
+                                <strong>#${ticket.ticket_number}</strong>
+                                <p>${ticket.subject}</p>
+                                ${getStatusBadge(ticket.status)}
+                                <br><small>${new Date(ticket.created_at).toLocaleString('km-KH')}</small>
+                            </div>
+                        `;
+                    });
+                    html += `
+                        <button class="btn btn-secondary" onclick="showMainMenu()">
+                            <span>🔙</span>
+                            <span>ត្រឡប់ក្រោយ</span>
+                        </button>
+                    `;
+                    document.getElementById('content').innerHTML = html;
+                } else if (result.success === false) {
+                    // API returned error
+                    document.getElementById('content').innerHTML = `
+                        <div class="empty-state">
+                            <p>❌</p>
+                            <p>កំហុស: ${result.message || 'Unknown error'}</p>
+                            <button class="btn" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('content').innerHTML = `
+                        <div class="empty-state">
+                            <p>📭</p>
+                            <p>មិនមានសំណើ</p>
+                            <button class="btn" onclick="showNewTicketForm()">បង្កើតសំណើថ្មី</button>
+                            <button class="btn btn-secondary" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error in showMyTickets:', error);
+                
+                let errorMsg = 'កំហុសក្នុងការផ្ទុកសំណើ';
+                if (error.message) {
+                    errorMsg += '<br><small style="font-size: 11px;">' + error.message + '</small>';
+                }
+                
+                document.getElementById('content').innerHTML = `
+                    <div class="empty-state">
+                        <p>❌</p>
+                        <p>${errorMsg}</p>
+                        <p style="font-size: 11px; margin-top: 10px;">
+                            Debug info:<br>
+                            API: ${API_BASE}<br>
+                            Has initData: ${initData ? 'Yes' : 'No'}<br>
+                            User ID: ${user.id || 'N/A'}
+                        </p>
+                        <button class="btn btn-secondary" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // View ticket details
+        async function viewTicket(ticketId) {
+            showLoading();
+            
+            try {
+                console.log('Viewing ticket:', ticketId);
+                
+                const url = API_BASE + '/ticket/' + ticketId + '?' + new URLSearchParams({
+                    initData: initData
+                });
+                console.log('Ticket URL:', url);
+                
+                const response = await fetch(url);
+                console.log('Ticket response status:', response.status);
+                console.log('Content-Type:', response.headers.get('content-type'));
+                
+                const responseText = await response.text();
+                console.log('Ticket response (first 200 chars):', responseText.substring(0, 200));
+                
+                // Check if response is HTML error
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                }
+                
+                const result = JSON.parse(responseText);
+                
+                if (result.success) {
+                    const ticket = result.ticket;
+                    let html = `
+                        <h2>#${ticket.ticket_number}</h2>
+                        <div class="ticket-card">
+                            <p><strong>ប្រធានបទ:</strong> ${ticket.subject}</p>
+                            <p><strong>ស្ថានភាព:</strong> ${getStatusBadge(ticket.status)}</p>
+                            <p><strong>អាទិភាព:</strong> ${ticket.priority}</p>
+                            <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--tg-theme-hint-color);">
+                            <p><strong>ពិពណ៌នា:</strong></p>
+                            <p>${formatMessage(ticket.description)}</p>
+                        </div>
+                        <h3>ការឆ្លើយតប (${result.messages.length})</h3>
+                    `;
+                    
+                    if (result.messages.length > 0) {
+                        result.messages.forEach(msg => {
+                            const attachmentsHtml = renderAttachments(msg.attachment_files || []);
+                            html += `
+                                <div class="message-card">
+                                    <strong>${msg.user_name || 'Unknown'}</strong>
+                                    <p>${formatMessage(msg.message)}</p>
+                                    ${attachmentsHtml}
+                                    <small>${new Date(msg.created_at).toLocaleString('km-KH')}</small>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += '<p style="text-align: center; color: var(--tg-theme-hint-color);">មិនទាន់មានការឆ្លើយតប</p>';
+                    }
+                    
+                    html += `
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>ការឆ្លើយតបថ្មី</label>
+                            <textarea id="reply" placeholder="វាយការឆ្លើយតបរបស់អ្នក..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>📎 ភ្ជាប់ឯកសារ (រូបភាព, PDF, ឬ សម្លេង)</label>
+                            <input type="file" id="reply-attachment" accept="image/*,.pdf,audio/*,.ogg,.mp3,.m4a" style="padding: 8px;">
+                            <small style="color: var(--tg-theme-hint-color);">ទំហំអតិបរមា 10MB</small>
+                            <div id="reply-attachment-preview" style="margin-top: 8px;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>🎙 កត់សម្លេង</label>
+                            <button class="btn btn-secondary" id="reply-record-btn">🎙 Start Recording</button>
+                            <div id="reply-voice-preview"></div>
+                        </div>
+                        <button class="btn" onclick="sendReply(${ticketId})">
+                            <span>📤</span>
+                            <span>ផ្ញើការឆ្លើយតប</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="showMyTickets()">
+                            <span>🔙</span>
+                            <span>ត្រឡប់ក្រោយ</span>
+                        </button>
+                    `;
+                    
+                    document.getElementById('content').innerHTML = html;
+                    
+                    // Handle reply file selection
+                    document.getElementById('reply-attachment').addEventListener('change', function(e) {
+                        const file = e.target.files[0];
+                        const preview = document.getElementById('reply-attachment-preview');
+                        if (file) {
+                            preview.innerHTML = `<small>✓ ឯកសារ: ${file.name} (${(file.size / 1024).toFixed(0)}KB)</small>`;
+                            replyVoiceFile = null;
+                            const voicePreview = document.getElementById('reply-voice-preview');
+                            if (voicePreview) {
+                                voicePreview.innerHTML = '';
+                            }
+                        } else {
+                            preview.innerHTML = '';
+                        }
+                    });
+
+                    initVoiceRecorder('reply-record-btn', 'reply-voice-preview', (file) => {
+                        replyVoiceFile = file;
+                        const replyAttachmentInput = document.getElementById('reply-attachment');
+                        if (replyAttachmentInput) {
+                            replyAttachmentInput.value = '';
+                        }
+                        document.getElementById('reply-attachment-preview').innerHTML = '';
+                    });
+                } else {
+                    console.error('Ticket load failed:', result.message);
+                    tg.showAlert('មិនអាចផ្ទុកសំណើបានទេ: ' + (result.message || 'Unknown error'));
+                    showMyTickets();
+                }
+            } catch (error) {
+                console.error('Error in viewTicket:', error);
+                tg.showAlert('កំហុសក្នុងការផ្ទុកសំណើ: ' + error.message);
+                showMyTickets();
+            }
+        }
+        
+        // Send reply
+        async function sendReply(ticketId) {
+            const reply = document.getElementById('reply').value.trim();
+            const attachmentInput = document.getElementById('reply-attachment');
+            const file = attachmentInput ? attachmentInput.files[0] : null;
+            const uploadFile = replyVoiceFile || file;
+            
+            if (!reply && !uploadFile) {
+                tg.showAlert('សូមវាយការឆ្លើយតប');
+                return;
+            }
+
+            const messageToSend = reply || (uploadFile ? 'Voice message attached.' : '[Attachment]');
+            
+            tg.MainButton.setText('កំពុងផ្ញើ...');
+            tg.MainButton.show();
+            tg.MainButton.showProgress();
+            
+            try {
+                console.log('Sending reply:', { ticketId, message: messageToSend.substring(0, 20) });
+                
+                const response = await fetch(API_BASE + '/reply', {
+                    method: 'POST',
+                    headers: buildHeaders({
+                        'Content-Type': 'application/json',
+                    }),
+                    body: JSON.stringify({
+                        initData: initData,
+                        ticket_id: ticketId,
+                        message: messageToSend
+                    })
+                });
+                
+                console.log('Reply response status:', response.status);
+                console.log('Content-Type:', response.headers.get('content-type'));
+                
+                const responseText = await response.text();
+                console.log('Reply response text:', responseText);
+                
+                // Check if response is HTML error
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                }
+                
+                const result = JSON.parse(responseText);
+                console.log('Reply parsed result:', result);
+                
+                if (result.success) {
+                    if (uploadFile && result.message_id) {
+                        console.log('Uploading reply file for message:', result.message_id);
+                        
+                        const formData = new FormData();
+                        formData.append('file', uploadFile);
+                        formData.append('initData', initData);
+                        formData.append('ticket_id', ticketId);
+                        formData.append('message_id', result.message_id);
+                        
+                        const uploadResponse = await fetch(API_BASE + '/upload-file', {
+                            method: 'POST',
+                            headers: buildHeaders(),
+                            body: formData
+                        });
+                        
+                        console.log('Reply upload response status:', uploadResponse.status);
+                        const uploadText = await uploadResponse.text();
+                        console.log('Reply upload response:', uploadText);
+                        
+                        if (uploadText.trim().startsWith('<')) {
+                            throw new Error('Upload server error: ' + uploadText.substring(0, 100));
+                        }
+                        
+                        const uploadResult = JSON.parse(uploadText);
+                        if (!uploadResult.success) {
+                            throw new Error('Upload failed: ' + (uploadResult.message || 'Unknown error'));
+                        }
+                    }
+
+                    tg.showAlert('ការឆ្លើយតបបានផ្ញើ', () => {
+                        viewTicket(ticketId);
+                    });
+                } else {
+                    const errorMsg = result.message || 'មិនអាចផ្ញើបានទេ';
+                    console.error('Reply failed:', errorMsg);
+                    tg.showAlert('កំហុស: ' + errorMsg);
+                }
+            } catch (error) {
+                console.error('Error in sendReply:', error);
+                tg.showAlert('កំហុសក្នុងការឆ្លើយតប: ' + error.message);
+            } finally {
+                tg.MainButton.hideProgress();
+                tg.MainButton.hide();
+            }
+        }
+        
+        // Handle back button
+        tg.BackButton.onClick(() => {
+            const content = document.getElementById('content').innerHTML;
+            if (content.includes('បង្កើតសំណើថ្មី') && content.includes('form-group')) {
+                showMainMenu();
+            } else if (content.includes('សំណើរបស់ខ្ញុំ')) {
+                showMainMenu();
+            } else if (content.includes('ភ្ជាប់អ៊ីមែល')) {
+                showMainMenu();
+            } else if (content.includes('ការឆ្លើយតប')) {
+                showMyTickets();
+            } else {
+                tg.close();
+            }
+        });
+        
+        // Initialize
+        if (!initData) {
+            document.getElementById('content').innerHTML = `
+                <div class="empty-state">
+                    <p>❌</p>
+                    <p>សូមបើកពីទូរសារ Telegram</p>
+                </div>
+            `;
+        } else {
+            showMainMenu();
+            tg.BackButton.show();
+        }
+    </script>
+</body>
+</html>

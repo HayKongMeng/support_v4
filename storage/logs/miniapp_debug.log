@@ -1,0 +1,194 @@
+[2026-02-12 02:01:38] validateInitData called, initData length: 648
+[2026-02-12 02:01:38] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:01:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:01:38] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:01:38] Hash validation PASSED
+[2026-02-12 02:01:38] User data decoded, user ID: 768732984
+[2026-02-12 02:01:41] validateInitData called, initData length: 648
+[2026-02-12 02:01:41] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:01:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:01:41] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:01:41] Hash validation PASSED
+[2026-02-12 02:01:41] User data decoded, user ID: 768732984
+[2026-02-12 02:01:46] ===== SEND REPLY START =====
+[2026-02-12 02:01:46] Request method: POST
+[2026-02-12 02:01:46] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"fafafa"}
+[2026-02-12 02:01:46] sendReply called for ticket: 5, message length: 6
+[2026-02-12 02:01:47] validateInitData called, initData length: 648
+[2026-02-12 02:01:47] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:01:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:01:47] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:01:47] Hash validation PASSED
+[2026-02-12 02:01:47] User data decoded, user ID: 768732984
+[2026-02-12 02:01:47] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:01:47] PushService created successfully
+[2026-02-12 02:01:47] Push notification result: {"success":true,"sent":0,"failed":0,"details":[]}
+[2026-02-12 02:01:47] Reply added successfully
+[2026-02-12 02:01:49] validateInitData called, initData length: 648
+[2026-02-12 02:01:49] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:01:49] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:01:49] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:01:49] Hash validation PASSED
+[2026-02-12 02:01:49] User data decoded, user ID: 768732984
+[2026-02-12 02:03:51] validateInitData called, initData length: 648
+[2026-02-12 02:03:51] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:03:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:03:51] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:03:51] Hash validation PASSED
+[2026-02-12 02:03:51] User data decoded, user ID: 768732984
+[2026-02-12 02:03:54] validateInitData called, initData length: 648
+[2026-02-12 02:03:54] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:03:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:03:54] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:03:54] Hash validation PASSED
+[2026-02-12 02:03:54] User data decoded, user ID: 768732984
+[2026-02-12 02:04:03] ===== SEND REPLY START =====
+[2026-02-12 02:04:03] Request method: POST
+[2026-02-12 02:04:03] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"mix hx"}
+[2026-02-12 02:04:03] sendReply called for ticket: 5, message length: 6
+[2026-02-12 02:04:03] validateInitData called, initData length: 648
+[2026-02-12 02:04:03] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:04:03] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:04:03] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:04:03] Hash validation PASSED
+[2026-02-12 02:04:03] User data decoded, user ID: 768732984
+[2026-02-12 02:04:03] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:04:03] PushService created successfully
+[2026-02-12 02:04:03] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-12 02:04:03] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-12 02:04:03] [PushService] Query returned 0 rows
+[2026-02-12 02:04:03] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [1]
+[2026-02-12 02:04:03] [PushService] Checking total subscriptions in database...
+[2026-02-12 02:04:03] [PushService] All subscriptions by user: []
+[2026-02-12 02:04:03] [PushService] Total push_subscriptions in DB: 0
+[2026-02-12 02:04:03] [PushService] Found 0 active subscriptions
+[2026-02-12 02:04:03] Push notification result: {"success":true,"sent":0,"failed":0,"details":[]}
+[2026-02-12 02:04:03] Reply added successfully
+[2026-02-12 02:06:07] validateInitData called, initData length: 648
+[2026-02-12 02:06:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:06:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:06:07] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:06:07] Hash validation PASSED
+[2026-02-12 02:06:07] User data decoded, user ID: 768732984
+[2026-02-12 02:06:53] validateInitData called, initData length: 648
+[2026-02-12 02:06:53] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:06:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:06:53] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:06:53] Hash validation PASSED
+[2026-02-12 02:06:53] User data decoded, user ID: 768732984
+[2026-02-12 02:06:54] validateInitData called, initData length: 648
+[2026-02-12 02:06:54] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:06:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:06:54] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:06:54] Hash validation PASSED
+[2026-02-12 02:06:54] User data decoded, user ID: 768732984
+[2026-02-12 02:07:04] ===== SEND REPLY START =====
+[2026-02-12 02:07:04] Request method: POST
+[2026-02-12 02:07:04] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"dsds"}
+[2026-02-12 02:07:04] sendReply called for ticket: 5, message length: 4
+[2026-02-12 02:07:04] validateInitData called, initData length: 648
+[2026-02-12 02:07:04] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:07:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:07:04] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:07:04] Hash validation PASSED
+[2026-02-12 02:07:04] User data decoded, user ID: 768732984
+[2026-02-12 02:07:05] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:07:05] PushService created successfully
+[2026-02-12 02:07:05] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-12 02:07:05] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-12 02:07:05] [PushService] Query returned 0 rows
+[2026-02-12 02:07:05] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [1]
+[2026-02-12 02:07:05] [PushService] Checking total subscriptions in database...
+[2026-02-12 02:07:05] [PushService] All subscriptions by user: []
+[2026-02-12 02:07:05] [PushService] Total push_subscriptions in DB: 0
+[2026-02-12 02:07:05] [PushService] Found 0 active subscriptions
+[2026-02-12 02:07:05] Push notification result: {"success":true,"sent":0,"failed":0,"details":[]}
+[2026-02-12 02:07:05] Reply added successfully
+[2026-02-12 02:07:07] validateInitData called, initData length: 648
+[2026-02-12 02:07:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:07:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:07:07] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:07:07] Hash validation PASSED
+[2026-02-12 02:07:07] User data decoded, user ID: 768732984
+[2026-02-12 02:08:09] ===== SEND REPLY START =====
+[2026-02-12 02:08:09] Request method: POST
+[2026-02-12 02:08:09] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"der nv"}
+[2026-02-12 02:08:09] sendReply called for ticket: 5, message length: 6
+[2026-02-12 02:08:09] validateInitData called, initData length: 648
+[2026-02-12 02:08:09] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:08:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:08:09] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:08:09] Hash validation PASSED
+[2026-02-12 02:08:09] User data decoded, user ID: 768732984
+[2026-02-12 02:08:09] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:08:09] PushService created successfully
+[2026-02-12 02:08:09] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-12 02:08:09] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-12 02:08:09] [PushService] Query returned 0 rows
+[2026-02-12 02:08:09] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [1]
+[2026-02-12 02:08:09] [PushService] Checking total subscriptions in database...
+[2026-02-12 02:08:09] [PushService] All subscriptions by user: []
+[2026-02-12 02:08:09] [PushService] Total push_subscriptions in DB: 0
+[2026-02-12 02:08:09] [PushService] Found 0 active subscriptions
+[2026-02-12 02:08:09] Push notification result: {"success":true,"sent":0,"failed":0,"details":[]}
+[2026-02-12 02:08:09] Reply added successfully
+[2026-02-12 02:08:10] validateInitData called, initData length: 648
+[2026-02-12 02:08:10] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:08:10] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:08:10] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:08:10] Hash validation PASSED
+[2026-02-12 02:08:10] User data decoded, user ID: 768732984
+[2026-02-12 02:09:07] ===== SEND REPLY START =====
+[2026-02-12 02:09:07] Request method: POST
+[2026-02-12 02:09:07] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"der nv"}
+[2026-02-12 02:09:07] sendReply called for ticket: 5, message length: 6
+[2026-02-12 02:09:07] validateInitData called, initData length: 648
+[2026-02-12 02:09:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:09:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:09:07] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:09:07] Hash validation PASSED
+[2026-02-12 02:09:07] User data decoded, user ID: 768732984
+[2026-02-12 02:09:07] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:09:07] PushService created successfully
+[2026-02-12 02:09:07] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-12 02:09:07] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-12 02:09:07] [PushService] Query returned 0 rows
+[2026-02-12 02:09:07] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [1]
+[2026-02-12 02:09:07] [PushService] Checking total subscriptions in database...
+[2026-02-12 02:09:07] [PushService] All subscriptions by user: []
+[2026-02-12 02:09:07] [PushService] Total push_subscriptions in DB: 0
+[2026-02-12 02:09:07] [PushService] Found 0 active subscriptions
+[2026-02-12 02:09:07] Push notification result: {"success":true,"sent":0,"failed":0,"details":[]}
+[2026-02-12 02:09:07] Reply added successfully
+[2026-02-12 02:09:07] validateInitData called, initData length: 648
+[2026-02-12 02:09:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:09:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:09:07] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:09:07] Hash validation PASSED
+[2026-02-12 02:09:07] User data decoded, user ID: 768732984
+[2026-02-12 02:13:33] ===== SEND REPLY START =====
+[2026-02-12 02:13:33] Request method: POST
+[2026-02-12 02:13:33] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1TPmuP&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1770861401&signature=x6jHcivqnTi3589V6qth-fg2BJN_C_tyL__9EP-cLOif3bis7unv7GEk2mR9xdxOSLRNSZXCSLkV1iI289RlCA&hash=09216d0cf9ad703f54fdbd4e851486d0e2b08173cac1359fef52999b4a3956d9","ticket_id":5,"message":"fafa"}
+[2026-02-12 02:13:33] sendReply called for ticket: 5, message length: 4
+[2026-02-12 02:13:34] validateInitData called, initData length: 648
+[2026-02-12 02:13:34] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:13:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:13:34] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:13:34] Hash validation PASSED
+[2026-02-12 02:13:34] User data decoded, user ID: 768732984
+[2026-02-12 02:13:34] Attempting to send push notification to agent ID: 1
+[2026-02-12 02:13:34] PushService created successfully
+[2026-02-12 02:13:34] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-12 02:13:34] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-12 02:13:34] [PushService] Query returned 1 rows
+[2026-02-12 02:13:34] [PushService] Found 1 active subscriptions
+[2026-02-12 02:13:34] [PushService] Processing subscription for user: 1
+[2026-02-12 02:13:34] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-12 02:13:34] Push notification result: {"success":true,"sent":0,"failed":1,"details":[{"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}]}
+[2026-02-12 02:13:34] Reply added successfully
+[2026-02-12 02:13:39] validateInitData called, initData length: 648
+[2026-02-12 02:13:39] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-12 02:13:39] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-12 02:13:39] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
+[2026-02-12 02:13:39] Hash validation PASSED
+[2026-02-12 02:13:39] User data decoded, user ID: 768732984

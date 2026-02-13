@@ -1,0 +1,12 @@
+[2026-02-05 05:23:37] ========== WEBHOOK RECEIVED ==========
+[2026-02-05 05:23:37] Method: GET
+[2026-02-05 05:23:37] URI: /telegram_webhook_test.php
+[2026-02-05 05:23:37] IP: 10.10.64.76
+[2026-02-05 05:23:37] Input size: 0 bytes
+[2026-02-05 05:23:37] ERROR: Empty input!
+[2026-02-06 06:40:00] ========== WEBHOOK RECEIVED ==========
+[2026-02-06 06:40:00] Method: GET
+[2026-02-06 06:40:00] URI: /telegram_webhook_test.php
+[2026-02-06 06:40:00] IP: 10.10.64.76
+[2026-02-06 06:40:00] Input size: 0 bytes
+[2026-02-06 06:40:00] ERROR: Empty input!

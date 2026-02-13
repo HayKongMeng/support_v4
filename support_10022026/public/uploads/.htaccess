@@ -1,0 +1,10 @@
+# Prevent PHP execution in uploads directory
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Allow access to all files (images, documents, etc.)
+Require all granted

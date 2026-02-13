@@ -1,0 +1,23 @@
+[2026-02-05 05:19:01] ========== TELEGRAM DEBUG START ==========
+[2026-02-05 05:19:01] Method: GET
+[2026-02-05 05:19:01] URI: /telegram_full_debug.php
+[2026-02-05 05:19:01] Remote IP: 10.10.64.76
+[2026-02-05 05:19:01] Input size: 0 bytes
+[2026-02-05 05:19:01] Input preview: 
+[2026-02-05 05:19:01] ERROR: Could not parse JSON
+[2026-02-05 05:24:42] ========== TELEGRAM DEBUG START ==========
+[2026-02-05 05:24:42] Method: GET
+[2026-02-05 05:24:42] URI: /telegram_full_debug.php
+[2026-02-05 05:24:42] Remote IP: 10.10.64.76
+[2026-02-05 05:24:42] Input size: 0 bytes
+[2026-02-05 05:24:42] Input preview: 
+[2026-02-05 05:24:42] GET request detected - this is a browser test, not a webhook
+[2026-02-05 05:24:42] To test the webhook, send a message to the Telegram bot
+[2026-02-05 06:43:50] ========== TELEGRAM DEBUG START ==========
+[2026-02-05 06:43:50] Method: GET
+[2026-02-05 06:43:50] URI: /telegram_full_debug.php
+[2026-02-05 06:43:50] Remote IP: 10.10.64.76
+[2026-02-05 06:43:50] Input size: 0 bytes
+[2026-02-05 06:43:50] Input preview: 
+[2026-02-05 06:43:50] GET request detected - this is a browser test, not a webhook
+[2026-02-05 06:43:50] To test the webhook, send a message to the Telegram bot
