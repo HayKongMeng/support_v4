@@ -16,6 +16,25 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
+# =============================================
+# Block debug, test, and diagnostic files
+# These should never be publicly accessible
+# =============================================
+<FilesMatch "(debug_|telegram_debug|telegram_full_debug|telegram_bot_test|telegram_test|telegram_webhook_test|simple_diagnostic|webhook_diagnostic|check_logs|check_webhook|check-pdo|view_logs|view_direct_log|view_webhook_log|view_telegram_log|fix_webhook_secret|delete_webhook_direct|setup_webhook|telegram_webhook_setup|telegram_webhook_direct|webhook_simple|test-api|test-miniapp)\.php$">
+    Require all denied
+</FilesMatch>
+
+# =============================================
+# Security Headers
+# =============================================
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php81” package as the default “PHP” programming language.
 <IfModule mime_module>

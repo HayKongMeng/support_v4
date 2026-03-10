@@ -882,3 +882,223 @@ Input: {"update_id":633184197,
 Input: {"update_id":633184198,
 "callback_query":{"id":"3301683027843697409","from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"message":{"message_id":123,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1770803007,"text":"Ticket #TKT-000005\n\nSubject: sage 300 black screen\nStatus: Open\nPriority: Medium\nCreated: Feb 10, 2026 2:39 AM\n\nDescription:\nsage 300 black screen\n\nLatest Reply (You):\ntest","entities":[{"offset":0,"length":7,"type":"bold"},{"offset":7,"length":4,"type":"hashtag"},{"offset":7,"length":4,"type":"bold"},{"offset":11,"length":7,"type":"bold"},{"offset":20,"length":8,"type":"bold"},{"offset":51,"length":7,"type":"bold"},{"offset":64,"length":9,"type":"bold"},{"offset":81,"length":8,"type":"bold"},{"offset":112,"length":12,"type":"bold"},{"offset":148,"length":19,"type":"bold"}],"reply_markup":{"inline_keyboard":[[{"text":"Reply","callback_data":"reply_ticket:5"}]]}},"chat_instance":"8338709095626548063","data":"reply_ticket:5"}}
 ---
+[2026-02-20 03:13:11] Company: 1
+Input: {"update_id":633184199,
+"message":{"message_id":125,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771557190,"text":"faf"}}
+---
+[2026-02-20 03:13:21] Company: 1
+Input: {"update_id":633184200,
+"message":{"message_id":127,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771557200,"text":"oka"}}
+---
+[2026-02-20 04:35:15] Company: 1
+Input: {"update_id":633184201,
+"message":{"message_id":129,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562113,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-20 04:43:54] Company: 1
+Input: {"update_id":633184202,
+"message":{"message_id":131,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562631,"text":"/strart","entities":[{"offset":0,"length":7,"type":"bot_command"}]}}
+---
+[2026-02-20 04:44:09] Company: 1
+Input: {"update_id":633184203,
+"message":{"message_id":133,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562647,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-20 06:28:35] Company: 1
+Input: {"update_id":633184204,
+"message":{"message_id":135,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771568913,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-20 06:32:19] Company: 1
+Input: {"update_id":633184205,
+"message":{"message_id":137,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771569134,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-25 04:45:44] Company: 1
+Input: {"update_id":633184206,
+"message":{"message_id":140,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771994741,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-25 04:45:53] Company: 1
+Input: {"update_id":633184207,
+"message":{"message_id":142,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771994750,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-26 10:18:46] Company: 1
+Input: {"update_id":633184208,
+"message":{"message_id":148,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101122,"text":"f"}}
+---
+[2026-02-26 10:18:59] Company: 1
+Input: {"update_id":633184209,
+"message":{"message_id":150,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101135,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-26 10:19:46] Company: 1
+Input: {"update_id":633184210,
+"message":{"message_id":152,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101184,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 10:28:11] Company: 1
+Input: {"update_id":633184211,
+"message":{"message_id":154,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101685,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 10:28:18] Company: 1
+Input: {"update_id":633184212,
+"message":{"message_id":156,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101697,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-26 10:28:24] Company: 1
+Input: {"update_id":633184213,
+"message":{"message_id":158,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101702,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 10:28:31] Company: 1
+Input: {"update_id":633184214,
+"message":{"message_id":160,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101709,"text":"hkongmeng@gmail.com","entities":[{"offset":0,"length":19,"type":"email"}]}}
+---
+[2026-02-26 10:31:11] Company: 1
+Input: {"update_id":633184215,
+"message":{"message_id":162,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101868,"text":"/start bind_7_1773311454_IRLQnqFKDl8-FUFLuFtxgA","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-26 10:31:41] Company: 1
+Input: {"update_id":633184216,
+"message":{"message_id":164,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101898,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 10:31:51] Company: 1
+Input: {"update_id":633184217,
+"message":{"message_id":166,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101908,"text":"hkongmeng@gmail.com","entities":[{"offset":0,"length":19,"type":"email"}]}}
+---
+[2026-02-26 11:57:01] Company: 1
+Input: {"update_id":633184218,
+"message":{"message_id":168,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107020,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-26 12:04:11] Company: 1
+Input: {"update_id":633184219,
+"message":{"message_id":171,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107445,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 12:05:50] Company: 1
+Input: {"update_id":633184220,
+"message":{"message_id":173,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107549,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-26 12:06:02] Company: 1
+Input: {"update_id":633184221,
+"message":{"message_id":175,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107560,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 12:06:15] Company: 1
+Input: {"update_id":633184222,
+"message":{"message_id":177,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107572,"text":"hkongmeng@gmail.com","entities":[{"offset":0,"length":19,"type":"email"}]}}
+---
+[2026-02-26 13:07:32] Company: 1
+Input: {"update_id":633184223,
+"message":{"message_id":179,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111250,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-26 13:07:53] Company: 1
+Input: {"update_id":633184224,
+"message":{"message_id":181,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111272,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-26 13:07:57] Company: 1
+Input: {"update_id":633184225,
+"message":{"message_id":183,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111277,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-26 13:08:04] Company: 1
+Input: {"update_id":633184226,
+"message":{"message_id":185,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111283,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-26 13:08:10] Company: 1
+Input: {"update_id":633184227,
+"message":{"message_id":187,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111288,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 01:52:10] Company: 1
+Input: {"update_id":633184228,
+"message":{"message_id":189,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157128,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 01:56:23] Company: 1
+Input: {"update_id":633184229,
+"message":{"message_id":191,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157379,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 01:56:27] Company: 1
+Input: {"update_id":633184230,
+"message":{"message_id":193,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157386,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 01:56:33] Company: 1
+Input: {"update_id":633184231,
+"message":{"message_id":195,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157392,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-27 01:57:22] Company: 1
+Input: {"update_id":633184232,
+"message":{"message_id":197,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157439,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 01:57:24] Company: 1
+Input: {"update_id":633184233,
+"message":{"message_id":198,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157442,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 01:57:30] Company: 1
+Input: {"update_id":633184234,
+"message":{"message_id":201,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157449,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 01:57:36] Company: 1
+Input: {"update_id":633184235,
+"message":{"message_id":203,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157456,"text":"mengkong@gmail.com","entities":[{"offset":0,"length":18,"type":"email"}]}}
+---
+[2026-02-27 02:01:34] Company: 1
+Input: {"update_id":633184236,
+"message":{"message_id":205,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157690,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 02:01:56] Company: 1
+Input: {"update_id":633184237,
+"message":{"message_id":207,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157712,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 02:02:03] Company: 1
+Input: {"update_id":633184238,
+"message":{"message_id":209,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157722,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-27 02:02:13] Company: 1
+Input: {"update_id":633184239,
+"message":{"message_id":211,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157730,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 02:02:19] Company: 1
+Input: {"update_id":633184240,
+"message":{"message_id":213,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157738,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-27 02:06:38] Company: 1
+Input: {"update_id":633184241,
+"message":{"message_id":215,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157996,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 02:07:00] Company: 1
+Input: {"update_id":633184242,
+"message":{"message_id":217,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158018,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-27 02:07:16] Company: 1
+Input: {"update_id":633184243,
+"message":{"message_id":219,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158027,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 02:07:31] Company: 1
+Input: {"update_id":633184244,
+"message":{"message_id":221,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158042,"text":"meng@gmail.com","entities":[{"offset":0,"length":14,"type":"email"}]}}
+---
+[2026-02-27 02:13:02] Company: 1
+Input: {"update_id":633184245,
+"message":{"message_id":223,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158381,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 02:13:05] Company: 1
+Input: {"update_id":633184246,
+"message":{"message_id":225,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158385,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 02:13:13] Company: 1
+Input: {"update_id":633184247,
+"message":{"message_id":227,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158392,"text":"hkongmeng@gmail.com","entities":[{"offset":0,"length":19,"type":"email"}]}}
+---
+[2026-02-27 04:36:49] Company: 1
+Input: {"update_id":633184248,
+"message":{"message_id":229,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167007,"text":"ds"}}
+---
+[2026-02-27 04:39:14] Company: 1
+Input: {"update_id":633184249,
+"message":{"message_id":231,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167153,"text":"gg"}}
+---
+[2026-02-27 04:39:27] Company: 1
+Input: {"update_id":633184250,
+"message":{"message_id":233,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167164,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 04:45:08] Company: 1
+Input: {"update_id":633184251,
+"message":{"message_id":235,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167508,"text":"/link","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}
+---
+[2026-02-27 04:48:08] Company: 1
+Input: {"update_id":633184252,
+"message":{"message_id":237,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167687,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+---
+[2026-02-27 04:48:14] Company: 1
+Input: {"update_id":633184253,
+"message":{"message_id":239,"from":{"id":768732984,"is_bot":false,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","language_code":"en"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167694,"text":"fdfa"}}
+---

@@ -1,34 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Support Portal</title>
+    <title>&#127915;</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@400;500;600;700&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --mini-bg: #dcdfe5;
+            --mini-surface: #f2f3f7;
+            --mini-card: #eef1f7;
+            --mini-border: #d8deea;
+            --mini-text: #111827;
+            --mini-muted: #667085;
+            --mini-primary: #2f6de6;
+        }
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #000000);
+            font-family: 'Noto Serif Khmer', 'Noto Sans Khmer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--mini-bg);
+            color: var(--mini-text);
             padding: 16px;
             padding-bottom: 80px;
         }
+        #app {
+            min-height: calc(100vh - 96px);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        #content {
+            min-height: 50vh;
+        }
+        body,
+        input,
+        textarea,
+        select,
+        button {
+            font-family: 'Noto Serif Khmer', 'Noto Sans Khmer', serif;
+            line-height: 1.65;
+        }
         .header {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--tg-theme-hint-color, #e0e0e0);
-            margin-bottom: 20px;
+            padding: 16px 14px;
+            border: 1px solid var(--mini-border);
+            border-radius: 18px;
+            background: var(--mini-surface);
+            margin-bottom: 16px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
         }
         .header h1 {
             font-size: 24px;
-            margin-bottom: 8px;
+            margin-bottom: 0;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .lang-select {
+            border: 1px solid var(--mini-border);
+            background: #ffffff;
+            color: var(--mini-text);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 14px;
+            min-width: 100px;
+        }
+        #user-info {
+            margin-top: 8px;
+            color: var(--mini-muted);
         }
         .btn {
-            background: var(--tg-theme-button-color, #3390ec);
-            color: var(--tg-theme-button-text-color, #ffffff);
+            background: linear-gradient(135deg, #3261df 0%, #2f6de6 52%, #4a8df6 100%);
+            color: #ffffff;
             border: none;
             padding: 14px 24px;
-            border-radius: 12px;
+            border-radius: 16px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -38,28 +88,38 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 10px 22px rgba(47, 109, 230, 0.32);
         }
         .btn:active {
             opacity: 0.8;
         }
+        .btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
         .btn-secondary {
-            background: var(--tg-theme-secondary-bg-color, #f0f0f0);
-            color: var(--tg-theme-text-color, #000000);
+            background: #ffffff;
+            color: var(--mini-text);
+            border: 1px solid var(--mini-border);
+            box-shadow: none;
         }
         .ticket-card {
-            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
-            border-radius: 12px;
+            background: var(--mini-card);
+            border-radius: 16px;
             padding: 16px;
             margin: 12px 0;
             cursor: pointer;
             transition: transform 0.2s;
+            border: 1px solid var(--mini-border);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
         }
         .ticket-card:active {
             transform: scale(0.98);
         }
         .ticket-card strong {
             font-size: 16px;
-            color: var(--tg-theme-link-color, #3390ec);
+            color: var(--mini-primary);
         }
         .ticket-card p {
             margin: 8px 0;
@@ -79,7 +139,7 @@
             word-break: break-all;
         }
         .ticket-card small {
-            color: var(--tg-theme-hint-color, #999999);
+            color: var(--mini-muted);
             font-size: 13px;
         }
         .form-group {
@@ -94,11 +154,11 @@
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px;
-            border: 1px solid var(--tg-theme-hint-color, #e0e0e0);
-            border-radius: 10px;
+            border: 1px solid var(--mini-border);
+            border-radius: 14px;
             font-size: 16px;
-            background: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #000000);
+            background: #ffffff;
+            color: var(--mini-text);
             font-family: inherit;
         }
         .form-group textarea {
@@ -119,14 +179,15 @@
         .status-resolved { background: #f3e5f5; color: #7b1fa2; }
         .status-closed { background: #eeeeee; color: #616161; }
         .message-card {
-            background: var(--tg-theme-bg-color, #ffffff);
-            border: 1px solid var(--tg-theme-hint-color, #e0e0e0);
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid var(--mini-border);
+            border-radius: 16px;
             padding: 12px;
             margin: 12px 0;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
         }
         .message-card strong {
-            color: var(--tg-theme-link-color, #3390ec);
+            color: var(--mini-primary);
             font-size: 14px;
         }
         .message-card p {
@@ -152,25 +213,56 @@
         }
         .record-status {
             font-size: 12px;
-            color: var(--tg-theme-hint-color, #999999);
+            color: var(--mini-muted);
             margin-top: 6px;
         }
         .message-card small {
-            color: var(--tg-theme-hint-color, #999999);
+            color: var(--mini-muted);
             font-size: 12px;
         }
         .loading {
             text-align: center;
             padding: 40px;
-            color: var(--tg-theme-hint-color, #999999);
+            color: var(--mini-muted);
+            background: var(--mini-surface);
+            border: 1px solid var(--mini-border);
+            border-radius: 16px;
         }
         .empty-state {
             text-align: center;
             padding: 40px 20px;
+            background: var(--mini-surface);
+            border: 1px solid var(--mini-border);
+            border-radius: 16px;
         }
         .empty-state p {
             color: var(--tg-theme-hint-color, #999999);
             margin: 12px 0;
+        }
+        .profile-banner {
+            margin-bottom: 12px;
+            background: #f7fbff;
+            border: 1px solid #cfe2ff;
+            border-radius: 14px;
+            padding: 12px 14px;
+            color: #1e3a5f;
+            line-height: 1.45;
+        }
+        .profile-banner strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .role-prompt {
+            background: var(--mini-surface);
+            border: 1px solid var(--mini-border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .role-prompt p {
+            color: var(--mini-muted);
+            margin-top: 8px;
         }
         h2 {
             font-size: 20px;
@@ -180,77 +272,1175 @@
             font-size: 18px;
             margin: 20px 0 12px 0;
         }
+        body.ticket-detail-mode {
+            padding: 0;
+            background: #f2f4fa;
+            color: #1f2937;
+            overflow: hidden;
+            height: 100vh;
+        }
+        body.ticket-detail-mode .header {
+            display: none;
+        }
+        body.ticket-detail-mode #app {
+            min-height: 100vh;
+            height: 100vh;
+            max-width: none;
+        }
+        body.ticket-detail-mode #content {
+            min-height: 100vh;
+            height: 100vh;
+        }
+        .ticket-chat-screen {
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #dcdfe5;
+            overflow: hidden;
+        }
+        .ticket-chat-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: #f2f3f7;
+            border-bottom: 1px solid #dde2ed;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+        .ticket-chat-back {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 999px;
+            background: #eef2fa;
+            color: #334155;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ticket-chat-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f76ff, #2f57df);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .ticket-chat-headline {
+            min-width: 0;
+            flex: 1;
+        }
+        .ticket-chat-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #101828;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.25;
+        }
+        .ticket-chat-subtitle {
+            margin-top: 2px;
+            font-size: 12px;
+            color: #667085;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ticket-chat-thread {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 14px 12px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        .ticket-day-chip {
+            align-self: center;
+            font-size: 12px;
+            color: #667085;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #e3e7f1;
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin: 2px 0 6px;
+        }
+        .ticket-summary-card {
+            align-self: stretch;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e2e6f1;
+            border-radius: 14px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+        }
+        .ticket-summary-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .ticket-summary-id {
+            font-size: 12px;
+            color: #475467;
+            font-weight: 600;
+        }
+        .ticket-summary-subject {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #0f172a;
+            line-height: 1.45;
+            word-break: break-word;
+        }
+        .chat-row {
+            display: flex;
+            width: 100%;
+        }
+        .chat-row.outgoing {
+            justify-content: flex-end;
+        }
+        .chat-bubble {
+            max-width: min(82%, 360px);
+            border-radius: 16px;
+            padding: 10px 12px 8px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+            word-break: break-word;
+        }
+        .chat-bubble.incoming {
+            background: #e7ecf5;
+            border-bottom-left-radius: 8px;
+            color: #111827;
+        }
+        .chat-bubble.outgoing {
+            background: linear-gradient(135deg, #3261df 0%, #2f6de6 52%, #4a8df6 100%);
+            border-bottom-right-radius: 8px;
+            color: #ffffff;
+        }
+        .chat-author {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        .chat-text {
+            font-size: 16px;
+            line-height: 1.45;
+        }
+        .chat-time {
+            margin-top: 6px;
+            text-align: right;
+            font-size: 12px;
+            opacity: 0.85;
+        }
+        .msg-attachments {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .msg-attachments img {
+            width: min(100%, 260px);
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 280px;
+            object-fit: contain;
+            background: #ffffff;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+        .msg-attachments a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 13px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.18);
+        }
+        .voice-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: min(100%, 300px);
+            border-radius: 14px;
+            padding: 8px 10px;
+            border: 1px solid #cfd8ea;
+            background: #eef3fb;
+        }
+        .voice-play-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 999px;
+            background: #10203a;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .voice-track {
+            flex: 1;
+            min-width: 0;
+        }
+        .voice-bars {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 3px;
+            gap: 2px;
+            align-items: end;
+            height: 16px;
+            margin-bottom: 6px;
+        }
+        .voice-bars span {
+            background: #7f8da7;
+            border-radius: 999px;
+        }
+        .voice-bars span:nth-child(1), .voice-bars span:nth-child(7), .voice-bars span:nth-child(12) { height: 5px; }
+        .voice-bars span:nth-child(2), .voice-bars span:nth-child(5), .voice-bars span:nth-child(10) { height: 11px; }
+        .voice-bars span:nth-child(3), .voice-bars span:nth-child(8), .voice-bars span:nth-child(13) { height: 7px; }
+        .voice-bars span:nth-child(4), .voice-bars span:nth-child(9), .voice-bars span:nth-child(11) { height: 14px; }
+        .voice-progress {
+            width: 100%;
+            height: 3px;
+            border-radius: 999px;
+            background: #c8d3e6;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+        .voice-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #2f6de6;
+        }
+        .voice-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            font-size: 11px;
+            color: #5f6b82;
+            line-height: 1;
+        }
+        .voice-audio {
+            display: none;
+        }
+        .voice-player.is-playing .voice-play-btn {
+            background: #2f6de6;
+        }
+        .chat-bubble.outgoing .voice-player {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+        .chat-bubble.outgoing .voice-play-btn {
+            background: #ffffff;
+            color: #2f6de6;
+        }
+        .chat-bubble.outgoing .voice-bars span {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .chat-bubble.outgoing .voice-progress {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .chat-bubble.outgoing .voice-progress-fill {
+            background: #ffffff;
+        }
+        .chat-bubble.outgoing .voice-meta {
+            color: rgba(255, 255, 255, 0.92);
+        }
+        .chat-empty {
+            align-self: center;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #667085;
+        }
+        .ticket-chat-composer-wrap {
+            border-top: 1px solid #d8deea;
+            background: #f2f3f7;
+            padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+            position: sticky;
+            bottom: 0;
+            z-index: 35;
+        }
+        .composer-preview {
+            font-size: 12px;
+            color: #475467;
+            margin: 0 0 6px 6px;
+            line-height: 1.4;
+        }
+        .selection-preview {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 7px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--mini-border);
+            background: #ffffff;
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+        }
+        .selection-label {
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #334155;
+            font-size: 12px;
+        }
+        .selection-cancel-btn {
+            border: none;
+            border-radius: 999px;
+            background: #fee2e2;
+            color: #b42318;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .selection-cancel-btn:active {
+            opacity: 0.85;
+        }
+        .ticket-chat-composer {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid #e0e5f0;
+            border-radius: 24px;
+            padding: 6px 8px;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        }
+        .composer-icon-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 999px;
+            background: #eef2fa;
+            color: #475467;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .composer-icon-btn.recording {
+            background: #ffe5e8;
+            color: #e11d48;
+            animation: recorder-pulse 1s ease-in-out infinite;
+        }
+        .reply-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            min-height: 22px;
+            max-height: 120px;
+            resize: none;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #1f2937;
+            font-family: inherit;
+            padding: 5px 2px;
+        }
+        .reply-input::placeholder {
+            color: #98a2b3;
+        }
+        .composer-send-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 999px;
+            background: #2f6de6;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 14px rgba(47, 109, 230, 0.35);
+        }
+        .composer-send-btn:active,
+        .composer-icon-btn:active,
+        .ticket-chat-back:active {
+            transform: scale(0.96);
+        }
+        @keyframes recorder-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.35); }
+            70% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <div class="header">
-            <h1>🎫 Support Portal</h1>
-            <p id="user-info">Loading...</p>
+            <div class="header-top">
+                <h1 id="app-title">&#127915;</h1>
+                <select id="lang-switch" class="lang-select" aria-label="">
+                    <option value="km">ខ្មែរ</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <p id="user-info"></p>
         </div>
         
         <div id="content"></div>
     </div>
 
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-        tg.enableClosingConfirmation();
+        const tg = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : {
+            initData: '',
+            initDataUnsafe: {},
+            expand() {},
+            enableClosingConfirmation() {},
+            ready() {},
+            close() {},
+            showAlert(message, callback) {
+                try {
+                    alert(String(message || ''));
+                } catch (e) {}
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            },
+            MainButton: {
+                setText() {},
+                show() {},
+                hide() {},
+                showProgress() {},
+                hideProgress() {}
+            },
+            BackButton: {
+                show() {},
+                hide() {},
+                onClick() {}
+            }
+        };
+
+        if (typeof tg.ready === 'function') {
+            tg.ready();
+        }
+        if (typeof tg.expand === 'function') {
+            tg.expand();
+        }
+        if (typeof tg.enableClosingConfirmation === 'function') {
+            tg.enableClosingConfirmation();
+        }
 
         let newTicketVoiceFile = null;
         let replyVoiceFile = null;
-        
-        // API endpoint - change to your domain
-        const API_BASE = 'https://harmonistic-imaginary-luanne.ngrok-free.dev/api/telegram/miniapp';
-        const DOMAIN = 'https://harmonistic-imaginary-luanne.ngrok-free.dev';
+        let currentView = 'main';
+        let currentTicketId = null;
+        let miniAppProfile = null;
 
+        const DOMAIN = window.location.origin;
+        const API_BASE = DOMAIN + '/api/telegram/miniapp';
         const isNgrok = window.location.host.includes('ngrok');
         const ngrokHeader = { 'ngrok-skip-browser-warning': 'true' };
+        const LANG_STORAGE_KEY = 'telegram_miniapp_lang';
+        const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10MB
+        const MAX_IMAGE_SIDE = 1920;
+
+        const I18N = {
+            km: {
+                app_title: '\u1795\u178f\u1790\u179b\u1787\u17c6\u1793\u17bd\u1799',
+                greeting: '\u179f\u17bd\u179f\u17d2\u178f\u17b8 {name}',
+                greeting_guest: '\u179f\u17bd\u179f\u17d2\u178f\u17b8',
+                loading: '\u1780\u17c6\u1796\u17bb\u1784\u1795\u17d2\u1791\u17bb\u1780...',
+                status_open: '\u1794\u17be\u1780',
+                status_pending: '\u179a\u1784\u17cb\u1785\u17b6\u17c6',
+                status_in_progress: '\u1780\u17c6\u1796\u17bb\u1784\u178a\u17c6\u178e\u17be\u179a\u1780\u17b6\u179a',
+                status_resolved: '\u1794\u17b6\u1793\u178a\u17c4\u17c7\u179f\u17d2\u179a\u17b6\u1799',
+                status_closed: '\u1794\u17b7\u1791',
+                menu_new_ticket: '\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be\u1790\u17d2\u1798\u17b8',
+                menu_my_tickets: '\u179f\u17c6\u178e\u17be\u179a\u1794\u179f\u17cb\u1781\u17d2\u1789\u17bb\u17c6',
+                menu_link_email: '\u1797\u17d2\u1787\u17b6\u1794\u17cb\u17a2\u17ca\u17b8\u1798\u17c2\u179b',
+                new_ticket_title: '\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be\u1790\u17d2\u1798\u17b8',
+                subject_label: '\u1794\u17d2\u179a\u1792\u17b6\u1793\u1794\u1791',
+                subject_placeholder: '\u1794\u17d2\u179a\u1792\u17b6\u1793\u1794\u1791\u1793\u17c3\u1794\u1789\u17d2\u17a0\u17b6\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780',
+                category_label: '\u1794\u17d2\u179a\u1797\u17c1\u1791',
+                category_placeholder: '\u179f\u17bc\u1798\u1787\u17d2\u179a\u17be\u179f\u179a\u17be\u179f\u1794\u17d2\u179a\u1797\u17c1\u1791',
+                category_loading: '\u1780\u17c6\u1796\u17bb\u1784\u1795\u17d2\u1791\u17bb\u1780\u1794\u17d2\u179a\u1797\u17c1\u1791...',
+                category_required: '\u179f\u17bc\u1798\u1787\u17d2\u179a\u17be\u179f\u179a\u17be\u179f\u1794\u17d2\u179a\u1797\u17c1\u1791',
+                no_categories: '\u1798\u17b7\u1793\u1798\u17b6\u1793\u1794\u17d2\u179a\u1797\u17c1\u1791',
+                load_categories_error: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1795\u17d2\u1791\u17bb\u1780\u1794\u17d2\u179a\u1797\u17c1\u1791\u1794\u17b6\u1793\u1791\u17c1',
+                description_label: '\u1796\u17b7\u1796\u178e\u17cc\u1793\u17b6',
+                description_placeholder: '\u1796\u17b7\u1796\u178e\u17cc\u1793\u17b6\u179b\u1798\u17d2\u17a2\u17b7\u178f\u17a2\u17c6\u1796\u17b8\u1794\u1789\u17d2\u17a0\u17b6\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780',
+                attachments_label: '\u1797\u17d2\u1787\u17b6\u1794\u17cb\u17af\u1780\u179f\u17b6\u179a (\u179a\u17bc\u1794\u1797\u17b6\u1796, PDF, \u17ac \u179f\u1798\u17d2\u179b\u17c1\u1784)',
+                max_file_size: '\u1791\u17c6\u17a0\u17c6\u17a2\u178f\u17b7\u1794\u179a\u1798\u17b6 10MB',
+                record_voice: '\u1780\u178f\u17cb\u179f\u1798\u17d2\u179b\u17c1\u1784',
+                voice_recorded: '\u1794\u17b6\u1793\u1790\u178f\u179f\u1798\u17d2\u179b\u17c1\u1784 ({size}KB)',
+                mic_permission_error: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1794\u17d2\u179a\u17be\u1798\u17b8\u1780\u17d2\u179a\u17bc\u17a0\u17d2\u179c\u17bc\u1793\u1794\u17b6\u1793\u1791\u17c1\u17d4 \u179f\u17bc\u1798\u17a2\u1793\u17bb\u1789\u17d2\u1789\u17b6\u178f\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1798\u17b8\u1780\u17d2\u179a\u17bc\u17a0\u17d2\u179c\u17bc\u1793\u17d4',
+                start_recording: '\u1785\u17b6\u1794\u17cb\u1795\u17d2\u178a\u17be\u1798\u1790\u178f',
+                stop_recording: '\u1794\u1789\u17d2\u1788\u1794\u17cb\u1790\u178f',
+                send_ticket: '\u1795\u17d2\u1789\u17be\u179f\u17c6\u178e\u17be',
+                back: '\u178f\u17d2\u179a\u17a1\u1794\u17cb\u1780\u17d2\u179a\u17c4\u1799',
+                file_label: '\u17af\u1780\u179f\u17b6\u179a',
+                cancel: '\u1794\u17c4\u17c7\u1794\u1784\u17cb',
+                link_email_title: '\u1797\u17d2\u1787\u17b6\u1794\u17cb\u17a2\u17ca\u17b8\u1798\u17c2\u179b',
+                email_label: '\u17a2\u17b6\u179f\u17d0\u1799\u178a\u17d2\u178b\u17b6\u1793\u17a2\u17ca\u17b8\u1798\u17c2\u179b',
+                email_placeholder: 'your@email.com',
+                link_account: '\u1797\u17d2\u1787\u17b6\u1794\u17cb\u1782\u178e\u1793\u17b8',
+                enter_email: '\u179f\u17bc\u1798\u1794\u1789\u17d2\u1785\u17bc\u179b\u17a2\u17ca\u17b8\u1798\u17c2\u179b',
+                linking: '\u1780\u17c6\u1796\u17bb\u1784\u1797\u17d2\u1787\u17b6\u1794\u17cb...',
+                link_success: '\u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u178a\u17c4\u1799\u1787\u17c4\u1782\u1787\u17d0\u1799!',
+                error_prefix: '\u1780\u17c6\u17a0\u17bb\u179f',
+                link_failed: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1797\u17d2\u1787\u17b6\u1794\u17cb\u1794\u17b6\u1793\u1791\u17c1',
+                link_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1780\u17d2\u1793\u17bb\u1784\u1780\u17b6\u179a\u1797\u17d2\u1787\u17b6\u1794\u17cb: {error}',
+                fill_required: '\u179f\u17bc\u1798\u1794\u17c6\u1796\u17c1\u1789\u1796\u17d0\u178f\u17cc\u1798\u17b6\u1793\u1791\u17b6\u17c6\u1784\u17a2\u179f\u17cb',
+                subject_min: '\u1794\u17d2\u179a\u1792\u17b6\u1793\u1794\u1791\u178f\u17d2\u179a\u17bc\u179c\u1798\u17b6\u1793\u1799\u17c9\u17b6\u1784\u17a0\u17c4\u1785\u178e\u17b6\u179f\u17cb 5 \u178f\u17bd\u17a2\u1780\u17d2\u179f\u179a',
+                description_min: '\u1796\u17b7\u1796\u178e\u17cc\u1793\u17b6\u178f\u17d2\u179a\u17bc\u179c\u1798\u17b6\u1793\u1799\u17c9\u17b6\u1784\u17a0\u17c4\u1785\u178e\u17b6\u179f\u17cb 10 \u178f\u17bd\u17a2\u1780\u17d2\u179f\u179a',
+                sending: '\u1780\u17c6\u1796\u17bb\u1784\u1795\u17d2\u1789\u17be...',
+                create_failed: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be\u1794\u17b6\u1793\u1791\u17c1',
+                create_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1780\u17d2\u1793\u17bb\u1784\u1780\u17b6\u179a\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be: {error}',
+                ticket_created: '\u179f\u17c6\u178e\u17be\u1794\u17b6\u1793\u1794\u1784\u17d2\u1780\u17be\u178f\u178a\u17c4\u1799\u1787\u17c4\u1782\u1787\u17d0\u1799!\n\u179b\u17c1\u1781\u179f\u17c6\u178e\u17be: {ticketNumber}',
+                my_tickets_title: '\u179f\u17c6\u178e\u17be\u179a\u1794\u179f\u17cb\u1781\u17d2\u1789\u17bb\u17c6',
+                no_tickets: '\u1798\u17b7\u1793\u1798\u17b6\u1793\u179f\u17c6\u178e\u17be',
+                load_tickets_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1780\u17d2\u1793\u17bb\u1784\u1780\u17b6\u179a\u1795\u17d2\u1791\u17bb\u1780\u179f\u17c6\u178e\u17be',
+                debug_info: '\u1796\u17d0\u178f\u17cc\u1798\u17b6\u1793\u179f\u1798\u17d2\u179a\u17b6\u1794\u17cb\u178f\u17d2\u179a\u17bd\u178f\u1796\u17b7\u1793\u17b7\u178f\u17d2\u1799',
+                has_init_data: '\u1798\u17b6\u1793 initData',
+                yes: '\u1794\u17b6\u1791/\u1785\u17b6\u179f',
+                no: '\u1791\u17c1',
+                user_id: '\u179b\u17c1\u1781\u179f\u1798\u17d2\u1782\u17b6\u179b\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17d2\u179a\u17be',
+                ticket_subject: '\u1794\u17d2\u179a\u1792\u17b6\u1793\u1794\u1791',
+                ticket_status: '\u179f\u17d2\u1790\u17b6\u1793\u1797\u17b6\u1796',
+                ticket_priority: '\u17a2\u17b6\u1791\u17b7\u1797\u17b6\u1796',
+                ticket_description: '\u1796\u17b7\u1796\u178e\u17cc\u1793\u17b6',
+                replies_title: '\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794 ({count})',
+                no_replies: '\u1798\u17b7\u1793\u1791\u17b6\u1793\u17cb\u1798\u17b6\u1793\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794',
+                new_reply: '\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u1790\u17d2\u1798\u17b8',
+                reply_placeholder: '\u179c\u17b6\u1799\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780...',
+                send_reply: '\u1795\u17d2\u1789\u17be\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794',
+                reply_required: '\u179f\u17bc\u1798\u179c\u17b6\u1799\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794',
+                reply_sent: '\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u1794\u17b6\u1793\u1795\u17d2\u1789\u17be',
+                reply_failed: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1795\u17d2\u1789\u17be\u1794\u17b6\u1793\u1791\u17c1',
+                reply_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1780\u17d2\u1793\u17bb\u1784\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794: {error}',
+                ticket_load_failed: '\u1798\u17b7\u1793\u17a2\u17b6\u1785\u1795\u17d2\u1791\u17bb\u1780\u179f\u17c6\u178e\u17be\u1794\u17b6\u1793\u1791\u17c1',
+                ticket_load_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1780\u17d2\u1793\u17bb\u1784\u1780\u17b6\u179a\u1795\u17d2\u1791\u17bb\u1780\u179f\u17c6\u178e\u17be: {error}',
+                open_in_telegram: '\u179f\u17bc\u1798\u1794\u17be\u1780\u1796\u17b8\u1791\u17bc\u179a\u179f\u17b6\u179a Telegram',
+                voice_message_attached: '\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179f\u17b6\u179a\u179f\u1798\u17d2\u179b\u17c1\u1784\u17d4',
+                attachment_message: '[\u17af\u1780\u179f\u17b6\u179a]',
+                unknown: '\u1798\u17b7\u1793\u179f\u17d2\u1782\u17b6\u179b\u17cb',
+                priority_low: '\u1791\u17b6\u1794',
+                priority_medium: '\u1798\u1792\u17d2\u1799\u1798',
+                priority_high: '\u1781\u17d2\u1796\u179f\u17cb',
+                priority_urgent: '\u1794\u1793\u17d2\u1791\u17b6\u1793\u17cb',
+                html_error: '\u1798\u17c9\u17b6\u179f\u17ca\u17b8\u1793\u1798\u17c1\u1794\u17b6\u1793\u178f\u17d2\u179a\u17a1\u1794\u17cb HTML \u1787\u17c6\u1793\u17bd\u179f JSON\u17d4 \u179f\u17d2\u1790\u17b6\u1793\u1797\u17b6\u1796: {status}',
+                html_error_with_response: '\u1798\u17c9\u17b6\u179f\u17ca\u17b8\u1793\u1798\u17c1\u1794\u17b6\u1793\u178f\u17d2\u179a\u17a1\u1794\u17cb HTML \u1787\u17c6\u1793\u17bd\u179f JSON\u17d4 \u179f\u17d2\u1790\u17b6\u1793\u1797\u17b6\u1796: {status}\u17d4 \u1785\u1798\u17d2\u179b\u17be\u1799: {response}',
+                unknown_error: '\u1798\u17b7\u1793\u179f\u17d2\u1782\u17b6\u179b\u17cb\u1780\u17c6\u17a0\u17bb\u179f',
+                lang_km: '\u1781\u17d2\u1798\u17c2\u179a',
+                lang_en: 'English',
+                language_label: '\u1797\u17b6\u179f\u17b6',
+                today: '\u1790\u17d2\u1784\u17c3\u1793\u17c1\u17c7',
+                online: '\u1780\u17c6\u1796\u17bb\u1784\u17a2\u1793\u17a1\u17b6\u1789',
+                support_team: '\u1780\u17d2\u179a\u17bb\u1798\u1782\u17b6\u17c6\u1791\u17d2\u179a',
+                na: '\u1782\u17d2\u1798\u17b6\u1793',
+                play: '\u1785\u17b6\u1794\u17cb\u1795\u17d2\u178a\u17be\u1798\u179b\u17c1\u1784',
+                upload_server_error: '\u1780\u17c6\u17a0\u17bb\u179f\u1798\u17c9\u17b6\u179f\u17ca\u17b8\u1793\u1798\u17c1\u1796\u17d2\u1791\u17bb\u1780\u17af\u1780\u179f\u17b6\u179a: {error}',
+                upload_failed: '\u1795\u17d2\u1791\u17bb\u1780\u17af\u1780\u179f\u17b6\u179a\u1798\u17b7\u1793\u1794\u17b6\u1793: {error}',
+                checking_profile: '\u1780\u17c6\u1796\u17bb\u1784\u178f\u17d2\u179a\u17bd\u178f\u1796\u17b7\u1793\u17b7\u178f\u17d2\u1799\u1780\u17b6\u179a\u1780\u17c6\u178e\u178f\u17cb\u1782\u178e\u1793\u17b8...',
+                role_prompt_title: '\u179f\u17bc\u1798\u1787\u17d2\u179a\u17be\u179f\u179a\u17be\u179f\u1794\u17d2\u179a\u1797\u17c1\u1791\u1782\u178e\u1793\u17b8',
+                role_prompt_subtitle: '\u179f\u17bd\u179a\u178f\u17c2\u1798\u17d2\u178f\u1784\u1794\u17c9\u17bb\u178e\u17d2\u178e\u17c4\u17c7 \u1793\u17b7\u1784\u1794\u17d2\u179a\u17be\u179f\u1798\u17d2\u179a\u17b6\u1794\u17cb Hierarchy routing\u17d4',
+                role_customer: '\u1781\u17d2\u1789\u17bb\u17c6\u1787\u17b6\u17a2\u178f\u17b7\u1790\u17b7\u1787\u1793',
+                role_customer_hint: '\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be\u179a\u1794\u179f\u17cb\u17a2\u178f\u17b7\u1790\u17b7\u1787\u1793\u17d4',
+                role_staff: '\u1781\u17d2\u1789\u17bb\u17c6\u1787\u17b6\u1794\u17bb\u1782\u17d2\u1782\u179b\u17b7\u1780',
+                role_staff_hint: '\u17a2\u17d2\u1793\u1780\u1782\u17d2\u179a\u1794\u17cb\u1782\u17d2\u179a\u1784\u1793\u17b9\u1784\u1795\u17d2\u1782\u17bc\u1795\u17d2\u1782\u1784\u17cb\u17a2\u17d2\u1793\u1780\u1791\u17c5 Hierarchy \u1793\u17c5 Dashboard\u17d4',
+                save_role: '\u179a\u1780\u17d2\u179f\u17b6\u1791\u17bb\u1780',
+                route_summary: '\u1780\u17b6\u179a\u1794\u1789\u17d2\u1787\u17bc\u1793\u178f\u17b6\u1798 Hierarchy',
+                route_supervisor: '\u17a2\u17d2\u1793\u1780\u1782\u17d2\u179a\u1794\u17cb\u1782\u17d2\u179a\u1784',
+                route_manager: '\u1794\u17d2\u179a\u1792\u17b6\u1793\u1795\u17d2\u1793\u17c2\u1780',
+                not_assigned: '\u1798\u17b7\u1793\u1791\u17b6\u1793\u17cb\u1785\u17b6\u178f\u17cb\u178f\u17b6\u17c6\u1784',
+                staff_match_pending: '\u1794\u17b6\u1793\u179a\u1780\u17d2\u179f\u17b6\u1791\u17bb\u1780\u1794\u17d2\u179a\u17bc\u17a0\u17d2\u179c\u17b6\u1799\u179b\u17d2\u1794\u17bb\u1782\u17d2\u1782\u179b\u17b7\u1780\u17a0\u17be\u1799\u17d4 \u179f\u17bc\u1798\u1794\u17d2\u179a\u17b6\u1794\u17cb\u17a2\u17d2\u1793\u1780\u1782\u17d2\u179a\u1794\u17cb\u1782\u17d2\u179a\u1784\u17b2\u17d2\u1799\u1795\u17d2\u1782\u17bc\u1795\u17d2\u1782\u1784\u17cb\u1782\u178e\u1793\u17b8\u1794\u17bb\u1782\u17d2\u1782\u179b\u17b7\u1780\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1793\u17c5 Workflow settings\u17d4'
+            },
+            en: {
+                app_title: 'Support Portal',
+                greeting: 'Hello {name}',
+                greeting_guest: 'Hello',
+                loading: 'Loading...',
+                status_open: 'Open',
+                status_pending: 'Pending',
+                status_in_progress: 'In Progress',
+                status_resolved: 'Resolved',
+                status_closed: 'Closed',
+                menu_new_ticket: 'Create New Ticket',
+                menu_my_tickets: 'My Tickets',
+                menu_link_email: 'Link Email',
+                new_ticket_title: 'Create New Ticket',
+                subject_label: 'Subject',
+                subject_placeholder: 'Subject of your issue',
+                category_label: 'Category',
+                category_placeholder: 'Select category',
+                category_loading: 'Loading categories...',
+                category_required: 'Please select a category',
+                no_categories: 'No categories available',
+                load_categories_error: 'Could not load categories',
+                description_label: 'Description',
+                description_placeholder: 'Describe your issue in detail',
+                attachments_label: 'Attach file (Image, PDF, or Voice)',
+                max_file_size: 'Maximum size 10MB',
+                record_voice: 'Record Voice',
+                voice_recorded: 'Voice recorded ({size}KB)',
+                mic_permission_error: 'Cannot access microphone. Please allow microphone permission.',
+                start_recording: 'Start Recording',
+                stop_recording: 'Stop Recording',
+                send_ticket: 'Submit Ticket',
+                back: 'Back',
+                file_label: 'File',
+                cancel: 'Cancel',
+                link_email_title: 'Link Email',
+                email_label: 'Email address',
+                email_placeholder: 'your@email.com',
+                link_account: 'Link Account',
+                enter_email: 'Please enter email',
+                linking: 'Linking...',
+                link_success: 'Your account has been linked successfully!',
+                error_prefix: 'Error',
+                link_failed: 'Could not link account',
+                link_error: 'Linking error: {error}',
+                fill_required: 'Please fill all required fields',
+                subject_min: 'Subject must be at least 5 characters',
+                description_min: 'Description must be at least 10 characters',
+                sending: 'Sending...',
+                create_failed: 'Could not create ticket',
+                create_error: 'Error creating ticket: {error}',
+                ticket_created: 'Ticket created successfully!\nTicket number: {ticketNumber}',
+                my_tickets_title: 'My Tickets',
+                no_tickets: 'No tickets',
+                load_tickets_error: 'Error loading tickets',
+                debug_info: 'Debug info',
+                has_init_data: 'Has initData',
+                yes: 'Yes',
+                no: 'No',
+                user_id: 'User ID',
+                ticket_subject: 'Subject',
+                ticket_status: 'Status',
+                ticket_priority: 'Priority',
+                ticket_description: 'Description',
+                replies_title: 'Replies ({count})',
+                no_replies: 'No replies yet',
+                new_reply: 'New Reply',
+                reply_placeholder: 'Type your reply...',
+                send_reply: 'Send Reply',
+                reply_required: 'Please type a reply',
+                reply_sent: 'Reply sent',
+                reply_failed: 'Could not send reply',
+                reply_error: 'Reply error: {error}',
+                ticket_load_failed: 'Could not load ticket',
+                ticket_load_error: 'Error loading ticket: {error}',
+                open_in_telegram: 'Please open from Telegram',
+                voice_message_attached: 'Voice message attached.',
+                attachment_message: 'File attached.',
+                unknown: 'Unknown',
+                priority_low: 'Low',
+                priority_medium: 'Medium',
+                priority_high: 'High',
+                priority_urgent: 'Urgent',
+                html_error: 'Server returned HTML instead of JSON. Status: {status}',
+                html_error_with_response: 'Server returned HTML instead of JSON. Status: {status}. Response: {response}',
+                unknown_error: 'Unknown error',
+                lang_km: '\u1781\u17d2\u1798\u17c2\u179a',
+                lang_en: 'English',
+                language_label: 'Language',
+                today: 'Today',
+                online: 'Online',
+                support_team: 'Support Team',
+                na: 'N/A',
+                play: 'Play',
+                upload_server_error: 'Upload server error: {error}',
+                upload_failed: 'Upload failed: {error}',
+                checking_profile: 'Checking account setup...',
+                role_prompt_title: 'Choose your account type',
+                role_prompt_subtitle: 'This is asked only once and used for hierarchy routing.',
+                role_customer: 'I am Customer',
+                role_customer_hint: 'Create customer tickets.',
+                role_staff: 'I am Staff',
+                role_staff_hint: 'Admin will map you to staff hierarchy in dashboard.',
+                save_role: 'Save',
+                route_summary: 'Hierarchy routing',
+                route_supervisor: 'Supervisor',
+                route_manager: 'Manager',
+                not_assigned: 'Not assigned',
+                staff_match_pending: 'Staff profile saved. Please ask admin to map your staff account in Workflow settings.'
+            }
+        };
+
+        const CP1252_EXTENDED_TO_BYTE = {
+            0x20AC: 0x80, 0x201A: 0x82, 0x0192: 0x83, 0x201E: 0x84,
+            0x2026: 0x85, 0x2020: 0x86, 0x2021: 0x87, 0x02C6: 0x88,
+            0x2030: 0x89, 0x0160: 0x8A, 0x2039: 0x8B, 0x0152: 0x8C,
+            0x017D: 0x8E, 0x2018: 0x91, 0x2019: 0x92, 0x201C: 0x93,
+            0x201D: 0x94, 0x2022: 0x95, 0x2013: 0x96, 0x2014: 0x97,
+            0x02DC: 0x98, 0x2122: 0x99, 0x0161: 0x9A, 0x203A: 0x9B,
+            0x0153: 0x9C, 0x017E: 0x9E, 0x0178: 0x9F
+        };
+
+        const initData = tg.initData || '';
+        const user = (tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : {};
+        const userName = normalizeText(((user.first_name || '') + ' ' + (user.last_name || '')).trim());
+        let currentLang = (function() {
+            const saved = localStorage.getItem(LANG_STORAGE_KEY);
+            if (saved === 'en' || saved === 'km') return saved;
+            const tgLang = (user.language_code || '').toLowerCase();
+            return tgLang.startsWith('en') ? 'en' : 'km';
+        })();
 
         function buildHeaders(extra) {
             return Object.assign({}, isNgrok ? ngrokHeader : {}, extra || {});
         }
-        
-        // Get user data from Telegram
-        const initData = tg.initData;
-        const user = tg.initDataUnsafe.user || {};
-        const userName = (user.first_name || '') + ' ' + (user.last_name || '');
-        
-        document.getElementById('user-info').textContent = `សួស្តី ${userName.trim()}`;
-        
-        // Utility functions
-        function showLoading() {
-            document.getElementById('content').innerHTML = '<div class="loading">កំពុងផ្ទុក...</div>';
+
+        function t(key, params) {
+            const dict = I18N[currentLang] || I18N.km;
+            let text = normalizeText(dict[key] || I18N.en[key] || key);
+            if (params) {
+                Object.keys(params).forEach((k) => {
+                    const token = '{' + k + '}';
+                    text = text.split(token).join(String(params[k]));
+                });
+            }
+            return normalizeText(text);
+        }
+
+        function getLocale() {
+            return currentLang === 'km' ? 'km-KH' : 'en-US';
+        }
+
+        function setView(view, ticketId = null) {
+            currentView = view;
+            currentTicketId = ticketId;
+            document.body.classList.toggle('ticket-detail-mode', view === 'ticket-detail');
+        }
+
+        function renderHeader() {
+            const appTitle = document.getElementById('app-title');
+            const userInfo = document.getElementById('user-info');
+            const langSelect = document.getElementById('lang-switch');
+            document.title = t('app_title');
+            if (appTitle) {
+                appTitle.textContent = `\uD83C\uDFAB ${t('app_title')}`;
+            }
+            if (userInfo) {
+                userInfo.textContent = userName
+                    ? t('greeting', { name: userName })
+                    : t('greeting_guest');
+            }
+            if (langSelect) {
+                langSelect.value = currentLang;
+                langSelect.setAttribute('aria-label', t('language_label'));
+                if (langSelect.options.length >= 2) {
+                    langSelect.options[0].textContent = t('lang_km');
+                    langSelect.options[1].textContent = t('lang_en');
+                }
+            }
+        }
+
+        function setLanguage(lang, rerender = true) {
+            if (lang !== 'en' && lang !== 'km') {
+                return;
+            }
+            currentLang = lang;
+            localStorage.setItem(LANG_STORAGE_KEY, lang);
+            document.documentElement.lang = lang;
+            renderHeader();
+            if (rerender) {
+                rerenderCurrentView();
+            }
+        }
+
+        function rerenderCurrentView() {
+            if (currentView === 'new-ticket') {
+                showNewTicketForm();
+            } else if (currentView === 'tickets') {
+                showMyTickets();
+            } else if (currentView === 'ticket-detail' && currentTicketId) {
+                viewTicket(currentTicketId);
+            } else if (currentView === 'link-email') {
+                showLinkEmailForm();
+            } else if (currentView === 'role-select') {
+                showRoleSelect();
+            } else if (currentView === 'no-init') {
+                document.getElementById('content').innerHTML = `
+                    <div class="empty-state">
+                        <p>&#10060;</p>
+                        <p>${t('open_in_telegram')}</p>
+                    </div>
+                `;
+            } else {
+                showMainMenu();
+            }
+        }
+
+        function formatDate(datetime) {
+            return new Date(datetime).toLocaleString(getLocale());
+        }
+
+        function formatTime(datetime) {
+            return new Date(datetime).toLocaleTimeString(getLocale(), {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function dayLabel(datetime) {
+            const date = new Date(datetime);
+            const now = new Date();
+            const isToday = date.toDateString() === now.toDateString();
+            if (isToday) {
+                return t('today');
+            }
+            return date.toLocaleDateString(getLocale(), { month: 'short', day: 'numeric' });
+        }
+
+        function normalizeText(value) {
+            const text = String(value ?? '');
+            if (!text) {
+                return '';
+            }
+            try {
+                const bytes = [];
+                for (const ch of text) {
+                    const cp = ch.codePointAt(0);
+                    if (cp <= 0xFF) {
+                        bytes.push(cp);
+                        continue;
+                    }
+
+                    const mapped = CP1252_EXTENDED_TO_BYTE[cp];
+                    if (mapped === undefined) {
+                        return text;
+                    }
+                    bytes.push(mapped);
+                }
+
+                const decoded = new TextDecoder('utf-8', { fatal: true }).decode(new Uint8Array(bytes));
+                if (!decoded) {
+                    return text;
+                }
+
+                const badPattern = /[ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸]/g;
+                const originalKhmerCount = (text.match(/[\u1780-\u17FF]/g) || []).length;
+                const decodedKhmerCount = (decoded.match(/[\u1780-\u17FF]/g) || []).length;
+                const originalBadCount = (text.match(badPattern) || []).length;
+                const decodedBadCount = (decoded.match(badPattern) || []).length;
+
+                if (decodedKhmerCount > originalKhmerCount) {
+                    return decoded;
+                }
+                if (decodedBadCount < originalBadCount && decodedBadCount === 0) {
+                    return decoded;
+                }
+
+                return text;
+            } catch (error) {
+                return text;
+            }
+        }
+
+        function escapeHtml(text) {
+            return normalizeText(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function getStatusLabel(status) {
+            const statusMap = {
+                open: t('status_open'),
+                pending: t('status_pending'),
+                in_progress: t('status_in_progress'),
+                resolved: t('status_resolved'),
+                closed: t('status_closed')
+            };
+            return statusMap[status] || status || t('unknown');
+        }
+
+        function initials(name) {
+            const words = String(name || '').trim().split(/\s+/).filter(Boolean);
+            if (words.length === 0) {
+                return '??';
+            }
+            if (words.length === 1) {
+                return words[0].slice(0, 2);
+            }
+            return (words[0][0] + words[1][0]).slice(0, 2);
+        }
+
+        function autoGrowReply(textarea) {
+            if (!textarea) {
+                return;
+            }
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+
+        function pickReplyAttachment() {
+            const input = document.getElementById('reply-attachment');
+            if (input) {
+                input.click();
+            }
+        }
+
+        function scrollTicketThreadBottom() {
+            const thread = document.getElementById('ticket-chat-thread');
+            if (thread) {
+                thread.scrollTop = thread.scrollHeight;
+            }
+        }
+
+        function formatAudioTime(totalSeconds) {
+            const sec = Math.max(0, Math.floor(Number(totalSeconds) || 0));
+            const min = Math.floor(sec / 60);
+            const rem = sec % 60;
+            return `${String(min).padStart(2, '0')}:${String(rem).padStart(2, '0')}`;
+        }
+
+        function renderVoicePlayer(url) {
+            const safeUrl = escapeHtml(url);
+            return `
+                <div class="voice-player">
+                    <button type="button" class="voice-play-btn" aria-label="${escapeHtml(t('play'))}">&#9658;</button>
+                    <div class="voice-track">
+                        <div class="voice-bars">
+                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="voice-progress"><div class="voice-progress-fill"></div></div>
+                        <div class="voice-meta">
+                            <span class="voice-current">00:00</span>
+                            <span class="voice-duration">--:--</span>
+                        </div>
+                    </div>
+                    <audio class="voice-audio" preload="metadata" src="${safeUrl}"></audio>
+                </div>
+            `;
+        }
+
+        function initVoicePlayers(root) {
+            const scope = (root && typeof root.querySelectorAll === 'function') ? root : document;
+            const players = scope.querySelectorAll('.voice-player');
+            players.forEach((player) => {
+                if (player.dataset.bound === '1') {
+                    return;
+                }
+                player.dataset.bound = '1';
+
+                const audio = player.querySelector('.voice-audio');
+                const btn = player.querySelector('.voice-play-btn');
+                const progressFill = player.querySelector('.voice-progress-fill');
+                const currentEl = player.querySelector('.voice-current');
+                const durationEl = player.querySelector('.voice-duration');
+
+                if (!audio || !btn || !progressFill || !currentEl || !durationEl) {
+                    return;
+                }
+
+                const setPaused = () => {
+                    player.classList.remove('is-playing');
+                    btn.innerHTML = '&#9658;';
+                };
+                const setPlaying = () => {
+                    player.classList.add('is-playing');
+                    btn.innerHTML = '&#10074;&#10074;';
+                };
+                const update = () => {
+                    const current = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+                    const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+                    currentEl.textContent = formatAudioTime(current);
+                    durationEl.textContent = duration > 0 ? formatAudioTime(duration) : '--:--';
+                    progressFill.style.width = duration > 0 ? `${(current / duration) * 100}%` : '0%';
+                };
+
+                btn.addEventListener('click', async () => {
+                    if (audio.paused) {
+                        document.querySelectorAll('.voice-player.is-playing .voice-audio').forEach((other) => {
+                            if (other !== audio) {
+                                other.pause();
+                            }
+                        });
+                        try {
+                            await audio.play();
+                            setPlaying();
+                        } catch (error) {
+                            console.error('Audio play error:', error);
+                        }
+                    } else {
+                        audio.pause();
+                        setPaused();
+                    }
+                });
+
+                audio.addEventListener('loadedmetadata', update);
+                audio.addEventListener('timeupdate', update);
+                audio.addEventListener('play', setPlaying);
+                audio.addEventListener('pause', setPaused);
+                audio.addEventListener('ended', () => {
+                    audio.currentTime = 0;
+                    update();
+                    setPaused();
+                });
+
+                update();
+            });
+        }
+
+        function showLoading(text) {
+            document.getElementById('content').innerHTML = `<div class="loading">${text || t('loading')}</div>`;
+        }
+
+        function renamedImageFile(originalName, mimeType) {
+            const name = String(originalName || 'image');
+            const base = name.replace(/\.[^.]+$/, '');
+            const extension = mimeType === 'image/png' ? '.png' : '.jpg';
+            return base + extension;
+        }
+
+        async function prepareUploadFile(file) {
+            if (!file) {
+                return null;
+            }
+
+            if (!file.type || !file.type.startsWith('image/') || file.type === 'image/gif') {
+                if (file.size > MAX_UPLOAD_BYTES) {
+                    throw new Error(t('max_file_size'));
+                }
+                return file;
+            }
+
+            if (typeof createImageBitmap !== 'function') {
+                if (file.size > MAX_UPLOAD_BYTES) {
+                    throw new Error(t('max_file_size'));
+                }
+                return file;
+            }
+
+            const bitmap = await createImageBitmap(file).catch(() => null);
+            if (!bitmap) {
+                if (file.size > MAX_UPLOAD_BYTES) {
+                    throw new Error(t('max_file_size'));
+                }
+                return file;
+            }
+
+            const sourceWidth = bitmap.width || 0;
+            const sourceHeight = bitmap.height || 0;
+            const largestSide = Math.max(sourceWidth, sourceHeight);
+
+            if (largestSide <= MAX_IMAGE_SIDE && file.size <= MAX_UPLOAD_BYTES) {
+                if (typeof bitmap.close === 'function') {
+                    bitmap.close();
+                }
+                return file;
+            }
+
+            const ratio = largestSide > MAX_IMAGE_SIDE ? (MAX_IMAGE_SIDE / largestSide) : 1;
+            const targetWidth = Math.max(1, Math.round(sourceWidth * ratio));
+            const targetHeight = Math.max(1, Math.round(sourceHeight * ratio));
+            const outputType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+            const quality = outputType === 'image/jpeg' ? 0.85 : undefined;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+                if (typeof bitmap.close === 'function') {
+                    bitmap.close();
+                }
+                return file;
+            }
+
+            ctx.drawImage(bitmap, 0, 0, targetWidth, targetHeight);
+            if (typeof bitmap.close === 'function') {
+                bitmap.close();
+            }
+
+            const blob = await new Promise((resolve) => {
+                canvas.toBlob((value) => resolve(value), outputType, quality);
+            });
+
+            if (!blob) {
+                if (file.size > MAX_UPLOAD_BYTES) {
+                    throw new Error(t('max_file_size'));
+                }
+                return file;
+            }
+
+            const compressed = new File(
+                [blob],
+                renamedImageFile(file.name, outputType),
+                { type: outputType, lastModified: Date.now() }
+            );
+
+            if (compressed.size > MAX_UPLOAD_BYTES) {
+                throw new Error(t('max_file_size'));
+            }
+
+            return compressed;
+        }
+
+        function isVoiceAttachment(att) {
+            if (!att) {
+                return false;
+            }
+
+            const mimeType = String(att.mime_type || '').toLowerCase();
+            const fileName = String(att.original_name || att.filename || att.path || '').toLowerCase();
+
+            if (mimeType.startsWith('audio/')) {
+                return true;
+            }
+
+            if (mimeType === 'video/webm' || mimeType.includes('opus') || mimeType.includes('ogg')) {
+                return true;
+            }
+
+            return /\.(ogg|oga|opus|mp3|m4a|aac|wav|weba|webm)$/i.test(fileName);
         }
         
         function formatMessage(text) {
-            // Escape HTML characters first
-            let html = text
+            const normalized = normalizeText(text);
+            let html = (normalized || '')
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#039;');
             
-            // Find full URLs (http/https)
             const urlRegex = /(https?:\/\/[^\s<>&]+)/g;
             html = html.replace(urlRegex, function(url) {
-                // Check if it's an image
                 if (/\.(jpg|jpeg|png|gif|webp)$/i.test(url)) {
-                    return '<img src="' + url + '" alt="Image" style="max-width: 100%; border-radius: 8px;" />';
+                    return '<img src="' + url + '" alt="Image" style="max-width: 100%; max-height: 280px; object-fit: contain; border-radius: 8px; display: block;" />';
                 }
-                // Otherwise make it a link
-                return '<a href="' + url + '" target="_blank">📎 ' + url + '</a>';
+                return '<a href="' + url + '" target="_blank">&#128206; ' + url + '</a>';
             });
             
-            // Find relative image URLs (e.g., /uploads/tickets/file.jpg) and convert to absolute
             const relativeImageRegex = /(\/[^\s<>&]*\.(jpg|jpeg|png|gif|webp))(?=[\s<>&]|$)/gi;
             html = html.replace(relativeImageRegex, function(url) {
                 const absoluteUrl = DOMAIN + url;
-                return '<img src="' + absoluteUrl + '" alt="Image" style="max-width: 100%; border-radius: 8px;" />';
+                return '<img src="' + absoluteUrl + '" alt="Image" style="max-width: 100%; max-height: 280px; object-fit: contain; border-radius: 8px; display: block;" />';
             });
             
-            // Convert line breaks
             html = html.replace(/\n/g, '<br>');
             
             return html;
@@ -261,23 +1451,23 @@
                 return '';
             }
 
-            let html = '<div style="margin-top: 8px;">';
+            let html = '<div class="msg-attachments">';
             attachments.forEach(att => {
                 const url = DOMAIN + '/uploads/' + att.path;
                 if (att.mime_type && att.mime_type.startsWith('image/')) {
-                    html += `<img src="${url}" alt="Attachment" style="max-width: 100%; border-radius: 8px; margin-top: 6px;" />`;
-                } else if (att.mime_type && att.mime_type.startsWith('audio/')) {
-                    html += `<audio class="audio-preview" controls src="${url}"></audio>`;
+                    html += `<img src="${url}" alt="Attachment" loading="lazy" />`;
+                } else if (isVoiceAttachment(att)) {
+                    html += renderVoicePlayer(url);
                 } else {
-                    const name = att.original_name || att.filename || 'Attachment';
-                    html += `<div style="margin-top: 6px;"><a href="${url}" target="_blank">📎 ${name}</a></div>`;
+                    const name = att.original_name || att.filename || t('file_label');
+                    html += `<div style="margin-top: 6px;"><a href="${url}" target="_blank">&#128206; ${name}</a></div>`;
                 }
             });
             html += '</div>';
             return html;
         }
 
-        async function initVoiceRecorder(buttonId, previewId, onFileReady) {
+        async function initVoiceRecorder(buttonId, previewId, onFileReady, onCancel) {
             const button = document.getElementById(buttonId);
             const preview = document.getElementById(previewId);
             if (!button || !preview) {
@@ -320,103 +1510,275 @@
                                 : (mimeType.includes('webm') ? '.webm' : '.webm');
                             const file = new File([blob], `voice_${Date.now()}${extension}`, { type: blob.type });
                             onFileReady(file);
+                            const cancelId = `${previewId}-cancel`;
                             preview.innerHTML = `
-                                <audio class="audio-preview" controls src="${URL.createObjectURL(blob)}"></audio>
-                                <div class="record-status">✓ Voice recorded (${Math.round(blob.size / 1024)}KB)</div>
+                                <div class="selection-preview">
+                                    <span class="selection-label">&#10003; ${t('voice_recorded', { size: Math.round(blob.size / 1024) })}</span>
+                                    <button type="button" class="selection-cancel-btn" id="${cancelId}">${t('cancel')}</button>
+                                </div>
+                                ${renderVoicePlayer(URL.createObjectURL(blob))}
                             `;
+                            initVoicePlayers(preview);
+
+                            const cancelBtn = document.getElementById(cancelId);
+                            if (cancelBtn) {
+                                cancelBtn.addEventListener('click', () => {
+                                    resetPreview();
+                                    if (typeof onCancel === 'function') {
+                                        onCancel();
+                                    }
+                                });
+                            }
 
                             stream.getTracks().forEach(track => track.stop());
                         };
 
                         mediaRecorder.start();
                         recording = true;
-                        button.textContent = '⏹ Stop Recording';
+                        if (button.classList.contains('icon-toggle')) {
+                            button.classList.add('recording');
+                            button.textContent = '\u23F9';
+                        } else {
+                            button.textContent = t('stop_recording');
+                        }
                         resetPreview();
                     } catch (error) {
                         console.error('Voice record error:', error);
-                        tg.showAlert('Cannot access microphone. Please allow mic permission.');
+                        tg.showAlert(t('mic_permission_error'));
                     }
                 } else if (mediaRecorder) {
                     mediaRecorder.stop();
                     recording = false;
-                    button.textContent = '🎙 Start Recording';
+                    if (button.classList.contains('icon-toggle')) {
+                        button.classList.remove('recording');
+                        button.textContent = '\uD83C\uDFA4';
+                    } else {
+                        button.textContent = t('start_recording');
+                    }
                 }
             });
         }
         
         function getStatusBadge(status) {
             const statusMap = {
-                'open': 'បើក',
-                'pending': 'រង់ចាំ',
-                'in_progress': 'កំពុងដំណើរការ',
-                'resolved': 'បានដោះស្រាយ',
-                'closed': 'បិទ'
+                'open': t('status_open'),
+                'pending': t('status_pending'),
+                'in_progress': t('status_in_progress'),
+                'resolved': t('status_resolved'),
+                'closed': t('status_closed')
             };
             return `<span class="status-badge status-${status}">${statusMap[status] || status}</span>`;
         }
+
+        function getPriorityLabel(priority) {
+            const priorityMap = {
+                'low': t('priority_low'),
+                'medium': t('priority_medium'),
+                'high': t('priority_high'),
+                'urgent': t('priority_urgent')
+            };
+            return priorityMap[priority] || priority;
+        }
+
+        function renderHierarchySummary() {
+            if (!miniAppProfile || miniAppProfile.role_type !== 'staff') {
+                return '';
+            }
+
+            const hierarchy = miniAppProfile.hierarchy || {};
+            const supervisorName = hierarchy.supervisor && hierarchy.supervisor.name
+                ? escapeHtml(hierarchy.supervisor.name)
+                : t('not_assigned');
+            const managerName = hierarchy.department_manager && hierarchy.department_manager.name
+                ? escapeHtml(hierarchy.department_manager.name)
+                : t('not_assigned');
+
+            return `
+                <div class="profile-banner">
+                    <strong>${t('route_summary')}</strong>
+                    <div>${t('route_supervisor')}: ${supervisorName}</div>
+                    <div>${t('route_manager')}: ${managerName}</div>
+                </div>
+            `;
+        }
+
+        async function loadMiniAppProfile() {
+            const url = API_BASE + '/profile?' + new URLSearchParams({
+                initData: initData,
+                lang: currentLang
+            });
+
+            const response = await fetch(url, { headers: buildHeaders() });
+            const responseText = await response.text();
+
+            if (responseText.trim().startsWith('<')) {
+                throw new Error(t('html_error', { status: response.status }));
+            }
+
+            const result = JSON.parse(responseText);
+            if (!result.success) {
+                throw new Error(result.message || t('unknown_error'));
+            }
+
+            miniAppProfile = result;
+            return result;
+        }
+
+        function showRoleSelect(note) {
+            setView('role-select');
+            const noteText = note ? `<div class="profile-banner">${escapeHtml(note)}</div>` : '';
+            document.getElementById('content').innerHTML = `
+                <div class="role-prompt">
+                    <h2>${t('role_prompt_title')}</h2>
+                    <p>${t('role_prompt_subtitle')}</p>
+                </div>
+                ${noteText}
+                <button class="btn" onclick="selectRole('customer')">
+                    <span>${t('role_customer')}</span>
+                </button>
+                <div class="record-status">${t('role_customer_hint')}</div>
+                <button class="btn btn-secondary" onclick="selectRole('staff')">
+                    <span>${t('role_staff')}</span>
+                </button>
+                <div class="record-status">${t('role_staff_hint')}</div>
+            `;
+            tg.MainButton.hide();
+        }
+
+        async function selectRole(roleType) {
+            tg.MainButton.setText(t('save_role'));
+            tg.MainButton.show();
+            tg.MainButton.showProgress();
+
+            try {
+                const response = await fetch(API_BASE + '/profile', {
+                    method: 'POST',
+                    headers: buildHeaders({
+                        'Content-Type': 'application/json',
+                    }),
+                    body: JSON.stringify({
+                        initData: initData,
+                        role_type: roleType,
+                        lang: currentLang
+                    })
+                });
+
+                const responseText = await response.text();
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error(t('html_error', { status: response.status }));
+                }
+
+                const result = JSON.parse(responseText);
+                if (!result.success) {
+                    throw new Error(result.message || t('unknown_error'));
+                }
+
+                miniAppProfile = result;
+                showMainMenu();
+            } catch (error) {
+                console.error('Role selection error:', error);
+                tg.showAlert(t('error_prefix') + ': ' + error.message);
+            } finally {
+                tg.MainButton.hideProgress();
+                tg.MainButton.hide();
+            }
+        }
+
+        async function ensureMiniAppProfile() {
+            showLoading(t('checking_profile'));
+            const profile = await loadMiniAppProfile();
+            if (profile.onboarding_required) {
+                showRoleSelect();
+                return false;
+            }
+            return true;
+        }
         
-        // Main menu
         function showMainMenu() {
+            setView('main');
             document.getElementById('content').innerHTML = `
                 <button class="btn" onclick="showNewTicketForm()">
-                    <span>🆕</span>
-                    <span>បង្កើតសំណើថ្មី</span>
+                    <span>&#127381;</span>
+                    <span>${t('menu_new_ticket')}</span>
                 </button>
                 <button class="btn" onclick="showMyTickets()">
-                    <span>📋</span>
-                    <span>សំណើរបស់ខ្ញុំ</span>
+                    <span>&#128203;</span>
+                    <span>${t('menu_my_tickets')}</span>
                 </button>
                 <button class="btn btn-secondary" onclick="showLinkEmailForm()">
-                    <span>🔗</span>
-                    <span>ភ្ជាប់អ៊ីមែល</span>
+                    <span>&#128279;</span>
+                    <span>${t('menu_link_email')}</span>
                 </button>
             `;
             tg.MainButton.hide();
         }
         
-        // New ticket form
         function showNewTicketForm() {
+            setView('new-ticket');
             document.getElementById('content').innerHTML = `
-                <h2>បង្កើតសំណើថ្មី</h2>
+                <h2>${t('new_ticket_title')}</h2>
                 <div class="form-group">
-                    <label>ប្រធានបទ *</label>
-                    <input type="text" id="subject" placeholder="ប្រធានបទនៃបញ្ហារបស់អ្នក">
+                    <label>${t('subject_label')} *</label>
+                    <input type="text" id="subject" placeholder="${t('subject_placeholder')}">
                 </div>
                 <div class="form-group">
-                    <label>ពិពណ៌នា *</label>
-                    <textarea id="description" placeholder="ពិពណ៌នាលម្អិតអំពីបញ្ហារបស់អ្នក"></textarea>
+                    <label>${t('category_label')} *</label>
+                    <select id="category_id">
+                        <option value="">${t('category_loading')}</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>📎 ភ្ជាប់ឯកសារ (រូបភាព, PDF, ឬ សម្លេង)</label>
+                    <label>${t('description_label')} *</label>
+                    <textarea id="description" placeholder="${t('description_placeholder')}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>&#128206; ${t('attachments_label')}</label>
                     <input type="file" id="attachment" accept="image/*,.pdf,audio/*,.ogg,.mp3,.m4a" style="padding: 8px;">
-                    <small style="color: var(--tg-theme-hint-color);">ទំហំអតិបរមា 10MB</small>
+                    <small style="color: var(--tg-theme-hint-color);">${t('max_file_size')}</small>
                     <div id="attachment-preview" style="margin-top: 8px;"></div>
                 </div>
                 <div class="form-group">
-                    <label>🎙 កត់សម្លេង</label>
-                    <button class="btn btn-secondary" id="record-btn">🎙 Start Recording</button>
+                    <label>&#127897; ${t('record_voice')}</label>
+                    <button class="btn btn-secondary" id="record-btn">&#127897; ${t('start_recording')}</button>
                     <div id="voice-preview"></div>
                 </div>
                 <button class="btn" onclick="submitTicket()">
-                    <span>📤</span>
-                    <span>ផ្ញើសំណើ</span>
+                    <span>&#128228;</span>
+                    <span>${t('send_ticket')}</span>
                 </button>
                 <button class="btn btn-secondary" onclick="showMainMenu()">
-                    <span>🔙</span>
-                    <span>ត្រឡប់ក្រោយ</span>
+                    <span>&#128281;</span>
+                    <span>${t('back')}</span>
                 </button>
             `;
+
+            loadCategoryOptions();
             
-            // Handle file selection
             document.getElementById('attachment').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 const preview = document.getElementById('attachment-preview');
                 if (file) {
-                    preview.innerHTML = `<small>✓ ឯកសារ: ${file.name} (${(file.size / 1024).toFixed(0)}KB)</small>`;
+                    preview.innerHTML = `
+                        <div class="selection-preview">
+                            <span class="selection-label">&#10003; ${t('file_label')}: ${escapeHtml(file.name)} (${(file.size / 1024).toFixed(0)}KB)</span>
+                            <button type="button" class="selection-cancel-btn" id="cancel-new-attachment">${t('cancel')}</button>
+                        </div>
+                    `;
                     newTicketVoiceFile = null;
                     const voicePreview = document.getElementById('voice-preview');
                     if (voicePreview) {
                         voicePreview.innerHTML = '';
+                    }
+
+                    const cancelBtn = document.getElementById('cancel-new-attachment');
+                    if (cancelBtn) {
+                        cancelBtn.addEventListener('click', () => {
+                            const attachmentInput = document.getElementById('attachment');
+                            if (attachmentInput) {
+                                attachmentInput.value = '';
+                            }
+                            preview.innerHTML = '';
+                        });
                     }
                 } else {
                     preview.innerHTML = '';
@@ -430,24 +1792,26 @@
                     attachmentInput.value = '';
                 }
                 document.getElementById('attachment-preview').innerHTML = '';
+            }, () => {
+                newTicketVoiceFile = null;
             });
         }
 
-        // Link email form
         function showLinkEmailForm() {
+            setView('link-email');
             document.getElementById('content').innerHTML = `
-                <h2>ភ្ជាប់អ៊ីមែល</h2>
+                <h2>${t('link_email_title')}</h2>
                 <div class="form-group">
-                    <label>អាស័យដ្ឋានអ៊ីមែល *</label>
-                    <input type="email" id="link-email" placeholder="your@email.com">
+                    <label>${t('email_label')} *</label>
+                    <input type="email" id="link-email" placeholder="${t('email_placeholder')}">
                 </div>
                 <button class="btn" onclick="submitLinkEmail()">
-                    <span>🔗</span>
-                    <span>ភ្ជាប់គណនី</span>
+                    <span>&#128279;</span>
+                    <span>${t('link_account')}</span>
                 </button>
                 <button class="btn btn-secondary" onclick="showMainMenu()">
-                    <span>🔙</span>
-                    <span>ត្រឡប់ក្រោយ</span>
+                    <span>&#128281;</span>
+                    <span>${t('back')}</span>
                 </button>
             `;
         }
@@ -456,11 +1820,11 @@
             const email = document.getElementById('link-email').value.trim();
 
             if (!email) {
-                tg.showAlert('សូមបញ្ចូលអ៊ីមែល');
+                tg.showAlert(t('enter_email'));
                 return;
             }
 
-            tg.MainButton.setText('កំពុងភ្ជាប់...');
+            tg.MainButton.setText(t('linking'));
             tg.MainButton.show();
             tg.MainButton.showProgress();
 
@@ -472,66 +1836,122 @@
                     }),
                     body: JSON.stringify({
                         initData: initData,
-                        email: email
+                        email: email,
+                        lang: currentLang
                     })
                 });
 
                 const responseText = await response.text();
 
                 if (responseText.trim().startsWith('<')) {
-                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status);
+                    throw new Error(t('html_error', { status: response.status }));
                 }
 
                 const result = JSON.parse(responseText);
 
                 if (result.success) {
-                    tg.showAlert(result.message || 'គណនីរបស់អ្នកបានតភ្ជាប់ដោយជោគជ័យ!', () => {
-                        showMainMenu();
+                    tg.showAlert(result.message || t('link_success'), () => {
+                        loadMiniAppProfile()
+                            .catch((error) => console.error('Profile refresh failed after link:', error))
+                            .finally(() => showMainMenu());
                     });
                 } else {
-                    tg.showAlert('កំហុស: ' + (result.message || 'មិនអាចភ្ជាប់បានទេ'));
+                    tg.showAlert(t('error_prefix') + ': ' + (result.message || t('link_failed')));
                 }
             } catch (error) {
                 console.error('Error in submitLinkEmail:', error);
-                tg.showAlert('កំហុសក្នុងការភ្ជាប់: ' + error.message);
+                tg.showAlert(t('link_error', { error: error.message }));
             } finally {
                 tg.MainButton.hideProgress();
                 tg.MainButton.hide();
             }
         }
+
+        async function loadCategoryOptions() {
+            const categorySelect = document.getElementById('category_id');
+            if (!categorySelect) {
+                return;
+            }
+
+            categorySelect.disabled = true;
+            categorySelect.innerHTML = `<option value="">${t('category_loading')}</option>`;
+
+            try {
+                const url = API_BASE + '/categories?' + new URLSearchParams({
+                    initData: initData,
+                    lang: currentLang
+                });
+
+                const response = await fetch(url, {
+                    headers: buildHeaders()
+                });
+
+                const responseText = await response.text();
+                if (responseText.trim().startsWith('<')) {
+                    throw new Error(t('html_error', { status: response.status }));
+                }
+
+                const result = JSON.parse(responseText);
+                if (!result.success) {
+                    throw new Error(result.message || t('load_categories_error'));
+                }
+
+                const categories = Array.isArray(result.categories) ? result.categories : [];
+                if (categories.length === 0) {
+                    categorySelect.innerHTML = `<option value="">${t('no_categories')}</option>`;
+                    categorySelect.disabled = true;
+                    return;
+                }
+
+                let options = `<option value="">${t('category_placeholder')}</option>`;
+                categories.forEach((category) => {
+                    options += `<option value="${category.id}">${escapeHtml(category.name || '')}</option>`;
+                });
+
+                categorySelect.innerHTML = options;
+                categorySelect.disabled = false;
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                categorySelect.innerHTML = `<option value="">${t('load_categories_error')}</option>`;
+                categorySelect.disabled = true;
+            }
+        }
         
-        // Submit ticket
         async function submitTicket() {
             const subject = document.getElementById('subject').value.trim();
+            const categoryId = (document.getElementById('category_id') || {}).value || '';
             let description = document.getElementById('description').value.trim();
             const attachmentInput = document.getElementById('attachment');
             const file = attachmentInput ? attachmentInput.files[0] : null;
-            const uploadFile = newTicketVoiceFile || file;
+            const rawUploadFile = newTicketVoiceFile || file;
             
-            if (!subject || (!description && !uploadFile)) {
-                tg.showAlert('សូមបំពេញព័ត៌មានទាំងអស់');
+            if (!subject || (!description && !rawUploadFile)) {
+                tg.showAlert(t('fill_required'));
                 return;
             }
             
             if (subject.length < 5) {
-                tg.showAlert('ប្រធានបទត្រូវមានយ៉ាងហោចណាស់ 5 តួអក្សរ');
+                tg.showAlert(t('subject_min'));
                 return;
-            }
-            
-            if (!description && uploadFile) {
-                description = 'Voice message attached.';
             }
 
-            if (description.length < 10) {
-                tg.showAlert('ពិពណ៌នាត្រូវមានយ៉ាងហោចណាស់ 10 តួអក្សរ');
+            if (!categoryId) {
+                tg.showAlert(t('category_required'));
                 return;
             }
             
-            tg.MainButton.setText('កំពុងផ្ញើ...');
+            tg.MainButton.setText(t('sending'));
             tg.MainButton.show();
             tg.MainButton.showProgress();
             
             try {
+                const uploadFile = rawUploadFile ? await prepareUploadFile(rawUploadFile) : null;
+
+                if (description.length < 10 && !uploadFile) {
+                    tg.showAlert(t('description_min'));
+                    return;
+                }
+
                 console.log('Creating ticket:', { subject, description: description.substring(0, 30) });
                 
                 const response = await fetch(API_BASE + '/create-ticket', {
@@ -542,7 +1962,10 @@
                     body: JSON.stringify({
                         initData: initData,
                         subject: subject,
-                        description: description
+                        category_id: categoryId,
+                        description: description,
+                        has_attachment: uploadFile ? 1 : 0,
+                        lang: currentLang
                     })
                 });
                 
@@ -552,16 +1975,18 @@
                 const responseText = await response.text();
                 console.log('Create ticket response:', responseText);
                 
-                // Check if response is HTML error
                 if (responseText.trim().startsWith('<')) {
-                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                    throw new Error(t('html_error_with_response', {
+                        status: response.status,
+                        response: responseText.substring(0, 100)
+                    }));
                 }
                 
                 const result = JSON.parse(responseText);
                 
                 if (!result.success) {
                     console.error('Create ticket failed:', result.message);
-                    tg.showAlert('កំហុស: ' + (result.message || 'មិនអាចបង្កើតសំណើបានទេ'));
+                    tg.showAlert(t('error_prefix') + ': ' + (result.message || t('create_failed')));
                     return;
                 }
 
@@ -573,6 +1998,7 @@
                     formData.append('initData', initData);
                     formData.append('ticket_id', result.ticket_id);
                     formData.append('message_id', result.message_id);
+                    formData.append('lang', currentLang);
                     
                     const uploadResponse = await fetch(API_BASE + '/upload-file', {
                         method: 'POST',
@@ -585,29 +2011,29 @@
                     console.log('Upload response:', uploadText);
                     
                     if (uploadText.trim().startsWith('<')) {
-                        throw new Error('Upload server error: ' + uploadText.substring(0, 100));
+                        throw new Error(t('upload_server_error', { error: uploadText.substring(0, 100) }));
                     }
                     
                     const uploadResult = JSON.parse(uploadText);
                     if (!uploadResult.success) {
-                        throw new Error('Upload failed: ' + (uploadResult.message || 'Unknown error'));
+                        throw new Error(t('upload_failed', { error: uploadResult.message || t('unknown_error') }));
                     }
                 }
                 
-                tg.showAlert('សំណើបានបង្កើតដោយជោគជ័យ!\nលេខសំណើ: ' + result.ticket_number, () => {
+                tg.showAlert(t('ticket_created', { ticketNumber: result.ticket_number }), () => {
                     showMainMenu();
                 });
             } catch (error) {
                 console.error('Error in submitTicket:', error);
-                tg.showAlert('កំហុសក្នុងការបង្កើតសំណើ: ' + error.message);
+                tg.showAlert(t('create_error', { error: error.message }));
             } finally {
                 tg.MainButton.hideProgress();
                 tg.MainButton.hide();
             }
         }
         
-        // Show tickets
         async function showMyTickets() {
+            setView('tickets');
             showLoading();
             
             try {
@@ -616,7 +2042,8 @@
                 console.log('user:', user);
                 
                 const url = API_BASE + '/my-tickets?' + new URLSearchParams({
-                    initData: initData
+                    initData: initData,
+                    lang: currentLang
                 });
                 console.log('Fetching:', url);
                 
@@ -627,85 +2054,87 @@
                 const responseText = await response.text();
                 console.log('Response text:', responseText);
                 
-                // Check if response is HTML error
                 if (responseText.trim().startsWith('<')) {
-                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                    throw new Error(t('html_error_with_response', {
+                        status: response.status,
+                        response: responseText.substring(0, 100)
+                    }));
                 }
                 
                 const result = JSON.parse(responseText);
                 console.log('Parsed result:', result);
                 
                 if (result.success && result.tickets && result.tickets.length > 0) {
-                    let html = '<h2>សំណើរបស់ខ្ញុំ</h2>';
+                    let html = `<h2>${t('my_tickets_title')}</h2>`;
                     result.tickets.forEach(ticket => {
                         html += `
                             <div class="ticket-card" onclick="viewTicket(${ticket.id})">
                                 <strong>#${ticket.ticket_number}</strong>
                                 <p>${ticket.subject}</p>
                                 ${getStatusBadge(ticket.status)}
-                                <br><small>${new Date(ticket.created_at).toLocaleString('km-KH')}</small>
+                                <br><small>${formatDate(ticket.created_at)}</small>
                             </div>
                         `;
                     });
                     html += `
                         <button class="btn btn-secondary" onclick="showMainMenu()">
-                            <span>🔙</span>
-                            <span>ត្រឡប់ក្រោយ</span>
+                    <span>&#128281;</span>
+                            <span>${t('back')}</span>
                         </button>
                     `;
                     document.getElementById('content').innerHTML = html;
                 } else if (result.success === false) {
-                    // API returned error
                     document.getElementById('content').innerHTML = `
                         <div class="empty-state">
-                            <p>❌</p>
-                            <p>កំហុស: ${result.message || 'Unknown error'}</p>
-                            <button class="btn" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                            <p>&#10060;</p>
+                            <p>${t('error_prefix')}: ${result.message || t('unknown_error')}</p>
+                            <button class="btn" onclick="showMainMenu()">${t('back')}</button>
                         </div>
                     `;
                 } else {
                     document.getElementById('content').innerHTML = `
                         <div class="empty-state">
-                            <p>📭</p>
-                            <p>មិនមានសំណើ</p>
-                            <button class="btn" onclick="showNewTicketForm()">បង្កើតសំណើថ្មី</button>
-                            <button class="btn btn-secondary" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                            <p>&#128237;</p>
+                            <p>${t('no_tickets')}</p>
+                            <button class="btn" onclick="showNewTicketForm()">${t('menu_new_ticket')}</button>
+                            <button class="btn btn-secondary" onclick="showMainMenu()">${t('back')}</button>
                         </div>
                     `;
                 }
             } catch (error) {
                 console.error('Error in showMyTickets:', error);
                 
-                let errorMsg = 'កំហុសក្នុងការផ្ទុកសំណើ';
+                let errorMsg = t('load_tickets_error');
                 if (error.message) {
                     errorMsg += '<br><small style="font-size: 11px;">' + error.message + '</small>';
                 }
                 
                 document.getElementById('content').innerHTML = `
                     <div class="empty-state">
-                        <p>❌</p>
+                        <p>&#10060;</p>
                         <p>${errorMsg}</p>
                         <p style="font-size: 11px; margin-top: 10px;">
-                            Debug info:<br>
+                            ${t('debug_info')}:<br>
                             API: ${API_BASE}<br>
-                            Has initData: ${initData ? 'Yes' : 'No'}<br>
-                            User ID: ${user.id || 'N/A'}
+                            ${t('has_init_data')}: ${initData ? t('yes') : t('no')}<br>
+                            ${t('user_id')}: ${user.id || t('na')}
                         </p>
-                        <button class="btn btn-secondary" onclick="showMainMenu()">ត្រឡប់ក្រោយ</button>
+                        <button class="btn btn-secondary" onclick="showMainMenu()">${t('back')}</button>
                     </div>
                 `;
             }
         }
         
-        // View ticket details
         async function viewTicket(ticketId) {
+            setView('ticket-detail', ticketId);
             showLoading();
             
             try {
                 console.log('Viewing ticket:', ticketId);
                 
                 const url = API_BASE + '/ticket/' + ticketId + '?' + new URLSearchParams({
-                    initData: initData
+                    initData: initData,
+                    lang: currentLang
                 });
                 console.log('Ticket URL:', url);
                 
@@ -716,127 +2145,199 @@
                 const responseText = await response.text();
                 console.log('Ticket response (first 200 chars):', responseText.substring(0, 200));
                 
-                // Check if response is HTML error
                 if (responseText.trim().startsWith('<')) {
-                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                    throw new Error(t('html_error_with_response', {
+                        status: response.status,
+                        response: responseText.substring(0, 100)
+                    }));
                 }
                 
                 const result = JSON.parse(responseText);
                 
                 if (result.success) {
-                    const ticket = result.ticket;
+                    const ticket = result.ticket || {};
+                    const messages = Array.isArray(result.messages) ? result.messages : [];
+                    const requesterName = (ticket.requester_name || userName || t('unknown')).trim();
+                    const defaultHeaderName = t('support_team');
+                    const headerName = ticket.assigned_name || ticket.assigned_to_name || ticket.agent_name || defaultHeaderName;
+                    const onlineText = t('online');
+                    const descriptionText = (ticket.description || '').trim();
+
                     let html = `
-                        <h2>#${ticket.ticket_number}</h2>
-                        <div class="ticket-card">
-                            <p><strong>ប្រធានបទ:</strong> ${ticket.subject}</p>
-                            <p><strong>ស្ថានភាព:</strong> ${getStatusBadge(ticket.status)}</p>
-                            <p><strong>អាទិភាព:</strong> ${ticket.priority}</p>
-                            <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--tg-theme-hint-color);">
-                            <p><strong>ពិពណ៌នា:</strong></p>
-                            <p>${formatMessage(ticket.description)}</p>
-                        </div>
-                        <h3>ការឆ្លើយតប (${result.messages.length})</h3>
+                        <div class="ticket-chat-screen">
+                            <div class="ticket-chat-header">
+                                <button class="ticket-chat-back" type="button" onclick="showMyTickets()">&larr;</button>
+                                <div class="ticket-chat-avatar">${escapeHtml(initials(headerName))}</div>
+                                <div class="ticket-chat-headline">
+                                    <div class="ticket-chat-title">${escapeHtml(headerName)}</div>
+                                    <div class="ticket-chat-subtitle">${escapeHtml(onlineText)}</div>
+                                </div>
+                            </div>
+                            <div class="ticket-chat-thread" id="ticket-chat-thread">
                     `;
-                    
-                    if (result.messages.length > 0) {
-                        result.messages.forEach(msg => {
-                            const attachmentsHtml = renderAttachments(msg.attachment_files || []);
+
+                    let dayMarker = '';
+                    if (messages.length > 0) {
+                        messages.forEach((msg) => {
+                            const msgDate = msg.created_at ? new Date(msg.created_at) : null;
+                            const marker = msgDate && !Number.isNaN(msgDate.getTime()) ? msgDate.toDateString() : 'unknown';
+
+                            if (marker !== dayMarker) {
+                                dayMarker = marker;
+                                const label = msg.created_at ? dayLabel(msg.created_at) : t('today');
+                                html += `<div class="ticket-day-chip">${escapeHtml(label)}</div>`;
+                            }
+
+                            const msgUserName = String(msg.user_name || '').trim();
+                            const mineById = String(msg.user_id || '') !== '' && String(ticket.requester_id || '') !== '' && String(msg.user_id) === String(ticket.requester_id);
+                            const mineByName = msgUserName.toLowerCase() === requesterName.toLowerCase();
+                            const isMine = mineById || mineByName;
+                            const rowClass = isMine ? 'chat-row outgoing' : 'chat-row incoming';
+                            const bubbleClass = isMine ? 'chat-bubble outgoing' : 'chat-bubble incoming';
+                            const author = isMine ? '' : `<div class="chat-author">${escapeHtml(msgUserName || t('unknown'))}</div>`;
+                            const text = msg.message ? `<div class="chat-text">${formatMessage(msg.message)}</div>` : '';
+                            const attachments = renderAttachments(msg.attachment_files || []);
+                            const time = msg.created_at ? formatTime(msg.created_at) : '';
+
                             html += `
-                                <div class="message-card">
-                                    <strong>${msg.user_name || 'Unknown'}</strong>
-                                    <p>${formatMessage(msg.message)}</p>
-                                    ${attachmentsHtml}
-                                    <small>${new Date(msg.created_at).toLocaleString('km-KH')}</small>
+                                <div class="${rowClass}">
+                                    <div class="${bubbleClass}">
+                                        ${author}
+                                        ${text}
+                                        ${attachments}
+                                        <div class="chat-time">${escapeHtml(time)}</div>
+                                    </div>
                                 </div>
                             `;
                         });
+                    } else if (descriptionText) {
+                        html += `
+                            <div class="ticket-day-chip">${escapeHtml(dayLabel(ticket.created_at || new Date().toISOString()))}</div>
+                            <div class="chat-row incoming">
+                                <div class="chat-bubble incoming">
+                                    <div class="chat-author">${escapeHtml(requesterName)}</div>
+                                    <div class="chat-text">${formatMessage(descriptionText)}</div>
+                                </div>
+                            </div>
+                        `;
                     } else {
-                        html += '<p style="text-align: center; color: var(--tg-theme-hint-color);">មិនទាន់មានការឆ្លើយតប</p>';
+                        html += `<div class="chat-empty">${t('no_replies')}</div>`;
                     }
-                    
+
                     html += `
-                        <div class="form-group" style="margin-top: 20px;">
-                            <label>ការឆ្លើយតបថ្មី</label>
-                            <textarea id="reply" placeholder="វាយការឆ្លើយតបរបស់អ្នក..."></textarea>
+                            </div>
+                            <div class="ticket-chat-composer-wrap">
+                                <div class="composer-preview" id="reply-attachment-preview"></div>
+                                <div class="composer-preview" id="reply-voice-preview"></div>
+                                <div class="ticket-chat-composer">
+                                    <button class="composer-icon-btn" type="button" onclick="pickReplyAttachment()">+</button>
+                                    <textarea id="reply" class="reply-input" rows="1" placeholder="${t('reply_placeholder')}"></textarea>
+                                    <input type="file" id="reply-attachment" accept="image/*,.pdf,audio/*,.ogg,.mp3,.m4a" style="display:none;">
+                                    <button class="composer-icon-btn icon-toggle" id="reply-record-btn" type="button">&#127908;</button>
+                                    <button class="composer-send-btn" type="button" onclick="sendReply(${ticketId})">&#10148;</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>📎 ភ្ជាប់ឯកសារ (រូបភាព, PDF, ឬ សម្លេង)</label>
-                            <input type="file" id="reply-attachment" accept="image/*,.pdf,audio/*,.ogg,.mp3,.m4a" style="padding: 8px;">
-                            <small style="color: var(--tg-theme-hint-color);">ទំហំអតិបរមា 10MB</small>
-                            <div id="reply-attachment-preview" style="margin-top: 8px;"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>🎙 កត់សម្លេង</label>
-                            <button class="btn btn-secondary" id="reply-record-btn">🎙 Start Recording</button>
-                            <div id="reply-voice-preview"></div>
-                        </div>
-                        <button class="btn" onclick="sendReply(${ticketId})">
-                            <span>📤</span>
-                            <span>ផ្ញើការឆ្លើយតប</span>
-                        </button>
-                        <button class="btn btn-secondary" onclick="showMyTickets()">
-                            <span>🔙</span>
-                            <span>ត្រឡប់ក្រោយ</span>
-                        </button>
                     `;
-                    
+
                     document.getElementById('content').innerHTML = html;
-                    
-                    // Handle reply file selection
-                    document.getElementById('reply-attachment').addEventListener('change', function(e) {
-                        const file = e.target.files[0];
-                        const preview = document.getElementById('reply-attachment-preview');
-                        if (file) {
-                            preview.innerHTML = `<small>✓ ឯកសារ: ${file.name} (${(file.size / 1024).toFixed(0)}KB)</small>`;
-                            replyVoiceFile = null;
-                            const voicePreview = document.getElementById('reply-voice-preview');
-                            if (voicePreview) {
-                                voicePreview.innerHTML = '';
+                    initVoicePlayers(document.getElementById('content'));
+
+                    const replyAttachmentInput = document.getElementById('reply-attachment');
+                    if (replyAttachmentInput) {
+                        replyAttachmentInput.addEventListener('change', function(e) {
+                            const file = e.target.files[0];
+                            const preview = document.getElementById('reply-attachment-preview');
+                            if (!preview) {
+                                return;
                             }
-                        } else {
-                            preview.innerHTML = '';
-                        }
-                    });
+                            if (file) {
+                                preview.innerHTML = `
+                                    <div class="selection-preview">
+                                        <span class="selection-label">&#10003; ${escapeHtml(t('file_label'))}: ${escapeHtml(file.name)} (${Math.round(file.size / 1024)}KB)</span>
+                                        <button type="button" class="selection-cancel-btn" id="cancel-reply-attachment">${escapeHtml(t('cancel'))}</button>
+                                    </div>
+                                `;
+                                replyVoiceFile = null;
+                                const voicePreview = document.getElementById('reply-voice-preview');
+                                if (voicePreview) {
+                                    voicePreview.innerHTML = '';
+                                }
+
+                                const cancelReplyAttachment = document.getElementById('cancel-reply-attachment');
+                                if (cancelReplyAttachment) {
+                                    cancelReplyAttachment.addEventListener('click', () => {
+                                        const input = document.getElementById('reply-attachment');
+                                        if (input) {
+                                            input.value = '';
+                                        }
+                                        preview.innerHTML = '';
+                                    });
+                                }
+                            } else {
+                                preview.innerHTML = '';
+                            }
+                        });
+                    }
 
                     initVoiceRecorder('reply-record-btn', 'reply-voice-preview', (file) => {
                         replyVoiceFile = file;
-                        const replyAttachmentInput = document.getElementById('reply-attachment');
-                        if (replyAttachmentInput) {
-                            replyAttachmentInput.value = '';
+                        const attachmentInput = document.getElementById('reply-attachment');
+                        if (attachmentInput) {
+                            attachmentInput.value = '';
                         }
-                        document.getElementById('reply-attachment-preview').innerHTML = '';
+                        const preview = document.getElementById('reply-attachment-preview');
+                        if (preview) {
+                            preview.innerHTML = '';
+                        }
+                    }, () => {
+                        replyVoiceFile = null;
                     });
+
+                    const replyInput = document.getElementById('reply');
+                    if (replyInput) {
+                        autoGrowReply(replyInput);
+                        replyInput.addEventListener('input', () => autoGrowReply(replyInput));
+                        replyInput.addEventListener('keydown', (event) => {
+                            if (event.key === 'Enter' && !event.shiftKey) {
+                                event.preventDefault();
+                                sendReply(ticketId);
+                            }
+                        });
+                    }
+
+                    scrollTicketThreadBottom();
                 } else {
                     console.error('Ticket load failed:', result.message);
-                    tg.showAlert('មិនអាចផ្ទុកសំណើបានទេ: ' + (result.message || 'Unknown error'));
+                    tg.showAlert(t('ticket_load_failed') + ': ' + (result.message || t('unknown_error')));
                     showMyTickets();
                 }
             } catch (error) {
                 console.error('Error in viewTicket:', error);
-                tg.showAlert('កំហុសក្នុងការផ្ទុកសំណើ: ' + error.message);
+                tg.showAlert(t('ticket_load_error', { error: error.message }));
                 showMyTickets();
             }
         }
         
-        // Send reply
         async function sendReply(ticketId) {
             const reply = document.getElementById('reply').value.trim();
             const attachmentInput = document.getElementById('reply-attachment');
             const file = attachmentInput ? attachmentInput.files[0] : null;
-            const uploadFile = replyVoiceFile || file;
+            const rawUploadFile = replyVoiceFile || file;
             
-            if (!reply && !uploadFile) {
-                tg.showAlert('សូមវាយការឆ្លើយតប');
+            if (!reply && !rawUploadFile) {
+                tg.showAlert(t('reply_required'));
                 return;
             }
-
-            const messageToSend = reply || (uploadFile ? 'Voice message attached.' : '[Attachment]');
             
-            tg.MainButton.setText('កំពុងផ្ញើ...');
+            tg.MainButton.setText(t('sending'));
             tg.MainButton.show();
             tg.MainButton.showProgress();
             
             try {
+                const uploadFile = rawUploadFile ? await prepareUploadFile(rawUploadFile) : null;
+                const messageToSend = reply || '';
+
                 console.log('Sending reply:', { ticketId, message: messageToSend.substring(0, 20) });
                 
                 const response = await fetch(API_BASE + '/reply', {
@@ -847,7 +2348,9 @@
                     body: JSON.stringify({
                         initData: initData,
                         ticket_id: ticketId,
-                        message: messageToSend
+                        message: messageToSend,
+                        has_attachment: uploadFile ? 1 : 0,
+                        lang: currentLang
                     })
                 });
                 
@@ -857,9 +2360,11 @@
                 const responseText = await response.text();
                 console.log('Reply response text:', responseText);
                 
-                // Check if response is HTML error
                 if (responseText.trim().startsWith('<')) {
-                    throw new Error('Server returned HTML instead of JSON. Status: ' + response.status + '. Response: ' + responseText.substring(0, 100));
+                    throw new Error(t('html_error_with_response', {
+                        status: response.status,
+                        response: responseText.substring(0, 100)
+                    }));
                 }
                 
                 const result = JSON.parse(responseText);
@@ -874,6 +2379,7 @@
                         formData.append('initData', initData);
                         formData.append('ticket_id', ticketId);
                         formData.append('message_id', result.message_id);
+                        formData.append('lang', currentLang);
                         
                         const uploadResponse = await fetch(API_BASE + '/upload-file', {
                             method: 'POST',
@@ -886,60 +2392,83 @@
                         console.log('Reply upload response:', uploadText);
                         
                         if (uploadText.trim().startsWith('<')) {
-                            throw new Error('Upload server error: ' + uploadText.substring(0, 100));
+                            throw new Error(t('upload_server_error', { error: uploadText.substring(0, 100) }));
                         }
                         
                         const uploadResult = JSON.parse(uploadText);
                         if (!uploadResult.success) {
-                            throw new Error('Upload failed: ' + (uploadResult.message || 'Unknown error'));
+                            throw new Error(t('upload_failed', { error: uploadResult.message || t('unknown_error') }));
                         }
                     }
 
-                    tg.showAlert('ការឆ្លើយតបបានផ្ញើ', () => {
-                        viewTicket(ticketId);
-                    });
+                    replyVoiceFile = null;
+                    viewTicket(ticketId);
                 } else {
-                    const errorMsg = result.message || 'មិនអាចផ្ញើបានទេ';
+                    const errorMsg = result.message || t('reply_failed');
                     console.error('Reply failed:', errorMsg);
-                    tg.showAlert('កំហុស: ' + errorMsg);
+                    tg.showAlert(t('error_prefix') + ': ' + errorMsg);
                 }
             } catch (error) {
                 console.error('Error in sendReply:', error);
-                tg.showAlert('កំហុសក្នុងការឆ្លើយតប: ' + error.message);
+                tg.showAlert(t('reply_error', { error: error.message }));
             } finally {
                 tg.MainButton.hideProgress();
                 tg.MainButton.hide();
             }
         }
         
-        // Handle back button
         tg.BackButton.onClick(() => {
-            const content = document.getElementById('content').innerHTML;
-            if (content.includes('បង្កើតសំណើថ្មី') && content.includes('form-group')) {
-                showMainMenu();
-            } else if (content.includes('សំណើរបស់ខ្ញុំ')) {
-                showMainMenu();
-            } else if (content.includes('ភ្ជាប់អ៊ីមែល')) {
-                showMainMenu();
-            } else if (content.includes('ការឆ្លើយតប')) {
-                showMyTickets();
-            } else {
+            if (currentView === 'role-select') {
                 tg.close();
+                return;
             }
+            if (currentView === 'new-ticket' || currentView === 'tickets' || currentView === 'link-email') {
+                showMainMenu();
+                return;
+            }
+            if (currentView === 'ticket-detail') {
+                showMyTickets();
+                return;
+            }
+            tg.close();
         });
+
+        const langSwitch = document.getElementById('lang-switch');
+        if (langSwitch) {
+            langSwitch.addEventListener('change', function(event) {
+                setLanguage(event.target.value, true);
+            });
+        }
         
-        // Initialize
-        if (!initData) {
-            document.getElementById('content').innerHTML = `
-                <div class="empty-state">
-                    <p>❌</p>
-                    <p>សូមបើកពីទូរសារ Telegram</p>
-                </div>
-            `;
-        } else {
-            showMainMenu();
+        async function initializeMiniApp() {
+            setLanguage(currentLang, false);
+            if (!initData) {
+                setView('no-init');
+                document.getElementById('content').innerHTML = `
+                    <div class="empty-state">
+                        <p>&#10060;</p>
+                        <p>${t('open_in_telegram')}</p>
+                    </div>
+                `;
+                tg.BackButton.hide();
+                return;
+            }
+
+            try {
+                const ready = await ensureMiniAppProfile();
+                if (ready) {
+                    showMainMenu();
+                }
+            } catch (error) {
+                console.error('Mini App profile bootstrap failed:', error);
+                tg.showAlert(t('error_prefix') + ': ' + (error.message || t('unknown_error')));
+                showMainMenu();
+            }
+
             tg.BackButton.show();
         }
+
+        initializeMiniApp();
     </script>
 </body>
 </html>

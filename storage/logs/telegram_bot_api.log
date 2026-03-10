@@ -2568,3 +2568,563 @@
 [2026-02-11 09:43:42] CURL ERROR: none
 [2026-02-11 09:43:42] API ERROR: Forbidden: bot was kicked from the group chat
 ==========
+[2026-02-20 03:13:12] ========== REQUEST ==========
+[2026-02-20 03:13:12] METHOD: sendMessage
+[2026-02-20 03:13:12] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 03:13:12] PARAMS: {"chat_id":768732984,"text":"\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178a\u17c6\u17a1\u17be\u1784\u179a\u17c0\u1784\u179a\u17b6\u179b\u17cb\u179f\u17c6\u178e\u17be\u179f\u17bb\u17c6\u1787\u17c6\u1793\u17bd\u1799 #TKT-000005\u17d4\n\n\u1799\u17be\u1784\u1793\u17b9\u1784\u1787\u17bc\u1793\u178a\u17c6\u178e\u17b9\u1784\u17b1\u17d2\u1799\u17a2\u17d2\u1793\u1780\u1793\u17c5\u1796\u17c1\u179b\u178a\u17c2\u179b\u1798\u17b6\u1793\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u17d4","parse_mode":"HTML"}
+[2026-02-20 03:13:12] Making curl request...
+[2026-02-20 03:13:13] HTTP CODE: 200
+[2026-02-20 03:13:13] RAW RESPONSE: {"ok":true,"result":{"message_id":126,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771557193,"text":"\u1780\u17b6\u179a\u1786\u17d2\u179b\u17be\u1799\u178f\u1794\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178a\u17c6\u17a1\u17be\u1784\u179a\u17c0\u1784\u17
+[2026-02-20 03:13:13] CURL ERROR: none
+[2026-02-20 03:13:13] SUCCESS: sendMessage completed
+==========
+[2026-02-20 03:13:21] ========== REQUEST ==========
+[2026-02-20 03:13:21] METHOD: sendMessage
+[2026-02-20 03:13:21] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 03:13:21] PARAMS: {"chat_id":768732984,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u178a\u17c2\u179b\u1798\u17b6\u1793\u17d4","parse_mode":"HTML"}
+[2026-02-20 03:13:21] Making curl request...
+[2026-02-20 03:13:22] HTTP CODE: 200
+[2026-02-20 03:13:22] RAW RESPONSE: {"ok":true,"result":{"message_id":128,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771557202,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be /help \u178a\u17be\u1798\u17d2\u
+[2026-02-20 03:13:22] CURL ERROR: none
+[2026-02-20 03:13:22] SUCCESS: sendMessage completed
+==========
+[2026-02-20 04:35:16] ========== REQUEST ==========
+[2026-02-20 04:35:16] METHOD: sendMessage
+[2026-02-20 04:35:16] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 04:35:16] PARAMS: {"chat_id":768732984,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! \u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179a\u17bd\u1785\u17a0\u17be\u1799\u17d4\n\n\u1785\u17bb\u1785\u1794\u17ca\u17bc\u178f\u17bb\u1784\u1781\u17b6\u1784\u1780\u17d2\u179a\u17c4\u1798 \u178a\u17be\u1798\u17d2\u1794\u17b8\u1794\u17be\u1780\u1780\u1798\u17d2\u1798\u179c\u17b7\u1792\u17b8 \u17ac\u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u17d4","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"\\ud83d\\ude80 \\u1794\\u17be\\u1780\\u1780\\u1798\\u17d2\\u1798\\u179c\\u17b7\\u1792\\u17b8\",\"web_app\":{\"url\":\"https:\\\/\\\/ticket.providawater.com\\\/telegram-app.html\"}}]]}"}
+[2026-02-20 04:35:16] Making curl request...
+[2026-02-20 04:35:17] HTTP CODE: 200
+[2026-02-20 04:35:17] RAW RESPONSE: {"ok":true,"result":{"message_id":130,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562117,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! \u1782\u178e\u1793\u17b8\u1
+[2026-02-20 04:35:17] CURL ERROR: none
+[2026-02-20 04:35:17] SUCCESS: sendMessage completed
+==========
+[2026-02-20 04:43:54] ========== REQUEST ==========
+[2026-02-20 04:43:54] METHOD: sendMessage
+[2026-02-20 04:43:54] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 04:43:54] PARAMS: {"chat_id":768732984,"text":"Unknown command. Use \/help to see available commands.","parse_mode":"HTML"}
+[2026-02-20 04:43:54] Making curl request...
+[2026-02-20 04:43:55] HTTP CODE: 200
+[2026-02-20 04:43:55] RAW RESPONSE: {"ok":true,"result":{"message_id":132,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562635,"text":"Unknown command. Use /help to see available commands.","entities":[{"offset":21,"length":5,"type":"bot_command"}]}}
+[2026-02-20 04:43:55] CURL ERROR: none
+[2026-02-20 04:43:55] SUCCESS: sendMessage completed
+==========
+[2026-02-20 04:44:09] ========== REQUEST ==========
+[2026-02-20 04:44:09] METHOD: sendMessage
+[2026-02-20 04:44:09] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 04:44:09] PARAMS: {"chat_id":768732984,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! \u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179a\u17bd\u1785\u17a0\u17be\u1799\u17d4\n\n\u1785\u17bb\u1785\u1794\u17ca\u17bc\u178f\u17bb\u1784\u1781\u17b6\u1784\u1780\u17d2\u179a\u17c4\u1798 \u178a\u17be\u1798\u17d2\u1794\u17b8\u1794\u17be\u1780\u1780\u1798\u17d2\u1798\u179c\u17b7\u1792\u17b8 \u17ac\u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u17d4","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"\\ud83d\\ude80 \\u1794\\u17be\\u1780\\u1780\\u1798\\u17d2\\u1798\\u179c\\u17b7\\u1792\\u17b8\",\"web_app\":{\"url\":\"https:\\\/\\\/ticket.providawater.com\\\/telegram-app.html\"}}]]}"}
+[2026-02-20 04:44:09] Making curl request...
+[2026-02-20 04:44:11] HTTP CODE: 200
+[2026-02-20 04:44:11] RAW RESPONSE: {"ok":true,"result":{"message_id":134,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771562651,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! \u1782\u178e\u1793\u17b8\u1
+[2026-02-20 04:44:11] CURL ERROR: none
+[2026-02-20 04:44:11] SUCCESS: sendMessage completed
+==========
+[2026-02-20 06:28:35] ========== REQUEST ==========
+[2026-02-20 06:28:35] METHOD: sendMessage
+[2026-02-20 06:28:35] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 06:28:35] PARAMS: {"chat_id":768732984,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! \u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179a\u17bd\u1785\u17a0\u17be\u1799\u17d4\n\n\u1785\u17bb\u1785\u1794\u17ca\u17bc\u178f\u17bb\u1784\u1781\u17b6\u1784\u1780\u17d2\u179a\u17c4\u1798 \u178a\u17be\u1798\u17d2\u1794\u17b8\u1794\u17be\u1780\u1780\u1798\u17d2\u1798\u179c\u17b7\u1792\u17b8 \u17ac\u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u17d4","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"\\ud83d\\ude80 \\u1794\\u17be\\u1780\\u1780\\u1798\\u17d2\\u1798\\u179c\\u17b7\\u1792\\u17b8\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-20 06:28:35] Making curl request...
+[2026-02-20 06:28:36] HTTP CODE: 200
+[2026-02-20 06:28:36] RAW RESPONSE: {"ok":true,"result":{"message_id":136,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771568916,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! \u1782\u178e\u1793\u17b8\u1
+[2026-02-20 06:28:36] CURL ERROR: none
+[2026-02-20 06:28:36] SUCCESS: sendMessage completed
+==========
+[2026-02-20 06:32:19] ========== REQUEST ==========
+[2026-02-20 06:32:19] METHOD: sendMessage
+[2026-02-20 06:32:19] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-20 06:32:19] PARAMS: {"chat_id":768732984,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! \u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179a\u17bd\u1785\u17a0\u17be\u1799\u17d4\n\n\u1785\u17bb\u1785\u1794\u17ca\u17bc\u178f\u17bb\u1784\u1781\u17b6\u1784\u1780\u17d2\u179a\u17c4\u1798 \u178a\u17be\u1798\u17d2\u1794\u17b8\u1794\u17be\u1780\u1780\u1798\u17d2\u1798\u179c\u17b7\u1792\u17b8 \u17ac\u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u17d4","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"\\ud83d\\ude80 \\u1794\\u17be\\u1780\\u1780\\u1798\\u17d2\\u1798\\u179c\\u17b7\\u1792\\u17b8\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-20 06:32:19] Making curl request...
+[2026-02-20 06:32:21] HTTP CODE: 200
+[2026-02-20 06:32:21] RAW RESPONSE: {"ok":true,"result":{"message_id":138,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771569141,"text":"welcome\n\n\u179f\u17bc\u1798\u179f\u17d2\u179c\u17b6\u1782\u1798\u1793\u17cd, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! \u1782\u178e\u1793\u17b8\u1
+[2026-02-20 06:32:21] CURL ERROR: none
+[2026-02-20 06:32:21] SUCCESS: sendMessage completed
+==========
+[2026-02-25 04:45:44] ========== REQUEST ==========
+[2026-02-25 04:45:44] METHOD: sendMessage
+[2026-02-25 04:45:44] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-25 04:45:44] PARAMS: {"chat_id":768732984,"text":"\u179f\u17bc\u1798\u1794\u1789\u17d2\u1785\u17bc\u179b\u17a2\u17b6\u179f\u17d0\u1799\u178a\u17d2\u178b\u17b6\u1793\u17a2\u17ca\u17b8\u1798\u17c2\u179b\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u178a\u17be\u1798\u17d2\u1794\u17b8\u1797\u17d2\u1787\u17b6\u1794\u17cb\u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780:","parse_mode":"HTML"}
+[2026-02-25 04:45:44] Making curl request...
+[2026-02-25 04:45:46] HTTP CODE: 200
+[2026-02-25 04:45:46] RAW RESPONSE: {"ok":true,"result":{"message_id":141,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771994745,"text":"\u179f\u17bc\u1798\u1794\u1789\u17d2\u1785\u17bc\u179b\u17a2\u17b6\u179f\u17d0\u1799\u178a\u17d2\u178b\u17b6\u1793\u17a2\u17ca\u17b8\u1798\u17c2\u179b\u179a\u1794\u179f\u17cb\u17
+[2026-02-25 04:45:46] CURL ERROR: none
+[2026-02-25 04:45:46] SUCCESS: sendMessage completed
+==========
+[2026-02-25 04:45:53] ========== REQUEST ==========
+[2026-02-25 04:45:53] METHOD: sendMessage
+[2026-02-25 04:45:53] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-25 04:45:53] PARAMS: {"chat_id":768732984,"text":"\u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u178a\u17c4\u1799\u1787\u17c4\u1782\u1787\u17d0\u1799!\n\n\u17a2\u17d2\u1793\u1780\u1780\u17cf\u17a2\u17b6\u1785:\n- \u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u17c6\u178e\u17be\u179f\u17bb\u17c6\u1787\u17c6\u1793\u17bd\u1799\u178a\u17c4\u1799 \/newticket\n- \u1798\u17be\u179b\u179f\u17c6\u178e\u17be\u179f\u17bb\u17c6\u1787\u17c6\u1793\u17bd\u1799\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780 \/mytickets\n- \u1791\u1791\u17bd\u179b\u1794\u17b6\u1793\u1780\u17b6\u179a\u1787\u17bc\u1793\u178a\u17c6\u178e\u17b9\u1784\u17a2\u17c6\u1796\u17b8\u179f\u17c6\u178e\u17be\u179f\u17bb\u17c6\u1787\u17c6\u1793\u17bd\u1799\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780","parse_mode":"HTML"}
+[2026-02-25 04:45:53] Making curl request...
+[2026-02-25 04:45:54] HTTP CODE: 200
+[2026-02-25 04:45:54] RAW RESPONSE: {"ok":true,"result":{"message_id":143,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1771994753,"text":"\u1782\u178e\u1793\u17b8\u179a\u1794\u179f\u17cb\u17a2\u17d2\u1793\u1780\u1794\u17b6\u1793\u178f\u1797\u17d2\u1787\u17b6\u1794\u17cb\u178a\u17c4\u1799\u1787\u17c4\u1782\u1787\u17
+[2026-02-25 04:45:54] CURL ERROR: none
+[2026-02-25 04:45:54] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:18:46] ========== REQUEST ==========
+[2026-02-26 10:18:46] METHOD: sendMessage
+[2026-02-26 10:18:46] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:18:46] PARAMS: {"chat_id":768732984,"text":"\u00e1\u017e\u0081\u00e1\u0178\u2019\u00e1\u017e\u2030\u00e1\u017e\u00bb\u00e1\u0178\u2020\u00e1\u017e\u02dc\u00e1\u017e\u00b7\u00e1\u017e\u201c\u00e1\u017e\u2122\u00e1\u017e\u203a\u00e1\u0178\u2039\u00e1\u017e\u0160\u00e1\u0178\u201a\u00e1\u017e\u203a\u00e1\u017e\u201c\u00e1\u0178\u201e\u00e1\u0178\u2021\u00e1\u017e\u2018\u00e1\u0178\u0081\u00e1\u0178\u201d \u00e1\u017e\u201d\u00e1\u0178\u2019\u00e1\u017e\u0161\u00e1\u017e\u00be \/help \u00e1\u017e\u0160\u00e1\u017e\u00be\u00e1\u017e\u02dc\u00e1\u0178\u2019\u00e1\u017e\u201d\u00e1\u017e\u00b8\u00e1\u017e\u02dc\u00e1\u017e\u00be\u00e1\u017e\u203a\u00e1\u017e\u2013\u00e1\u017e\u00b6\u00e1\u017e\u20ac\u00e1\u0178\u2019\u00e1\u017e\u2122\u00e1\u017e\u201d\u00e1\u017e\u2030\u00e1\u0178\u2019\u00e1\u017e\u2021\u00e1\u017e\u00b6\u00e1\u017e\u0160\u00e1\u0178\u201a\u00e1\u017e\u203a\u00e1\u017e\u02dc\u00e1\u017e\u00b6\u00e1\u017e\u201c\u00e1\u0178\u201d","parse_mode":"HTML"}
+[2026-02-26 10:18:46] Making curl request...
+[2026-02-26 10:18:47] HTTP CODE: 200
+[2026-02-26 10:18:47] RAW RESPONSE: {"ok":true,"result":{"message_id":149,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101127,"text":"\u00e1\u017e\u0081\u00e1\u0178\u2019\u00e1\u017e\u2030\u00e1\u017e\u00bb\u00e1\u0178\u2020\u00e1\u017e\u02dc\u00e1\u017e\u00b7\u00e1\u017e\u201c\u00e1\u017e\u2122\u00e1\u017e\u20
+[2026-02-26 10:18:47] CURL ERROR: none
+[2026-02-26 10:18:47] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:19:00] ========== REQUEST ==========
+[2026-02-26 10:19:00] METHOD: sendMessage
+[2026-02-26 10:19:00] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:19:00] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-26 10:19:00] Making curl request...
+[2026-02-26 10:19:01] HTTP CODE: 200
+[2026-02-26 10:19:01] RAW RESPONSE: {"ok":true,"result":{"message_id":151,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101140,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-26 10:19:01] CURL ERROR: none
+[2026-02-26 10:19:01] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:19:46] ========== REQUEST ==========
+[2026-02-26 10:19:46] METHOD: sendMessage
+[2026-02-26 10:19:46] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:19:46] PARAMS: {"chat_id":768732984,"text":"\u00e1\u017e\u0178\u00e1\u017e\u00bc\u00e1\u017e\u02dc\u00e1\u017e\u201d\u00e1\u017e\u2030\u00e1\u0178\u2019\u00e1\u017e\u2026\u00e1\u017e\u00bc\u00e1\u017e\u203a\u00e1\u017e\u00a2\u00e1\u017e\u00b6\u00e1\u017e\u0178\u00e1\u0178\u0090\u00e1\u017e\u2122\u00e1\u017e\u0160\u00e1\u0178\u2019\u00e1\u017e\u2039\u00e1\u017e\u00b6\u00e1\u017e\u201c\u00e1\u017e\u00a2\u00e1\u0178\u0160\u00e1\u017e\u00b8\u00e1\u017e\u02dc\u00e1\u0178\u201a\u00e1\u017e\u203a\u00e1\u017e\u0161\u00e1\u017e\u201d\u00e1\u017e\u0178\u00e1\u0178\u2039\u00e1\u017e\u00a2\u00e1\u0178\u2019\u00e1\u017e\u201c\u00e1\u017e\u20ac\u00e1\u017e\u0160\u00e1\u017e\u00be\u00e1\u017e\u02dc\u00e1\u0178\u2019\u00e1\u017e\u201d\u00e1\u017e\u00b8\u00e1\u017e\u2014\u00e1\u0178\u2019\u00e1\u017e\u2021\u00e1\u017e\u00b6\u00e1\u017e\u201d\u00e1\u0178\u2039\u00e1\u017e\u201a\u00e1\u017e\u017d\u00e1\u017e\u201c\u00e1\u017e\u00b8\u00e1\u017e\u0161\u00e1\u017e\u201d\u00e1\u017e\u0178\u00e1\u0178\u2039\u00e1\u017e\u00a2\u00e1\u0178\u2019\u00e1\u017e\u201c\u00e1\u017e\u20ac:","parse_mode":"HTML"}
+[2026-02-26 10:19:46] Making curl request...
+[2026-02-26 10:19:47] HTTP CODE: 200
+[2026-02-26 10:19:47] RAW RESPONSE: {"ok":true,"result":{"message_id":153,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101187,"text":"\u00e1\u017e\u0178\u00e1\u017e\u00bc\u00e1\u017e\u02dc\u00e1\u017e\u201d\u00e1\u017e\u2030\u00e1\u0178\u2019\u00e1\u017e\u2026\u00e1\u017e\u00bc\u00e1\u017e\u203a\u00e1\u017e\u00
+[2026-02-26 10:19:47] CURL ERROR: none
+[2026-02-26 10:19:47] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:28:11] ========== REQUEST ==========
+[2026-02-26 10:28:11] METHOD: sendMessage
+[2026-02-26 10:28:11] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:28:11] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 10:28:11] Making curl request...
+[2026-02-26 10:28:12] HTTP CODE: 200
+[2026-02-26 10:28:12] RAW RESPONSE: {"ok":true,"result":{"message_id":155,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101692,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 10:28:12] CURL ERROR: none
+[2026-02-26 10:28:12] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:28:18] ========== REQUEST ==========
+[2026-02-26 10:28:18] METHOD: sendMessage
+[2026-02-26 10:28:18] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:28:18] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 10:28:18] Making curl request...
+[2026-02-26 10:28:19] HTTP CODE: 200
+[2026-02-26 10:28:19] RAW RESPONSE: {"ok":true,"result":{"message_id":157,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101699,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 10:28:19] CURL ERROR: none
+[2026-02-26 10:28:19] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:28:24] ========== REQUEST ==========
+[2026-02-26 10:28:24] METHOD: sendMessage
+[2026-02-26 10:28:24] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:28:24] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 10:28:24] Making curl request...
+[2026-02-26 10:28:25] HTTP CODE: 200
+[2026-02-26 10:28:25] RAW RESPONSE: {"ok":true,"result":{"message_id":159,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101705,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 10:28:25] CURL ERROR: none
+[2026-02-26 10:28:25] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:28:31] ========== REQUEST ==========
+[2026-02-26 10:28:31] METHOD: sendMessage
+[2026-02-26 10:28:31] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:28:31] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 10:28:31] Making curl request...
+[2026-02-26 10:28:32] HTTP CODE: 200
+[2026-02-26 10:28:32] RAW RESPONSE: {"ok":true,"result":{"message_id":161,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101712,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 10:28:32] CURL ERROR: none
+[2026-02-26 10:28:32] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:31:11] ========== REQUEST ==========
+[2026-02-26 10:31:11] METHOD: sendMessage
+[2026-02-26 10:31:11] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:31:11] PARAMS: {"chat_id":768732984,"text":"This Telegram account is already linked to <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>. Contact admin if you need to reassign it.","parse_mode":"HTML"}
+[2026-02-26 10:31:11] Making curl request...
+[2026-02-26 10:31:12] HTTP CODE: 200
+[2026-02-26 10:31:12] RAW RESPONSE: {"ok":true,"result":{"message_id":163,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101872,"text":"This Telegram account is already linked to Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784. Contact admin if you need to reassign it.","entities":[{"offset
+[2026-02-26 10:31:12] CURL ERROR: none
+[2026-02-26 10:31:12] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:31:41] ========== REQUEST ==========
+[2026-02-26 10:31:41] METHOD: sendMessage
+[2026-02-26 10:31:41] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:31:41] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 10:31:41] Making curl request...
+[2026-02-26 10:31:42] HTTP CODE: 200
+[2026-02-26 10:31:42] RAW RESPONSE: {"ok":true,"result":{"message_id":165,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101902,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 10:31:42] CURL ERROR: none
+[2026-02-26 10:31:42] SUCCESS: sendMessage completed
+==========
+[2026-02-26 10:31:51] ========== REQUEST ==========
+[2026-02-26 10:31:51] METHOD: sendMessage
+[2026-02-26 10:31:51] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 10:31:51] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 10:31:51] Making curl request...
+[2026-02-26 10:31:52] HTTP CODE: 200
+[2026-02-26 10:31:52] RAW RESPONSE: {"ok":true,"result":{"message_id":167,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772101912,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 10:31:52] CURL ERROR: none
+[2026-02-26 10:31:52] SUCCESS: sendMessage completed
+==========
+[2026-02-26 11:57:01] ========== REQUEST ==========
+[2026-02-26 11:57:01] METHOD: sendMessage
+[2026-02-26 11:57:01] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 11:57:01] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-26 11:57:01] Making curl request...
+[2026-02-26 11:57:02] HTTP CODE: 200
+[2026-02-26 11:57:02] RAW RESPONSE: {"ok":true,"result":{"message_id":169,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107022,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-26 11:57:02] CURL ERROR: none
+[2026-02-26 11:57:02] SUCCESS: sendMessage completed
+==========
+[2026-02-26 12:01:09] ========== REQUEST ==========
+[2026-02-26 12:01:09] METHOD: sendMessage
+[2026-02-26 12:01:09] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 12:01:09] PARAMS: {"chat_id":768732984,"text":"\u2705 <b>Ticket Assigned<\/b>\n\ud83c\udd94 <b>Ticket:<\/b> #TKT-000017\n\ud83d\udcdd <b>Subject:<\/b> Mobile App error\n\ud83d\udccc <b>Status:<\/b> Open\n\ud83d\udea6 <b>Priority:<\/b> High\n\ud83d\udc64 <b>Requester:<\/b> Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784 (meng@gmail.com)\n\ud83c\udfaf <b>Assigned to:<\/b> Hay Kongmeng\n\ud83d\udd17 <b>Link:<\/b> https:\/\/harmonistic-imaginary-luanne.ngrok-free.dev\/tickets\/17","parse_mode":"HTML"}
+[2026-02-26 12:01:09] Making curl request...
+[2026-02-26 12:01:11] HTTP CODE: 200
+[2026-02-26 12:01:11] RAW RESPONSE: {"ok":true,"result":{"message_id":170,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107271,"text":"\u2705 Ticket Assigned\n\ud83c\udd94 Ticket: #TKT-000017\n\ud83d\udcdd Subject: Mobile App error\n\ud83d\udccc Status: Open\n\ud83d\udea6 Priority: High\n\ud83d\udc64 Requester: 
+[2026-02-26 12:01:11] CURL ERROR: none
+[2026-02-26 12:01:11] SUCCESS: sendMessage completed
+==========
+[2026-02-26 12:04:11] ========== REQUEST ==========
+[2026-02-26 12:04:11] METHOD: sendMessage
+[2026-02-26 12:04:11] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 12:04:11] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 12:04:11] Making curl request...
+[2026-02-26 12:04:13] HTTP CODE: 200
+[2026-02-26 12:04:13] RAW RESPONSE: {"ok":true,"result":{"message_id":172,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107453,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 12:04:13] CURL ERROR: none
+[2026-02-26 12:04:13] SUCCESS: sendMessage completed
+==========
+[2026-02-26 12:05:51] ========== REQUEST ==========
+[2026-02-26 12:05:51] METHOD: sendMessage
+[2026-02-26 12:05:51] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 12:05:51] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 12:05:51] Making curl request...
+[2026-02-26 12:05:52] HTTP CODE: 200
+[2026-02-26 12:05:52] RAW RESPONSE: {"ok":true,"result":{"message_id":174,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107552,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 12:05:52] CURL ERROR: none
+[2026-02-26 12:05:52] SUCCESS: sendMessage completed
+==========
+[2026-02-26 12:06:02] ========== REQUEST ==========
+[2026-02-26 12:06:02] METHOD: sendMessage
+[2026-02-26 12:06:02] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 12:06:02] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 12:06:02] Making curl request...
+[2026-02-26 12:06:03] HTTP CODE: 200
+[2026-02-26 12:06:03] RAW RESPONSE: {"ok":true,"result":{"message_id":176,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107563,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 12:06:03] CURL ERROR: none
+[2026-02-26 12:06:03] SUCCESS: sendMessage completed
+==========
+[2026-02-26 12:06:16] ========== REQUEST ==========
+[2026-02-26 12:06:16] METHOD: sendMessage
+[2026-02-26 12:06:16] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 12:06:16] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 12:06:16] Making curl request...
+[2026-02-26 12:06:17] HTTP CODE: 200
+[2026-02-26 12:06:17] RAW RESPONSE: {"ok":true,"result":{"message_id":178,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772107577,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 12:06:17] CURL ERROR: none
+[2026-02-26 12:06:17] SUCCESS: sendMessage completed
+==========
+[2026-02-26 13:07:32] ========== REQUEST ==========
+[2026-02-26 13:07:32] METHOD: sendMessage
+[2026-02-26 13:07:32] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 13:07:32] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-26 13:07:32] Making curl request...
+[2026-02-26 13:07:33] HTTP CODE: 200
+[2026-02-26 13:07:33] RAW RESPONSE: {"ok":true,"result":{"message_id":180,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111253,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-26 13:07:33] CURL ERROR: none
+[2026-02-26 13:07:33] SUCCESS: sendMessage completed
+==========
+[2026-02-26 13:07:53] ========== REQUEST ==========
+[2026-02-26 13:07:53] METHOD: sendMessage
+[2026-02-26 13:07:53] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 13:07:53] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-26 13:07:53] Making curl request...
+[2026-02-26 13:07:54] HTTP CODE: 200
+[2026-02-26 13:07:54] RAW RESPONSE: {"ok":true,"result":{"message_id":182,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111274,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-26 13:07:54] CURL ERROR: none
+[2026-02-26 13:07:55] SUCCESS: sendMessage completed
+==========
+[2026-02-26 13:07:58] ========== REQUEST ==========
+[2026-02-26 13:07:58] METHOD: sendMessage
+[2026-02-26 13:07:58] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 13:07:58] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-26 13:07:58] Making curl request...
+[2026-02-26 13:07:59] HTTP CODE: 200
+[2026-02-26 13:07:59] RAW RESPONSE: {"ok":true,"result":{"message_id":184,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111279,"text":"Please enter your email address to link your support account."}}
+[2026-02-26 13:07:59] CURL ERROR: none
+[2026-02-26 13:07:59] SUCCESS: sendMessage completed
+==========
+[2026-02-26 13:08:04] ========== REQUEST ==========
+[2026-02-26 13:08:04] METHOD: sendMessage
+[2026-02-26 13:08:04] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 13:08:04] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-26 13:08:04] Making curl request...
+[2026-02-26 13:08:05] HTTP CODE: 200
+[2026-02-26 13:08:05] RAW RESPONSE: {"ok":true,"result":{"message_id":186,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111285,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-26 13:08:05] CURL ERROR: none
+[2026-02-26 13:08:05] SUCCESS: sendMessage completed
+==========
+[2026-02-26 13:08:10] ========== REQUEST ==========
+[2026-02-26 13:08:10] METHOD: sendMessage
+[2026-02-26 13:08:10] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-26 13:08:10] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-26 13:08:10] Making curl request...
+[2026-02-26 13:08:12] HTTP CODE: 200
+[2026-02-26 13:08:12] RAW RESPONSE: {"ok":true,"result":{"message_id":188,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772111292,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-26 13:08:12] CURL ERROR: none
+[2026-02-26 13:08:12] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:52:10] ========== REQUEST ==========
+[2026-02-27 01:52:10] METHOD: sendMessage
+[2026-02-27 01:52:10] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:52:10] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-27 01:52:10] Making curl request...
+[2026-02-27 01:52:11] HTTP CODE: 200
+[2026-02-27 01:52:11] RAW RESPONSE: {"ok":true,"result":{"message_id":190,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157131,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-27 01:52:11] CURL ERROR: none
+[2026-02-27 01:52:11] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:56:23] ========== REQUEST ==========
+[2026-02-27 01:56:23] METHOD: sendMessage
+[2026-02-27 01:56:23] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:56:23] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 01:56:23] Making curl request...
+[2026-02-27 01:56:24] HTTP CODE: 200
+[2026-02-27 01:56:24] RAW RESPONSE: {"ok":true,"result":{"message_id":192,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157384,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 01:56:24] CURL ERROR: none
+[2026-02-27 01:56:24] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:56:28] ========== REQUEST ==========
+[2026-02-27 01:56:28] METHOD: sendMessage
+[2026-02-27 01:56:28] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:56:28] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 01:56:28] Making curl request...
+[2026-02-27 01:56:28] HTTP CODE: 200
+[2026-02-27 01:56:28] RAW RESPONSE: {"ok":true,"result":{"message_id":194,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157388,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 01:56:28] CURL ERROR: none
+[2026-02-27 01:56:28] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:56:34] ========== REQUEST ==========
+[2026-02-27 01:56:34] METHOD: sendMessage
+[2026-02-27 01:56:34] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:56:34] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-27 01:56:34] Making curl request...
+[2026-02-27 01:56:35] HTTP CODE: 200
+[2026-02-27 01:56:35] RAW RESPONSE: {"ok":true,"result":{"message_id":196,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157395,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-27 01:56:35] CURL ERROR: none
+[2026-02-27 01:56:35] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:57:22] ========== REQUEST ==========
+[2026-02-27 01:57:22] METHOD: sendMessage
+[2026-02-27 01:57:22] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:57:22] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 01:57:22] Making curl request...
+[2026-02-27 01:57:23] HTTP CODE: 200
+[2026-02-27 01:57:23] RAW RESPONSE: {"ok":true,"result":{"message_id":199,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157443,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 01:57:23] CURL ERROR: none
+[2026-02-27 01:57:23] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:57:25] ========== REQUEST ==========
+[2026-02-27 01:57:25] METHOD: sendMessage
+[2026-02-27 01:57:25] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:57:25] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 01:57:25] Making curl request...
+[2026-02-27 01:57:25] HTTP CODE: 200
+[2026-02-27 01:57:25] RAW RESPONSE: {"ok":true,"result":{"message_id":200,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157445,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 01:57:25] CURL ERROR: none
+[2026-02-27 01:57:26] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:57:31] ========== REQUEST ==========
+[2026-02-27 01:57:31] METHOD: sendMessage
+[2026-02-27 01:57:31] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:57:31] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 01:57:31] Making curl request...
+[2026-02-27 01:57:31] HTTP CODE: 200
+[2026-02-27 01:57:31] RAW RESPONSE: {"ok":true,"result":{"message_id":202,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157451,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 01:57:31] CURL ERROR: none
+[2026-02-27 01:57:31] SUCCESS: sendMessage completed
+==========
+[2026-02-27 01:57:37] ========== REQUEST ==========
+[2026-02-27 01:57:37] METHOD: sendMessage
+[2026-02-27 01:57:37] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 01:57:37] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-27 01:57:37] Making curl request...
+[2026-02-27 01:57:38] HTTP CODE: 200
+[2026-02-27 01:57:38] RAW RESPONSE: {"ok":true,"result":{"message_id":204,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157458,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-27 01:57:38] CURL ERROR: none
+[2026-02-27 01:57:38] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:01:34] ========== REQUEST ==========
+[2026-02-27 02:01:34] METHOD: sendMessage
+[2026-02-27 02:01:34] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:01:34] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App, or \/help to see commands.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-27 02:01:34] Making curl request...
+[2026-02-27 02:01:35] HTTP CODE: 200
+[2026-02-27 02:01:35] RAW RESPONSE: {"ok":true,"result":{"message_id":206,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157695,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App, or /help to see comman
+[2026-02-27 02:01:35] CURL ERROR: none
+[2026-02-27 02:01:35] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:01:56] ========== REQUEST ==========
+[2026-02-27 02:01:56] METHOD: sendMessage
+[2026-02-27 02:01:56] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:01:56] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 02:01:56] Making curl request...
+[2026-02-27 02:01:57] HTTP CODE: 200
+[2026-02-27 02:01:57] RAW RESPONSE: {"ok":true,"result":{"message_id":208,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157717,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 02:01:57] CURL ERROR: none
+[2026-02-27 02:01:57] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:02:04] ========== REQUEST ==========
+[2026-02-27 02:02:04] METHOD: sendMessage
+[2026-02-27 02:02:04] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:02:04] PARAMS: {"chat_id":768732984,"text":"\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00bb\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b7\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b9\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00cb\u0153\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d \u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be \/help \u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b8\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d","parse_mode":"HTML"}
+[2026-02-27 02:02:04] Making curl request...
+[2026-02-27 02:02:05] HTTP CODE: 200
+[2026-02-27 02:02:05] RAW RESPONSE: {"ok":true,"result":{"message_id":210,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157724,"text":"\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u01
+[2026-02-27 02:02:05] CURL ERROR: none
+[2026-02-27 02:02:05] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:02:13] ========== REQUEST ==========
+[2026-02-27 02:02:13] METHOD: sendMessage
+[2026-02-27 02:02:13] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:02:13] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 02:02:13] Making curl request...
+[2026-02-27 02:02:14] HTTP CODE: 200
+[2026-02-27 02:02:14] RAW RESPONSE: {"ok":true,"result":{"message_id":212,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157734,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 02:02:14] CURL ERROR: none
+[2026-02-27 02:02:14] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:02:20] ========== REQUEST ==========
+[2026-02-27 02:02:20] METHOD: sendMessage
+[2026-02-27 02:02:20] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:02:20] PARAMS: {"chat_id":768732984,"text":"\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00bb\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b7\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b9\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00cb\u0153\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d \u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be \/help \u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b8\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00be\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00b0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2026\u00c2\u00a0\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u00a1\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00ba\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u2039\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u00b6\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u00a2\u00e2\u201a\u00ac\u00c5\u201c\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d","parse_mode":"HTML"}
+[2026-02-27 02:02:20] Making curl request...
+[2026-02-27 02:02:21] HTTP CODE: 200
+[2026-02-27 02:02:21] RAW RESPONSE: {"ok":true,"result":{"message_id":214,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157740,"text":"\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00be\u00c3\u201a\u00c2\u0081\u00c3\u0192\u00c2\u00a1\u00c3\u2026\u00c2\u00b8\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2\u00c3\u01
+[2026-02-27 02:02:21] CURL ERROR: none
+[2026-02-27 02:02:21] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:06:39] ========== REQUEST ==========
+[2026-02-27 02:06:39] METHOD: sendMessage
+[2026-02-27 02:06:39] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:06:39] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 02:06:39] Making curl request...
+[2026-02-27 02:06:40] HTTP CODE: 200
+[2026-02-27 02:06:40] RAW RESPONSE: {"ok":true,"result":{"message_id":216,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772157999,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 02:06:40] CURL ERROR: none
+[2026-02-27 02:06:40] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:07:01] ========== REQUEST ==========
+[2026-02-27 02:07:01] METHOD: sendMessage
+[2026-02-27 02:07:01] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:07:01] PARAMS: {"chat_id":768732984,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u178a\u17c2\u179b\u1798\u17b6\u1793\u17d4","parse_mode":"HTML"}
+[2026-02-27 02:07:01] Making curl request...
+[2026-02-27 02:07:02] HTTP CODE: 200
+[2026-02-27 02:07:02] RAW RESPONSE: {"ok":true,"result":{"message_id":218,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158021,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be /help \u178a\u17be\u1798\u17d2\u
+[2026-02-27 02:07:02] CURL ERROR: none
+[2026-02-27 02:07:02] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:07:16] ========== REQUEST ==========
+[2026-02-27 02:07:16] METHOD: sendMessage
+[2026-02-27 02:07:16] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:07:16] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 02:07:16] Making curl request...
+[2026-02-27 02:07:17] HTTP CODE: 200
+[2026-02-27 02:07:17] RAW RESPONSE: {"ok":true,"result":{"message_id":220,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158037,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 02:07:17] CURL ERROR: none
+[2026-02-27 02:07:17] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:07:31] ========== REQUEST ==========
+[2026-02-27 02:07:31] METHOD: sendMessage
+[2026-02-27 02:07:31] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:07:31] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-27 02:07:31] Making curl request...
+[2026-02-27 02:07:33] HTTP CODE: 200
+[2026-02-27 02:07:33] RAW RESPONSE: {"ok":true,"result":{"message_id":222,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158052,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-27 02:07:33] CURL ERROR: none
+[2026-02-27 02:07:33] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:13:03] ========== REQUEST ==========
+[2026-02-27 02:13:03] METHOD: sendMessage
+[2026-02-27 02:13:03] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:13:03] PARAMS: {"chat_id":768732984,"text":"\n\nUse \/link to connect your support account first.","parse_mode":"HTML"}
+[2026-02-27 02:13:03] Making curl request...
+[2026-02-27 02:13:04] HTTP CODE: 200
+[2026-02-27 02:13:04] RAW RESPONSE: {"ok":true,"result":{"message_id":224,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158383,"text":"Use /link to connect your support account first.","entities":[{"offset":4,"length":5,"type":"bot_command"}]}}
+[2026-02-27 02:13:04] CURL ERROR: none
+[2026-02-27 02:13:04] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:13:06] ========== REQUEST ==========
+[2026-02-27 02:13:06] METHOD: sendMessage
+[2026-02-27 02:13:06] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:13:06] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 02:13:06] Making curl request...
+[2026-02-27 02:13:07] HTTP CODE: 200
+[2026-02-27 02:13:07] RAW RESPONSE: {"ok":true,"result":{"message_id":226,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158386,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 02:13:07] CURL ERROR: none
+[2026-02-27 02:13:07] SUCCESS: sendMessage completed
+==========
+[2026-02-27 02:13:14] ========== REQUEST ==========
+[2026-02-27 02:13:14] METHOD: sendMessage
+[2026-02-27 02:13:14] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 02:13:14] PARAMS: {"chat_id":768732984,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with \/newticket\n- View your tickets with \/mytickets\n- Receive ticket updates on Telegram","parse_mode":"HTML"}
+[2026-02-27 02:13:14] Making curl request...
+[2026-02-27 02:13:15] HTTP CODE: 200
+[2026-02-27 02:13:15] RAW RESPONSE: {"ok":true,"result":{"message_id":228,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772158395,"text":"Your account has been linked successfully.\n\nYou can now:\n- Create a ticket with /newticket\n- View your tickets with /mytickets\n- Receive ticket updates on Telegram","entitie
+[2026-02-27 02:13:15] CURL ERROR: none
+[2026-02-27 02:13:15] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:36:49] ========== REQUEST ==========
+[2026-02-27 04:36:49] METHOD: sendMessage
+[2026-02-27 04:36:49] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:36:49] PARAMS: {"chat_id":768732984,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u178a\u17c2\u179b\u1798\u17b6\u1793\u17d4","parse_mode":"HTML"}
+[2026-02-27 04:36:49] Making curl request...
+[2026-02-27 04:36:50] HTTP CODE: 200
+[2026-02-27 04:36:50] RAW RESPONSE: {"ok":true,"result":{"message_id":230,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167010,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be /help \u178a\u17be\u1798\u17d2\u
+[2026-02-27 04:36:50] CURL ERROR: none
+[2026-02-27 04:36:50] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:39:14] ========== REQUEST ==========
+[2026-02-27 04:39:14] METHOD: sendMessage
+[2026-02-27 04:39:14] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:39:14] PARAMS: {"chat_id":768732984,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be \/help \u178a\u17be\u1798\u17d2\u1794\u17b8\u1798\u17be\u179b\u1796\u17b6\u1780\u17d2\u1799\u1794\u1789\u17d2\u1787\u17b6\u178a\u17c2\u179b\u1798\u17b6\u1793\u17d4","parse_mode":"HTML"}
+[2026-02-27 04:39:14] Making curl request...
+[2026-02-27 04:39:15] HTTP CODE: 200
+[2026-02-27 04:39:15] RAW RESPONSE: {"ok":true,"result":{"message_id":232,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167155,"text":"\u1781\u17d2\u1789\u17bb\u17c6\u1798\u17b7\u1793\u1799\u179b\u17cb\u178a\u17c2\u179b\u1793\u17c4\u17c7\u1791\u17c1\u17d4 \u1794\u17d2\u179a\u17be /help \u178a\u17be\u1798\u17d2\u
+[2026-02-27 04:39:15] CURL ERROR: none
+[2026-02-27 04:39:15] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:39:27] ========== REQUEST ==========
+[2026-02-27 04:39:27] METHOD: sendMessage
+[2026-02-27 04:39:27] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:39:27] PARAMS: {"chat_id":768732984,"text":"Please enter your email address to link your support account.","parse_mode":"HTML"}
+[2026-02-27 04:39:27] Making curl request...
+[2026-02-27 04:39:28] HTTP CODE: 200
+[2026-02-27 04:39:28] RAW RESPONSE: {"ok":true,"result":{"message_id":234,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167168,"text":"Please enter your email address to link your support account."}}
+[2026-02-27 04:39:28] CURL ERROR: none
+[2026-02-27 04:39:28] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:45:09] ========== REQUEST ==========
+[2026-02-27 04:45:09] METHOD: sendMessage
+[2026-02-27 04:45:09] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:45:09] PARAMS: {"chat_id":768732984,"text":"Telegram commands are disabled. Please use the Mini App.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-27 04:45:09] Making curl request...
+[2026-02-27 04:45:10] HTTP CODE: 200
+[2026-02-27 04:45:10] RAW RESPONSE: {"ok":true,"result":{"message_id":236,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167509,"text":"Telegram commands are disabled. Please use the Mini App.","reply_markup":{"inline_keyboard":[[{"text":"Open Mini App","web_app":{"url":"https://harmonistic-imaginary-luanne.ngrok
+[2026-02-27 04:45:10] CURL ERROR: none
+[2026-02-27 04:45:10] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:48:08] ========== REQUEST ==========
+[2026-02-27 04:48:08] METHOD: sendMessage
+[2026-02-27 04:48:08] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:48:08] PARAMS: {"chat_id":768732984,"text":"\n\nWelcome, <b>Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784<\/b>! Your Telegram account is linked.\n\nUse the button below to open Mini App.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-27 04:48:08] Making curl request...
+[2026-02-27 04:48:09] HTTP CODE: 200
+[2026-02-27 04:48:09] RAW RESPONSE: {"ok":true,"result":{"message_id":238,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167689,"text":"Welcome, Hay Kongmeng - \u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784! Your Telegram account is linked.\n\nUse the button below to open Mini App.","entities":[{"offset"
+[2026-02-27 04:48:09] CURL ERROR: none
+[2026-02-27 04:48:09] SUCCESS: sendMessage completed
+==========
+[2026-02-27 04:48:15] ========== REQUEST ==========
+[2026-02-27 04:48:15] METHOD: sendMessage
+[2026-02-27 04:48:15] URL: https://api.telegram.org/bot8415659161:AAFhCHpE_74h5bHbmk4ERUgrT2JtP-RQHXA/sendMessage
+[2026-02-27 04:48:15] PARAMS: {"chat_id":768732984,"text":"Please use the Mini App for support actions.","parse_mode":"HTML","reply_markup":"{\"inline_keyboard\":[[{\"text\":\"Open Mini App\",\"web_app\":{\"url\":\"https:\\\/\\\/harmonistic-imaginary-luanne.ngrok-free.dev\\\/telegram-app.html\"}}]]}"}
+[2026-02-27 04:48:15] Making curl request...
+[2026-02-27 04:48:16] HTTP CODE: 200
+[2026-02-27 04:48:16] RAW RESPONSE: {"ok":true,"result":{"message_id":240,"from":{"id":8415659161,"is_bot":true,"first_name":"ML Ticket","username":"ml_ticket_bot"},"chat":{"id":768732984,"first_name":"Hay Kongmeng -","last_name":"\u17a0\u17c3 \u1782\u1784\u17cb\u1798\u17c9\u17c1\u1784","username":"KongMeng_Hay","type":"private"},"date":1772167695,"text":"Please use the Mini App for support actions.","reply_markup":{"inline_keyboard":[[{"text":"Open Mini App","web_app":{"url":"https://harmonistic-imaginary-luanne.ngrok-free.dev/te
+[2026-02-27 04:48:16] CURL ERROR: none
+[2026-02-27 04:48:16] SUCCESS: sendMessage completed
+==========

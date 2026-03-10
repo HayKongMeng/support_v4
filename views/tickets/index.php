@@ -1,20 +1,34 @@
 <?php
-$pageTitle = 'Tickets';
+$pageTitle = __('tickets');
 ob_start();
 ?>
 
 <div class="bg-white rounded-xl shadow-sm">
     <!-- Header -->
     <div class="p-6 border-b border-gray-200">
+        <?php
+        $exportParams = array_filter($filters, fn($value) => $value !== '' && $value !== null);
+        $exportParams['format'] = 'csv';
+        $exportUrl = $app->url('tickets/export');
+        if (!empty($exportParams)) {
+            $exportUrl .= '?' . http_build_query($exportParams);
+        }
+        ?>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <h2 class="text-lg font-semibold text-gray-800"><?= !empty($isAgentOnly) ? 'My Tickets' : 'All Tickets' ?></h2>
-                <p class="text-sm text-gray-500"><?= $tickets['total'] ?> total tickets</p>
+                <h2 class="text-lg font-semibold text-gray-800"><?= !empty($isAgentOnly) ? __('my_tickets') : __('all_tickets') ?></h2>
+                <p class="text-sm text-gray-500"><?= __('total_tickets', ['count' => $tickets['total']]) ?></p>
             </div>
-            <a href="<?= $app->url('tickets/create') ?>"
-               class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
-                <i class="fas fa-plus mr-2"></i> New Ticket
-            </a>
+            <div class="flex items-center gap-2">
+                <a href="<?= htmlspecialchars($exportUrl) ?>"
+                   class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2">
+                    <i class="fas fa-file-export mr-2"></i> <?= __('v_export_csv') ?>
+                </a>
+                <a href="<?= $app->url('tickets/create') ?>"
+                   class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
+                    <i class="fas fa-plus mr-2"></i> <?= __('new_ticket') ?>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -23,26 +37,26 @@ ob_start();
         <form method="GET" class="flex flex-wrap gap-4">
             <div class="flex-1 min-w-[200px]">
                 <input type="text" name="search" value="<?= htmlspecialchars($filters['search'] ?? '') ?>"
-                       placeholder="Search tickets..."
+                       placeholder="<?= __('search_tickets') ?>"
                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500">
             </div>
             <select name="status" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option value="">All Status</option>
-                <option value="open" <?= ($filters['status'] ?? '') === 'open' ? 'selected' : '' ?>>Open</option>
-                <option value="pending" <?= ($filters['status'] ?? '') === 'pending' ? 'selected' : '' ?>>Pending</option>
-                <option value="in_progress" <?= ($filters['status'] ?? '') === 'in_progress' ? 'selected' : '' ?>>In Progress</option>
-                <option value="resolved" <?= ($filters['status'] ?? '') === 'resolved' ? 'selected' : '' ?>>Resolved</option>
-                <option value="closed" <?= ($filters['status'] ?? '') === 'closed' ? 'selected' : '' ?>>Closed</option>
+                <option value=""><?= __('all_status') ?></option>
+                <option value="open" <?= ($filters['status'] ?? '') === 'open' ? 'selected' : '' ?>><?= __('open') ?></option>
+                <option value="pending" <?= ($filters['status'] ?? '') === 'pending' ? 'selected' : '' ?>><?= __('pending') ?></option>
+                <option value="in_progress" <?= ($filters['status'] ?? '') === 'in_progress' ? 'selected' : '' ?>><?= __('in_progress') ?></option>
+                <option value="resolved" <?= ($filters['status'] ?? '') === 'resolved' ? 'selected' : '' ?>><?= __('resolved') ?></option>
+                <option value="closed" <?= ($filters['status'] ?? '') === 'closed' ? 'selected' : '' ?>><?= __('closed') ?></option>
             </select>
             <select name="priority" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option value="">All Priority</option>
-                <option value="urgent" <?= ($filters['priority'] ?? '') === 'urgent' ? 'selected' : '' ?>>Urgent</option>
-                <option value="high" <?= ($filters['priority'] ?? '') === 'high' ? 'selected' : '' ?>>High</option>
-                <option value="medium" <?= ($filters['priority'] ?? '') === 'medium' ? 'selected' : '' ?>>Medium</option>
-                <option value="low" <?= ($filters['priority'] ?? '') === 'low' ? 'selected' : '' ?>>Low</option>
+                <option value=""><?= __('all_priority') ?></option>
+                <option value="urgent" <?= ($filters['priority'] ?? '') === 'urgent' ? 'selected' : '' ?>><?= __('urgent') ?></option>
+                <option value="high" <?= ($filters['priority'] ?? '') === 'high' ? 'selected' : '' ?>><?= __('high') ?></option>
+                <option value="medium" <?= ($filters['priority'] ?? '') === 'medium' ? 'selected' : '' ?>><?= __('medium') ?></option>
+                <option value="low" <?= ($filters['priority'] ?? '') === 'low' ? 'selected' : '' ?>><?= __('low') ?></option>
             </select>
             <select name="category_id" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option value="">All Categories</option>
+                <option value=""><?= __('all_categories') ?></option>
                 <?php foreach ($categories as $cat): ?>
                 <option value="<?= $cat['id'] ?>" <?= ($filters['category_id'] ?? '') == $cat['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($cat['name']) ?>
@@ -51,8 +65,8 @@ ob_start();
             </select>
             <?php if (empty($isAgentOnly)): ?>
             <select name="assigned_to" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option value="">All Agents</option>
-                <option value="unassigned" <?= ($filters['assigned_to'] ?? '') === 'unassigned' ? 'selected' : '' ?>>Unassigned</option>
+                <option value=""><?= __('all_agents') ?></option>
+                <option value="unassigned" <?= ($filters['assigned_to'] ?? '') === 'unassigned' ? 'selected' : '' ?>><?= __('unassigned') ?></option>
                 <?php foreach ($agents as $agent): ?>
                 <option value="<?= $agent['id'] ?>" <?= ($filters['assigned_to'] ?? '') == $agent['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($agent['name']) ?>
@@ -61,11 +75,11 @@ ob_start();
             </select>
             <?php endif; ?>
             <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">
-                Filter
+                <?= __('filter') ?>
             </button>
             <?php if (!empty(array_filter($filters))): ?>
             <a href="<?= $app->url('tickets') ?>" class="px-4 py-2 text-gray-600 hover:text-gray-800 text-sm">
-                Clear
+                <?= __('clear') ?>
             </a>
             <?php endif; ?>
         </form>
@@ -78,8 +92,8 @@ ob_start();
             <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-ticket-alt text-gray-400 text-2xl"></i>
             </div>
-            <h3 class="text-lg font-medium text-gray-900">No tickets found</h3>
-            <p class="text-gray-500 mt-1">Try adjusting your filters or create a new ticket.</p>
+            <h3 class="text-lg font-medium text-gray-900"><?= __('no_tickets_found') ?></h3>
+            <p class="text-gray-500 mt-1"><?= __('try_adjusting_filters') ?></p>
         </div>
         <?php else: ?>
         <?php foreach ($tickets['items'] as $ticket): ?>
@@ -126,9 +140,13 @@ ob_start();
                             default: echo 'bg-gray-100 text-gray-800';
                         }
                         ?>">
-                        <?= ucfirst(str_replace('_', ' ', $ticket['status'])) ?>
+                        <?= __((string)$ticket['status']) ?>
                     </span>
-                    <span class="text-xs text-gray-500"><?= ucfirst($ticket['source']) ?></span>
+                    <?php
+                    $sourceKey = strtolower((string)($ticket['source'] ?? ''));
+                    $sourceLabel = __($sourceKey);
+                    ?>
+                    <span class="text-xs text-gray-500"><?= $sourceLabel !== $sourceKey ? $sourceLabel : ucfirst((string)$ticket['source']) ?></span>
                 </div>
             </div>
         </a>
@@ -140,16 +158,16 @@ ob_start();
     <?php if ($tickets['total_pages'] > 1): ?>
     <div class="p-4 border-t border-gray-200 flex items-center justify-between">
         <p class="text-sm text-gray-500">
-            Page <?= $tickets['current_page'] ?> of <?= $tickets['total_pages'] ?>
+            <?= __('page_of', ['current' => $tickets['current_page'], 'total' => $tickets['total_pages']]) ?>
         </p>
         <div class="flex gap-2">
             <?php if ($tickets['current_page'] > 1): ?>
             <a href="?page=<?= $tickets['current_page'] - 1 ?>&<?= http_build_query($filters) ?>"
-               class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">Previous</a>
+               class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50"><?= __('previous') ?></a>
             <?php endif; ?>
             <?php if ($tickets['current_page'] < $tickets['total_pages']): ?>
             <a href="?page=<?= $tickets['current_page'] + 1 ?>&<?= http_build_query($filters) ?>"
-               class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">Next</a>
+               class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50"><?= __('next') ?></a>
             <?php endif; ?>
         </div>
     </div>

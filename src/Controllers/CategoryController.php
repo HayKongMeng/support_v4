@@ -43,10 +43,10 @@ class CategoryController extends Controller
         // Validate
         if (empty($data['name'])) {
             if ($this->request->isAjax()) {
-                $this->error('Category name is required', 422);
+                $this->error(__('category_name_required'), 422);
                 return;
             }
-            $this->response->withError('Category name is required');
+            $this->response->withError(__('category_name_required'));
             $this->redirect($this->app->url('settings/categories'));
             return;
         }
@@ -70,11 +70,11 @@ class CategoryController extends Controller
         ]);
 
         if ($this->request->isAjax()) {
-            $this->success(['id' => $categoryId], 'Category created successfully');
+            $this->success(['id' => $categoryId], __('category_created_success'));
             return;
         }
 
-        $this->response->withSuccess('Category created successfully');
+        $this->response->withSuccess(__('category_created_success'));
         $this->redirect($this->app->url('settings/categories'));
     }
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
 
         $category = $this->categoryModel->find((int) $id);
         if (!$category) {
-            $this->error('Category not found', 404);
+            $this->error(__('category_not_found'), 404);
             return;
         }
 
@@ -107,11 +107,11 @@ class CategoryController extends Controller
         $this->categoryModel->update((int) $id, $data);
 
         if ($this->request->isAjax()) {
-            $this->success([], 'Category updated successfully');
+            $this->success([], __('category_updated_success'));
             return;
         }
 
-        $this->response->withSuccess('Category updated successfully');
+        $this->response->withSuccess(__('category_updated_success'));
         $this->redirect($this->app->url('settings/categories'));
     }
 
@@ -122,7 +122,7 @@ class CategoryController extends Controller
 
         $category = $this->categoryModel->find((int) $id);
         if (!$category) {
-            $this->error('Category not found', 404);
+            $this->error(__('category_not_found'), 404);
             return;
         }
 
@@ -130,11 +130,11 @@ class CategoryController extends Controller
         $this->categoryModel->update((int) $id, ['is_active' => 0]);
 
         if ($this->request->isAjax()) {
-            $this->success([], 'Category deleted successfully');
+            $this->success([], __('category_deleted_success'));
             return;
         }
 
-        $this->response->withSuccess('Category deleted successfully');
+        $this->response->withSuccess(__('category_deleted_success'));
         $this->redirect($this->app->url('settings/categories'));
     }
 

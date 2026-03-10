@@ -8,6 +8,7 @@ use App\Models\TicketMessage;
 use App\Models\User;
 use App\Models\ActivityLog;
 use App\Services\AI\TicketClassifier;
+use App\Services\Workflow\WorkflowRouter;
 
 class EmailProcessor
 {
@@ -76,10 +77,6 @@ class EmailProcessor
         // Connect to IMAP
         $mailbox = $this->connectImap($config);
 
-        if (!$mailbox) {
-            throw new \Exception("Failed to connect to IMAP server");
-        }
-
         try {
             // Search for unread emails
             $emails = imap_search($mailbox, 'UNSEEN');
@@ -122,11 +119,34 @@ class EmailProcessor
 
         $mailboxPath = "{{$config['imap_host']}:{$config['imap_port']}{$flags}}INBOX";
 
-        return @imap_open(
+        // Clear prior IMAP error stack so we can report only this connection attempt.
+        if (function_exists('imap_errors')) {
+            imap_errors();
+        }
+
+        $mailbox = @imap_open(
             $mailboxPath,
             $config['imap_username'],
             $config['imap_password']
         );
+
+        if ($mailbox !== false) {
+            return $mailbox;
+        }
+
+        $errors = function_exists('imap_errors') ? (imap_errors() ?: []) : [];
+        $lastError = !empty($errors) ? (string) end($errors) : (string) imap_last_error();
+        if ($lastError === '') {
+            $lastError = 'Unknown IMAP error';
+        }
+
+        throw new \Exception(sprintf(
+            'Failed to connect to IMAP server (%s:%s, %s): %s',
+            (string) $config['imap_host'],
+            (string) $config['imap_port'],
+            (string) $encryption,
+            $lastError
+        ));
     }
 
     /**
@@ -149,6 +169,12 @@ class EmailProcessor
 
         // Get email body
         $body = $this->getEmailBody($mailbox, $emailNumber, $structure);
+        $fromName = $this->sanitizeDbText($fromName);
+        $subject = $this->sanitizeDbText($subject);
+        $body = $this->sanitizeDbText($body);
+        if ($body === '') {
+            $body = 'No content';
+        }
 
         // Check if this is a reply to an existing ticket
         $existingTicket = null;
@@ -182,21 +208,26 @@ class EmailProcessor
     private function getEmailBody($mailbox, int $emailNumber, $structure): string
     {
         $body = '';
+        $charset = null;
 
         if ($structure->type === 0) {
             // Plain text
             $body = imap_fetchbody($mailbox, $emailNumber, 1);
             $body = $this->decodeBody($body, $structure->encoding);
+            $charset = $this->extractCharset($structure);
         } elseif ($structure->type === 1) {
             // Multipart
             foreach ($structure->parts as $partNumber => $part) {
                 if ($part->subtype === 'PLAIN') {
                     $body = imap_fetchbody($mailbox, $emailNumber, $partNumber + 1);
                     $body = $this->decodeBody($body, $part->encoding);
+                    $charset = $this->extractCharset($part);
                     break;
                 }
             }
         }
+
+        $body = $this->normalizeToUtf8($body, $charset);
 
         // Clean up the body
         $body = trim($body);
@@ -232,6 +263,131 @@ class EmailProcessor
     }
 
     /**
+     * Extract charset from IMAP part metadata.
+     */
+    private function extractCharset($part): ?string
+    {
+        if (!is_object($part)) {
+            return null;
+        }
+
+        foreach (['parameters', 'dparameters'] as $property) {
+            if (!property_exists($part, $property) || !is_array($part->{$property})) {
+                continue;
+            }
+
+            foreach ($part->{$property} as $param) {
+                if (!is_object($param)) {
+                    continue;
+                }
+
+                $name = strtoupper((string) ($param->attribute ?? ''));
+                if ($name === 'CHARSET') {
+                    $value = trim((string) ($param->value ?? ''));
+                    if ($value !== '') {
+                        return $value;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Convert arbitrary decoded email text into valid UTF-8 for database inserts.
+     */
+    private function normalizeToUtf8(string $text, ?string $preferredCharset = null): string
+    {
+        if ($text === '') {
+            return $text;
+        }
+
+        if ($this->isValidUtf8($text)) {
+            return $text;
+        }
+
+        $charsets = [];
+        if (!empty($preferredCharset)) {
+            $charsets[] = $preferredCharset;
+        }
+        $charsets = array_merge($charsets, ['ISO-8859-1', 'Windows-1252', 'UTF-8']);
+        $charsets = array_values(array_unique(array_map('strtoupper', $charsets)));
+
+        foreach ($charsets as $charset) {
+            $converted = $this->convertEncoding($text, $charset);
+            if ($converted !== null && $this->isValidUtf8($converted)) {
+                return $converted;
+            }
+        }
+
+        // Last resort: drop invalid byte sequences to keep DB write safe.
+        $safe = @iconv('UTF-8', 'UTF-8//IGNORE', $text);
+        if (is_string($safe) && $safe !== '') {
+            return $safe;
+        }
+
+        return preg_replace('/[^\x09\x0A\x0D\x20-\x7E]/', '', $text) ?? '';
+    }
+
+    private function convertEncoding(string $text, string $fromCharset): ?string
+    {
+        $fromCharset = trim($fromCharset);
+        if ($fromCharset === '') {
+            return null;
+        }
+
+        $converted = @iconv($fromCharset, 'UTF-8//IGNORE', $text);
+        if (is_string($converted) && $converted !== '') {
+            return $converted;
+        }
+
+        if (function_exists('mb_convert_encoding')) {
+            try {
+                $converted = @mb_convert_encoding($text, 'UTF-8', $fromCharset);
+                if (is_string($converted) && $converted !== '') {
+                    return $converted;
+                }
+            } catch (\Throwable $e) {
+                // ignore and continue trying other encodings
+            }
+        }
+
+        return null;
+    }
+
+    private function isValidUtf8(string $text): bool
+    {
+        if (function_exists('mb_check_encoding')) {
+            return mb_check_encoding($text, 'UTF-8');
+        }
+
+        return preg_match('//u', $text) === 1;
+    }
+
+    /**
+     * Final guard before DB insert: normalize to UTF-8 and strip unsafe control bytes.
+     */
+    private function sanitizeDbText(string $text): string
+    {
+        if ($text === '') {
+            return '';
+        }
+
+        $text = str_replace("\0", '', $text);
+        $text = $this->normalizeToUtf8($text);
+
+        if (!$this->isValidUtf8($text)) {
+            $safe = @iconv('UTF-8', 'UTF-8//IGNORE', $text);
+            $text = is_string($safe) ? $safe : '';
+        }
+
+        // Keep tab/newline/carriage return; remove other control chars.
+        $text = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $text) ?? $text;
+        return trim($text);
+    }
+
+    /**
      * Find ticket by email Message-ID
      */
     private function findTicketByEmailMessageId(string $messageId, int $companyId): ?array
@@ -263,6 +419,12 @@ class EmailProcessor
      */
     private function addReplyToTicket(array $ticket, string $email, string $name, string $body, ?string $messageId, array $config): void
     {
+        $name = $this->sanitizeDbText($name);
+        $body = $this->sanitizeDbText($body);
+        if ($body === '') {
+            $body = 'No content';
+        }
+
         // Get or create user
         $userModel = new User($this->db);
         $userId = $userModel->createCustomerIfNotExists($email, $name, $config['company_id']);
@@ -303,6 +465,16 @@ class EmailProcessor
      */
     private function createTicketFromEmail(string $email, string $name, string $subject, string $body, ?string $messageId, array $config): void
     {
+        $name = $this->sanitizeDbText($name);
+        $subject = $this->sanitizeDbText($subject);
+        $body = $this->sanitizeDbText($body);
+        if ($subject === '') {
+            $subject = 'No Subject';
+        }
+        if ($body === '') {
+            $body = 'No content';
+        }
+
         // Get or create user
         $userModel = new User($this->db);
         $userId = $userModel->createCustomerIfNotExists($email, $name, $config['company_id']);
@@ -316,6 +488,22 @@ class EmailProcessor
         $classifier = new TicketClassifier($this->db, $config['company_id']);
         $classification = $classifier->classify($subject . ' ' . $body);
 
+        $categoryId = isset($classification['category_id']) ? (int) $classification['category_id'] : 0;
+        if ($categoryId <= 0) {
+            $defaultCategory = isset($config['default_category_id']) ? (int) $config['default_category_id'] : 0;
+            $categoryId = $defaultCategory > 0 ? $defaultCategory : null;
+        }
+
+        $workflowResolved = null;
+        $assignedTo = null;
+        try {
+            $workflowRouter = new WorkflowRouter($this->db, (int) $config['company_id']);
+            $workflowResolved = $workflowRouter->resolveForTicket('email', $categoryId, $userId);
+            $assignedTo = $workflowResolved['assignee_id'] ?? null;
+        } catch (\Throwable $e) {
+            error_log('[EmailProcessor] Routing resolve failed: ' . $e->getMessage());
+        }
+
         // Create ticket
         $ticketId = $ticketModel->create([
             'company_id' => $config['company_id'],
@@ -325,7 +513,8 @@ class EmailProcessor
             'status' => 'open',
             'priority' => $classification['priority'] ?? 'medium',
             'source' => 'email',
-            'category_id' => $classification['category_id'] ?? $config['default_category_id'],
+            'category_id' => $categoryId,
+            'assigned_to' => $assignedTo,
             'requester_id' => $userId,
             'requester_email' => $email,
             'requester_name' => $name,
@@ -333,6 +522,15 @@ class EmailProcessor
             'ai_suggested_priority' => $classification['priority'] ?? null,
             'ai_confidence_score' => $classification['confidence'] ?? null,
         ]);
+
+        if (is_array($workflowResolved)) {
+            try {
+                $workflowRouter ??= new WorkflowRouter($this->db, (int) $config['company_id']);
+                $workflowRouter->startTicketWorkflow($ticketId, $userId, $workflowResolved);
+            } catch (\Throwable $e) {
+                error_log('[EmailProcessor] Routing start failed: ' . $e->getMessage());
+            }
+        }
 
         // Add initial message
         $messageModel = new TicketMessage($this->db);

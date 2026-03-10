@@ -23,7 +23,7 @@ class AuthController extends Controller
         $password = $this->request->input('password');
 
         if (empty($email) || empty($password)) {
-            $this->response->withError('Email and password are required')->withInput();
+            $this->response->withError(__('auth_email_password_required'))->withInput();
             $this->redirect($this->app->url('login'));
             return;
         }
@@ -33,7 +33,7 @@ class AuthController extends Controller
             return;
         }
 
-        $this->response->withError('Invalid email or password')->withInput();
+        $this->response->withError(__('auth_invalid_email_or_password'))->withInput();
         $this->redirect($this->app->url('login'));
     }
 
@@ -52,17 +52,17 @@ class AuthController extends Controller
 
         // Validate
         $errors = [];
-        if (empty($data['name'])) $errors['name'] = 'Name is required';
-        if (empty($data['email'])) $errors['email'] = 'Email is required';
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Invalid email format';
-        if (empty($data['password'])) $errors['password'] = 'Password is required';
-        if (strlen($data['password']) < 6) $errors['password'] = 'Password must be at least 6 characters';
-        if ($data['password'] !== $data['password_confirmation']) $errors['password'] = 'Passwords do not match';
-        if (empty($data['company_name'])) $errors['company_name'] = 'Company name is required';
+        if (empty($data['name'])) $errors['name'] = __('name_required');
+        if (empty($data['email'])) $errors['email'] = __('email_required');
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = __('invalid_email_format');
+        if (empty($data['password'])) $errors['password'] = __('password_required');
+        if (strlen($data['password']) < 6) $errors['password'] = __('password_min_chars', ['min' => 6]);
+        if ($data['password'] !== $data['password_confirmation']) $errors['password'] = __('passwords_do_not_match');
+        if (empty($data['company_name'])) $errors['company_name'] = __('company_name_required');
 
         if (!empty($errors)) {
             $_SESSION['validation_errors'] = $errors;
-            $this->response->withError('Please fix the errors')->withInput();
+            $this->response->withError(__('please_fix_errors'))->withInput();
             $this->redirect($this->app->url('register'));
             return;
         }
@@ -96,7 +96,7 @@ class AuthController extends Controller
         $user = $userModel->find($userId);
         $this->auth->login($user);
 
-        $this->response->withSuccess('Account created successfully! Welcome to Support Desk.');
+        $this->response->withSuccess(__('auth_account_created_welcome'));
         $this->redirect($this->app->url('dashboard'));
     }
 
@@ -142,7 +142,7 @@ class AuthController extends Controller
         $password = $this->request->input('password');
 
         if (empty($email) || empty($password)) {
-            $this->error('Email and password are required', 400);
+            $this->error(__('auth_email_password_required'), 400);
             return;
         }
 
@@ -150,12 +150,12 @@ class AuthController extends Controller
         $user = $userModel->findByEmail($email);
 
         if (!$user || !password_verify($password, $user['password_hash'])) {
-            $this->error('Invalid credentials', 401);
+            $this->error(__('auth_invalid_credentials'), 401);
             return;
         }
 
         if (!$user['is_active']) {
-            $this->error('Account is disabled', 403);
+            $this->error(__('auth_account_disabled'), 403);
             return;
         }
 
@@ -169,6 +169,6 @@ class AuthController extends Controller
                 'email' => $user['email'],
                 'role' => $user['role'],
             ],
-        ], 'Login successful');
+        ], __('auth_login_successful'));
     }
 }

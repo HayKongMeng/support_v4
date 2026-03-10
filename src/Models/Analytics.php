@@ -74,18 +74,19 @@ class Analytics extends Model
 
         // Get customer satisfaction metrics
         $satisfactionMetrics = $this->db->selectOne(
-            "SELECT AVG(rating) as avg_satisfaction
-            FROM ticket_surveys
-            WHERE company_id = ?
-            AND DATE(rated_at) = ?
-            AND rating IS NOT NULL",
+            "SELECT AVG(ts.rating) as avg_satisfaction
+            FROM ticket_surveys ts
+            INNER JOIN tickets t ON t.id = ts.ticket_id
+            WHERE t.company_id = ?
+            AND DATE(ts.rated_at) = ?
+            AND ts.rating IS NOT NULL",
             [$companyId, $date]
         );
 
         // Get agent metrics
         $agentMetrics = $this->db->selectOne(
             "SELECT
-                COUNT(DISTINCT id) as total_agents,
+                COUNT(DISTINCT u.id) as total_agents,
                 COUNT(CASE WHEN DATE(t.created_at) = ? THEN t.id END) / NULLIF(COUNT(DISTINCT u.id), 0) as avg_tickets_per_agent
             FROM users u
             LEFT JOIN tickets t ON u.id = t.assigned_to AND t.company_id = ?
@@ -130,6 +131,40 @@ class Analytics extends Model
     }
 
     /**
+     * Ensure daily snapshots exist for a period.
+     */
+    public function ensureDailySnapshots(int $companyId, int $days = 30): void
+    {
+        $startDate = date('Y-m-d', strtotime("-{$days} days"));
+        $endDate = date('Y-m-d');
+
+        $existing = $this->db->select(
+            "SELECT snapshot_date
+            FROM {$this->table}
+            WHERE company_id = ?
+            AND snapshot_date BETWEEN ? AND ?
+            AND metric_type = 'daily'",
+            [$companyId, $startDate, $endDate]
+        );
+
+        $existingDates = [];
+        foreach ($existing as $row) {
+            $existingDates[(string)$row['snapshot_date']] = true;
+        }
+
+        $current = strtotime($startDate);
+        $last = strtotime($endDate);
+
+        while ($current <= $last) {
+            $date = date('Y-m-d', $current);
+            if (!isset($existingDates[$date])) {
+                $this->generateDailySnapshot($companyId, $date);
+            }
+            $current = strtotime('+1 day', $current);
+        }
+    }
+
+    /**
      * Get KPI summary for dashboard.
      */
     public function getKpiSummary(int $companyId, int $days = 30): array
@@ -161,6 +196,7 @@ class Analytics extends Model
             return [
                 'total_created' => 0,
                 'total_resolved' => 0,
+                'total_closed' => 0,
                 'resolution_rate' => 0,
                 'response_sla_compliance' => 0,
                 'resolution_sla_compliance' => 0,

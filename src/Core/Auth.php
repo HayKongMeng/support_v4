@@ -15,7 +15,15 @@ class Auth
     public function __construct(Database $db)
     {
         $this->db = $db;
-        $this->jwtSecret = $_ENV['JWT_SECRET'] ?? 'default-secret-change-me';
+        $secret = $_ENV['JWT_SECRET'] ?? '';
+        if (empty($secret) || $secret === 'change-this-to-a-random-secret-key-in-production') {
+            // Critical: using a weak or missing secret. Log and use a per-boot ephemeral secret.
+            // In production, uncomment the line below to hard-fail instead:
+            // throw new \RuntimeException('JWT_SECRET must be set to a strong random value in .env');
+            error_log('SECURITY WARNING: JWT_SECRET is not configured. Set a strong secret in .env');
+            $secret = bin2hex(random_bytes(32)); // ephemeral — all sessions will reset on restart
+        }
+        $this->jwtSecret = $secret;
         $this->loadUserFromSession();
     }
 

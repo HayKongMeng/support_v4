@@ -12,6 +12,8 @@ use App\Models\CannedResponse;
 use App\Services\AI\TicketClassifier;
 use App\Helpers\FileUploader;
 use App\Services\Telegram\TelegramAgentNotifier;
+use App\Services\Workflow\WorkflowRouter;
+use App\Services\Workflow\TicketWorkflowSnapshotService;
 
 class TicketController extends Controller
 {
@@ -39,7 +41,9 @@ class TicketController extends Controller
         $this->requireAgent();
         $this->init();
 
-        $filters = $this->request->only(['status', 'priority', 'category_id', 'assigned_to', 'search', 'order_by', 'order_dir']);
+        $filters = $this->sanitizeTicketFilters(
+            $this->request->only(['status', 'priority', 'category_id', 'assigned_to', 'search', 'order_by', 'order_dir'])
+        );
         $page = (int) $this->request->query('page', 1);
 
         if ($this->auth->isRestrictedAgent()) {
@@ -60,6 +64,97 @@ class TicketController extends Controller
             'filters' => $filters,
             'isAgentOnly' => $this->auth->isRestrictedAgent(),
         ]);
+    }
+
+    public function export(): void
+    {
+        $this->requireAgent();
+        $this->init();
+
+        $format = strtolower((string)$this->request->query('format', 'csv'));
+        if ($format !== 'csv') {
+            $this->error(__('unsupported_format'), 400);
+            return;
+        }
+
+        $filters = $this->sanitizeTicketFilters(
+            $this->request->only(['status', 'priority', 'category_id', 'assigned_to', 'search', 'order_by', 'order_dir'])
+        );
+
+        if ($this->auth->isRestrictedAgent()) {
+            $filters['assigned_to'] = $this->auth->id();
+        }
+
+        $rows = $this->collectTicketsForExport($filters);
+
+        $filename = 'tickets_report_' . date('Y-m-d_H-i-s') . '.csv';
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        $output = fopen('php://output', 'w');
+        if ($output === false) {
+            http_response_code(500);
+            echo __('an_error_occurred_try_again_later');
+            return;
+        }
+
+        // UTF-8 BOM for spreadsheet compatibility.
+        fwrite($output, "\xEF\xBB\xBF");
+
+        fputcsv($output, ['Ticket Report']);
+        fputcsv($output, ['Generated At', date('Y-m-d H:i:s')]);
+        fputcsv($output, ['Total Tickets', count($rows)]);
+
+        $filterSummary = $this->formatFilterSummary($filters);
+        if ($filterSummary !== '') {
+            fputcsv($output, ['Filters', $filterSummary]);
+        }
+
+        fputcsv($output, []);
+        fputcsv($output, [
+            'Ticket Number',
+            'Subject',
+            'Status',
+            'Priority',
+            'Category',
+            'Assigned To',
+            'Requester Name',
+            'Requester Email',
+            'Source',
+            'Created At',
+            'Updated At',
+            'First Response At',
+            'Resolved At',
+            'Closed At',
+            'Response Time (min)',
+            'Resolution Time (min)',
+        ]);
+
+        foreach ($rows as $ticket) {
+            fputcsv($output, [
+                $this->csvSafe($ticket['ticket_number'] ?? ''),
+                $this->csvSafe($ticket['subject'] ?? ''),
+                $this->csvSafe((string)($ticket['status'] ?? '')),
+                $this->csvSafe((string)($ticket['priority'] ?? '')),
+                $this->csvSafe($ticket['category_name'] ?? ''),
+                $this->csvSafe($ticket['assigned_name'] ?? ''),
+                $this->csvSafe($ticket['requester_name'] ?? ''),
+                $this->csvSafe($ticket['requester_email'] ?? ''),
+                $this->csvSafe($ticket['source'] ?? ''),
+                $this->csvSafe($ticket['created_at'] ?? ''),
+                $this->csvSafe($ticket['updated_at'] ?? ''),
+                $this->csvSafe($ticket['first_response_at'] ?? ''),
+                $this->csvSafe($ticket['resolved_at'] ?? ''),
+                $this->csvSafe($ticket['closed_at'] ?? ''),
+                $this->csvSafe((string)($ticket['response_time_minutes'] ?? '')),
+                $this->csvSafe((string)($ticket['resolution_time_minutes'] ?? '')),
+            ]);
+        }
+
+        fclose($output);
+        exit;
     }
 
     public function create(): void
@@ -91,18 +186,18 @@ class TicketController extends Controller
 
         // Validate
         $errors = [];
-        if (empty($data['subject'])) $errors['subject'] = 'ប្រធានបទគឺត្រូវបាន';
-        if (empty($data['description'])) $errors['description'] = 'ការពិពណ៌នាគឺត្រូវបាន';
-        if (empty($data['requester_email'])) $errors['requester_email'] = 'អ៊ីមែលលេខសុំបានត្រូវបាន';
-        if (empty($data['requester_name'])) $errors['requester_name'] = 'ឈ្មោះលេខសុំបានត្រូវបាន';
+        if (empty($data['subject'])) $errors['subject'] = __('subject_required');
+        if (empty($data['description'])) $errors['description'] = __('description_required');
+        if (empty($data['requester_email'])) $errors['requester_email'] = __('requester_email_required');
+        if (empty($data['requester_name'])) $errors['requester_name'] = __('requester_name_required');
 
         if (!empty($errors)) {
             if ($this->request->isAjax()) {
-                $this->error('ការផ្ទៀងផ្ទាត់បានបរាជ័យ', 422, $errors);
+                $this->error(__('validation_failed'), 422, $errors);
                 return;
             }
             $_SESSION['validation_errors'] = $errors;
-            $this->response->withError('សូមជួសជុលកំហុស')->withInput();
+            $this->response->withError(__('please_fix_errors'))->withInput();
             $this->redirect($this->app->url('tickets/create'));
             return;
         }
@@ -132,6 +227,23 @@ class TicketController extends Controller
             $aiPriority = null;
         }
 
+        $selectedCategoryId = (int) ($data['category_id'] ?? 0);
+        $categoryId = $selectedCategoryId > 0
+            ? $selectedCategoryId
+            : ((int) ($aiClassification['category_id'] ?? 0) > 0 ? (int) $aiClassification['category_id'] : null);
+
+        $workflowResolved = null;
+        $assignedTo = !empty($data['assigned_to']) ? (int) $data['assigned_to'] : null;
+        if ($assignedTo === null) {
+            try {
+                $workflowRouter = new WorkflowRouter($this->db, $this->companyId());
+                $workflowResolved = $workflowRouter->resolveForTicket('web', $categoryId, (int) $requesterId);
+                $assignedTo = $workflowResolved['assignee_id'] ?? null;
+            } catch (\Throwable $e) {
+                error_log('[TicketController] Web routing resolve failed: ' . $e->getMessage());
+            }
+        }
+
         // Create ticket
         $ticketId = $this->ticketModel->create([
             'company_id' => $this->companyId(),
@@ -141,8 +253,8 @@ class TicketController extends Controller
             'status' => 'open',
             'priority' => $priority,
             'source' => 'web',
-            'category_id' => $data['category_id'] ?: ($aiClassification['category_id'] ?? null),
-            'assigned_to' => $data['assigned_to'] ?: null,
+            'category_id' => $categoryId,
+            'assigned_to' => $assignedTo,
             'requester_id' => $requesterId,
             'requester_email' => $data['requester_email'],
             'requester_name' => $data['requester_name'],
@@ -150,6 +262,15 @@ class TicketController extends Controller
             'ai_suggested_priority' => $aiPriority,
             'ai_confidence_score' => $aiClassification['confidence'] ?? null,
         ]);
+
+        if (is_array($workflowResolved)) {
+            try {
+                $workflowRouter ??= new WorkflowRouter($this->db, $this->companyId());
+                $workflowRouter->startTicketWorkflow($ticketId, (int) $this->auth->id(), $workflowResolved);
+            } catch (\Throwable $e) {
+                error_log('[TicketController] Web routing start failed: ' . $e->getMessage());
+            }
+        }
 
         // Add initial message
         $this->messageModel->addReply(
@@ -170,11 +291,11 @@ class TicketController extends Controller
         );
 
         if ($this->request->isAjax()) {
-            $this->success(['ticket_id' => $ticketId, 'ticket_number' => $ticketNumber], 'សំណើសុំជំនួយបានបង្កើតដោយជោគជ័យ');
+            $this->success(['ticket_id' => $ticketId, 'ticket_number' => $ticketNumber], __('ticket_created_success'));
             return;
         }
 
-        $this->response->withSuccess("សំណើសុំជំនួយ {$ticketNumber} បានបង្កើតដោយជោគជ័យ");
+        $this->response->withSuccess(__('ticket_created_success_with_number', ['ticket' => $ticketNumber]));
         $this->redirect($this->app->url("tickets/{$ticketId}"));
     }
 
@@ -213,6 +334,9 @@ class TicketController extends Controller
             [(int) $id]
         );
 
+        $workflowState = (new TicketWorkflowSnapshotService($this->db, $this->companyId()))
+            ->getForTicket((int) $id);
+
         $this->view('tickets/show', [
             'ticket' => $ticket,
             'messages' => $messages,
@@ -221,6 +345,7 @@ class TicketController extends Controller
             'agents' => $agents,
             'cannedResponses' => $cannedResponses,
             'survey' => $survey,
+            'workflowState' => $workflowState,
         ]);
     }
 
@@ -231,7 +356,7 @@ class TicketController extends Controller
 
         $ticket = $this->ticketModel->find((int) $id);
         if (!$ticket) {
-            $this->error('សំណើសុំជំនួយមិនត្រូវបានរកឃើញ', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -243,7 +368,7 @@ class TicketController extends Controller
         $isInternal = (bool) $this->request->input('is_internal', false);
 
         if (empty($message) && empty($_FILES['attachments']['name'][0])) {
-            $this->error('សារឬឯកសារថតគឺត្រូវបាន', 422);
+            $this->error(__('message_or_attachment_required'), 422);
             return;
         }
 
@@ -269,10 +394,10 @@ class TicketController extends Controller
                 }
             } catch (\Exception $e) {
                 if ($this->request->isAjax()) {
-                    $this->error('ការផ្ទុកឯកសារបានបរាជ័យ: ' . $e->getMessage(), 422);
+                    $this->error(__('file_upload_failed', ['error' => $e->getMessage()]), 422);
                     return;
                 }
-                $this->response->withError('ការផ្ទុកឯកសារបានបរាជ័យ: ' . $e->getMessage());
+                $this->response->withError(__('file_upload_failed', ['error' => $e->getMessage()]));
                 $this->redirect($this->app->url("tickets/{$id}"));
                 return;
             }
@@ -281,7 +406,7 @@ class TicketController extends Controller
         $messageId = $this->messageModel->addReply(
             (int) $id,
             $this->auth->id(),
-            $message ?: '[Attachment]',
+            $message ?: __('attachment_placeholder'),
             $isInternal,
             'web',
             $attachments
@@ -323,11 +448,11 @@ class TicketController extends Controller
         }
 
         if ($this->request->isAjax()) {
-            $this->success(['message_id' => $messageId, 'attachments' => $attachments], 'ការឆ្លើយតបបានដំឡើងដោយជោគជ័យ');
+            $this->success(['message_id' => $messageId, 'attachments' => $attachments], __('reply_sent_success'));
             return;
         }
 
-        $this->response->withSuccess('ការឆ្លើយតបបានដំឡើងដោយជោគជ័យ');
+        $this->response->withSuccess(__('reply_sent_success'));
         $this->redirect($this->app->url("tickets/{$id}"));
     }
 
@@ -338,7 +463,7 @@ class TicketController extends Controller
 
         $ticket = $this->ticketModel->find((int) $id);
         if (!$ticket) {
-            $this->error('សំណើសុំជំនួយមិនត្រូវបានរកឃើញ', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -350,7 +475,7 @@ class TicketController extends Controller
         $validStatuses = ['open', 'pending', 'in_progress', 'resolved', 'closed'];
 
         if (!in_array($status, $validStatuses)) {
-            $this->error('ស្ថានភាពមិនមានសុពលភាព', 422);
+            $this->error(__('status_invalid'), 422);
             return;
         }
 
@@ -380,11 +505,11 @@ class TicketController extends Controller
         }
 
         if ($this->request->isAjax()) {
-            $this->success([], 'ស្ថានភាពបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ');
+            $this->success([], __('ticket_status_updated_success'));
             return;
         }
 
-        $this->response->withSuccess('ស្ថានភាពបានធ្វើបច្ចុប្បន្នភាព');
+        $this->response->withSuccess(__('ticket_status_updated_success'));
         $this->redirect($this->app->url("tickets/{$id}"));
     }
 
@@ -395,7 +520,7 @@ class TicketController extends Controller
 
         $ticket = $this->ticketModel->find((int) $id);
         if (!$ticket) {
-            $this->error('សំណើសុំជំនួយមិនត្រូវបានរកឃើញ', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -445,11 +570,11 @@ class TicketController extends Controller
         }
 
         if ($this->request->isAjax()) {
-            $this->success([], 'ការងារផ្តល់ឱ្យបានធ្វើបច្ចុប្បន្នភាព');
+            $this->success([], __('ticket_assignment_updated_success'));
             return;
         }
 
-        $this->response->withSuccess('ការងារផ្តល់ឱ្យបានធ្វើបច្ចុប្បន្នភាព');
+        $this->response->withSuccess(__('ticket_assignment_updated_success'));
         $this->redirect($this->app->url("tickets/{$id}"));
     }
 
@@ -460,7 +585,7 @@ class TicketController extends Controller
 
         $ticket = $this->ticketModel->find((int) $id);
         if (!$ticket) {
-            $this->error('សំណើសុំជំនួយមិនត្រូវបានរកឃើញ', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -472,7 +597,7 @@ class TicketController extends Controller
         $validPriorities = ['low', 'medium', 'high', 'urgent'];
 
         if (!in_array($priority, $validPriorities)) {
-            $this->error('អগ្គាធារមិនមានសុពលភាព', 422);
+            $this->error(__('priority_invalid'), 422);
             return;
         }
 
@@ -491,11 +616,11 @@ class TicketController extends Controller
         );
 
         if ($this->request->isAjax()) {
-            $this->success([], 'អតិភាពបានធ្វើបច្ចុប្បន្នភាព');
+            $this->success([], __('ticket_priority_updated_success'));
             return;
         }
 
-        $this->response->withSuccess('អតិភាពបានធ្វើបច្ចុប្បន្នភាព');
+        $this->response->withSuccess(__('ticket_priority_updated_success'));
         $this->redirect($this->app->url("tickets/{$id}"));
     }
 
@@ -506,7 +631,7 @@ class TicketController extends Controller
 
         $ticket = $this->ticketModel->find((int) $id);
         if (!$ticket) {
-            $this->error('សំណើសុំជំនួយមិនត្រូវបានរកឃើញ', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -529,11 +654,11 @@ class TicketController extends Controller
         );
 
         if ($this->request->isAjax()) {
-            $this->success([], 'ប្រភេទបានធ្វើបច្ចុប្បន្នភាព');
+            $this->success([], __('ticket_category_updated_success'));
             return;
         }
 
-        $this->response->withSuccess('ប្រភេទបានធ្វើបច្ចុប្បន្នភាព');
+        $this->response->withSuccess(__('ticket_category_updated_success'));
         $this->redirect($this->app->url("tickets/{$id}"));
     }
 
@@ -547,6 +672,109 @@ class TicketController extends Controller
         }
     }
 
+    private function sanitizeTicketFilters(array $filters): array
+    {
+        $sanitized = [];
+
+        $search = trim((string)($filters['search'] ?? ''));
+        if ($search !== '') {
+            $sanitized['search'] = $search;
+        }
+
+        $status = (string)($filters['status'] ?? '');
+        $allowedStatuses = ['open', 'pending', 'in_progress', 'resolved', 'closed'];
+        if ($status !== '' && in_array($status, $allowedStatuses, true)) {
+            $sanitized['status'] = $status;
+        }
+
+        $priority = (string)($filters['priority'] ?? '');
+        $allowedPriorities = ['low', 'medium', 'high', 'urgent'];
+        if ($priority !== '' && in_array($priority, $allowedPriorities, true)) {
+            $sanitized['priority'] = $priority;
+        }
+
+        $categoryId = (string)($filters['category_id'] ?? '');
+        if ($categoryId !== '' && ctype_digit($categoryId) && (int)$categoryId > 0) {
+            $sanitized['category_id'] = (int)$categoryId;
+        }
+
+        $assignedTo = (string)($filters['assigned_to'] ?? '');
+        if ($assignedTo === 'unassigned') {
+            $sanitized['assigned_to'] = 'unassigned';
+        } elseif ($assignedTo !== '' && ctype_digit($assignedTo) && (int)$assignedTo > 0) {
+            $sanitized['assigned_to'] = (int)$assignedTo;
+        }
+
+        $orderBy = (string)($filters['order_by'] ?? '');
+        $allowedOrderBy = ['created_at', 'updated_at', 'priority', 'status', 'ticket_number'];
+        if ($orderBy !== '' && in_array($orderBy, $allowedOrderBy, true)) {
+            $sanitized['order_by'] = $orderBy;
+        }
+
+        $orderDir = strtoupper((string)($filters['order_dir'] ?? ''));
+        if ($orderDir !== '' && in_array($orderDir, ['ASC', 'DESC'], true)) {
+            $sanitized['order_dir'] = $orderDir;
+        }
+
+        return $sanitized;
+    }
+
+    private function collectTicketsForExport(array $filters): array
+    {
+        $page = 1;
+        $perPage = 500;
+        $allRows = [];
+
+        while (true) {
+            $result = $this->ticketModel->getFiltered($filters, $page, $perPage);
+            $items = $result['items'] ?? [];
+            if (empty($items)) {
+                break;
+            }
+
+            foreach ($items as $item) {
+                $allRows[] = $item;
+            }
+
+            $totalPages = (int)($result['total_pages'] ?? 1);
+            if ($page >= $totalPages) {
+                break;
+            }
+            $page++;
+        }
+
+        return $allRows;
+    }
+
+    private function formatFilterSummary(array $filters): string
+    {
+        if (empty($filters)) {
+            return '';
+        }
+
+        $parts = [];
+        foreach ($filters as $key => $value) {
+            if ($value === '' || $value === null) {
+                continue;
+            }
+            $parts[] = $key . '=' . (string)$value;
+        }
+
+        return implode('; ', $parts);
+    }
+
+    private function csvSafe($value): string
+    {
+        $text = trim((string)$value);
+        $text = str_replace(["\r\n", "\r", "\n"], ' ', $text);
+
+        if ($text !== '' && in_array($text[0], ['=', '+', '-', '@'], true)) {
+            $text = "'" . $text;
+        }
+
+        return $text;
+    }
+
     private function ensureAgentTicketAccess(array $ticket): bool
     {
         if (!$this->auth->isRestrictedAgent()) {
@@ -555,11 +783,11 @@ class TicketController extends Controller
 
         if ((int) ($ticket['assigned_to'] ?? 0) !== (int) $this->auth->id()) {
             if ($this->request->isAjax() || $this->request->isJson()) {
-                $this->error('Forbidden', 403);
+                $this->error(__('forbidden'), 403);
                 return false;
             }
 
-            $this->response->withError('Forbidden');
+            $this->response->withError(__('forbidden'));
             $this->redirect($this->app->url('tickets'));
             return false;
         }

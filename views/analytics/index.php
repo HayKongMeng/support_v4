@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Analytics & Reports';
+$pageTitle = __('v_analytics_reports');
 ob_start();
 ?>
 
@@ -7,22 +7,22 @@ ob_start();
     <!-- Header with Period Selector and Export -->
     <div class="flex justify-between items-center">
         <div>
-            <h1 class="text-2xl font-bold text-gray-800">Analytics & Reports</h1>
-            <p class="text-sm text-gray-600 mt-1">Based on ITIL & ISO 20000 International Standards</p>
+            <h1 class="text-2xl font-bold text-gray-800"><?= __('v_analytics_reports') ?></h1>
+            <p class="text-sm text-gray-600 mt-1"><?= __('v_based_on_itil_iso_20000_international_standards') ?></p>
         </div>
         <div class="flex gap-3">
             <!-- Period Selector -->
             <select onchange="window.location.href='<?= $app->url('analytics') ?>?period='+this.value"
                     class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
-                <option value="7" <?= $period === '7' ? 'selected' : '' ?>>Last 7 Days</option>
-                <option value="30" <?= $period === '30' ? 'selected' : '' ?>>Last 30 Days</option>
-                <option value="90" <?= $period === '90' ? 'selected' : '' ?>>Last 90 Days</option>
+                <option value="7" <?= $period === '7' ? 'selected' : '' ?>><?= __('v_last_7_days') ?></option>
+                <option value="30" <?= $period === '30' ? 'selected' : '' ?>><?= __('v_last_30_days') ?></option>
+                <option value="90" <?= $period === '90' ? 'selected' : '' ?>><?= __('v_last_90_days') ?></option>
             </select>
 
             <!-- Export Button -->
             <a href="<?= $app->url("analytics/export?format=csv&period={$period}") ?>"
                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2">
-                <i class="fas fa-file-export"></i> Export CSV
+                <i class="fas fa-file-export"></i> <?= __('v_export_csv') ?>
             </a>
         </div>
     </div>
@@ -33,7 +33,7 @@ ob_start();
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 font-medium">Total Tickets</p>
+                    <p class="text-sm text-gray-600 font-medium"><?= __('v_total_tickets') ?></p>
                     <p class="text-3xl font-bold text-gray-900 mt-2"><?= number_format($kpiSummary['total_created']) ?></p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -41,7 +41,7 @@ ob_start();
                 </div>
             </div>
             <p class="text-sm text-gray-500 mt-3">
-                <?= number_format($kpiSummary['total_resolved']) ?> resolved
+                <?= number_format($kpiSummary['total_resolved']) ?> <?= __('v_resolved') ?>
             </p>
         </div>
 
@@ -49,21 +49,21 @@ ob_start();
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 font-medium">Resolution Rate</p>
+                    <p class="text-sm text-gray-600 font-medium"><?= __('v_resolution_rate') ?></p>
                     <p class="text-3xl font-bold text-gray-900 mt-2"><?= number_format($kpiSummary['resolution_rate'], 1) ?>%</p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <i class="fas fa-check-circle text-green-600 text-xl"></i>
                 </div>
             </div>
-            <p class="text-sm text-gray-500 mt-3">ISO 20000 KPI</p>
+            <p class="text-sm text-gray-500 mt-3"><?= __('v_iso_20000_kpi') ?></p>
         </div>
 
         <!-- Response SLA Compliance -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 font-medium">Response SLA</p>
+                    <p class="text-sm text-gray-600 font-medium"><?= __('v_response_sla') ?></p>
                     <p class="text-3xl font-bold <?= $kpiSummary['response_sla_compliance'] >= 90 ? 'text-green-600' : ($kpiSummary['response_sla_compliance'] >= 75 ? 'text-yellow-600' : 'text-red-600') ?> mt-2">
                         <?= number_format($kpiSummary['response_sla_compliance'], 1) ?>%
                     </p>
@@ -72,14 +72,14 @@ ob_start();
                     <i class="fas fa-clock <?= $kpiSummary['response_sla_compliance'] >= 90 ? 'text-green-600' : 'text-yellow-600' ?> text-xl"></i>
                 </div>
             </div>
-            <p class="text-sm text-gray-500 mt-3">ITIL Standard</p>
+            <p class="text-sm text-gray-500 mt-3"><?= __('v_itil_standard') ?></p>
         </div>
 
         <!-- Resolution SLA Compliance -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 font-medium">Resolution SLA</p>
+                    <p class="text-sm text-gray-600 font-medium"><?= __('v_resolution_sla') ?></p>
                     <p class="text-3xl font-bold <?= $kpiSummary['resolution_sla_compliance'] >= 90 ? 'text-green-600' : ($kpiSummary['resolution_sla_compliance'] >= 75 ? 'text-yellow-600' : 'text-red-600') ?> mt-2">
                         <?= number_format($kpiSummary['resolution_sla_compliance'], 1) ?>%
                     </p>
@@ -88,7 +88,7 @@ ob_start();
                     <i class="fas fa-hourglass-end <?= $kpiSummary['resolution_sla_compliance'] >= 90 ? 'text-green-600' : 'text-yellow-600' ?> text-xl"></i>
                 </div>
             </div>
-            <p class="text-sm text-gray-500 mt-3">ITIL Standard</p>
+            <p class="text-sm text-gray-500 mt-3"><?= __('v_itil_standard') ?></p>
         </div>
     </div>
 
@@ -97,35 +97,35 @@ ob_start();
         <!-- Avg Response Time -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between mb-4">
-                <p class="text-sm text-gray-600 font-medium">Avg Response Time</p>
+                <p class="text-sm text-gray-600 font-medium"><?= __('v_avg_response_time') ?></p>
                 <i class="fas fa-bolt text-indigo-600"></i>
             </div>
             <p class="text-2xl font-bold text-gray-900">
-                <?= number_format($kpiSummary['avg_response_time']) ?> min
+                <?= number_format($kpiSummary['avg_response_time']) ?> <?= __('v_min') ?>
             </p>
             <p class="text-sm text-gray-500 mt-2">
-                <?= number_format($kpiSummary['avg_response_time'] / 60, 1) ?> hours average
+                <?= number_format($kpiSummary['avg_response_time'] / 60, 1) ?> <?= __('v_hours_average') ?>
             </p>
         </div>
 
         <!-- Avg Resolution Time -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between mb-4">
-                <p class="text-sm text-gray-600 font-medium">Avg Resolution Time</p>
+                <p class="text-sm text-gray-600 font-medium"><?= __('v_avg_resolution_time') ?></p>
                 <i class="fas fa-stopwatch text-indigo-600"></i>
             </div>
             <p class="text-2xl font-bold text-gray-900">
-                <?= number_format($kpiSummary['avg_resolution_time']) ?> min
+                <?= number_format($kpiSummary['avg_resolution_time']) ?> <?= __('v_min') ?>
             </p>
             <p class="text-sm text-gray-500 mt-2">
-                <?= number_format($kpiSummary['avg_resolution_time'] / 60, 1) ?> hours average
+                <?= number_format($kpiSummary['avg_resolution_time'] / 60, 1) ?> <?= __('v_hours_average') ?>
             </p>
         </div>
 
         <!-- Customer Satisfaction -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <div class="flex items-center justify-between mb-4">
-                <p class="text-sm text-gray-600 font-medium">Customer Satisfaction</p>
+                <p class="text-sm text-gray-600 font-medium"><?= __('v_customer_satisfaction') ?></p>
                 <i class="fas fa-smile text-indigo-600"></i>
             </div>
             <p class="text-2xl font-bold text-gray-900">
@@ -143,7 +143,7 @@ ob_start();
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Ticket Volume Trend -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Ticket Volume Trend</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4"><?= __('v_ticket_volume_trend') ?></h3>
             <div style="height: 300px;">
                 <canvas id="ticketVolumeChart"></canvas>
             </div>
@@ -151,7 +151,7 @@ ob_start();
 
         <!-- SLA Compliance Trend -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">SLA Compliance Trend (%)</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4"><?= __('v_sla_compliance_trend') ?></h3>
             <div style="height: 300px;">
                 <canvas id="slaComplianceChart"></canvas>
             </div>
@@ -160,7 +160,7 @@ ob_start();
 
     <!-- Response Time Trend -->
     <div class="bg-white rounded-xl shadow-sm p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Average Response & Resolution Time (minutes)</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4"><?= __('v_average_response_resolution_time_minutes') ?></h3>
         <div style="height: 250px;">
             <canvas id="responseTimeChart"></canvas>
         </div>
@@ -168,16 +168,16 @@ ob_start();
 
     <!-- Category Breakdown -->
     <div class="bg-white rounded-xl shadow-sm p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tickets by Category</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4"><?= __('v_tickets_by_category') ?></h3>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tickets</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Response</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Resolution</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">SLA Compliance</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_category') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_tickets') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_avg_response') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_avg_resolution') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_sla_compliance') ?></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -190,17 +190,17 @@ ob_start();
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <span class="w-3 h-3 rounded-full mr-2" style="background-color: <?= htmlspecialchars($cat['category_color'] ?? '#6B7280') ?>"></span>
-                                <?= htmlspecialchars($cat['category_name'] ?: 'Uncategorized') ?>
+                                <?= htmlspecialchars($cat['category_name'] ?: __('v_uncategorized')) ?>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             <?= number_format($cat['ticket_count']) ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <?= number_format($cat['avg_response_time'] ?? 0, 1) ?> min
+                            <?= number_format($cat['avg_response_time'] ?? 0, 1) ?> <?= __('v_min') ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <?= number_format($cat['avg_resolution_time'] ?? 0, 1) ?> min
+                            <?= number_format($cat['avg_resolution_time'] ?? 0, 1) ?> <?= __('v_min') ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="inline-flex px-2 py-1 text-xs font-medium rounded-full
@@ -217,18 +217,18 @@ ob_start();
 
     <!-- Agent Performance -->
     <div class="bg-white rounded-xl shadow-sm p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Agent Performance</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4"><?= __('v_agent_performance') ?></h3>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Agent</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tickets</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolved</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Response</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Resolution</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">SLA Success</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_agent') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_tickets') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_resolved_2') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_avg_response') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_avg_resolution') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_sla_success') ?></th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><?= __('v_rating') ?></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -251,10 +251,10 @@ ob_start();
                             <?= number_format($agent['tickets_resolved']) ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <?= number_format($agent['avg_response_time'] ?? 0, 1) ?> min
+                            <?= number_format($agent['avg_response_time'] ?? 0, 1) ?> <?= __('v_min') ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <?= number_format($agent['avg_resolution_time'] ?? 0, 1) ?> min
+                            <?= number_format($agent['avg_resolution_time'] ?? 0, 1) ?> <?= __('v_min') ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="inline-flex px-2 py-1 text-xs font-medium rounded-full
@@ -271,7 +271,7 @@ ob_start();
                                 <i class="fas fa-star text-yellow-400 text-xs"></i>
                             </div>
                             <?php else: ?>
-                            <span class="text-sm text-gray-400">N/A</span>
+                            <span class="text-sm text-gray-400"><?= __('v_n_a') ?></span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -293,7 +293,7 @@ new Chart(ticketVolumeCtx, {
         labels: <?= json_encode($trendData['labels']) ?>,
         datasets: [
             {
-                label: 'Created',
+                label: <?= json_encode(__('v_created')) ?>,
                 data: <?= json_encode($trendData['tickets_created']) ?>,
                 borderColor: 'rgb(59, 130, 246)',
                 backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -301,7 +301,7 @@ new Chart(ticketVolumeCtx, {
                 fill: true
             },
             {
-                label: 'Resolved',
+                label: <?= json_encode(__('v_resolved_2')) ?>,
                 data: <?= json_encode($trendData['tickets_resolved']) ?>,
                 borderColor: 'rgb(34, 197, 94)',
                 backgroundColor: 'rgba(34, 197, 94, 0.1)',
@@ -334,7 +334,7 @@ new Chart(slaComplianceCtx, {
         labels: <?= json_encode($trendData['labels']) ?>,
         datasets: [
             {
-                label: 'Response SLA',
+                label: <?= json_encode(__('v_response_sla')) ?>,
                 data: <?= json_encode($trendData['response_compliance']) ?>,
                 borderColor: 'rgb(168, 85, 247)',
                 backgroundColor: 'rgba(168, 85, 247, 0.1)',
@@ -342,7 +342,7 @@ new Chart(slaComplianceCtx, {
                 fill: true
             },
             {
-                label: 'Resolution SLA',
+                label: <?= json_encode(__('v_resolution_sla')) ?>,
                 data: <?= json_encode($trendData['resolution_compliance']) ?>,
                 borderColor: 'rgb(236, 72, 153)',
                 backgroundColor: 'rgba(236, 72, 153, 0.1)',
@@ -381,14 +381,14 @@ new Chart(responseTimeCtx, {
         labels: <?= json_encode($trendData['labels']) ?>,
         datasets: [
             {
-                label: 'Avg Response Time',
+                label: <?= json_encode(__('v_avg_response_time')) ?>,
                 data: <?= json_encode($trendData['avg_response_time']) ?>,
                 backgroundColor: 'rgba(99, 102, 241, 0.8)',
                 borderColor: 'rgb(99, 102, 241)',
                 borderWidth: 1
             },
             {
-                label: 'Avg Resolution Time',
+                label: <?= json_encode(__('v_avg_resolution_time')) ?>,
                 data: <?= json_encode($trendData['avg_resolution_time']) ?>,
                 backgroundColor: 'rgba(244, 63, 94, 0.8)',
                 borderColor: 'rgb(244, 63, 94)',
@@ -409,7 +409,7 @@ new Chart(responseTimeCtx, {
                 beginAtZero: true,
                 ticks: {
                     callback: function(value) {
-                        return value + ' min';
+                        return value + ' <?= __('v_min') ?>';
                     }
                 }
             }

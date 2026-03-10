@@ -24,6 +24,7 @@ class FileUploader
         'txt', 'csv', 'zip', 'rar'
     ];
     private int $maxFileSize = 10485760; // 10MB
+    private int $maxImageDimension = 1920; // Max width/height for uploaded images
 
     public function __construct(string $uploadDir = null)
     {
@@ -40,7 +41,7 @@ class FileUploader
     public function upload(array $file, string $subfolder = 'attachments'): array
     {
         // Validate file
-        $this->validate($file);
+        $detectedMimeType = $this->validate($file);
 
         // Generate unique filename (includes date subdirectory)
         $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -63,11 +64,16 @@ class FileUploader
             throw new \RuntimeException('Failed to move uploaded file');
         }
 
+        // Resize large images so extreme dimensions do not break UI and bandwidth.
+        $this->optimizeImage($targetPath, $detectedMimeType);
+        clearstatcache(true, $targetPath);
+        $finalSize = (int) (filesize($targetPath) ?: $file['size']);
+
         return [
             'filename' => $filename,
             'original_name' => $file['name'],
-            'mime_type' => $file['type'],
-            'size' => $file['size'],
+            'mime_type' => $detectedMimeType,
+            'size' => $finalSize,
             'path' => $relativePath,
             'url' => '/support/public/uploads/' . $relativePath,
         ];
@@ -108,7 +114,7 @@ class FileUploader
     /**
      * Validate uploaded file
      */
-    private function validate(array $file): void
+    private function validate(array $file): string
     {
         // Check for upload errors
         if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -134,6 +140,100 @@ class FileUploader
         if (!in_array($extension, $this->allowedExtensions)) {
             throw new \RuntimeException('File extension not allowed: ' . $extension);
         }
+
+        return $mimeType;
+    }
+
+    /**
+     * Resize oversized images while preserving aspect ratio.
+     */
+    private function optimizeImage(string $path, string $mimeType): void
+    {
+        if (strpos($mimeType, 'image/') !== 0 || $mimeType === 'image/gif') {
+            return;
+        }
+
+        if (!function_exists('getimagesize') || !function_exists('imagecreatetruecolor')) {
+            return;
+        }
+
+        $dimensions = @getimagesize($path);
+        if (!$dimensions || empty($dimensions[0]) || empty($dimensions[1])) {
+            return;
+        }
+
+        $sourceWidth = (int) $dimensions[0];
+        $sourceHeight = (int) $dimensions[1];
+        $largestSide = max($sourceWidth, $sourceHeight);
+
+        if ($largestSide <= $this->maxImageDimension) {
+            return;
+        }
+
+        $source = $this->createImageResource($path, $mimeType);
+        if (!$source) {
+            return;
+        }
+
+        $scale = $this->maxImageDimension / $largestSide;
+        $targetWidth = max(1, (int) round($sourceWidth * $scale));
+        $targetHeight = max(1, (int) round($sourceHeight * $scale));
+
+        $target = imagecreatetruecolor($targetWidth, $targetHeight);
+        if (!$target) {
+            imagedestroy($source);
+            return;
+        }
+
+        if ($mimeType !== 'image/jpeg') {
+            imagealphablending($target, false);
+            imagesavealpha($target, true);
+            $transparent = imagecolorallocatealpha($target, 0, 0, 0, 127);
+            imagefilledrectangle($target, 0, 0, $targetWidth, $targetHeight, $transparent);
+        }
+
+        imagecopyresampled(
+            $target,
+            $source,
+            0,
+            0,
+            0,
+            0,
+            $targetWidth,
+            $targetHeight,
+            $sourceWidth,
+            $sourceHeight
+        );
+
+        $this->saveImageResource($target, $path, $mimeType);
+        imagedestroy($target);
+        imagedestroy($source);
+    }
+
+    /**
+     * Create GD image resource from path + mime type.
+     */
+    private function createImageResource(string $path, string $mimeType)
+    {
+        return match ($mimeType) {
+            'image/jpeg' => function_exists('imagecreatefromjpeg') ? @imagecreatefromjpeg($path) : false,
+            'image/png' => function_exists('imagecreatefrompng') ? @imagecreatefrompng($path) : false,
+            'image/webp' => function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($path) : false,
+            default => false,
+        };
+    }
+
+    /**
+     * Save GD image resource using original mime format.
+     */
+    private function saveImageResource($image, string $path, string $mimeType): bool
+    {
+        return match ($mimeType) {
+            'image/jpeg' => function_exists('imagejpeg') ? imagejpeg($image, $path, 82) : false,
+            'image/png' => function_exists('imagepng') ? imagepng($image, $path, 6) : false,
+            'image/webp' => function_exists('imagewebp') ? imagewebp($image, $path, 82) : false,
+            default => false,
+        };
     }
 
     /**

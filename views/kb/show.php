@@ -1,12 +1,12 @@
 <?php
-$pageTitle = htmlspecialchars($article['title']) . ' - Knowledge Base';
+$pageTitle = htmlspecialchars($article['title']) . ' - ' . __('v_knowledge_base');
 ob_start();
 ?>
 
 <!-- Breadcrumb -->
 <nav class="mb-6">
     <ol class="flex items-center space-x-2 text-sm text-gray-500">
-        <li><a href="<?= $app->url('kb') ?>" class="hover:text-indigo-600">Knowledge Base</a></li>
+        <li><a href="<?= $app->url('kb') ?>" class="hover:text-indigo-600"><?= __('v_knowledge_base') ?></a></li>
         <li><i class="fas fa-chevron-right text-xs mx-2"></i></li>
         <?php if ($article['category_name']): ?>
         <li>
@@ -36,12 +36,12 @@ ob_start();
                         <?php endif; ?>
                         <?php if ($article['is_featured']): ?>
                         <span class="inline-flex items-center px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
-                            <i class="fas fa-star mr-1"></i> Featured
+                            <i class="fas fa-star mr-1"></i> <?= __('v_featured') ?>
                         </span>
                         <?php endif; ?>
                         <?php if (!$article['is_published']): ?>
                         <span class="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium">
-                            <i class="fas fa-eye-slash mr-1"></i> Draft
+                            <i class="fas fa-eye-slash mr-1"></i> <?= __('v_draft') ?>
                         </span>
                         <?php endif; ?>
                     </div>
@@ -49,7 +49,7 @@ ob_start();
                     <div class="flex items-center space-x-2">
                         <button type="button" onclick="copyKbText('kb-copy-text')"
                                 class="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gray-100 rounded-lg"
-                                title="Copy full text">
+                                title="<?= __('v_copy_full_text') ?>">
                             <i class="fas fa-copy"></i>
                         </button>
                         <?php if ($article['author_id'] === $auth->id() || $auth->isAgent()): ?>
@@ -75,7 +75,7 @@ ob_start();
                         <i class="fas fa-calendar mr-1"></i> <?= date('M j, Y', strtotime($article['created_at'])) ?>
                     </span>
                     <span>
-                        <i class="fas fa-eye mr-1"></i> <?= number_format($article['views']) ?> views
+                        <i class="fas fa-eye mr-1"></i> <?= number_format($article['views']) ?> <?= __('v_views') ?>
                     </span>
                 </div>
             </div>
@@ -115,7 +115,7 @@ ob_start();
         <!-- Related Articles -->
         <?php if (!empty($related)): ?>
         <div class="mt-6">
-            <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Articles</h2>
+            <h2 class="text-lg font-semibold text-gray-900 mb-4"><?= __('v_related_articles') ?></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <?php foreach ($related as $rel): ?>
                 <a href="<?= $app->url("kb/{$rel['slug']}") ?>" class="bg-white rounded-lg shadow p-4 hover:shadow-md transition-shadow">
@@ -135,31 +135,31 @@ ob_start();
         <!-- Actions -->
         <div class="bg-white rounded-lg shadow p-4">
             <a href="<?= $app->url('kb') ?>" class="flex items-center text-gray-700 hover:text-indigo-600 mb-3">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
+                <i class="fas fa-arrow-left mr-2"></i> <?= __('v_back_to_articles') ?>
             </a>
             <a href="<?= $app->url('kb/create') ?>" class="flex items-center text-gray-700 hover:text-indigo-600">
-                <i class="fas fa-plus mr-2"></i> Write an Article
+                <i class="fas fa-plus mr-2"></i> <?= __('v_write_an_article') ?>
             </a>
         </div>
 
         <!-- Article Info -->
         <div class="bg-white rounded-lg shadow p-4">
-            <h3 class="font-semibold text-gray-900 mb-3">Article Info</h3>
+            <h3 class="font-semibold text-gray-900 mb-3"><?= __('v_article_info') ?></h3>
             <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
-                    <span class="text-gray-500">Author</span>
+                    <span class="text-gray-500"><?= __('v_author') ?></span>
                     <span class="text-gray-900"><?= htmlspecialchars($article['author_name']) ?></span>
                 </div>
                 <div class="flex justify-between">
-                    <span class="text-gray-500">Created</span>
+                    <span class="text-gray-500"><?= __('v_created') ?></span>
                     <span class="text-gray-900"><?= date('M j, Y', strtotime($article['created_at'])) ?></span>
                 </div>
                 <div class="flex justify-between">
-                    <span class="text-gray-500">Updated</span>
+                    <span class="text-gray-500"><?= __('v_updated') ?></span>
                     <span class="text-gray-900"><?= date('M j, Y', strtotime($article['updated_at'])) ?></span>
                 </div>
                 <div class="flex justify-between">
-                    <span class="text-gray-500">Views</span>
+                    <span class="text-gray-500"><?= __('v_views_2') ?></span>
                     <span class="text-gray-900"><?= number_format($article['views']) ?></span>
                 </div>
             </div>
@@ -169,7 +169,7 @@ ob_start();
 
 <script>
 function deleteArticle(id) {
-    if (!confirm('Are you sure you want to delete this article?')) return;
+    if (!confirm(<?= json_encode(__('v_are_you_sure_you_want_to_delete_this_article')) ?>)) return;
 
     fetch('<?= $app->url('kb') ?>/' + id, {
         method: 'DELETE',
@@ -182,12 +182,12 @@ function deleteArticle(id) {
         if (data.success) {
             window.location.href = '<?= $app->url('kb') ?>';
         } else {
-            alert(data.error || 'Failed to delete article');
+            alert(data.error || <?= json_encode(__('v_failed_to_delete_article')) ?>);
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to delete article');
+        alert(<?= json_encode(__('v_failed_to_delete_article')) ?>);
     });
 }
 
@@ -197,16 +197,16 @@ function copyKbText(elementId) {
 
     const text = el.value || '';
     if (!text.trim()) {
-        alert('Nothing to copy');
+        alert(<?= json_encode(__('v_nothing_to_copy')) ?>);
         return;
     }
 
     navigator.clipboard.writeText(text)
-        .then(() => alert('Copied'))
+        .then(() => alert(<?= json_encode(__('v_copied')) ?>))
         .catch(() => {
             el.select();
             document.execCommand('copy');
-            alert('Copied');
+            alert(<?= json_encode(__('v_copied')) ?>);
         });
 }
 </script>

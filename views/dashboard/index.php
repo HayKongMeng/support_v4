@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Dashboard';
+$pageTitle = __('dashboard');
 ob_start();
 ?>
 
@@ -8,7 +8,7 @@ ob_start();
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-500">Open Tickets</p>
+                <p class="text-sm text-gray-500"><?= __('open_tickets') ?></p>
                 <p class="text-3xl font-bold text-gray-800"><?= $stats['open'] ?? 0 ?></p>
             </div>
             <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -16,14 +16,14 @@ ob_start();
             </div>
         </div>
         <p class="text-xs text-gray-500 mt-2">
-            <span class="text-red-500"><?= $stats['urgent'] ?? 0 ?> urgent</span>
+            <span class="text-red-500"><?= $stats['urgent'] ?? 0 ?> <?= __('urgent') ?></span>
         </p>
     </div>
 
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-500">In Progress</p>
+                <p class="text-sm text-gray-500"><?= __('in_progress') ?></p>
                 <p class="text-3xl font-bold text-gray-800"><?= ($stats['pending'] ?? 0) + ($stats['in_progress'] ?? 0) ?></p>
             </div>
             <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -31,14 +31,14 @@ ob_start();
             </div>
         </div>
         <p class="text-xs text-gray-500 mt-2">
-            <?= $stats['pending'] ?? 0 ?> pending, <?= $stats['in_progress'] ?? 0 ?> active
+            <?= $stats['pending'] ?? 0 ?> <?= __('pending') ?>, <?= $stats['in_progress'] ?? 0 ?> <?= __('active') ?>
         </p>
     </div>
 
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-500">Resolved Today</p>
+                <p class="text-sm text-gray-500"><?= __('resolved_today') ?></p>
                 <p class="text-3xl font-bold text-gray-800"><?= $stats['resolved'] ?? 0 ?></p>
             </div>
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
@@ -50,7 +50,7 @@ ob_start();
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-500">Unassigned</p>
+                <p class="text-sm text-gray-500"><?= __('unassigned') ?></p>
                 <p class="text-3xl font-bold text-gray-800"><?= $stats['unassigned'] ?? 0 ?></p>
             </div>
             <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
@@ -69,12 +69,12 @@ ob_start();
                 <i class="fas fa-exclamation-triangle text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-xl font-bold">SLA Breach Alert</h3>
-                <p class="text-sm opacity-90"><?= count($slaNearBreach) ?> ticket(s) require immediate attention (ITIL Standard)</p>
+                <h3 class="text-xl font-bold"><?= __('sla_breach_alert') ?></h3>
+                <p class="text-sm opacity-90"><?= __('ticket_requires_attention', ['count' => count($slaNearBreach)]) ?></p>
             </div>
         </div>
         <a href="<?= $app->url('analytics') ?>" class="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium">
-            View Analytics
+            <?= __('view_analytics') ?>
         </a>
     </div>
     <div class="space-y-2">
@@ -97,23 +97,23 @@ ob_start();
                     </div>
                     <p class="text-xs opacity-75 mt-1">
                         <?php if ($responseOverdue): ?>
-                            <i class="fas fa-clock mr-1"></i> Response SLA BREACHED
+                            <i class="fas fa-clock mr-1"></i> <?= __('response_sla_breached') ?>
                         <?php elseif ($resolutionOverdue): ?>
-                            <i class="fas fa-hourglass-end mr-1"></i> Resolution SLA BREACHED
+                            <i class="fas fa-hourglass-end mr-1"></i> <?= __('resolution_sla_breached') ?>
                         <?php else: ?>
-                            <i class="fas fa-clock mr-1"></i> SLA breach in <?= $minutesUntilBreach ?> minutes
+                            <i class="fas fa-clock mr-1"></i> <?= __('sla_breach_in_minutes', ['minutes' => $minutesUntilBreach]) ?>
                         <?php endif; ?>
                     </p>
                 </div>
                 <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">
-                    <?= ucfirst($ticket['priority']) ?>
+                    <?= __((string)$ticket['priority']) ?>
                 </span>
             </div>
         </a>
         <?php endforeach; ?>
         <?php if (count($slaNearBreach) > 3): ?>
         <p class="text-sm text-center opacity-75 mt-2">
-            + <?= count($slaNearBreach) - 3 ?> more tickets near SLA breach
+            <?= __('more_tickets_near_sla', ['count' => count($slaNearBreach) - 3]) ?>
         </p>
         <?php endif; ?>
     </div>
@@ -125,50 +125,50 @@ ob_start();
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-gray-600 font-medium">Response On Time</p>
+            <p class="text-sm text-gray-600 font-medium"><?= __('response_on_time') ?></p>
             <i class="fas fa-bolt text-green-600"></i>
         </div>
         <p class="text-2xl font-bold text-green-600">
             <?= $slaStats['response_met'] ?? 0 ?>
         </p>
         <p class="text-xs text-gray-500 mt-1">
-            <?= $slaStats['response_breached'] ?? 0 ?> breached
+            <?= $slaStats['response_breached'] ?? 0 ?> <?= __('breached') ?>
         </p>
     </div>
 
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-gray-600 font-medium">Resolution On Time</p>
+            <p class="text-sm text-gray-600 font-medium"><?= __('resolution_on_time') ?></p>
             <i class="fas fa-check-circle text-green-600"></i>
         </div>
         <p class="text-2xl font-bold text-green-600">
             <?= $slaStats['resolution_met'] ?? 0 ?>
         </p>
         <p class="text-xs text-gray-500 mt-1">
-            <?= $slaStats['resolution_breached'] ?? 0 ?> breached
+            <?= $slaStats['resolution_breached'] ?? 0 ?> <?= __('breached') ?>
         </p>
     </div>
 
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-gray-600 font-medium">Response Overdue</p>
+            <p class="text-sm text-gray-600 font-medium"><?= __('response_overdue') ?></p>
             <i class="fas fa-exclamation-triangle text-orange-600"></i>
         </div>
         <p class="text-2xl font-bold <?= ($slaStats['response_overdue'] ?? 0) > 0 ? 'text-orange-600' : 'text-gray-400' ?>">
             <?= $slaStats['response_overdue'] ?? 0 ?>
         </p>
-        <p class="text-xs text-gray-500 mt-1">Needs immediate response</p>
+        <p class="text-xs text-gray-500 mt-1"><?= __('needs_immediate_response') ?></p>
     </div>
 
     <div class="bg-white rounded-xl shadow-sm p-6">
         <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-gray-600 font-medium">Resolution Overdue</p>
+            <p class="text-sm text-gray-600 font-medium"><?= __('resolution_overdue') ?></p>
             <i class="fas fa-hourglass-end text-red-600"></i>
         </div>
         <p class="text-2xl font-bold <?= ($slaStats['resolution_overdue'] ?? 0) > 0 ? 'text-red-600' : 'text-gray-400' ?>">
             <?= $slaStats['resolution_overdue'] ?? 0 ?>
         </p>
-        <p class="text-xs text-gray-500 mt-1">Needs immediate resolution</p>
+        <p class="text-xs text-gray-500 mt-1"><?= __('needs_immediate_resolution') ?></p>
     </div>
 </div>
 <?php endif; ?>
@@ -178,14 +178,14 @@ ob_start();
     <div class="lg:col-span-2 bg-white rounded-xl shadow-sm">
         <div class="p-6 border-b border-gray-200">
             <div class="flex items-center justify-between">
-                <h2 class="text-lg font-semibold text-gray-800">Recent Tickets</h2>
-                <a href="<?= $app->url('tickets') ?>" class="text-sm text-indigo-600 hover:underline">View All</a>
+                <h2 class="text-lg font-semibold text-gray-800"><?= __('recent_tickets') ?></h2>
+                <a href="<?= $app->url('tickets') ?>" class="text-sm text-indigo-600 hover:underline"><?= __('view_all') ?></a>
             </div>
         </div>
         <div class="divide-y divide-gray-200">
             <?php if (empty($recentTickets)): ?>
             <div class="p-6 text-center text-gray-500">
-                No tickets yet
+                <?= __('no_tickets_yet') ?>
             </div>
             <?php else: ?>
             <?php foreach ($recentTickets as $ticket): ?>
@@ -203,7 +203,7 @@ ob_start();
                                     default: echo 'bg-gray-100 text-gray-800';
                                 }
                                 ?>">
-                                <?= ucfirst($ticket['priority']) ?>
+                                <?= __((string)$ticket['priority']) ?>
                             </span>
                         </div>
                         <p class="mt-1 text-sm text-gray-900 truncate"><?= htmlspecialchars($ticket['subject']) ?></p>
@@ -222,7 +222,7 @@ ob_start();
                             default: echo 'bg-gray-100 text-gray-800';
                         }
                         ?>">
-                        <?= ucfirst(str_replace('_', ' ', $ticket['status'])) ?>
+                        <?= __((string)$ticket['status']) ?>
                     </span>
                 </div>
             </a>
@@ -235,7 +235,7 @@ ob_start();
     <div class="space-y-6">
         <!-- Categories -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h2 class="text-lg font-semibold text-gray-800 mb-4">By Category</h2>
+            <h2 class="text-lg font-semibold text-gray-800 mb-4"><?= __('by_category') ?></h2>
             <div class="space-y-3">
                 <?php foreach ($categoryStats as $cat): ?>
                 <div class="flex items-center justify-between">
@@ -245,7 +245,7 @@ ob_start();
                     </div>
                     <div class="flex items-center">
                         <span class="text-sm font-medium text-gray-900"><?= $cat['open_count'] ?? 0 ?></span>
-                        <span class="text-xs text-gray-500 ml-1">open</span>
+                        <span class="text-xs text-gray-500 ml-1"><?= __('open') ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -254,7 +254,7 @@ ob_start();
 
         <!-- Recent Activity -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h2 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h2>
+            <h2 class="text-lg font-semibold text-gray-800 mb-4"><?= __('recent_activity') ?></h2>
             <div class="space-y-4">
                 <?php foreach (array_slice($recentActivity, 0, 5) as $activity): ?>
                 <div class="flex items-start">
@@ -274,7 +274,7 @@ ob_start();
                             <?= htmlspecialchars($activity['description'] ?? $activity['action']) ?>
                         </p>
                         <p class="text-xs text-gray-500">
-                            <?= htmlspecialchars($activity['user_name'] ?? 'System') ?> &bull;
+                            <?= htmlspecialchars($activity['user_name'] ?? __('system')) ?> &bull;
                             <?= date('M j, g:i A', strtotime($activity['created_at'])) ?>
                         </p>
                     </div>

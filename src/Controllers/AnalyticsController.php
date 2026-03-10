@@ -34,6 +34,9 @@ class AnalyticsController extends Controller
             default => 30
         };
 
+        // Build missing snapshots on-demand so analytics is never empty.
+        $this->analyticsModel->ensureDailySnapshots($this->companyId(), $days);
+
         // Get KPI summary
         $kpiSummary = $this->analyticsModel->getKpiSummary($this->companyId(), $days);
 
@@ -77,6 +80,9 @@ class AnalyticsController extends Controller
             default => 30
         };
 
+        // Build missing snapshots before export.
+        $this->analyticsModel->ensureDailySnapshots($this->companyId(), $days);
+
         $kpiSummary = $this->analyticsModel->getKpiSummary($this->companyId(), $days);
         $categoryBreakdown = $this->analyticsModel->getCategoryBreakdown($this->companyId(), $days);
         $agentPerformance = $this->analyticsModel->getAgentPerformance($this->companyId(), $days);
@@ -87,7 +93,7 @@ class AnalyticsController extends Controller
             return;
         }
 
-        $this->error('Unsupported format', 400);
+        $this->error(__('unsupported_format'), 400);
     }
 
     private function exportCsv($kpiSummary, $categoryBreakdown, $agentPerformance, $slaCompliance, $days): void
@@ -100,7 +106,7 @@ class AnalyticsController extends Controller
         $output = fopen('php://output', 'w');
 
         // Header
-        fputcsv($output, ['Analytics Report']);
+        fputcsv($output, ['Analytics Report']); 
         fputcsv($output, ['Generated', date('Y-m-d H:i:s')]);
         fputcsv($output, ['Period', "Last {$days} days"]);
         fputcsv($output, []);

@@ -12,8 +12,12 @@ class Response
         exit;
     }
 
-    public function success(array $data = [], string $message = 'Success'): void
+    public function success(array $data = [], string $message = ''): void
     {
+        if ($message === '') {
+            $message = __('success');
+        }
+
         $this->json([
             'success' => true,
             'message' => $message,
@@ -69,7 +73,7 @@ class Response
     {
         if (!file_exists($path)) {
             http_response_code(404);
-            echo 'File not found';
+            echo __('file_not_found');
             exit;
         }
 

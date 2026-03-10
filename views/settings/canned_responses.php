@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Canned Responses';
+$pageTitle = __('v_canned_responses');
 ob_start();
 ?>
 
@@ -7,29 +7,29 @@ ob_start();
     <!-- Add Response Form -->
     <div class="bg-white rounded-xl shadow-sm">
         <div class="p-6 border-b border-gray-200">
-            <h2 class="text-lg font-semibold text-gray-800">Add Canned Response</h2>
-            <p class="text-sm text-gray-500 mt-1">Create pre-written responses for common questions</p>
+            <h2 class="text-lg font-semibold text-gray-800"><?= __('v_add_canned_response') ?></h2>
+            <p class="text-sm text-gray-500 mt-1"><?= __('v_create_pre_written_responses_for_common_questions') ?></p>
         </div>
         <form action="<?= $app->url('settings/canned-responses') ?>" method="POST" class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('v_title') ?> *</label>
                     <input type="text" name="title" required
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                           placeholder="Response title">
+                           placeholder="<?= __('v_response_title') ?>">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Shortcut</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('v_shortcut') ?></label>
                     <input type="text" name="shortcut"
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                            placeholder="#thanks">
-                    <p class="text-xs text-gray-500 mt-1">Quick access code (e.g., #thanks)</p>
+                    <p class="text-xs text-gray-500 mt-1"><?= __('v_quick_access_code_e_g_thanks') ?></p>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('v_category') ?></label>
                     <select name="category_id"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
-                        <option value="">All categories</option>
+                        <option value=""><?= __('v_all_categories_2') ?></option>
                         <?php foreach ($categories as $cat): ?>
                         <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
                         <?php endforeach; ?>
@@ -37,15 +37,15 @@ ob_start();
                 </div>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Content *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('v_content') ?> *</label>
                 <textarea name="content" rows="4" required
                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                          placeholder="Type your canned response..."></textarea>
+                          placeholder="<?= __('v_type_your_canned_response') ?>"></textarea>
             </div>
             <div class="flex justify-end">
                 <button type="submit"
                         class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
-                    Add Response
+                    <?= __('v_add_response') ?>
                 </button>
             </div>
         </form>
@@ -54,7 +54,7 @@ ob_start();
     <!-- Responses List -->
     <div class="bg-white rounded-xl shadow-sm overflow-hidden">
         <div class="p-6 border-b border-gray-200">
-            <h2 class="text-lg font-semibold text-gray-800">Saved Responses</h2>
+            <h2 class="text-lg font-semibold text-gray-800"><?= __('v_saved_responses') ?></h2>
         </div>
         <div class="divide-y divide-gray-200">
             <?php foreach ($responses as $response): ?>
@@ -79,11 +79,11 @@ ob_start();
                             <?= strlen($response['content']) > 200 ? '...' : '' ?>
                         </p>
                         <p class="text-xs text-gray-400 mt-2">
-                            Used <?= $response['usage_count'] ?> times
+                            <?= __('v_used') ?> <?= $response['usage_count'] ?> <?= __('v_times') ?>
                         </p>
                     </div>
                     <form action="<?= $app->url("settings/canned-responses/{$response['id']}") ?>" method="POST"
-                          onsubmit="return confirm('Delete this response?')">
+                          onsubmit="return confirm('<?= __('v_delete_this_response') ?>')">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="text-red-500 hover:text-red-700 ml-4">
                             <i class="fas fa-trash"></i>
@@ -95,7 +95,7 @@ ob_start();
 
             <?php if (empty($responses)): ?>
             <div class="p-8 text-center text-gray-500">
-                No canned responses yet. Add one above.
+                <?= __('v_no_canned_responses_yet_add_one_above') ?>
             </div>
             <?php endif; ?>
         </div>

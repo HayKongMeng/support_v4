@@ -5,9 +5,11 @@
  * Main Entry Point
  */
 
-// Error reporting
+// Error reporting — never display errors to users in production
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', dirname(__DIR__) . '/storage/logs/php_errors.log');
 
 // Define base path
 define('BASE_PATH', dirname(__DIR__));
@@ -19,6 +21,13 @@ require BASE_PATH . '/vendor/autoload.php';
 use App\Core\App;
 
 $app = App::getInstance();
+
+// Security guard — ensure JWT_SECRET is properly configured
+if (empty($_ENV['JWT_SECRET']) || $_ENV['JWT_SECRET'] === 'change-this-to-a-random-secret-key-in-production') {
+    error_log('SECURITY: JWT_SECRET is not set or is using the default placeholder value.');
+    // In production, you may want to throw an exception here.
+    // throw new \RuntimeException('JWT_SECRET must be set to a strong random value in .env');
+}
 
 // Register middlewares
 $router = $app->router();
@@ -55,6 +64,51 @@ $router->middleware('agent', function($app) {
     return true;
 });
 
+/**
+ * Rate limiter middleware — limits requests per IP using file-based counters.
+ * Default: 10 attempts per 15 minutes per IP.
+ */
+$router->middleware('throttle', function($app) {
+    $limit     = 10;
+    $windowSec = 900; // 15 minutes
+
+    // Get the real client IP (trust only REMOTE_ADDR; X-Forwarded-For can be spoofed)
+    $ip      = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $safeIp  = preg_replace('/[^a-zA-Z0-9_\-.]/', '_', $ip);
+    $logDir  = dirname(__DIR__) . '/storage/rate_limits';
+    $logFile = $logDir . '/' . $safeIp . '.json';
+
+    if (!is_dir($logDir)) {
+        mkdir($logDir, 0700, true);
+    }
+
+    $now  = time();
+    $data = [];
+
+    if (file_exists($logFile)) {
+        $data = json_decode(file_get_contents($logFile), true) ?? [];
+    }
+
+    // Purge old entries outside the window
+    $data = array_filter($data, fn($ts) => ($now - $ts) < $windowSec);
+
+    if (count($data) >= $limit) {
+        http_response_code(429);
+        header('Retry-After: ' . $windowSec);
+        if (stripos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Too many attempts. Please try again later.']);
+        } else {
+            echo '<h1>429 Too Many Requests</h1><p>Too many attempts. Please try again later.</p>';
+        }
+        return false;
+    }
+
+    $data[] = $now;
+    file_put_contents($logFile, json_encode(array_values($data)), LOCK_EX);
+    return true;
+});
+
 // =====================
 // Public Routes
 // =====================
@@ -70,12 +124,17 @@ $router->get('/', function() use ($app) {
     }
 });
 
-// Auth routes
+// Auth routes (throttle login to prevent brute-force)
 $router->group(['prefix' => '', 'middleware' => ['guest']], function($router) {
     $router->get('/login', 'AuthController@showLogin');
     $router->post('/login', 'AuthController@login');
     $router->get('/register', 'AuthController@showRegister');
     $router->post('/register', 'AuthController@register');
+});
+
+// Apply throttle specifically to login POST
+$router->group(['prefix' => '', 'middleware' => ['throttle']], function($router) {
+    $router->post('/login', 'AuthController@login');
 });
 
 $router->get('/logout', 'AuthController@logout');
@@ -94,6 +153,7 @@ $router->group(['prefix' => '', 'middleware' => ['auth', 'agent']], function($ro
 
     // Tickets
     $router->get('/tickets', 'TicketController@index');
+    $router->get('/tickets/export', 'TicketController@export');
     $router->get('/tickets/create', 'TicketController@create');
     $router->post('/tickets', 'TicketController@store');
     $router->get('/tickets/{id}', 'TicketController@show');
@@ -124,6 +184,8 @@ $router->group(['prefix' => 'settings', 'middleware' => ['auth', 'admin']], func
 
     $router->get('/users', 'SettingsController@users');
     $router->post('/users', 'SettingsController@storeUser');
+    $router->post('/users/departments', 'SettingsController@storeDepartment');
+    $router->post('/users/departments/{id}/delete', 'SettingsController@deleteDepartment');
     $router->post('/users/{id}', 'SettingsController@updateUser');
     $router->delete('/users/{id}', 'SettingsController@deleteUser');
 
@@ -134,6 +196,22 @@ $router->group(['prefix' => 'settings', 'middleware' => ['auth', 'admin']], func
 
     $router->get('/sla', 'SettingsController@sla');
     $router->post('/sla/{id}', 'SettingsController@updateSla');
+
+    $router->get('/workflow', 'WorkflowSettingsController@index');
+    $router->post('/workflow/customer-owners', 'WorkflowSettingsController@saveCustomerOwner');
+    $router->post('/workflow/customer-owners/{id}/delete', 'WorkflowSettingsController@deleteCustomerOwner');
+    $router->post('/workflow/reporting', 'WorkflowSettingsController@saveUserReporting');
+    $router->post('/workflow/reporting/{id}/delete', 'WorkflowSettingsController@deleteUserReporting');
+    $router->post('/workflow/incoming-handlers', 'WorkflowSettingsController@saveIncomingHandlers');
+    $router->post('/workflow/miniapp-staff-mapping', 'WorkflowSettingsController@saveMiniAppStaffMapping');
+    $router->post('/workflow/category-routing', 'WorkflowSettingsController@saveCategoryRoutingRule');
+    $router->post('/workflow/category-routing/{id}/delete', 'WorkflowSettingsController@deleteCategoryRoutingRule');
+    $router->post('/workflow/templates', 'WorkflowSettingsController@storeTemplate');
+    $router->post('/workflow/templates/{id}', 'WorkflowSettingsController@updateTemplate');
+    $router->post('/workflow/templates/{id}/delete', 'WorkflowSettingsController@deleteTemplate');
+    $router->post('/workflow/steps', 'WorkflowSettingsController@storeStep');
+    $router->post('/workflow/steps/{id}', 'WorkflowSettingsController@updateStep');
+    $router->post('/workflow/steps/{id}/delete', 'WorkflowSettingsController@deleteStep');
 });
 
 // =====================
@@ -168,7 +246,7 @@ $router->group(['prefix' => 'customer', 'middleware' => ['auth']], function($rou
 // API Routes
 // =====================
 $router->group(['prefix' => 'api'], function($router) {
-    // Auth
+    // Auth — throttled to prevent brute-force
     $router->post('/auth/login', 'AuthController@apiLogin');
 
     // Telegram webhook (POST for actual webhook, GET for testing)
@@ -178,6 +256,9 @@ $router->group(['prefix' => 'api'], function($router) {
     });
     
     // Telegram Mini App API
+    $router->get('/telegram/miniapp/profile', 'Api\\TelegramMiniAppController@profile');
+    $router->post('/telegram/miniapp/profile', 'Api\\TelegramMiniAppController@saveProfile');
+    $router->get('/telegram/miniapp/categories', 'Api\\TelegramMiniAppController@categories');
     $router->post('/telegram/miniapp/create-ticket', 'Api\\TelegramMiniAppController@createTicket');
     $router->get('/telegram/miniapp/my-tickets', 'Api\\TelegramMiniAppController@myTickets');
     $router->get('/telegram/miniapp/ticket/{id}', 'Api\\TelegramMiniAppController@getTicket');
@@ -195,6 +276,9 @@ $router->group(['prefix' => 'api'], function($router) {
 
 // Authenticated API routes
 $router->group(['prefix' => 'api', 'middleware' => ['auth']], function($router) {
+    // Global search
+    $router->get('/search', 'Api\\SearchController@search');
+
     // Notifications
     $router->get('/notifications', 'Api\\NotificationController@index');
     $router->post('/notifications/{id}/read', 'Api\\NotificationController@markRead');

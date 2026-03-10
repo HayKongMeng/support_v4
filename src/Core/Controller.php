@@ -53,8 +53,11 @@ abstract class Controller
         $this->response->json($data, $status);
     }
 
-    protected function success(array $data = [], string $message = 'Success'): void
+    protected function success(array $data = [], string $message = ''): void
     {
+        if ($message === '') {
+            $message = __('success');
+        }
         $this->response->success($data, $message);
     }
 
@@ -79,10 +82,10 @@ abstract class Controller
 
         if (!empty($errors)) {
             if ($this->request->isAjax() || $this->request->isJson()) {
-                $this->error('Validation failed', 422, $errors);
+                $this->error(__('validation_failed'), 422, $errors);
             }
 
-            $this->response->withError('Please fix the errors below')->withInput();
+            $this->response->withError(__('please_fix_errors_below'))->withInput();
             // Flatten errors for display
             $_SESSION['validation_errors'] = $errors;
             $this->back();
@@ -100,7 +103,7 @@ abstract class Controller
     {
         if ($this->auth->guest()) {
             if ($this->request->isAjax() || $this->request->isJson()) {
-                $this->error('Unauthorized', 401);
+                $this->error(__('unauthorized'), 401);
             }
             $this->redirect($this->app->url('login'));
         }
@@ -111,7 +114,7 @@ abstract class Controller
         $this->requireAuth();
         if (!$this->auth->isAdmin()) {
             if ($this->request->isAjax() || $this->request->isJson()) {
-                $this->error('Forbidden', 403);
+                $this->error(__('forbidden'), 403);
             }
             $this->redirect($this->app->url('dashboard'));
         }
@@ -122,7 +125,7 @@ abstract class Controller
         $this->requireAuth();
         if (!$this->auth->isAgent()) {
             if ($this->request->isAjax() || $this->request->isJson()) {
-                $this->error('Forbidden', 403);
+                $this->error(__('forbidden'), 403);
             }
             $this->redirect($this->app->url('customer/tickets'));
         }

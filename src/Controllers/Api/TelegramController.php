@@ -125,7 +125,7 @@ class TelegramController extends Controller
         );
 
         if (!$config) {
-            $this->error('Telegram not configured', 400);
+            $this->error(__('telegram_not_configured'), 400);
             return;
         }
 
@@ -142,7 +142,7 @@ class TelegramController extends Controller
             $this->success([
                 'webhook_url' => $webhookUrl,
                 'result' => $result,
-            ], 'Webhook configured successfully');
+            ], __('webhook_configured_successfully'));
 
         } catch (\Exception $e) {
             $this->error($e->getMessage(), 500);
@@ -162,7 +162,7 @@ class TelegramController extends Controller
         );
 
         if (!$config) {
-            $this->error('Telegram not configured', 400);
+            $this->error(__('telegram_not_configured'), 400);
             return;
         }
 

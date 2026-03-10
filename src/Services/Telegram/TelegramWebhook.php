@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Telegram;
 
 use App\Core\Database;
@@ -10,6 +9,7 @@ use App\Models\Category;
 use App\Models\ActivityLog;
 use App\Services\AI\TicketClassifier;
 use App\Services\Telegram\TelegramAgentNotifier;
+use App\Services\Workflow\WorkflowRouter;
 
 class TelegramWebhook
 {
@@ -63,6 +63,27 @@ class TelegramWebhook
         }
     }
 
+    private function getMiniAppUrl(): string
+    {
+        $appUrl = rtrim((string) ($_ENV['APP_URL'] ?? ''), '/');
+        if ($appUrl !== '') {
+            $normalized = preg_replace('#/public$#', '', $appUrl);
+            $baseUrl = is_string($normalized) && $normalized !== '' ? $normalized : $appUrl;
+            return $baseUrl . '/telegram-app.html';
+        }
+
+        $forwardedProto = (string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '');
+        $proto = $forwardedProto !== ''
+            ? trim(explode(',', $forwardedProto)[0])
+            : ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
+
+        $forwardedHost = (string) ($_SERVER['HTTP_X_FORWARDED_HOST'] ?? '');
+        $hostRaw = $forwardedHost !== '' ? $forwardedHost : (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
+        $host = trim(explode(',', $hostRaw)[0]);
+
+        return $proto . '://' . $host . '/telegram-app.html';
+    }
+
     /**
      * Handle incoming webhook
      */
@@ -102,60 +123,30 @@ class TelegramWebhook
     private function handleMessage(array $message): void
     {
         try {
-            $chatId = $message['chat']['id'];
-            $text = $message['text'] ?? '';
-            $username = $message['from']['username'] ?? null;
-            
-            // Store Telegram user info for later use
+            $chatId = (int) ($message['chat']['id'] ?? 0);
+            $text = (string) ($message['text'] ?? '');
             $telegramUserInfo = [
                 'username' => $message['from']['username'] ?? null,
                 'first_name' => $message['from']['first_name'] ?? '',
                 'last_name' => $message['from']['last_name'] ?? '',
             ];
 
-            error_log("[TelegramWebhook] handleMessage: chat_id={$chatId}, text='{$text}'");
-            
-            // Check for file attachments (photo, document, voice, audio)
-            $hasFile = isset($message['photo']) || isset($message['document']) || isset($message['voice']) || isset($message['audio']);
-            
-            if ($hasFile) {
-                error_log("[TelegramWebhook] Message contains file attachment");
-                $this->handleFileMessage($chatId, $message, $telegramUserInfo);
+            if ($chatId <= 0) {
                 return;
             }
 
-            // Get user state
-            $state = $this->getUserState($chatId);
+            error_log("[TelegramWebhook] handleMessage: chat_id={$chatId}, text='{$text}'");
 
-            // Handle commands
             if (strpos($text, '/') === 0) {
-                error_log("[TelegramWebhook] Detected command, calling handleCommand");
                 $this->handleCommand($chatId, $text, $telegramUserInfo);
                 return;
             }
 
-            // Handle state-based input
-            switch ($state['state']) {
-                case self::STATE_AWAITING_EMAIL:
-                    $this->handleEmailInput($chatId, $text, $telegramUserInfo);
-                    break;
-
-                case self::STATE_AWAITING_SUBJECT:
-                    $this->handleSubjectInput($chatId, $text, $state);
-                    break;
-
-                case self::STATE_AWAITING_DESCRIPTION:
-                    $this->handleDescriptionInput($chatId, $text, $state);
-                    break;
-
-                case self::STATE_AWAITING_TICKET_REPLY:
-                    $this->handleTicketReply($chatId, $text, $state);
-                    break;
-
-                default:
-                    $this->bot->sendMessage($chatId,
-                        "ខ្ញុំមិនយល់ដែលនោះទេ។ ប្រើ /help ដើម្បីមើលពាក្យបញ្ជាដែលមាន។");
-            }
+            $this->clearUserState($chatId);
+            $this->sendMiniAppPrompt(
+                $chatId,
+                'Please use the Mini App for support actions.'
+            );
         } catch (\Throwable $e) {
             error_log("[TelegramWebhook] ERROR in handleMessage: " . $e->getMessage() . " at " . $e->getFile() . ":" . $e->getLine());
         }
@@ -168,41 +159,21 @@ class TelegramWebhook
     {
         try {
             $parts = explode(' ', trim($text));
-            $command = strtolower($parts[0]);
+            $command = strtolower($parts[0] ?? '');
             $args = array_slice($parts, 1);
 
             error_log("[TelegramWebhook] handleCommand: {$command} for chat_id: {$chatId}");
 
-            switch ($command) {
-                case '/start':
-                    $this->handleStart($chatId, $telegramUserInfo);
-                    break;
-
-                case '/help':
-                    $this->handleHelp($chatId);
-                    break;
-
-                case '/newticket':
-                    $this->handleNewTicket($chatId);
-                    break;
-
-                case '/mytickets':
-                    $this->handleMyTickets($chatId);
-                    break;
-
-                case '/status':
-                    $this->handleStatus($chatId, $args[0] ?? null);
-                    break;
-
-                case '/link':
-                    $this->handleLink($chatId, $telegramUserInfo);
-                    break;
-
-                default:
-                    error_log("[TelegramWebhook] Unknown command: {$command}");
-                    $this->bot->sendMessage($chatId,
-                        "Unknown command. Use /help to see available commands.");
+            if ($command === '/start') {
+                $this->handleStart($chatId, $telegramUserInfo, $args[0] ?? null);
+                return;
             }
+
+            $this->clearUserState($chatId);
+            $this->sendMiniAppPrompt(
+                $chatId,
+                'Telegram commands are disabled. Please use the Mini App.'
+            );
         } catch (\Throwable $e) {
             error_log("[TelegramWebhook] ERROR in handleCommand: " . $e->getMessage() . " at " . $e->getFile() . ":" . $e->getLine());
         }
@@ -211,43 +182,57 @@ class TelegramWebhook
     /**
      * Handle /start command
      */
-    private function handleStart(int $chatId, array $telegramUserInfo): void
+    private function handleStart(int $chatId, array $telegramUserInfo, ?string $startParam = null): void
     {
         error_log("[TelegramWebhook] handleStart called for chat_id: {$chatId}, username: {$telegramUserInfo['username']}");
 
         try {
-            $user = $this->getUserByChatId($chatId);
+            $bindResult = $this->handleStartBindLink($chatId, $startParam, $telegramUserInfo);
+            if (($bindResult['handled'] ?? false) && !($bindResult['success'] ?? false)) {
+                return;
+            }
+
+            $user = $bindResult['user'] ?? $this->getUserByChatId($chatId);
             $welcomeMsg = $this->config['welcome_message'] ??
                 "Welcome to our Support Bot! I can help you create and manage support tickets.";
 
             error_log("[TelegramWebhook] User found: " . ($user ? 'yes' : 'no') . ", sending welcome message");
 
             if ($user) {
-                // Create inline keyboard with Mini App button
                 $keyboard = [
-                    [['text' => '🚀 បើកកម្មវិធី', 'web_app' => ['url' => 'https://ticket.providawater.com/telegram-app.html']]]];
-                
+                    [['text' => 'Open Mini App', 'web_app' => ['url' => $this->getMiniAppUrl()]]]
+                ];
+
                 $this->bot->sendMessageWithKeyboard($chatId,
                     "{$welcomeMsg}\n\n" .
-                    "សូមស្វាគមន៍, <b>{$user['name']}</b>! គណនីរបស់អ្នកបានតភ្ជាប់រួចហើយ។\n\n" .
-                    "ចុចប៊ូតុងខាងក្រោម ដើម្បីបើកកម្មវិធី ឬប្រើ /help ដើម្បីមើលពាក្យបញ្ជា។",
+                    "Welcome, <b>{$user['name']}</b>! Your Telegram account is linked.\n\n" .
+                    "Use the button below to open Mini App.",
                     $keyboard);
             } else {
-                $this->bot->sendMessage($chatId,
+                $this->sendMiniAppPrompt(
+                    $chatId,
                     "{$welcomeMsg}\n\n" .
-                    "ដើម្បីចាប់ផ្តើម ខ្ញុំត្រូវការតភ្ជាប់អាស័យដ្ឋានអ៊ីមែលរបស់អ្នក។\n" .
-                    "ប្រើ /link ដើម្បីភ្ជាប់គណនីគាំទ្ភាពរបស់អ្នក។");
+                    "Use the Mini App button below to continue."
+                );
             }
             error_log("[TelegramWebhook] Welcome message sent successfully");
         } catch (\Exception $e) {
             error_log("[TelegramWebhook] ERROR in handleStart: " . $e->getMessage() . " at " . $e->getFile() . ":" . $e->getLine());
-            // Try to send error message to user
             try {
                 $this->bot->sendMessage($chatId, "Sorry, an error occurred. Please try again later.");
             } catch (\Exception $e2) {
                 error_log("[TelegramWebhook] CRITICAL: Could not send error message: " . $e2->getMessage());
             }
         }
+    }
+
+    private function sendMiniAppPrompt(int $chatId, string $message): void
+    {
+        $keyboard = [
+            [['text' => 'Open Mini App', 'web_app' => ['url' => $this->getMiniAppUrl()]]]
+        ];
+
+        $this->bot->sendMessageWithKeyboard($chatId, $message, $keyboard);
     }
 
     /**
@@ -258,13 +243,13 @@ class TelegramWebhook
         try {
             error_log("[TelegramWebhook] handleHelp called for chat_id: {$chatId}");
             $this->bot->sendMessage($chatId,
-                "<b>ពាក្យបញ្ជាដែលមាន</b>\n\n" .
-                "/start - ចាប់ផ្តើមម៉ាស៊ីនបង្គាប់\n" .
-                "/link - ភ្ជាប់គណនីអ៊ីមែលរបស់អ្នក\n" .
-                "/newticket - បង្កើតសំណើសុំជំនួយគាំទ្រថ្មី\n" .
-                "/mytickets - មើលសំណើសុំជំនួយគាំទ្របស់អ្នក\n" .
-                "/status [ticket#] - ពិនិត្យលក្ខខ័ណ្ឌសំណើសុំជំនួយ\n" .
-                "/help - បង្ហាញសារលម្អិតនេះ");
+                "<b>Available commands</b>\n\n" .
+                "/start - Start the bot\n" .
+                "/link - Link your support account by email\n" .
+                "/newticket - Create a new support ticket\n" .
+                "/mytickets - View your tickets\n" .
+                "/status [ticket#] - Check ticket status\n" .
+                "/help - Show this help message");
             error_log("[TelegramWebhook] handleHelp completed successfully");
         } catch (\Throwable $e) {
             error_log("[TelegramWebhook] ERROR in handleHelp: " . $e->getMessage() . " at " . $e->getFile() . ":" . $e->getLine());
@@ -278,10 +263,11 @@ class TelegramWebhook
     {
         try {
             error_log("[TelegramWebhook] handleLink called for chat_id: {$chatId}");
-            // Store Telegram user info in state for later use during email linking
-            $this->setUserState($chatId, self::STATE_AWAITING_EMAIL, ['telegram_user_info' => $telegramUserInfo]);
+            $this->setUserState($chatId, self::STATE_AWAITING_EMAIL, [
+                'telegram_user_info' => $telegramUserInfo,
+            ]);
             $this->bot->sendMessage($chatId,
-                "សូមបញ្ចូលអាស័យដ្ឋានអ៊ីមែលរបស់អ្នកដើម្បីភ្ជាប់គណនីរបស់អ្នក:");
+                "Please enter your email address to link your support account.");
             error_log("[TelegramWebhook] handleLink completed successfully");
         } catch (\Throwable $e) {
             error_log("[TelegramWebhook] ERROR in handleLink: " . $e->getMessage() . " at " . $e->getFile() . ":" . $e->getLine());
@@ -293,18 +279,15 @@ class TelegramWebhook
      */
     private function handleEmailInput(int $chatId, string $email, array $telegramUserInfo): void
     {
-        // Validate email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->bot->sendMessage($chatId,
-                "វាមិនហាក់ដូចជាអាស័យដ្ឋានអ៊ីមែលត្រឹមត្រូវទេ។ សូមព្យាយាមម្តងទៀត:");
+                "That does not look like a valid email address. Please try again.");
             return;
         }
 
-        // Get state data to retrieve stored Telegram user info
         $state = $this->getUserState($chatId);
         $storedUserInfo = $state['data']['telegram_user_info'] ?? $telegramUserInfo;
-        
-        // Build display name from Telegram info
+
         $displayName = trim(($storedUserInfo['first_name'] ?? '') . ' ' . ($storedUserInfo['last_name'] ?? ''));
         if (empty($displayName) && !empty($storedUserInfo['username'])) {
             $displayName = $storedUserInfo['username'];
@@ -313,13 +296,11 @@ class TelegramWebhook
             $displayName = 'Telegram User';
         }
 
-        // Find or create user
         $userModel = new User($this->db);
         $user = $userModel->findByEmail($email, $this->companyId);
 
         if (!$user) {
-            // Create new customer with Telegram name
-            $userId = $this->db->insert('users', [
+            $this->db->insert('users', [
                 'company_id' => $this->companyId,
                 'email' => $email,
                 'name' => $displayName,
@@ -329,20 +310,19 @@ class TelegramWebhook
                 'is_active' => 1,
             ]);
         } else {
-            // Link existing user and update name if it was "Telegram User"
-            if ($user['name'] === 'Telegram User') {
+            if (($user['name'] ?? '') === 'Telegram User') {
                 $this->db->update('users', ['name' => $displayName], 'id = ?', [$user['id']]);
             }
-            $userModel->linkTelegram($user['id'], $chatId);
+            $userModel->linkTelegram((int) $user['id'], $chatId, $storedUserInfo['username'] ?? null);
         }
 
         $this->clearUserState($chatId);
         $this->bot->sendMessage($chatId,
-            "គណនីរបស់អ្នកបានតភ្ជាប់ដោយជោគជ័យ!\n\n" .
-            "អ្នកក៏អាច:\n" .
-            "- បង្កើតសំណើសុំជំនួយដោយ /newticket\n" .
-            "- មើលសំណើសុំជំនួយរបស់អ្នក /mytickets\n" .
-            "- ទទួលបានការជូនដំណឹងអំពីសំណើសុំជំនួយរបស់អ្នក");
+            "Your account has been linked successfully.\n\n" .
+            "You can now:\n" .
+            "- Create a ticket with /newticket\n" .
+            "- View your tickets with /mytickets\n" .
+            "- Receive ticket updates on Telegram");
     }
 
     /**
@@ -354,14 +334,14 @@ class TelegramWebhook
 
         if (!$user) {
             $this->bot->sendMessage($chatId,
-                "សូមភ្ជាប់អ៊ីមែលរបស់អ្នកដំបូងដោយប្រើ /link");
+                "Please link your account first using /link");
             return;
         }
 
         $this->setUserState($chatId, self::STATE_AWAITING_SUBJECT);
         $this->bot->sendMessage($chatId,
-            "ចូលក្នុងការបង្កើតសំណើសុំជំនួយថ្មី។\n\n" .
-            "<b>ជំហាន 1/2:</b> តើប្រធានបទនៃបញ្ហារបស់អ្នកគឺជាអ្វី?");
+            "Let's create a new support ticket.\n\n" .
+            "<b>Step 1/2:</b> What is the subject of your issue?");
     }
 
     /**
@@ -371,13 +351,13 @@ class TelegramWebhook
     {
         if (strlen($subject) < 5) {
             $this->bot->sendMessage($chatId,
-                "សូមផ្តល់ជូនប្រធានបទលម្អិត (យ៉ាងហោចណាស់ 5 តួអក្សរ):");
+                "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚Â (ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ 5 ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã…Â¡):");
             return;
         }
 
         $this->setUserState($chatId, self::STATE_AWAITING_DESCRIPTION, ['subject' => $subject]);
         $this->bot->sendMessage($chatId,
-            "<b>ជំហាន 2/2:</b> សូមពិពណ៌នាលម្អិតអំពីបញ្ហារបស់អ្នក:");
+            "<b>ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ 2/2:</b> ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¸Ã…â€™ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬:");
     }
 
     /**
@@ -387,7 +367,7 @@ class TelegramWebhook
     {
         if (strlen($description) < 10) {
             $this->bot->sendMessage($chatId,
-                "សូមផ្តល់ជូនព័ត៌មានលម្អិតលម្អិត (យ៉ាងហោចណាស់ 10 តួអក្សរ):");
+                "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã…â€™ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚Â (ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ 10 ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã…Â¡):");
             return;
         }
 
@@ -414,6 +394,22 @@ class TelegramWebhook
             $aiPriority = null;
         }
 
+        $categoryId = isset($classification['category_id']) ? (int) $classification['category_id'] : 0;
+        if ($categoryId <= 0) {
+            $defaultCategory = isset($this->config['default_category_id']) ? (int) $this->config['default_category_id'] : 0;
+            $categoryId = $defaultCategory > 0 ? $defaultCategory : null;
+        }
+
+        $workflowResolved = null;
+        $assignedTo = null;
+        try {
+            $workflowRouter = new WorkflowRouter($this->db, $this->companyId);
+            $workflowResolved = $workflowRouter->resolveForTicket('telegram', $categoryId, (int) $user['id']);
+            $assignedTo = $workflowResolved['assignee_id'] ?? null;
+        } catch (\Throwable $e) {
+            error_log("[TelegramWebhook] Workflow resolve failed: " . $e->getMessage());
+        }
+
         $ticketId = $ticketModel->create([
             'company_id' => $this->companyId,
             'ticket_number' => $ticketNumber,
@@ -422,7 +418,8 @@ class TelegramWebhook
             'status' => 'open',
             'priority' => $priority,
             'source' => 'telegram',
-            'category_id' => $classification['category_id'] ?? $this->config['default_category_id'],
+            'category_id' => $categoryId,
+            'assigned_to' => $assignedTo,
             'requester_id' => $user['id'],
             'requester_email' => $user['email'],
             'requester_name' => $user['name'],
@@ -430,6 +427,15 @@ class TelegramWebhook
             'ai_suggested_priority' => $aiPriority,
             'ai_confidence_score' => $classification['confidence'] ?? null,
         ]);
+
+        if (is_array($workflowResolved)) {
+            try {
+                $workflowRouter ??= new WorkflowRouter($this->db, $this->companyId);
+                $workflowRouter->startTicketWorkflow($ticketId, (int) $user['id'], $workflowResolved);
+            } catch (\Throwable $e) {
+                error_log("[TelegramWebhook] Workflow start failed: " . $e->getMessage());
+            }
+        }
 
         // Add message
         $messageModel = new TicketMessage($this->db);
@@ -459,10 +465,10 @@ class TelegramWebhook
 
         $this->clearUserState($chatId);
         $this->bot->sendMessage($chatId,
-            "សំណើសុំជំនួយរបស់អ្នកបានបង្កើត!\n\n" .
-            "<b>លេខសំណើសុំជំនួយ:</b> {$ticketNumber}\n" .
-            "<b>ប្រធានបទ:</b> {$subject}\n\n" .
-            "យើងនឹងជូនដំណឹងឱ្យអ្នកនៅពេលដែលមានការឆ្លើយតប។");
+            "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‚Â!\n\n" .
+            "<b>ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢:</b> {$ticketNumber}\n" .
+            "<b>ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Ëœ:</b> {$subject}\n\n" .
+            "ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã‚Â±ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
     }
 
     /**
@@ -488,7 +494,7 @@ class TelegramWebhook
 
         if (empty($tickets)) {
             $this->bot->sendMessage($chatId,
-                "អ្នកមិនមានសំណើសុំជំនួយលើកទឹកលោកលើកទឹកលោក។\n\nប្រើ /newticket ដើម្បីបង្កើតលក្ខណ៍ដូច។");
+                "ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â\n\nÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¾ /newticket ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
             return;
         }
 
@@ -516,13 +522,13 @@ class TelegramWebhook
 
         if (!$user) {
             $this->bot->sendMessage($chatId,
-                "សូមភ្ជាប់អ៊ីមែលរបស់អ្នកដំបូងដោយប្រើ /link");
+                "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã…Â ÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¾ /link");
             return;
         }
 
         if (!$ticketNumber) {
             $this->bot->sendMessage($chatId,
-                "សូមផ្តល់ជូនលេខសំណើសុំជំនួយ។ ឧទាហរណ៍: /status TKT-000001");
+                "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã‚Â§ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¸Ã‚Â: /status TKT-000001");
             return;
         }
 
@@ -533,7 +539,7 @@ class TelegramWebhook
         );
 
         if (!$ticket) {
-            $this->bot->sendMessage($chatId, "សំណើសុំជំនួយមិនត្រូវបានរកឃើញទេ។ ធានាថាអ្នកបានបញ្ចូលលេខសំណើសុំជំនួយត្រឹមត្រូវ។");
+            $this->bot->sendMessage($chatId, "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã†â€™ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
             return;
         }
 
@@ -551,25 +557,19 @@ class TelegramWebhook
      */
     private function handleCallbackQuery(array $query): void
     {
-        $chatId = $query['message']['chat']['id'];
-        $data = $query['data'];
+        $chatId = (int) ($query['message']['chat']['id'] ?? 0);
+        $callbackId = (string) ($query['id'] ?? '');
 
-        // Acknowledge the callback
-        $this->bot->answerCallbackQuery($query['id']);
+        if ($callbackId !== '') {
+            $this->bot->answerCallbackQuery($callbackId);
+        }
 
-        // Parse callback data
-        $parts = explode(':', $data);
-        $action = $parts[0];
-        $param = $parts[1] ?? null;
-
-        switch ($action) {
-            case 'view_ticket':
-                $this->viewTicket($chatId, (int) $param);
-                break;
-
-            case 'reply_ticket':
-                $this->startTicketReply($chatId, (int) $param);
-                break;
+        if ($chatId > 0) {
+            $this->clearUserState($chatId);
+            $this->sendMiniAppPrompt(
+                $chatId,
+                'Please use the Mini App for support actions.'
+            );
         }
     }
 
@@ -586,7 +586,7 @@ class TelegramWebhook
         );
 
         if (!$ticket) {
-            $this->bot->sendMessage($chatId, "សំណើសុំជំនួយមិនត្រូវបានរកឃើញទេ។");
+            $this->bot->sendMessage($chatId, "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã†â€™ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
             return;
         }
 
@@ -624,7 +624,7 @@ class TelegramWebhook
     {
         $this->setUserState($chatId, self::STATE_AWAITING_TICKET_REPLY, ['ticket_id' => $ticketId]);
         $this->bot->sendMessage($chatId,
-            "សូមសរសេរការឆ្លើយតបរបស់អ្នក:");
+            "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬:");
     }
 
     /**
@@ -642,7 +642,7 @@ class TelegramWebhook
 
         if (!$ticket) {
             $this->clearUserState($chatId);
-            $this->bot->sendMessage($chatId, "សំណើសុំជំនួយមិនត្រូវបានរកឃើញទេ។");
+            $this->bot->sendMessage($chatId, "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã†â€™ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
             return;
         }
 
@@ -693,14 +693,14 @@ class TelegramWebhook
             $status = ucfirst(str_replace('_', ' ', $ticket['status'] ?? 'open'));
             $priority = ucfirst($ticket['priority'] ?? 'medium');
             $previewSafe = htmlspecialchars($preview, ENT_QUOTES | ENT_HTML5);
-            $text = "💬 <b>New Customer Reply</b>\n" .
-                "🆔 <b>Ticket:</b> #{$ticket['ticket_number']}\n" .
-                "📝 <b>Subject:</b> {$subject}\n" .
-                "📌 <b>Status:</b> {$status}\n" .
-                "🚦 <b>Priority:</b> {$priority}\n" .
-                "👤 <b>Requester:</b> {$requesterName} ({$requesterEmail})\n" .
-                "🎯 <b>Assigned to:</b> {$assignedLabel}\n" .
-                "✉️ <b>Message:</b> {$previewSafe}";
+            $text = "ÃƒÂ°Ã…Â¸Ã¢â‚¬â„¢Ã‚Â¬ <b>New Customer Reply</b>\n" .
+                "ÃƒÂ°Ã…Â¸Ã¢â‚¬Â Ã¢â‚¬Â <b>Ticket:</b> #{$ticket['ticket_number']}\n" .
+                "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â <b>Subject:</b> {$subject}\n" .
+                "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…â€™ <b>Status:</b> {$status}\n" .
+                "ÃƒÂ°Ã…Â¸Ã…Â¡Ã‚Â¦ <b>Priority:</b> {$priority}\n" .
+                "ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ‚Â¤ <b>Requester:</b> {$requesterName} ({$requesterEmail})\n" .
+                "ÃƒÂ°Ã…Â¸Ã…Â½Ã‚Â¯ <b>Assigned to:</b> {$assignedLabel}\n" .
+                "ÃƒÂ¢Ã…â€œÃ¢â‚¬Â°ÃƒÂ¯Ã‚Â¸Ã‚Â <b>Message:</b> {$previewSafe}";
             if ($link) {
                 $text .= "\nLink: {$link}";
             }
@@ -710,8 +710,8 @@ class TelegramWebhook
 
         $this->clearUserState($chatId);
         $this->bot->sendMessage($chatId,
-            "ការឆ្លើយតបរបស់អ្នកបានដំឡើងរៀងរាល់សំណើសុំជំនួយ #{$ticket['ticket_number']}។\n\n" .
-            "យើងនឹងជូនដំណឹងឱ្យអ្នកនៅពេលដែលមានការឆ្លើយតប។");
+            "ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã‚Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¸Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ #{$ticket['ticket_number']}ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â\n\n" .
+            "ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã‚Â±ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
     }
 
     /**
@@ -733,15 +733,15 @@ class TelegramWebhook
 
         switch ($type) {
             case 'reply':
-                $text = "ការឆ្លើយតបថ្មីលើសំណើសុំជំនួយរបស់អ្នក #{$ticket['ticket_number']}!\n\n" .
-                    "<b>ប្រធានបទ:</b> {$ticket['subject']}\n\n" .
-                    "ពិនិត្យសំណើសុំជំនួយដើម្បីដំណើរការឆ្លើយតបពេញលេញ។";
+                $text = "ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ #{$ticket['ticket_number']}!\n\n" .
+                    "<b>ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Ëœ:</b> {$ticket['subject']}\n\n" .
+                    "ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬â€œÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â";
                 break;
 
             case 'resolved':
-                $text = "សំណើសុំជំនួយរបស់អ្នក #{$ticket['ticket_number']} បានដោះស្រាយ!\n\n" .
-                    "<b>ប្រធានបទ:</b> {$ticket['subject']}\n\n" .
-                    "ប្រសិនបើអ្នកត្រូវការជំនួយលម្អិត អ្នកអាចឆ្លើយដើម្បីបើកឡើងវិញនូវសំណើសុំជំនួយ។";
+                $text = "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ #{$ticket['ticket_number']} ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢!\n\n" .
+                    "<b>ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã¢â‚¬Ëœ:</b> {$ticket['subject']}\n\n" .
+                    "ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã‚Â ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¦ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã‚Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â";
                 break;
 
             default:
@@ -749,7 +749,7 @@ class TelegramWebhook
         }
 
         $keyboard = [
-            [['text' => 'មើលសំណើសុំជំនួយ', 'callback_data' => "view_ticket:{$ticket['id']}"]],
+            [['text' => 'ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂºÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢', 'callback_data' => "view_ticket:{$ticket['id']}"]],
         ];
 
         $this->bot->sendMessageWithKeyboard($chatId, $text, $keyboard);
@@ -765,7 +765,7 @@ class TelegramWebhook
             
             if (!$user) {
                 $this->bot->sendMessage($chatId,
-                    "សូមភ្ជាប់គណនីរបស់អ្នកដំបូងដោយប្រើ /link");
+                    "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã¢â‚¬â€ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¡ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â¸ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â¹ÃƒÂ¡Ã…Â¾Ã‚Â¢ÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã…Â ÃƒÂ¡Ã…Â¸Ã¢â‚¬Å¾ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¾ /link");
                 return;
             }
             
@@ -890,7 +890,7 @@ class TelegramWebhook
             
             if (!$ticket) {
                 $this->clearUserState($chatId);
-                $this->bot->sendMessage($chatId, "សំណើសុំជំនួយមិនត្រូវបានរកឃើញទេ។");
+                $this->bot->sendMessage($chatId, "ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã…Â½ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã…Â¸ÃƒÂ¡Ã…Â¾Ã‚Â»ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â¡ÃƒÂ¡Ã…Â¸Ã¢â‚¬Â ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚Â½ÃƒÂ¡Ã…Â¾Ã¢â€žÂ¢ÃƒÂ¡Ã…Â¾Ã‹Å“ÃƒÂ¡Ã…Â¾Ã‚Â·ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬â„¢ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã‚Â¼ÃƒÂ¡Ã…Â¾Ã…â€œÃƒÂ¡Ã…Â¾Ã¢â‚¬ÂÃƒÂ¡Ã…Â¾Ã‚Â¶ÃƒÂ¡Ã…Â¾Ã¢â‚¬Å“ÃƒÂ¡Ã…Â¾Ã…Â¡ÃƒÂ¡Ã…Â¾Ã¢â€šÂ¬ÃƒÂ¡Ã…Â¾Ã†â€™ÃƒÂ¡Ã…Â¾Ã‚Â¾ÃƒÂ¡Ã…Â¾Ã¢â‚¬Â°ÃƒÂ¡Ã…Â¾Ã¢â‚¬ËœÃƒÂ¡Ã…Â¸Ã‚ÂÃƒÂ¡Ã…Â¸Ã¢â‚¬Â");
                 return;
             }
             
@@ -955,14 +955,14 @@ class TelegramWebhook
                 $status = ucfirst(str_replace('_', ' ', $ticket['status'] ?? 'open'));
                 $priority = ucfirst($ticket['priority'] ?? 'medium');
                 $previewSafe = htmlspecialchars($preview, ENT_QUOTES | ENT_HTML5);
-                $text = "📎 <b>New Customer Attachment</b>\n" .
-                    "🆔 <b>Ticket:</b> #{$ticket['ticket_number']}\n" .
-                    "📝 <b>Subject:</b> {$subject}\n" .
-                    "📌 <b>Status:</b> {$status}\n" .
-                    "🚦 <b>Priority:</b> {$priority}\n" .
-                    "👤 <b>Requester:</b> {$requesterName} ({$requesterEmail})\n" .
-                    "🎯 <b>Assigned to:</b> {$assignedLabel}\n" .
-                    "✉️ <b>Message:</b> {$previewSafe}";
+                $text = "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â½ <b>New Customer Attachment</b>\n" .
+                    "ÃƒÂ°Ã…Â¸Ã¢â‚¬Â Ã¢â‚¬Â <b>Ticket:</b> #{$ticket['ticket_number']}\n" .
+                    "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â <b>Subject:</b> {$subject}\n" .
+                    "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…â€™ <b>Status:</b> {$status}\n" .
+                    "ÃƒÂ°Ã…Â¸Ã…Â¡Ã‚Â¦ <b>Priority:</b> {$priority}\n" .
+                    "ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ‚Â¤ <b>Requester:</b> {$requesterName} ({$requesterEmail})\n" .
+                    "ÃƒÂ°Ã…Â¸Ã…Â½Ã‚Â¯ <b>Assigned to:</b> {$assignedLabel}\n" .
+                    "ÃƒÂ¢Ã…â€œÃ¢â‚¬Â°ÃƒÂ¯Ã‚Â¸Ã‚Â <b>Message:</b> {$previewSafe}";
                 if ($link) {
                     $text .= "\nLink: {$link}";
                 }
@@ -972,7 +972,7 @@ class TelegramWebhook
             
             $this->clearUserState($chatId);
             $this->bot->sendMessage($chatId,
-                "✅ File sent to ticket #{$ticket['ticket_number']} successfully!");
+                "ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ File sent to ticket #{$ticket['ticket_number']} successfully!");
             
         } catch (\Exception $e) {
             error_log("[TelegramWebhook] ERROR in handleFileReply: " . $e->getMessage());
@@ -1101,6 +1101,119 @@ class TelegramWebhook
         );
     }
 
+    private function handleStartBindLink(int $chatId, ?string $startParam, array $telegramUserInfo): array
+    {
+        if ($startParam === null || $startParam === '' || strpos($startParam, 'bind_') !== 0) {
+            return ['handled' => false, 'success' => false, 'user' => null];
+        }
+
+        if (!preg_match('/^bind_(\d+)_(\d{10})_([A-Za-z0-9_-]{8,64})$/', $startParam, $matches)) {
+            $this->bot->sendMessage($chatId, 'Invalid Telegram link. Please regenerate the link from Settings > Users.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        $userId = (int) ($matches[1] ?? 0);
+        $expiresAt = (int) ($matches[2] ?? 0);
+        $signature = (string) ($matches[3] ?? '');
+
+        if ($userId <= 0 || $expiresAt <= 0 || $signature === '') {
+            $this->bot->sendMessage($chatId, 'Invalid Telegram link payload.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        if ($expiresAt < time()) {
+            $this->bot->sendMessage($chatId, 'This Telegram link has expired. Please generate a new one from Settings > Users.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        if (!$this->isValidBindStartSignature($userId, $expiresAt, $signature)) {
+            $this->bot->sendMessage($chatId, 'Invalid Telegram link signature. Please generate a new one.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        $staffUser = $this->db->selectOne(
+            "SELECT id, name, role, is_active
+             FROM users
+             WHERE id = ? AND company_id = ?
+             LIMIT 1",
+            [$userId, $this->companyId]
+        );
+
+        if (!$staffUser || (int) ($staffUser['is_active'] ?? 0) !== 1 || ($staffUser['role'] ?? '') === 'customer') {
+            $this->bot->sendMessage($chatId, 'This account cannot be linked via staff Telegram link.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        $existingLinked = $this->db->selectOne(
+            "SELECT id, name
+             FROM users
+             WHERE telegram_chat_id = ?
+               AND company_id = ?
+               AND id != ?
+             LIMIT 1",
+            [$chatId, $this->companyId, $userId]
+        );
+
+        if ($existingLinked) {
+            $existingName = htmlspecialchars((string) ($existingLinked['name'] ?? 'another account'), ENT_QUOTES | ENT_HTML5);
+            $this->bot->sendMessage(
+                $chatId,
+                "This Telegram account is already linked to <b>{$existingName}</b>. Contact admin if you need to reassign it."
+            );
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        $this->db->update('users', [
+            'telegram_chat_id' => $chatId,
+            'telegram_username' => $telegramUserInfo['username'] ?? null,
+        ], 'id = ? AND company_id = ?', [$userId, $this->companyId]);
+
+        $linkedUser = $this->db->selectOne(
+            "SELECT * FROM users WHERE id = ? AND company_id = ? AND is_active = 1",
+            [$userId, $this->companyId]
+        );
+
+        if (!$linkedUser) {
+            $this->bot->sendMessage($chatId, 'Failed to link account. Please try again.');
+            return ['handled' => true, 'success' => false, 'user' => null];
+        }
+
+        $safeName = htmlspecialchars((string) ($linkedUser['name'] ?? 'User'), ENT_QUOTES | ENT_HTML5);
+        $keyboard = [
+            [['text' => 'Open Mini App', 'web_app' => ['url' => $this->getMiniAppUrl()]]]
+        ];
+        $this->bot->sendMessageWithKeyboard(
+            $chatId,
+            "Telegram linked to staff account <b>{$safeName}</b>.\nYou will now receive assignment notifications in this chat.",
+            $keyboard
+        );
+
+        return ['handled' => true, 'success' => true, 'user' => $linkedUser];
+    }
+
+    private function isValidBindStartSignature(int $userId, int $expiresAt, string $signature): bool
+    {
+        $payload = $userId . ':' . $expiresAt;
+        $secrets = array_values(array_unique(array_filter([
+            (string) ($this->config['webhook_secret'] ?? ''),
+            (string) ($this->config['bot_token'] ?? ''),
+        ])));
+
+        foreach ($secrets as $secret) {
+            if ($secret === '') {
+                continue;
+            }
+
+            $rawSignature = hash_hmac('sha256', $payload, $secret, true);
+            $expected = rtrim(strtr(base64_encode(substr($rawSignature, 0, 16)), '+/', '-_'), '=');
+            if (hash_equals($expected, $signature)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private function getUserByChatId(int $chatId): ?array
     {
         return $this->db->selectOne(
@@ -1109,3 +1222,4 @@ class TelegramWebhook
         );
     }
 }
+

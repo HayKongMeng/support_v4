@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Ticket #{$ticket['ticket_number']}";
+$pageTitle = __('ticket_number_title', ['number' => $ticket['ticket_number']]);
 ob_start();
 ?>
 
@@ -21,22 +21,100 @@ ob_start();
                     default: echo 'bg-gray-100 text-gray-800';
                 }
                 ?>">
-                <?= ucfirst(str_replace('_', ' ', $ticket['status'])) ?>
+                <?= __((string)$ticket['status']) ?>
             </span>
         </div>
         <h1 class="text-xl font-semibold text-gray-900 mb-2"><?= htmlspecialchars($ticket['subject']) ?></h1>
         <p class="text-sm text-gray-500">
-            Created on <?= date('F j, Y \a\t g:i A', strtotime($ticket['created_at'])) ?>
+            <?= __('created_on') ?> <?= date('F j, Y \a\t g:i A', strtotime($ticket['created_at'])) ?>
             <?php if (!empty($ticket['category_name'])): ?>
             &bull; <?= htmlspecialchars($ticket['category_name']) ?>
             <?php endif; ?>
         </p>
     </div>
 
+    <?php if (!empty($workflowState)): ?>
+    <?php
+    $workflowStatus = (string) ($workflowState['status'] ?? 'in_progress');
+    $workflowStatusClass = $workflowStatus === 'completed'
+        ? 'bg-green-100 text-green-700'
+        : ($workflowStatus === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-indigo-100 text-indigo-700');
+    $stepPosition = (int) ($workflowState['step_position'] ?? 0);
+    $totalSteps = (int) ($workflowState['total_steps'] ?? 0);
+    $progressPercent = $totalSteps > 0 ? min(100, max(0, (int) round(($stepPosition / $totalSteps) * 100))) : 0;
+    $remainingSeconds = isset($workflowState['remaining_seconds']) ? (int) $workflowState['remaining_seconds'] : null;
+    $formatDuration = static function (int $seconds): string {
+        $seconds = max(0, $seconds);
+        $hours = intdiv($seconds, 3600);
+        $minutes = intdiv($seconds % 3600, 60);
+        if ($hours > 0) {
+            return $hours . 'h ' . $minutes . 'm';
+        }
+        return max(1, $minutes) . 'm';
+    };
+    ?>
+    <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="font-semibold text-gray-800"><?= __('wf_workflow_status') ?></h2>
+            <span class="inline-flex px-2.5 py-1 text-xs font-semibold rounded-full <?= $workflowStatusClass ?>">
+                <?= htmlspecialchars(ucfirst(str_replace('_', ' ', $workflowStatus))) ?>
+            </span>
+        </div>
+
+        <?php if ($totalSteps > 0): ?>
+        <div class="mt-4">
+            <div class="flex items-center justify-between text-xs text-gray-500">
+                <span><?= __('wf_step_of', ['current' => max(1, $stepPosition), 'total' => $totalSteps]) ?></span>
+                <span><?= $progressPercent ?>%</span>
+            </div>
+            <div class="mt-1 h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 rounded-full transition-all" style="width: <?= $progressPercent ?>%"></div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg border border-gray-200 p-3">
+                <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_current_step') ?></p>
+                <p class="mt-1 font-medium text-gray-900">
+                    <?= htmlspecialchars($workflowState['current_step_name'] ?? __('wf_step_number', ['step' => (int) ($workflowState['current_step_order'] ?? 0)])) ?>
+                </p>
+            </div>
+            <div class="rounded-lg border border-gray-200 p-3">
+                <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_assigned') ?></p>
+                <p class="mt-1 font-medium text-gray-900"><?= htmlspecialchars($workflowState['current_assignee_name'] ?? __('support_team')) ?></p>
+            </div>
+            <div class="rounded-lg border border-gray-200 p-3 sm:col-span-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                    <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_next_escalation') ?></p>
+                    <?php if (!empty($workflowState['due_at'])): ?>
+                    <span class="text-xs text-gray-500"><?= date('M j, Y g:i A', strtotime($workflowState['due_at'])) ?></span>
+                    <?php endif; ?>
+                </div>
+                <p class="mt-1 font-medium <?= !empty($workflowState['is_overdue']) ? 'text-red-600' : 'text-gray-900' ?>">
+                    <?php if (empty($workflowState['due_at'])): ?>
+                        <?= __('wf_no_due_time') ?>
+                    <?php elseif (!empty($workflowState['is_overdue'])): ?>
+                        <?= __('wf_overdue_by', ['duration' => $formatDuration(abs($remainingSeconds ?? 0))]) ?>
+                    <?php else: ?>
+                        <?= __('wf_due_in', ['duration' => $formatDuration(max(0, $remainingSeconds ?? 0))]) ?>
+                    <?php endif; ?>
+                </p>
+            </div>
+            <?php if (!empty($workflowState['next_step_name'])): ?>
+            <div class="rounded-lg border border-gray-200 p-3 sm:col-span-2">
+                <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_next_step') ?></p>
+                <p class="mt-1 font-medium text-gray-900"><?= htmlspecialchars($workflowState['next_step_name']) ?></p>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!-- Messages -->
     <div class="bg-white rounded-xl shadow-sm mb-6">
         <div class="p-4 border-b border-gray-200">
-            <h2 class="font-semibold text-gray-800">Conversation</h2>
+            <h2 class="font-semibold text-gray-800"><?= __('conversation') ?></h2>
         </div>
         <div class="divide-y divide-gray-100">
             <?php foreach ($messages as $msg): ?>
@@ -44,15 +122,15 @@ ob_start();
                 <div class="flex items-start gap-3">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0
                         <?= in_array($msg['user_role'] ?? '', ['admin', 'agent']) ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-600' ?>">
-                        <?= strtoupper(substr($msg['user_name'] ?? 'S', 0, 1)) ?>
+                        <?= strtoupper(substr($msg['user_name'] ?? __('system'), 0, 1)) ?>
                     </div>
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-1">
                             <span class="font-medium text-gray-900">
-                                <?= htmlspecialchars($msg['user_name'] ?? 'Support Team') ?>
+                                <?= htmlspecialchars($msg['user_name'] ?? __('support_team')) ?>
                             </span>
                             <?php if (in_array($msg['user_role'] ?? '', ['admin', 'agent'])): ?>
-                            <span class="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-full">Support</span>
+                            <span class="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-full"><?= __('support') ?></span>
                             <?php endif; ?>
                             <span class="text-xs text-gray-500"><?= date('M j, g:i A', strtotime($msg['created_at'])) ?></span>
                         </div>
@@ -61,12 +139,18 @@ ob_start();
                         <?php if (!empty($msg['attachment_files'])): ?>
                         <!-- Attachments -->
                         <div class="mt-3 space-y-2">
-                            <p class="text-xs font-medium text-gray-500 uppercase tracking-wide">Attachments</p>
+                            <p class="text-xs font-medium text-gray-500 uppercase tracking-wide"><?= __('attachments') ?></p>
                             <div class="flex flex-wrap gap-2">
                                 <?php foreach ($msg['attachment_files'] as $attachment): ?>
                                 <?php
-                                $isImage = strpos($attachment['mime_type'], 'image/') === 0;
-                                $isAudio = strpos($attachment['mime_type'], 'audio/') === 0;
+                                $mimeType = strtolower((string)($attachment['mime_type'] ?? ''));
+                                $fileName = strtolower((string)($attachment['original_name'] ?? $attachment['filename'] ?? ''));
+                                $isImage = strpos($mimeType, 'image/') === 0;
+                                $isAudio = strpos($mimeType, 'audio/') === 0
+                                    || $mimeType === 'video/webm'
+                                    || str_contains($mimeType, 'opus')
+                                    || str_contains($mimeType, 'ogg')
+                                    || (bool) preg_match('/\.(ogg|oga|opus|mp3|m4a|aac|wav|weba|webm)$/i', $fileName);
                                 $fileUrl = $app->url('uploads/' . $attachment['path']);
                                 ?>
                                 <?php if ($isImage): ?>
@@ -118,17 +202,17 @@ ob_start();
     <!-- Reply Form -->
     <?php if (!in_array($ticket['status'], ['closed'])): ?>
     <div class="bg-white rounded-xl shadow-sm p-6" x-data="{ files: [], dragover: false }">
-        <h3 class="font-semibold text-gray-800 mb-4">Add a Reply</h3>
+        <h3 class="font-semibold text-gray-800 mb-4"><?= __('add_reply') ?></h3>
         <form action="<?= $app->url("customer/tickets/{$ticket['id']}/reply") ?>" method="POST" enctype="multipart/form-data">
             <div class="mb-4">
                 <textarea name="message" rows="4"
                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                          placeholder="Type your message..."></textarea>
+                          placeholder="<?= __('type_your_message') ?>"></textarea>
             </div>
 
             <!-- File Upload -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Attachments (optional)</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('attachments_optional') ?></label>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center transition-colors"
                      :class="{ 'border-indigo-500 bg-indigo-50': dragover }"
                      @dragover.prevent="dragover = true"
@@ -141,9 +225,9 @@ ob_start();
                     <label for="attachments" class="cursor-pointer">
                         <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
                         <p class="text-sm text-gray-600">
-                            <span class="text-indigo-600 font-medium">Click to upload</span> or drag and drop
+                            <span class="text-indigo-600 font-medium"><?= __('click_to_upload') ?></span> <?= __('or_drag_drop') ?>
                         </p>
-                        <p class="text-xs text-gray-500 mt-1">Images, PDFs, Documents up to 10MB each</p>
+                        <p class="text-xs text-gray-500 mt-1"><?= __('images_docs_limit') ?></p>
                     </label>
                 </div>
                 <!-- File Preview -->
@@ -167,17 +251,17 @@ ob_start();
             <div class="flex justify-end">
                 <button type="submit"
                         class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
-                    Send Reply
+                    <?= __('send_reply') ?>
                 </button>
             </div>
         </form>
     </div>
     <?php else: ?>
     <div class="bg-gray-100 rounded-xl p-6 text-center">
-        <p class="text-gray-600">This ticket has been closed. If you need further assistance, please create a new ticket.</p>
+        <p class="text-gray-600"><?= __('ticket_closed_notice') ?></p>
         <a href="<?= $app->url('customer/tickets/create') ?>"
            class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 mt-4">
-            <i class="fas fa-plus mr-2"></i> New Ticket
+            <i class="fas fa-plus mr-2"></i> <?= __('new_ticket') ?>
         </a>
     </div>
     <?php endif; ?>

@@ -151,7 +151,15 @@ class SlaPolicy extends Model
      */
     public function calculateActualMinutes(string $startTime, string $endTime): int
     {
-        return (int)((strtotime($endTime) - strtotime($startTime)) / 60);
+        $start = strtotime($startTime);
+        $end = strtotime($endTime);
+
+        if ($start === false || $end === false) {
+            return 0;
+        }
+
+        $minutes = (int)(($end - $start) / 60);
+        return max(0, $minutes);
     }
 
     /**

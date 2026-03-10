@@ -192,3 +192,2199 @@
 [2026-02-12 02:13:39] Hash check - received: 09216d0cf9..., calculated: 09216d0cf9...
 [2026-02-12 02:13:39] Hash validation PASSED
 [2026-02-12 02:13:39] User data decoded, user ID: 768732984
+[2026-02-19 03:16:28] validateInitData called, initData length: 44
+[2026-02-19 03:16:28] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:16:28] initData parsed, keys: ["encodeURIComponent(Telegram_WebApp_initData)"]
+[2026-02-19 03:16:28] No hash in initData
+[2026-02-19 03:16:48] validateInitData called, initData length: 94
+[2026-02-19 03:16:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:16:48] initData parsed, keys: ["query_id","user"]
+[2026-02-19 03:16:48] No hash in initData
+[2026-02-19 03:21:27] validateInitData called, initData length: 0
+[2026-02-19 03:21:27] Empty initData
+[2026-02-19 03:21:30] validateInitData called, initData length: 94
+[2026-02-19 03:21:30] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:21:30] initData parsed, keys: ["query_id","user"]
+[2026-02-19 03:21:30] No hash in initData
+[2026-02-19 03:21:33] validateInitData called, initData length: 94
+[2026-02-19 03:21:33] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:21:33] initData parsed, keys: ["query_id","user"]
+[2026-02-19 03:21:33] No hash in initData
+[2026-02-19 03:22:37] validateInitData called, initData length: 648
+[2026-02-19 03:22:37] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:22:37] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:22:37] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:22:37] Hash validation PASSED
+[2026-02-19 03:22:37] User data decoded, user ID: 768732984
+[2026-02-19 03:23:22] validateInitData called, initData length: 648
+[2026-02-19 03:23:22] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:23:22] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:23:22] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:23:22] Hash validation PASSED
+[2026-02-19 03:23:22] User data decoded, user ID: 768732984
+[2026-02-19 03:25:05] validateInitData called, initData length: 648
+[2026-02-19 03:25:05] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:25:05] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:25:05] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:25:05] Hash validation PASSED
+[2026-02-19 03:25:05] User data decoded, user ID: 768732984
+[2026-02-19 03:25:50] validateInitData called, initData length: 648
+[2026-02-19 03:25:50] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:25:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:25:50] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:25:50] Hash validation PASSED
+[2026-02-19 03:25:50] User data decoded, user ID: 768732984
+[2026-02-19 03:26:29] validateInitData called, initData length: 648
+[2026-02-19 03:26:29] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:26:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:26:29] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:26:29] Hash validation PASSED
+[2026-02-19 03:26:29] User data decoded, user ID: 768732984
+[2026-02-19 03:46:47] validateInitData called, initData length: 648
+[2026-02-19 03:46:47] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:46:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:46:47] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:46:47] Hash validation PASSED
+[2026-02-19 03:46:47] User data decoded, user ID: 768732984
+[2026-02-19 03:47:56] validateInitData called, initData length: 648
+[2026-02-19 03:47:56] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-19 03:47:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-19 03:47:56] Hash check - received: 93c2ef3c2b..., calculated: 93c2ef3c2b...
+[2026-02-19 03:47:56] Hash validation PASSED
+[2026-02-19 03:47:56] User data decoded, user ID: 768732984
+[2026-02-20 02:53:17] validateInitData called, initData length: 648
+[2026-02-20 02:53:17] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:53:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:53:17] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:53:17] Hash validation PASSED
+[2026-02-20 02:53:17] User data decoded, user ID: 768732984
+[2026-02-20 02:53:36] validateInitData called, initData length: 648
+[2026-02-20 02:53:36] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:53:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:53:36] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:53:36] Hash validation PASSED
+[2026-02-20 02:53:36] User data decoded, user ID: 768732984
+[2026-02-20 02:53:38] validateInitData called, initData length: 648
+[2026-02-20 02:53:38] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:53:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:53:38] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:53:38] Hash validation PASSED
+[2026-02-20 02:53:38] User data decoded, user ID: 768732984
+[2026-02-20 02:54:14] validateInitData called, initData length: 648
+[2026-02-20 02:54:14] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:54:14] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:54:14] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:54:14] Hash validation PASSED
+[2026-02-20 02:54:14] User data decoded, user ID: 768732984
+[2026-02-20 02:59:31] validateInitData called, initData length: 648
+[2026-02-20 02:59:31] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:59:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:59:31] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:59:31] Hash validation PASSED
+[2026-02-20 02:59:31] User data decoded, user ID: 768732984
+[2026-02-20 02:59:46] validateInitData called, initData length: 648
+[2026-02-20 02:59:46] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:59:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:59:46] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:59:46] Hash validation PASSED
+[2026-02-20 02:59:46] User data decoded, user ID: 768732984
+[2026-02-20 02:59:50] validateInitData called, initData length: 648
+[2026-02-20 02:59:50] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 02:59:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 02:59:50] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 02:59:50] Hash validation PASSED
+[2026-02-20 02:59:50] User data decoded, user ID: 768732984
+[2026-02-20 03:13:02] validateInitData called, initData length: 648
+[2026-02-20 03:13:02] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 03:13:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 03:13:02] Hash check - received: ada5fac523..., calculated: ada5fac523...
+[2026-02-20 03:13:02] Hash validation PASSED
+[2026-02-20 03:13:02] User data decoded, user ID: 768732984
+[2026-02-20 03:36:02] validateInitData called, initData length: 648
+[2026-02-20 03:36:02] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 03:36:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 03:36:02] Hash check - received: d307e62fb7..., calculated: d307e62fb7...
+[2026-02-20 03:36:02] Hash validation PASSED
+[2026-02-20 03:36:02] User data decoded, user ID: 768732984
+[2026-02-20 03:36:05] validateInitData called, initData length: 648
+[2026-02-20 03:36:05] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 03:36:05] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 03:36:05] Hash check - received: d307e62fb7..., calculated: d307e62fb7...
+[2026-02-20 03:36:05] Hash validation PASSED
+[2026-02-20 03:36:05] User data decoded, user ID: 768732984
+[2026-02-20 03:36:15] validateInitData called, initData length: 648
+[2026-02-20 03:36:15] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 03:36:15] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 03:36:15] Hash check - received: d307e62fb7..., calculated: d307e62fb7...
+[2026-02-20 03:36:15] Hash validation PASSED
+[2026-02-20 03:36:15] User data decoded, user ID: 768732984
+[2026-02-20 04:10:21] validateInitData called, initData length: 648
+[2026-02-20 04:10:21] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:10:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:10:21] Hash check - received: 96541676d5..., calculated: 96541676d5...
+[2026-02-20 04:10:21] Hash validation PASSED
+[2026-02-20 04:10:21] User data decoded, user ID: 768732984
+[2026-02-20 04:11:57] validateInitData called, initData length: 648
+[2026-02-20 04:11:57] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:11:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:11:57] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:11:57] Hash validation PASSED
+[2026-02-20 04:11:57] User data decoded, user ID: 768732984
+[2026-02-20 04:12:03] validateInitData called, initData length: 648
+[2026-02-20 04:12:03] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:12:03] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:12:03] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:12:03] Hash validation PASSED
+[2026-02-20 04:12:03] User data decoded, user ID: 768732984
+[2026-02-20 04:12:04] validateInitData called, initData length: 648
+[2026-02-20 04:12:04] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:12:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:12:04] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:12:04] Hash validation PASSED
+[2026-02-20 04:12:04] User data decoded, user ID: 768732984
+[2026-02-20 04:12:17] validateInitData called, initData length: 648
+[2026-02-20 04:12:17] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:12:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:12:17] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:12:17] Hash validation PASSED
+[2026-02-20 04:12:17] User data decoded, user ID: 768732984
+[2026-02-20 04:13:39] validateInitData called, initData length: 648
+[2026-02-20 04:13:39] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:13:39] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:13:39] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:13:39] Hash validation PASSED
+[2026-02-20 04:13:39] User data decoded, user ID: 768732984
+[2026-02-20 04:13:40] validateInitData called, initData length: 648
+[2026-02-20 04:13:40] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:13:40] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:13:40] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:13:40] Hash validation PASSED
+[2026-02-20 04:13:40] User data decoded, user ID: 768732984
+[2026-02-20 04:14:26] validateInitData called, initData length: 648
+[2026-02-20 04:14:26] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:14:26] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:14:26] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:14:26] Hash validation PASSED
+[2026-02-20 04:14:26] User data decoded, user ID: 768732984
+[2026-02-20 04:14:29] validateInitData called, initData length: 648
+[2026-02-20 04:14:29] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:14:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:14:29] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:14:29] Hash validation PASSED
+[2026-02-20 04:14:29] User data decoded, user ID: 768732984
+[2026-02-20 04:14:35] ===== SEND REPLY START =====
+[2026-02-20 04:14:35] Request method: POST
+[2026-02-20 04:14:35] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S2V5gfv&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1771560658&signature=LVVJICUJP4_SZNGagLBCuCdqnkjl0vGpeQTdGLLlVl9-UfO7EKckKvZOG1_-qWg7dtp8xPMBtt2Orh675JaKDQ&hash=885e212079f07d947ff897eea9f29168834ad2752aaee0ab8144f706efe9597b","ticket_id":5,"message":"test","lang":"en"}
+[2026-02-20 04:14:35] sendReply called for ticket: 5, message length: 4
+[2026-02-20 04:14:36] validateInitData called, initData length: 648
+[2026-02-20 04:14:36] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:14:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:14:36] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:14:36] Hash validation PASSED
+[2026-02-20 04:14:36] User data decoded, user ID: 768732984
+[2026-02-20 04:14:36] Attempting to send push notification to agent ID: 1
+[2026-02-20 04:14:36] PushService created successfully
+[2026-02-20 04:14:36] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-20 04:14:36] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-20 04:14:36] [PushService] Query returned 1 rows
+[2026-02-20 04:14:36] [PushService] Found 1 active subscriptions
+[2026-02-20 04:14:36] [PushService] Processing subscription for user: 1
+[2026-02-20 04:14:36] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-20 04:14:36] Push notification result: {"success":true,"sent":0,"failed":1,"details":[{"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}]}
+[2026-02-20 04:14:40] Reply added successfully
+[2026-02-20 04:14:42] validateInitData called, initData length: 648
+[2026-02-20 04:14:42] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:14:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:14:42] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:14:42] Hash validation PASSED
+[2026-02-20 04:14:42] User data decoded, user ID: 768732984
+[2026-02-20 04:15:09] validateInitData called, initData length: 648
+[2026-02-20 04:15:09] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:15:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:15:09] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:15:09] Hash validation PASSED
+[2026-02-20 04:15:09] User data decoded, user ID: 768732984
+[2026-02-20 04:16:12] validateInitData called, initData length: 648
+[2026-02-20 04:16:12] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:16:12] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:16:12] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:16:12] Hash validation PASSED
+[2026-02-20 04:16:12] User data decoded, user ID: 768732984
+[2026-02-20 04:16:15] validateInitData called, initData length: 648
+[2026-02-20 04:16:15] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:16:15] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:16:15] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:16:15] Hash validation PASSED
+[2026-02-20 04:16:15] User data decoded, user ID: 768732984
+[2026-02-20 04:16:57] validateInitData called, initData length: 648
+[2026-02-20 04:16:57] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:16:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:16:57] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:16:57] Hash validation PASSED
+[2026-02-20 04:16:57] User data decoded, user ID: 768732984
+[2026-02-20 04:17:00] validateInitData called, initData length: 648
+[2026-02-20 04:17:00] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:17:00] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:17:00] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:17:00] Hash validation PASSED
+[2026-02-20 04:17:00] User data decoded, user ID: 768732984
+[2026-02-20 04:18:04] validateInitData called, initData length: 648
+[2026-02-20 04:18:04] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:18:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:18:04] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:18:04] Hash validation PASSED
+[2026-02-20 04:18:04] User data decoded, user ID: 768732984
+[2026-02-20 04:18:06] validateInitData called, initData length: 648
+[2026-02-20 04:18:06] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:18:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:18:06] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:18:06] Hash validation PASSED
+[2026-02-20 04:18:06] User data decoded, user ID: 768732984
+[2026-02-20 04:18:09] validateInitData called, initData length: 648
+[2026-02-20 04:18:09] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:18:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:18:09] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:18:09] Hash validation PASSED
+[2026-02-20 04:18:09] User data decoded, user ID: 768732984
+[2026-02-20 04:19:34] validateInitData called, initData length: 648
+[2026-02-20 04:19:34] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:19:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:19:34] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:19:34] Hash validation PASSED
+[2026-02-20 04:19:34] User data decoded, user ID: 768732984
+[2026-02-20 04:19:35] validateInitData called, initData length: 648
+[2026-02-20 04:19:35] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:19:35] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:19:35] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:19:35] Hash validation PASSED
+[2026-02-20 04:19:35] User data decoded, user ID: 768732984
+[2026-02-20 04:19:39] validateInitData called, initData length: 648
+[2026-02-20 04:19:39] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:19:39] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:19:39] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:19:39] Hash validation PASSED
+[2026-02-20 04:19:39] User data decoded, user ID: 768732984
+[2026-02-20 04:19:40] validateInitData called, initData length: 648
+[2026-02-20 04:19:40] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:19:40] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:19:40] Hash check - received: 885e212079..., calculated: 885e212079...
+[2026-02-20 04:19:40] Hash validation PASSED
+[2026-02-20 04:19:40] User data decoded, user ID: 768732984
+[2026-02-20 04:24:56] validateInitData called, initData length: 648
+[2026-02-20 04:24:56] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:24:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:24:56] Hash check - received: 9930b56a28..., calculated: 9930b56a28...
+[2026-02-20 04:24:56] Hash validation PASSED
+[2026-02-20 04:24:56] User data decoded, user ID: 768732984
+[2026-02-20 04:24:57] validateInitData called, initData length: 648
+[2026-02-20 04:24:57] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:24:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:24:57] Hash check - received: 9930b56a28..., calculated: 9930b56a28...
+[2026-02-20 04:24:57] Hash validation PASSED
+[2026-02-20 04:24:57] User data decoded, user ID: 768732984
+[2026-02-20 04:30:07] validateInitData called, initData length: 648
+[2026-02-20 04:30:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:30:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:30:07] Hash check - received: 9930b56a28..., calculated: 9930b56a28...
+[2026-02-20 04:30:07] Hash validation PASSED
+[2026-02-20 04:30:07] User data decoded, user ID: 768732984
+[2026-02-20 04:30:11] validateInitData called, initData length: 648
+[2026-02-20 04:30:11] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 04:30:11] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 04:30:11] Hash check - received: 9930b56a28..., calculated: 9930b56a28...
+[2026-02-20 04:30:11] Hash validation PASSED
+[2026-02-20 04:30:11] User data decoded, user ID: 768732984
+[2026-02-20 06:26:56] validateInitData called, initData length: 648
+[2026-02-20 06:26:56] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:26:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:26:56] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:26:56] Hash validation PASSED
+[2026-02-20 06:26:56] User data decoded, user ID: 768732984
+[2026-02-20 06:26:58] validateInitData called, initData length: 648
+[2026-02-20 06:26:58] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:26:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:26:58] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:26:58] Hash validation PASSED
+[2026-02-20 06:26:58] User data decoded, user ID: 768732984
+[2026-02-20 06:27:28] validateInitData called, initData length: 648
+[2026-02-20 06:27:28] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:28] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:28] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:28] Hash validation PASSED
+[2026-02-20 06:27:28] User data decoded, user ID: 768732984
+[2026-02-20 06:27:29] validateInitData called, initData length: 648
+[2026-02-20 06:27:29] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:29] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:29] Hash validation PASSED
+[2026-02-20 06:27:29] User data decoded, user ID: 768732984
+[2026-02-20 06:27:31] validateInitData called, initData length: 648
+[2026-02-20 06:27:31] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:31] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:31] Hash validation PASSED
+[2026-02-20 06:27:31] User data decoded, user ID: 768732984
+[2026-02-20 06:27:35] validateInitData called, initData length: 648
+[2026-02-20 06:27:35] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:35] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:35] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:35] Hash validation PASSED
+[2026-02-20 06:27:35] User data decoded, user ID: 768732984
+[2026-02-20 06:27:37] validateInitData called, initData length: 648
+[2026-02-20 06:27:37] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:37] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:37] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:37] Hash validation PASSED
+[2026-02-20 06:27:37] User data decoded, user ID: 768732984
+[2026-02-20 06:27:55] validateInitData called, initData length: 648
+[2026-02-20 06:27:55] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:55] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:55] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:55] Hash validation PASSED
+[2026-02-20 06:27:55] User data decoded, user ID: 768732984
+[2026-02-20 06:27:58] validateInitData called, initData length: 648
+[2026-02-20 06:27:58] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:27:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:27:58] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:27:58] Hash validation PASSED
+[2026-02-20 06:27:58] User data decoded, user ID: 768732984
+[2026-02-20 06:28:45] validateInitData called, initData length: 648
+[2026-02-20 06:28:45] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:28:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:28:45] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:28:45] Hash validation PASSED
+[2026-02-20 06:28:45] User data decoded, user ID: 768732984
+[2026-02-20 06:28:51] validateInitData called, initData length: 648
+[2026-02-20 06:28:51] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:28:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:28:51] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:28:51] Hash validation PASSED
+[2026-02-20 06:28:51] User data decoded, user ID: 768732984
+[2026-02-20 06:30:57] validateInitData called, initData length: 648
+[2026-02-20 06:30:57] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:30:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:30:57] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:30:57] Hash validation PASSED
+[2026-02-20 06:30:57] User data decoded, user ID: 768732984
+[2026-02-20 06:31:56] validateInitData called, initData length: 648
+[2026-02-20 06:31:56] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:31:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:31:56] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:31:56] Hash validation PASSED
+[2026-02-20 06:31:56] User data decoded, user ID: 768732984
+[2026-02-20 06:31:57] validateInitData called, initData length: 648
+[2026-02-20 06:31:57] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:31:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:31:57] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:31:57] Hash validation PASSED
+[2026-02-20 06:31:57] User data decoded, user ID: 768732984
+[2026-02-20 06:32:06] validateInitData called, initData length: 648
+[2026-02-20 06:32:06] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:32:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:32:06] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:32:06] Hash validation PASSED
+[2026-02-20 06:32:06] User data decoded, user ID: 768732984
+[2026-02-20 06:32:07] validateInitData called, initData length: 648
+[2026-02-20 06:32:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:32:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:32:07] Hash check - received: 39b7e4cd76..., calculated: 39b7e4cd76...
+[2026-02-20 06:32:07] Hash validation PASSED
+[2026-02-20 06:32:07] User data decoded, user ID: 768732984
+[2026-02-20 06:32:29] validateInitData called, initData length: 648
+[2026-02-20 06:32:29] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:32:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:32:29] Hash check - received: 0c417f7fc9..., calculated: 0c417f7fc9...
+[2026-02-20 06:32:29] Hash validation PASSED
+[2026-02-20 06:32:29] User data decoded, user ID: 768732984
+[2026-02-20 06:32:38] validateInitData called, initData length: 648
+[2026-02-20 06:32:38] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:32:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:32:38] Hash check - received: 0c417f7fc9..., calculated: 0c417f7fc9...
+[2026-02-20 06:32:38] Hash validation PASSED
+[2026-02-20 06:32:38] User data decoded, user ID: 768732984
+[2026-02-20 06:33:04] validateInitData called, initData length: 648
+[2026-02-20 06:33:04] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:33:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:33:04] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:33:04] Hash validation PASSED
+[2026-02-20 06:33:04] User data decoded, user ID: 768732984
+[2026-02-20 06:33:05] validateInitData called, initData length: 648
+[2026-02-20 06:33:05] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:33:05] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:33:05] Hash check - received: fb17fce466..., calculated: fb17fce466...
+[2026-02-20 06:33:05] Hash validation PASSED
+[2026-02-20 06:33:05] User data decoded, user ID: 768732984
+[2026-02-20 06:33:26] validateInitData called, initData length: 648
+[2026-02-20 06:33:26] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:33:26] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:33:26] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 06:33:26] Hash validation PASSED
+[2026-02-20 06:33:26] User data decoded, user ID: 768732984
+[2026-02-20 06:33:27] validateInitData called, initData length: 648
+[2026-02-20 06:33:27] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:33:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:33:27] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 06:33:27] Hash validation PASSED
+[2026-02-20 06:33:27] User data decoded, user ID: 768732984
+[2026-02-20 06:35:47] validateInitData called, initData length: 648
+[2026-02-20 06:35:47] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:35:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:35:47] Hash check - received: 046beee3df..., calculated: 046beee3df...
+[2026-02-20 06:35:47] Hash validation PASSED
+[2026-02-20 06:35:47] User data decoded, user ID: 768732984
+[2026-02-20 06:35:48] validateInitData called, initData length: 648
+[2026-02-20 06:35:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:35:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:35:48] Hash check - received: 046beee3df..., calculated: 046beee3df...
+[2026-02-20 06:35:48] Hash validation PASSED
+[2026-02-20 06:35:48] User data decoded, user ID: 768732984
+[2026-02-20 06:38:44] validateInitData called, initData length: 648
+[2026-02-20 06:38:44] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:38:44] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:38:44] Hash check - received: 046beee3df..., calculated: 046beee3df...
+[2026-02-20 06:38:44] Hash validation PASSED
+[2026-02-20 06:38:44] User data decoded, user ID: 768732984
+[2026-02-20 06:38:47] validateInitData called, initData length: 648
+[2026-02-20 06:38:47] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:38:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:38:47] Hash check - received: 046beee3df..., calculated: 046beee3df...
+[2026-02-20 06:38:47] Hash validation PASSED
+[2026-02-20 06:38:47] User data decoded, user ID: 768732984
+[2026-02-20 06:39:41] validateInitData called, initData length: 648
+[2026-02-20 06:39:41] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:39:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:39:41] Hash check - received: 046beee3df..., calculated: 046beee3df...
+[2026-02-20 06:39:41] Hash validation PASSED
+[2026-02-20 06:39:41] User data decoded, user ID: 768732984
+[2026-02-20 06:42:44] validateInitData called, initData length: 648
+[2026-02-20 06:42:44] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:42:44] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:42:44] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:42:44] Hash validation PASSED
+[2026-02-20 06:42:44] User data decoded, user ID: 768732984
+[2026-02-20 06:42:46] validateInitData called, initData length: 648
+[2026-02-20 06:42:46] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:42:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:42:46] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:42:46] Hash validation PASSED
+[2026-02-20 06:42:46] User data decoded, user ID: 768732984
+[2026-02-20 06:42:54] validateInitData called, initData length: 648
+[2026-02-20 06:42:54] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:42:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:42:54] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:42:54] Hash validation PASSED
+[2026-02-20 06:42:54] User data decoded, user ID: 768732984
+[2026-02-20 06:43:53] validateInitData called, initData length: 648
+[2026-02-20 06:43:53] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:43:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:43:53] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:43:53] Hash validation PASSED
+[2026-02-20 06:43:53] User data decoded, user ID: 768732984
+[2026-02-20 06:46:23] validateInitData called, initData length: 648
+[2026-02-20 06:46:23] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:46:23] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:46:23] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:46:23] Hash validation PASSED
+[2026-02-20 06:46:23] User data decoded, user ID: 768732984
+[2026-02-20 06:46:25] validateInitData called, initData length: 648
+[2026-02-20 06:46:25] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:46:25] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:46:25] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:46:25] Hash validation PASSED
+[2026-02-20 06:46:25] User data decoded, user ID: 768732984
+[2026-02-20 06:46:48] validateInitData called, initData length: 648
+[2026-02-20 06:46:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:46:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:46:48] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:46:48] Hash validation PASSED
+[2026-02-20 06:46:48] User data decoded, user ID: 768732984
+[2026-02-20 06:49:02] validateInitData called, initData length: 648
+[2026-02-20 06:49:02] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:02] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:02] Hash validation PASSED
+[2026-02-20 06:49:02] User data decoded, user ID: 768732984
+[2026-02-20 06:49:04] validateInitData called, initData length: 648
+[2026-02-20 06:49:04] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:04] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:04] Hash validation PASSED
+[2026-02-20 06:49:04] User data decoded, user ID: 768732984
+[2026-02-20 06:49:20] ===== SEND REPLY START =====
+[2026-02-20 06:49:20] Request method: POST
+[2026-02-20 06:49:20] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S2KNDM-&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1771569751&signature=iBslMh42glsSaUy1pMy2Um76EsD4D_-nIaxA5XrCLGvDgU1gp9zI81ymKXlBOvQBDzuy_sFcebX9qNnS2lacAw&hash=040b3e703609680682c36b593d3d36194ba932c0bab744fd6b565432b7edaa85","ticket_id":5,"message":"\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179f\u17b6\u179a\u179f\u1798\u17d2\u179b\u17c1\u1784\u17d4","lang":"km"}
+[2026-02-20 06:49:20] sendReply called for ticket: 5, message length: 57
+[2026-02-20 06:49:20] validateInitData called, initData length: 648
+[2026-02-20 06:49:20] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:20] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:20] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:20] Hash validation PASSED
+[2026-02-20 06:49:20] User data decoded, user ID: 768732984
+[2026-02-20 06:49:21] Attempting to send push notification to agent ID: 1
+[2026-02-20 06:49:21] PushService created successfully
+[2026-02-20 06:49:21] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-20 06:49:21] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-20 06:49:21] [PushService] Query returned 1 rows
+[2026-02-20 06:49:21] [PushService] Found 1 active subscriptions
+[2026-02-20 06:49:21] [PushService] Processing subscription for user: 1
+[2026-02-20 06:49:21] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-20 06:49:21] Push notification result: {"success":true,"sent":0,"failed":1,"details":[{"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}]}
+[2026-02-20 06:49:21] Reply added successfully
+[2026-02-20 06:49:23] validateInitData called, initData length: 648
+[2026-02-20 06:49:23] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:23] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:23] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:23] Hash validation PASSED
+[2026-02-20 06:49:23] User data decoded, user ID: 768732984
+[2026-02-20 06:49:23] validateInitData called, initData length: 648
+[2026-02-20 06:49:23] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:23] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:23] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:23] Hash validation PASSED
+[2026-02-20 06:49:23] User data decoded, user ID: 768732984
+[2026-02-20 06:49:42] ===== SEND REPLY START =====
+[2026-02-20 06:49:42] Request method: POST
+[2026-02-20 06:49:42] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S2KNDM-&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1771569751&signature=iBslMh42glsSaUy1pMy2Um76EsD4D_-nIaxA5XrCLGvDgU1gp9zI81ymKXlBOvQBDzuy_sFcebX9qNnS2lacAw&hash=040b3e703609680682c36b593d3d36194ba932c0bab744fd6b565432b7edaa85","ticket_id":5,"message":"\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179f\u17b6\u179a\u179f\u1798\u17d2\u179b\u17c1\u1784\u17d4","lang":"km"}
+[2026-02-20 06:49:42] sendReply called for ticket: 5, message length: 57
+[2026-02-20 06:49:42] validateInitData called, initData length: 648
+[2026-02-20 06:49:42] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:42] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:42] Hash validation PASSED
+[2026-02-20 06:49:42] User data decoded, user ID: 768732984
+[2026-02-20 06:49:42] Attempting to send push notification to agent ID: 1
+[2026-02-20 06:49:42] PushService created successfully
+[2026-02-20 06:49:42] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-20 06:49:42] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-20 06:49:42] [PushService] Query returned 1 rows
+[2026-02-20 06:49:42] [PushService] Found 1 active subscriptions
+[2026-02-20 06:49:42] [PushService] Processing subscription for user: 1
+[2026-02-20 06:49:42] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-20 06:49:42] Push notification result: {"success":true,"sent":0,"failed":1,"details":[{"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}]}
+[2026-02-20 06:49:46] Reply added successfully
+[2026-02-20 06:49:47] validateInitData called, initData length: 648
+[2026-02-20 06:49:47] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:47] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:47] Hash validation PASSED
+[2026-02-20 06:49:47] User data decoded, user ID: 768732984
+[2026-02-20 06:49:48] validateInitData called, initData length: 648
+[2026-02-20 06:49:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:49:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:49:48] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:49:48] Hash validation PASSED
+[2026-02-20 06:49:48] User data decoded, user ID: 768732984
+[2026-02-20 06:51:03] validateInitData called, initData length: 648
+[2026-02-20 06:51:03] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:51:03] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:51:03] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:51:03] Hash validation PASSED
+[2026-02-20 06:51:03] User data decoded, user ID: 768732984
+[2026-02-20 06:51:08] validateInitData called, initData length: 648
+[2026-02-20 06:51:08] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:51:08] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:51:08] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:51:08] Hash validation PASSED
+[2026-02-20 06:51:08] User data decoded, user ID: 768732984
+[2026-02-20 06:52:15] [PushService] Getting subscriptions for user IDs: [2]
+[2026-02-20 06:52:15] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [2]
+[2026-02-20 06:52:15] [PushService] Query returned 0 rows
+[2026-02-20 06:52:15] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [2]
+[2026-02-20 06:52:15] [PushService] Checking total subscriptions in database...
+[2026-02-20 06:52:15] [PushService] All subscriptions by user: [{"user_id":1,"count":1}]
+[2026-02-20 06:52:15] [PushService] Total push_subscriptions in DB: 1
+[2026-02-20 06:52:15] [PushService] Found 0 active subscriptions
+[2026-02-20 06:52:27] validateInitData called, initData length: 648
+[2026-02-20 06:52:27] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:52:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:52:27] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:52:27] Hash validation PASSED
+[2026-02-20 06:52:27] User data decoded, user ID: 768732984
+[2026-02-20 06:52:54] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-20 06:52:54] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-20 06:52:54] [PushService] Query returned 1 rows
+[2026-02-20 06:52:54] [PushService] Found 1 active subscriptions
+[2026-02-20 06:52:54] [PushService] Processing subscription for user: 1
+[2026-02-20 06:52:54] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-20 06:53:29] validateInitData called, initData length: 648
+[2026-02-20 06:53:29] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:53:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:53:29] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:53:29] Hash validation PASSED
+[2026-02-20 06:53:29] User data decoded, user ID: 768732984
+[2026-02-20 06:53:32] validateInitData called, initData length: 648
+[2026-02-20 06:53:32] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:53:32] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:53:32] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:53:32] Hash validation PASSED
+[2026-02-20 06:53:32] User data decoded, user ID: 768732984
+[2026-02-20 06:53:46] validateInitData called, initData length: 648
+[2026-02-20 06:53:46] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:53:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:53:46] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:53:46] Hash validation PASSED
+[2026-02-20 06:53:46] User data decoded, user ID: 768732984
+[2026-02-20 06:53:48] validateInitData called, initData length: 648
+[2026-02-20 06:53:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:53:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:53:48] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:53:48] Hash validation PASSED
+[2026-02-20 06:53:48] User data decoded, user ID: 768732984
+[2026-02-20 06:54:07] validateInitData called, initData length: 648
+[2026-02-20 06:54:07] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:54:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:54:07] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:54:07] Hash validation PASSED
+[2026-02-20 06:54:07] User data decoded, user ID: 768732984
+[2026-02-20 06:54:09] validateInitData called, initData length: 648
+[2026-02-20 06:54:09] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:54:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:54:09] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:54:09] Hash validation PASSED
+[2026-02-20 06:54:09] User data decoded, user ID: 768732984
+[2026-02-20 06:55:56] validateInitData called, initData length: 648
+[2026-02-20 06:55:56] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:55:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:55:56] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:55:56] Hash validation PASSED
+[2026-02-20 06:55:56] User data decoded, user ID: 768732984
+[2026-02-20 06:55:58] validateInitData called, initData length: 648
+[2026-02-20 06:55:58] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:55:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:55:58] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:55:58] Hash validation PASSED
+[2026-02-20 06:55:58] User data decoded, user ID: 768732984
+[2026-02-20 06:57:49] validateInitData called, initData length: 648
+[2026-02-20 06:57:49] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:57:49] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:57:49] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:57:49] Hash validation PASSED
+[2026-02-20 06:57:49] User data decoded, user ID: 768732984
+[2026-02-20 06:57:50] validateInitData called, initData length: 648
+[2026-02-20 06:57:50] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:57:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:57:50] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:57:50] Hash validation PASSED
+[2026-02-20 06:57:50] User data decoded, user ID: 768732984
+[2026-02-20 06:58:28] validateInitData called, initData length: 648
+[2026-02-20 06:58:28] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:58:28] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:58:28] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:58:28] Hash validation PASSED
+[2026-02-20 06:58:28] User data decoded, user ID: 768732984
+[2026-02-20 06:58:31] validateInitData called, initData length: 648
+[2026-02-20 06:58:31] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:58:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:58:31] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:58:31] Hash validation PASSED
+[2026-02-20 06:58:31] User data decoded, user ID: 768732984
+[2026-02-20 06:58:36] validateInitData called, initData length: 648
+[2026-02-20 06:58:36] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:58:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:58:36] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:58:36] Hash validation PASSED
+[2026-02-20 06:58:36] User data decoded, user ID: 768732984
+[2026-02-20 06:59:06] validateInitData called, initData length: 648
+[2026-02-20 06:59:06] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:59:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:59:06] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:59:06] Hash validation PASSED
+[2026-02-20 06:59:06] User data decoded, user ID: 768732984
+[2026-02-20 06:59:08] validateInitData called, initData length: 648
+[2026-02-20 06:59:08] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:59:08] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:59:08] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 06:59:08] Hash validation PASSED
+[2026-02-20 06:59:08] User data decoded, user ID: 768732984
+[2026-02-20 06:59:30] validateInitData called, initData length: 648
+[2026-02-20 06:59:30] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:59:30] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:59:30] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 06:59:30] Hash validation PASSED
+[2026-02-20 06:59:30] User data decoded, user ID: 768732984
+[2026-02-20 06:59:31] validateInitData called, initData length: 648
+[2026-02-20 06:59:31] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:59:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:59:31] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 06:59:31] Hash validation PASSED
+[2026-02-20 06:59:31] User data decoded, user ID: 768732984
+[2026-02-20 06:59:52] validateInitData called, initData length: 648
+[2026-02-20 06:59:52] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 06:59:52] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 06:59:52] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 06:59:52] Hash validation PASSED
+[2026-02-20 06:59:52] User data decoded, user ID: 768732984
+[2026-02-20 07:00:09] validateInitData called, initData length: 648
+[2026-02-20 07:00:09] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:00:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:00:09] Hash check - received: fde532744c..., calculated: fde532744c...
+[2026-02-20 07:00:09] Hash validation PASSED
+[2026-02-20 07:00:09] User data decoded, user ID: 768732984
+[2026-02-20 07:00:48] validateInitData called, initData length: 648
+[2026-02-20 07:00:48] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:00:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:00:48] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 07:00:48] Hash validation PASSED
+[2026-02-20 07:00:48] User data decoded, user ID: 768732984
+[2026-02-20 07:00:49] validateInitData called, initData length: 648
+[2026-02-20 07:00:49] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:00:49] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:00:49] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 07:00:49] Hash validation PASSED
+[2026-02-20 07:00:49] User data decoded, user ID: 768732984
+[2026-02-20 07:01:33] validateInitData called, initData length: 648
+[2026-02-20 07:01:33] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:01:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:01:33] Hash check - received: 040b3e7036..., calculated: 040b3e7036...
+[2026-02-20 07:01:33] Hash validation PASSED
+[2026-02-20 07:01:33] User data decoded, user ID: 768732984
+[2026-02-20 07:11:24] validateInitData called, initData length: 648
+[2026-02-20 07:11:24] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:24] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:24] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:24] Hash validation PASSED
+[2026-02-20 07:11:24] User data decoded, user ID: 768732984
+[2026-02-20 07:11:26] validateInitData called, initData length: 648
+[2026-02-20 07:11:26] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:26] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:26] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:26] Hash validation PASSED
+[2026-02-20 07:11:26] User data decoded, user ID: 768732984
+[2026-02-20 07:11:34] validateInitData called, initData length: 648
+[2026-02-20 07:11:34] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:34] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:34] Hash validation PASSED
+[2026-02-20 07:11:34] User data decoded, user ID: 768732984
+[2026-02-20 07:11:37] validateInitData called, initData length: 648
+[2026-02-20 07:11:37] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:37] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:37] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:37] Hash validation PASSED
+[2026-02-20 07:11:37] User data decoded, user ID: 768732984
+[2026-02-20 07:11:38] validateInitData called, initData length: 648
+[2026-02-20 07:11:38] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:38] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:38] Hash validation PASSED
+[2026-02-20 07:11:38] User data decoded, user ID: 768732984
+[2026-02-20 07:11:41] validateInitData called, initData length: 648
+[2026-02-20 07:11:41] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:41] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:41] Hash validation PASSED
+[2026-02-20 07:11:41] User data decoded, user ID: 768732984
+[2026-02-20 07:11:46] validateInitData called, initData length: 648
+[2026-02-20 07:11:46] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:46] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:46] Hash validation PASSED
+[2026-02-20 07:11:46] User data decoded, user ID: 768732984
+[2026-02-20 07:11:52] validateInitData called, initData length: 648
+[2026-02-20 07:11:52] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:52] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:52] Hash check - received: 099fb8e128..., calculated: 099fb8e128...
+[2026-02-20 07:11:52] Hash validation PASSED
+[2026-02-20 07:11:52] User data decoded, user ID: 768732984
+[2026-02-20 07:11:58] validateInitData called, initData length: 648
+[2026-02-20 07:11:58] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:11:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:11:58] Hash check - received: d405defc0e..., calculated: d405defc0e...
+[2026-02-20 07:11:58] Hash validation PASSED
+[2026-02-20 07:11:58] User data decoded, user ID: 768732984
+[2026-02-20 07:12:01] validateInitData called, initData length: 648
+[2026-02-20 07:12:01] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:12:01] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:12:01] Hash check - received: d405defc0e..., calculated: d405defc0e...
+[2026-02-20 07:12:01] Hash validation PASSED
+[2026-02-20 07:12:01] User data decoded, user ID: 768732984
+[2026-02-20 07:12:17] validateInitData called, initData length: 648
+[2026-02-20 07:12:17] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:12:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:12:17] Hash check - received: d405defc0e..., calculated: d405defc0e...
+[2026-02-20 07:12:17] Hash validation PASSED
+[2026-02-20 07:12:17] User data decoded, user ID: 768732984
+[2026-02-20 07:12:18] validateInitData called, initData length: 648
+[2026-02-20 07:12:18] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:12:18] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:12:18] Hash check - received: d405defc0e..., calculated: d405defc0e...
+[2026-02-20 07:12:18] Hash validation PASSED
+[2026-02-20 07:12:18] User data decoded, user ID: 768732984
+[2026-02-20 07:12:21] validateInitData called, initData length: 648
+[2026-02-20 07:12:21] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:12:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:12:21] Hash check - received: d405defc0e..., calculated: d405defc0e...
+[2026-02-20 07:12:21] Hash validation PASSED
+[2026-02-20 07:12:21] User data decoded, user ID: 768732984
+[2026-02-20 07:15:44] validateInitData called, initData length: 648
+[2026-02-20 07:15:44] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:15:44] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:15:44] Hash check - received: 4962c8d0ab..., calculated: 4962c8d0ab...
+[2026-02-20 07:15:44] Hash validation PASSED
+[2026-02-20 07:15:44] User data decoded, user ID: 768732984
+[2026-02-20 07:15:50] validateInitData called, initData length: 648
+[2026-02-20 07:15:50] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:15:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:15:50] Hash check - received: 4962c8d0ab..., calculated: 4962c8d0ab...
+[2026-02-20 07:15:50] Hash validation PASSED
+[2026-02-20 07:15:50] User data decoded, user ID: 768732984
+[2026-02-20 07:16:31] validateInitData called, initData length: 648
+[2026-02-20 07:16:31] Bot config found, token: 8415659161:AAFhCHpE_...
+[2026-02-20 07:16:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-20 07:16:31] Hash check - received: 4962c8d0ab..., calculated: 4962c8d0ab...
+[2026-02-20 07:16:31] Hash validation PASSED
+[2026-02-20 07:16:31] User data decoded, user ID: 768732984
+[2026-02-25 03:05:31] validateInitData called, initData length: 648
+[2026-02-25 03:05:54] validateInitData called, initData length: 648
+[2026-02-25 03:06:02] validateInitData called, initData length: 648
+[2026-02-25 03:07:02] validateInitData called, initData length: 648
+[2026-02-25 03:07:33] validateInitData called, initData length: 648
+[2026-02-25 03:09:02] validateInitData called, initData length: 648
+[2026-02-25 03:10:53] validateInitData called, initData length: 648
+[2026-02-25 03:13:50] validateInitData called, initData length: 648
+[2026-02-25 03:13:51] telegram_configs query failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpdc318_ticket.telegram_configs' doesn't exist
+[2026-02-25 03:13:51] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 03:14:01] validateInitData called, initData length: 648
+[2026-02-25 03:14:01] telegram_configs query failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dpdc318_ticket.telegram_configs' doesn't exist
+[2026-02-25 03:14:01] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 03:25:11] validateInitData called, initData length: 648
+[2026-02-25 03:25:11] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 03:25:28] validateInitData called, initData length: 648
+[2026-02-25 03:25:28] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 03:25:37] validateInitData called, initData length: 648
+[2026-02-25 03:25:37] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 03:25:42] validateInitData called, initData length: 648
+[2026-02-25 03:25:42] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 04:43:54] validateInitData called, initData length: 648
+[2026-02-25 04:43:54] Bot token is missing in both telegram_configs and TELEGRAM_BOT_TOKEN
+[2026-02-25 04:45:02] validateInitData called, initData length: 648
+[2026-02-25 04:45:02] Bot token loaded from telegram_configs
+[2026-02-25 04:45:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:45:02] Hash check - received: f8119de018..., calculated: f8119de018...
+[2026-02-25 04:45:02] Hash validation PASSED
+[2026-02-25 04:45:02] User data decoded, user ID: 768732984
+[2026-02-25 04:45:11] validateInitData called, initData length: 648
+[2026-02-25 04:45:11] Bot token loaded from telegram_configs
+[2026-02-25 04:45:11] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:45:11] Hash check - received: f8119de018..., calculated: f8119de018...
+[2026-02-25 04:45:11] Hash validation PASSED
+[2026-02-25 04:45:11] User data decoded, user ID: 768732984
+[2026-02-25 04:46:01] validateInitData called, initData length: 648
+[2026-02-25 04:46:01] Bot token loaded from telegram_configs
+[2026-02-25 04:46:01] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:46:01] Hash check - received: de27a8a99d..., calculated: de27a8a99d...
+[2026-02-25 04:46:01] Hash validation PASSED
+[2026-02-25 04:46:01] User data decoded, user ID: 768732984
+[2026-02-25 04:46:12] validateInitData called, initData length: 648
+[2026-02-25 04:46:12] Bot token loaded from telegram_configs
+[2026-02-25 04:46:12] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:46:12] Hash check - received: de27a8a99d..., calculated: de27a8a99d...
+[2026-02-25 04:46:12] Hash validation PASSED
+[2026-02-25 04:46:12] User data decoded, user ID: 768732984
+[2026-02-25 04:46:17] validateInitData called, initData length: 648
+[2026-02-25 04:46:17] Bot token loaded from telegram_configs
+[2026-02-25 04:46:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:46:17] Hash check - received: de27a8a99d..., calculated: de27a8a99d...
+[2026-02-25 04:46:17] Hash validation PASSED
+[2026-02-25 04:46:17] User data decoded, user ID: 768732984
+[2026-02-25 04:46:18] validateInitData called, initData length: 648
+[2026-02-25 04:46:19] Bot token loaded from telegram_configs
+[2026-02-25 04:46:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:46:19] Hash check - received: de27a8a99d..., calculated: de27a8a99d...
+[2026-02-25 04:46:19] Hash validation PASSED
+[2026-02-25 04:46:19] User data decoded, user ID: 768732984
+[2026-02-25 04:51:31] validateInitData called, initData length: 648
+[2026-02-25 04:51:31] Bot token loaded from telegram_configs
+[2026-02-25 04:51:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:31] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:31] Hash validation PASSED
+[2026-02-25 04:51:31] User data decoded, user ID: 768732984
+[2026-02-25 04:51:33] validateInitData called, initData length: 648
+[2026-02-25 04:51:33] Bot token loaded from telegram_configs
+[2026-02-25 04:51:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:34] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:34] Hash validation PASSED
+[2026-02-25 04:51:34] User data decoded, user ID: 768732984
+[2026-02-25 04:51:36] validateInitData called, initData length: 648
+[2026-02-25 04:51:36] Bot token loaded from telegram_configs
+[2026-02-25 04:51:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:36] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:36] Hash validation PASSED
+[2026-02-25 04:51:36] User data decoded, user ID: 768732984
+[2026-02-25 04:51:40] validateInitData called, initData length: 648
+[2026-02-25 04:51:40] Bot token loaded from telegram_configs
+[2026-02-25 04:51:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:41] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:41] Hash validation PASSED
+[2026-02-25 04:51:41] User data decoded, user ID: 768732984
+[2026-02-25 04:51:45] ===== SEND REPLY START =====
+[2026-02-25 04:51:45] Request method: POST
+[2026-02-25 04:51:45] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1V1lHg&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1771995084&signature=4Xuf_dJvT8O4s12rFZC4njL915Z-tCwfzc_tkX31al7TxuflbMKZnV_JuBQxRJFTL6aYvKv4-qAuMYrvBM0hBg&hash=a56bec7f7e2805ef8fb124d0a252c53aeb33fc2dd4beeffb7e04ae0e8df43451","ticket_id":4,"message":"dddsa","lang":"km"}
+[2026-02-25 04:51:45] sendReply called for ticket: 4, message length: 5
+[2026-02-25 04:51:45] validateInitData called, initData length: 648
+[2026-02-25 04:51:45] Bot token loaded from telegram_configs
+[2026-02-25 04:51:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:45] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:45] Hash validation PASSED
+[2026-02-25 04:51:45] User data decoded, user ID: 768732984
+[2026-02-25 04:51:45] No assigned agent, skipping push notification
+[2026-02-25 04:51:45] Reply added successfully
+[2026-02-25 04:51:45] validateInitData called, initData length: 648
+[2026-02-25 04:51:45] Bot token loaded from telegram_configs
+[2026-02-25 04:51:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:51:45] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:51:45] Hash validation PASSED
+[2026-02-25 04:51:45] User data decoded, user ID: 768732984
+[2026-02-25 04:52:48] ===== SEND REPLY START =====
+[2026-02-25 04:52:48] Request method: POST
+[2026-02-25 04:52:48] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S1V1lHg&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1771995084&signature=4Xuf_dJvT8O4s12rFZC4njL915Z-tCwfzc_tkX31al7TxuflbMKZnV_JuBQxRJFTL6aYvKv4-qAuMYrvBM0hBg&hash=a56bec7f7e2805ef8fb124d0a252c53aeb33fc2dd4beeffb7e04ae0e8df43451","ticket_id":4,"message":"fsfa","lang":"km"}
+[2026-02-25 04:52:48] sendReply called for ticket: 4, message length: 4
+[2026-02-25 04:52:48] validateInitData called, initData length: 648
+[2026-02-25 04:52:48] Bot token loaded from telegram_configs
+[2026-02-25 04:52:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:52:48] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:52:48] Hash validation PASSED
+[2026-02-25 04:52:48] User data decoded, user ID: 768732984
+[2026-02-25 04:52:49] No assigned agent, skipping push notification
+[2026-02-25 04:52:49] Reply added successfully
+[2026-02-25 04:52:49] validateInitData called, initData length: 648
+[2026-02-25 04:52:49] Bot token loaded from telegram_configs
+[2026-02-25 04:52:49] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 04:52:49] Hash check - received: a56bec7f7e..., calculated: a56bec7f7e...
+[2026-02-25 04:52:49] Hash validation PASSED
+[2026-02-25 04:52:49] User data decoded, user ID: 768732984
+[2026-02-25 06:18:06] validateInitData called, initData length: 648
+[2026-02-25 06:18:06] Bot token loaded from telegram_configs
+[2026-02-25 06:18:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:18:06] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:18:06] Hash validation PASSED
+[2026-02-25 06:18:06] User data decoded, user ID: 768732984
+[2026-02-25 06:18:09] validateInitData called, initData length: 648
+[2026-02-25 06:18:09] Bot token loaded from telegram_configs
+[2026-02-25 06:18:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:18:09] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:18:09] Hash validation PASSED
+[2026-02-25 06:18:10] User data decoded, user ID: 768732984
+[2026-02-25 06:18:17] ===== SEND REPLY START =====
+[2026-02-25 06:18:17] Request method: POST
+[2026-02-25 06:18:17] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S3N2cSy&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1772000269&signature=m1HyNSs5GlbkkXCbI8oRtgSsEMsTrAwozJ3WOhsM6RJ7FGhpUytHtI46siVHomdLYJOa9_K4iWYNKIo4ER4HDw&hash=f1d23fed61e212e362c732be5bf9191a7da01c88fedd191e73de60cd44837d1a","ticket_id":4,"message":"\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179f\u17b6\u179a\u179f\u1798\u17d2\u179b\u17c1\u1784\u17d4","lang":"km"}
+[2026-02-25 06:18:17] sendReply called for ticket: 4, message length: 57
+[2026-02-25 06:18:17] validateInitData called, initData length: 648
+[2026-02-25 06:18:17] Bot token loaded from telegram_configs
+[2026-02-25 06:18:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:18:17] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:18:17] Hash validation PASSED
+[2026-02-25 06:18:17] User data decoded, user ID: 768732984
+[2026-02-25 06:18:18] No assigned agent, skipping push notification
+[2026-02-25 06:18:18] Reply added successfully
+[2026-02-25 06:18:18] validateInitData called, initData length: 648
+[2026-02-25 06:18:18] Bot token loaded from telegram_configs
+[2026-02-25 06:18:18] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:18:18] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:18:18] Hash validation PASSED
+[2026-02-25 06:18:18] User data decoded, user ID: 768732984
+[2026-02-25 06:18:19] validateInitData called, initData length: 648
+[2026-02-25 06:18:19] Bot token loaded from telegram_configs
+[2026-02-25 06:18:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:18:19] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:18:19] Hash validation PASSED
+[2026-02-25 06:18:19] User data decoded, user ID: 768732984
+[2026-02-25 06:21:44] validateInitData called, initData length: 648
+[2026-02-25 06:21:44] Bot token loaded from telegram_configs
+[2026-02-25 06:21:44] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:21:44] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:21:44] Hash validation PASSED
+[2026-02-25 06:21:44] User data decoded, user ID: 768732984
+[2026-02-25 06:21:47] validateInitData called, initData length: 648
+[2026-02-25 06:21:47] Bot token loaded from telegram_configs
+[2026-02-25 06:21:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:21:47] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:21:47] Hash validation PASSED
+[2026-02-25 06:21:47] User data decoded, user ID: 768732984
+[2026-02-25 06:21:56] ===== SEND REPLY START =====
+[2026-02-25 06:21:56] Request method: POST
+[2026-02-25 06:21:56] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S3N2cSy&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1772000269&signature=m1HyNSs5GlbkkXCbI8oRtgSsEMsTrAwozJ3WOhsM6RJ7FGhpUytHtI46siVHomdLYJOa9_K4iWYNKIo4ER4HDw&hash=f1d23fed61e212e362c732be5bf9191a7da01c88fedd191e73de60cd44837d1a","ticket_id":4,"message":"\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u17af\u1780\u179f\u17b6\u179a\u17d4","lang":"km"}
+[2026-02-25 06:21:56] sendReply called for ticket: 4, message length: 45
+[2026-02-25 06:21:57] validateInitData called, initData length: 648
+[2026-02-25 06:21:57] Bot token loaded from telegram_configs
+[2026-02-25 06:21:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:21:57] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:21:57] Hash validation PASSED
+[2026-02-25 06:21:57] User data decoded, user ID: 768732984
+[2026-02-25 06:21:57] No assigned agent, skipping push notification
+[2026-02-25 06:21:57] Reply added successfully
+[2026-02-25 06:21:57] validateInitData called, initData length: 648
+[2026-02-25 06:21:57] Bot token loaded from telegram_configs
+[2026-02-25 06:21:57] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:21:57] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:21:57] Hash validation PASSED
+[2026-02-25 06:21:57] User data decoded, user ID: 768732984
+[2026-02-25 06:21:59] validateInitData called, initData length: 648
+[2026-02-25 06:21:59] Bot token loaded from telegram_configs
+[2026-02-25 06:21:59] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:21:59] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:21:59] Hash validation PASSED
+[2026-02-25 06:21:59] User data decoded, user ID: 768732984
+[2026-02-25 06:22:15] ===== SEND REPLY START =====
+[2026-02-25 06:22:15] Request method: POST
+[2026-02-25 06:22:15] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S3N2cSy&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1772000269&signature=m1HyNSs5GlbkkXCbI8oRtgSsEMsTrAwozJ3WOhsM6RJ7FGhpUytHtI46siVHomdLYJOa9_K4iWYNKIo4ER4HDw&hash=f1d23fed61e212e362c732be5bf9191a7da01c88fedd191e73de60cd44837d1a","ticket_id":4,"message":"\u1794\u17b6\u1793\u1797\u17d2\u1787\u17b6\u1794\u17cb\u179f\u17b6\u179a\u179f\u1798\u17d2\u179b\u17c1\u1784\u17d4","lang":"km"}
+[2026-02-25 06:22:15] sendReply called for ticket: 4, message length: 57
+[2026-02-25 06:22:15] validateInitData called, initData length: 648
+[2026-02-25 06:22:15] Bot token loaded from telegram_configs
+[2026-02-25 06:22:15] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:22:15] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:22:15] Hash validation PASSED
+[2026-02-25 06:22:15] User data decoded, user ID: 768732984
+[2026-02-25 06:22:15] No assigned agent, skipping push notification
+[2026-02-25 06:22:15] Reply added successfully
+[2026-02-25 06:22:16] validateInitData called, initData length: 648
+[2026-02-25 06:22:16] Bot token loaded from telegram_configs
+[2026-02-25 06:22:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:22:16] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:22:16] Hash validation PASSED
+[2026-02-25 06:22:16] User data decoded, user ID: 768732984
+[2026-02-25 06:22:16] validateInitData called, initData length: 648
+[2026-02-25 06:22:16] Bot token loaded from telegram_configs
+[2026-02-25 06:22:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:22:16] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:22:16] Hash validation PASSED
+[2026-02-25 06:22:16] User data decoded, user ID: 768732984
+[2026-02-25 06:28:46] validateInitData called, initData length: 648
+[2026-02-25 06:28:46] Bot token loaded from telegram_configs
+[2026-02-25 06:28:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:28:46] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:28:46] Hash validation PASSED
+[2026-02-25 06:28:46] User data decoded, user ID: 768732984
+[2026-02-25 06:28:47] validateInitData called, initData length: 648
+[2026-02-25 06:28:47] Bot token loaded from telegram_configs
+[2026-02-25 06:28:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:28:47] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:28:47] Hash validation PASSED
+[2026-02-25 06:28:47] User data decoded, user ID: 768732984
+[2026-02-25 06:28:59] ===== SEND REPLY START =====
+[2026-02-25 06:28:59] Request method: POST
+[2026-02-25 06:28:59] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S3N2cSy&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1772000269&signature=m1HyNSs5GlbkkXCbI8oRtgSsEMsTrAwozJ3WOhsM6RJ7FGhpUytHtI46siVHomdLYJOa9_K4iWYNKIo4ER4HDw&hash=f1d23fed61e212e362c732be5bf9191a7da01c88fedd191e73de60cd44837d1a","ticket_id":4,"message":"","has_attachment":1,"lang":"km"}
+[2026-02-25 06:28:59] sendReply called for ticket: 4, message length: 0
+[2026-02-25 06:28:59] validateInitData called, initData length: 648
+[2026-02-25 06:28:59] Bot token loaded from telegram_configs
+[2026-02-25 06:28:59] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:28:59] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:28:59] Hash validation PASSED
+[2026-02-25 06:28:59] User data decoded, user ID: 768732984
+[2026-02-25 06:29:00] No assigned agent, skipping push notification
+[2026-02-25 06:29:00] Reply added successfully
+[2026-02-25 06:29:01] validateInitData called, initData length: 648
+[2026-02-25 06:29:01] Bot token loaded from telegram_configs
+[2026-02-25 06:29:01] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:29:01] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:29:01] Hash validation PASSED
+[2026-02-25 06:29:01] User data decoded, user ID: 768732984
+[2026-02-25 06:29:02] validateInitData called, initData length: 648
+[2026-02-25 06:29:02] Bot token loaded from telegram_configs
+[2026-02-25 06:29:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:29:02] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:29:02] Hash validation PASSED
+[2026-02-25 06:29:02] User data decoded, user ID: 768732984
+[2026-02-25 06:47:16] ===== SEND REPLY START =====
+[2026-02-25 06:47:16] Request method: POST
+[2026-02-25 06:47:16] Raw input: {"initData":"query_id=AAE479EtAAAAADjv0S3N2cSy&user=%7B%22id%22%3A768732984%2C%22first_name%22%3A%22Hay%20Kongmeng%20-%22%2C%22last_name%22%3A%22%E1%9E%A0%E1%9F%83%20%E1%9E%82%E1%9E%84%E1%9F%8B%E1%9E%98%E1%9F%89%E1%9F%81%E1%9E%84%22%2C%22username%22%3A%22KongMeng_Hay%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FeI5-ohJqe4L52N_kn86ZurkuGVc0zZXfyUisFRG4a34.svg%22%7D&auth_date=1772000269&signature=m1HyNSs5GlbkkXCbI8oRtgSsEMsTrAwozJ3WOhsM6RJ7FGhpUytHtI46siVHomdLYJOa9_K4iWYNKIo4ER4HDw&hash=f1d23fed61e212e362c732be5bf9191a7da01c88fedd191e73de60cd44837d1a","ticket_id":4,"message":"","has_attachment":1,"lang":"km"}
+[2026-02-25 06:47:16] sendReply called for ticket: 4, message length: 0
+[2026-02-25 06:47:16] validateInitData called, initData length: 648
+[2026-02-25 06:47:16] Bot token loaded from telegram_configs
+[2026-02-25 06:47:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:47:16] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:47:16] Hash validation PASSED
+[2026-02-25 06:47:16] User data decoded, user ID: 768732984
+[2026-02-25 06:47:16] No assigned agent, skipping push notification
+[2026-02-25 06:47:16] Reply added successfully
+[2026-02-25 06:47:17] validateInitData called, initData length: 648
+[2026-02-25 06:47:17] Bot token loaded from telegram_configs
+[2026-02-25 06:47:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:47:17] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:47:17] Hash validation PASSED
+[2026-02-25 06:47:17] User data decoded, user ID: 768732984
+[2026-02-25 06:47:18] validateInitData called, initData length: 648
+[2026-02-25 06:47:18] Bot token loaded from telegram_configs
+[2026-02-25 06:47:18] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-25 06:47:18] Hash check - received: f1d23fed61..., calculated: f1d23fed61...
+[2026-02-25 06:47:18] Hash validation PASSED
+[2026-02-25 06:47:18] User data decoded, user ID: 768732984
+[2026-02-26 07:16:16] validateInitData called, initData length: 648
+[2026-02-26 07:16:16] Bot token loaded from telegram_configs
+[2026-02-26 07:16:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:16:16] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:16:16] Hash validation PASSED
+[2026-02-26 07:16:16] User data decoded, user ID: 768732984
+[2026-02-26 07:16:19] validateInitData called, initData length: 648
+[2026-02-26 07:16:19] Bot token loaded from telegram_configs
+[2026-02-26 07:16:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:16:19] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:16:19] Hash validation PASSED
+[2026-02-26 07:16:19] User data decoded, user ID: 768732984
+[2026-02-26 07:16:27] validateInitData called, initData length: 648
+[2026-02-26 07:16:27] Bot token loaded from telegram_configs
+[2026-02-26 07:16:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:16:27] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:16:27] Hash validation PASSED
+[2026-02-26 07:16:27] User data decoded, user ID: 768732984
+[2026-02-26 07:16:49] validateInitData called, initData length: 648
+[2026-02-26 07:16:49] Bot token loaded from telegram_configs
+[2026-02-26 07:16:49] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:16:49] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:16:49] Hash validation PASSED
+[2026-02-26 07:16:49] User data decoded, user ID: 768732984
+[2026-02-26 07:16:53] validateInitData called, initData length: 648
+[2026-02-26 07:16:53] Bot token loaded from telegram_configs
+[2026-02-26 07:16:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:16:53] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:16:53] Hash validation PASSED
+[2026-02-26 07:16:53] User data decoded, user ID: 768732984
+[2026-02-26 07:17:02] validateInitData called, initData length: 648
+[2026-02-26 07:17:02] Bot token loaded from telegram_configs
+[2026-02-26 07:17:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:17:02] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:17:02] Hash validation PASSED
+[2026-02-26 07:17:02] User data decoded, user ID: 768732984
+[2026-02-26 07:22:53] validateInitData called, initData length: 648
+[2026-02-26 07:22:53] Bot token loaded from telegram_configs
+[2026-02-26 07:22:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:22:53] Hash check - received: 2866a308cc..., calculated: 2866a308cc...
+[2026-02-26 07:22:53] Hash validation PASSED
+[2026-02-26 07:22:53] User data decoded, user ID: 768732984
+[2026-02-26 07:23:07] validateInitData called, initData length: 648
+[2026-02-26 07:23:07] Bot token loaded from telegram_configs
+[2026-02-26 07:23:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:23:07] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:23:07] Hash validation PASSED
+[2026-02-26 07:23:07] User data decoded, user ID: 768732984
+[2026-02-26 07:23:10] validateInitData called, initData length: 648
+[2026-02-26 07:23:10] Bot token loaded from telegram_configs
+[2026-02-26 07:23:10] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:23:10] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:23:10] Hash validation PASSED
+[2026-02-26 07:23:10] User data decoded, user ID: 768732984
+[2026-02-26 07:23:11] validateInitData called, initData length: 648
+[2026-02-26 07:23:11] Bot token loaded from telegram_configs
+[2026-02-26 07:23:11] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:23:11] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:23:11] Hash validation PASSED
+[2026-02-26 07:23:11] User data decoded, user ID: 768732984
+[2026-02-26 07:26:46] validateInitData called, initData length: 648
+[2026-02-26 07:26:46] Bot token loaded from telegram_configs
+[2026-02-26 07:26:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:26:46] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:26:46] Hash validation PASSED
+[2026-02-26 07:26:46] User data decoded, user ID: 768732984
+[2026-02-26 07:26:59] validateInitData called, initData length: 648
+[2026-02-26 07:26:59] Bot token loaded from telegram_configs
+[2026-02-26 07:26:59] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:26:59] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:26:59] Hash validation PASSED
+[2026-02-26 07:26:59] User data decoded, user ID: 768732984
+[2026-02-26 07:27:05] validateInitData called, initData length: 648
+[2026-02-26 07:27:05] Bot token loaded from telegram_configs
+[2026-02-26 07:27:05] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:27:05] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:27:05] Hash validation PASSED
+[2026-02-26 07:27:05] User data decoded, user ID: 768732984
+[2026-02-26 07:27:32] validateInitData called, initData length: 648
+[2026-02-26 07:27:32] Bot token loaded from telegram_configs
+[2026-02-26 07:27:32] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:27:32] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:27:32] Hash validation PASSED
+[2026-02-26 07:27:32] User data decoded, user ID: 768732984
+[2026-02-26 07:27:44] validateInitData called, initData length: 648
+[2026-02-26 07:27:44] Bot token loaded from telegram_configs
+[2026-02-26 07:27:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:27:45] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:27:45] Hash validation PASSED
+[2026-02-26 07:27:45] User data decoded, user ID: 768732984
+[2026-02-26 07:28:10] validateInitData called, initData length: 648
+[2026-02-26 07:28:10] Bot token loaded from telegram_configs
+[2026-02-26 07:28:10] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:28:10] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:28:10] Hash validation PASSED
+[2026-02-26 07:28:10] User data decoded, user ID: 768732984
+[2026-02-26 07:28:52] validateInitData called, initData length: 648
+[2026-02-26 07:28:52] Bot token loaded from telegram_configs
+[2026-02-26 07:28:52] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:28:52] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:28:52] Hash validation PASSED
+[2026-02-26 07:28:52] User data decoded, user ID: 768732984
+[2026-02-26 07:29:17] validateInitData called, initData length: 648
+[2026-02-26 07:29:17] Bot token loaded from telegram_configs
+[2026-02-26 07:29:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:29:17] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:29:17] Hash validation PASSED
+[2026-02-26 07:29:17] User data decoded, user ID: 768732984
+[2026-02-26 07:41:53] validateInitData called, initData length: 648
+[2026-02-26 07:41:53] Bot token loaded from telegram_configs
+[2026-02-26 07:41:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 07:41:53] Hash check - received: 256fd484cd..., calculated: 256fd484cd...
+[2026-02-26 07:41:53] Hash validation PASSED
+[2026-02-26 07:41:53] User data decoded, user ID: 768732984
+[2026-02-26 08:20:54] [PushService] Getting subscriptions for user IDs: [1]
+[2026-02-26 08:20:55] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [1]
+[2026-02-26 08:20:55] [PushService] Query returned 2 rows
+[2026-02-26 08:20:54] [PushService] Found 2 active subscriptions
+[2026-02-26 08:20:54] [PushService] Processing subscription for user: 1
+[2026-02-26 08:20:54] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-26 08:20:54] [PushService] Processing subscription for user: 1
+[2026-02-26 08:20:54] [PushService] Send result: {"success":false,"error_code":403,"response":"permission denied: VAPID public key must be on the P-256 curve\n"}
+[2026-02-26 08:21:53] validateInitData called, initData length: 648
+[2026-02-26 08:21:53] Bot token loaded from telegram_configs
+[2026-02-26 08:21:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:21:53] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:21:53] Hash validation PASSED
+[2026-02-26 08:21:53] User data decoded, user ID: 768732984
+[2026-02-26 08:22:13] validateInitData called, initData length: 648
+[2026-02-26 08:22:13] Bot token loaded from telegram_configs
+[2026-02-26 08:22:13] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:22:13] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:22:13] Hash validation PASSED
+[2026-02-26 08:22:13] User data decoded, user ID: 768732984
+[2026-02-26 08:22:16] validateInitData called, initData length: 648
+[2026-02-26 08:22:16] Bot token loaded from telegram_configs
+[2026-02-26 08:22:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:22:16] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:22:16] Hash validation PASSED
+[2026-02-26 08:22:16] User data decoded, user ID: 768732984
+[2026-02-26 08:22:17] validateInitData called, initData length: 648
+[2026-02-26 08:22:17] Bot token loaded from telegram_configs
+[2026-02-26 08:22:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:22:17] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:22:17] Hash validation PASSED
+[2026-02-26 08:22:17] User data decoded, user ID: 768732984
+[2026-02-26 08:25:46] validateInitData called, initData length: 648
+[2026-02-26 08:25:46] Bot token loaded from telegram_configs
+[2026-02-26 08:25:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:25:46] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:25:46] Hash validation PASSED
+[2026-02-26 08:25:46] User data decoded, user ID: 768732984
+[2026-02-26 08:26:00] validateInitData called, initData length: 648
+[2026-02-26 08:26:00] Bot token loaded from telegram_configs
+[2026-02-26 08:26:00] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:26:00] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:26:00] Hash validation PASSED
+[2026-02-26 08:26:01] User data decoded, user ID: 768732984
+[2026-02-26 08:26:07] validateInitData called, initData length: 648
+[2026-02-26 08:26:07] Bot token loaded from telegram_configs
+[2026-02-26 08:26:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:26:07] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:26:07] Hash validation PASSED
+[2026-02-26 08:26:07] User data decoded, user ID: 768732984
+[2026-02-26 08:26:45] validateInitData called, initData length: 648
+[2026-02-26 08:26:45] Bot token loaded from telegram_configs
+[2026-02-26 08:26:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:26:45] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:26:45] Hash validation PASSED
+[2026-02-26 08:26:45] User data decoded, user ID: 768732984
+[2026-02-26 08:26:53] validateInitData called, initData length: 648
+[2026-02-26 08:26:53] Bot token loaded from telegram_configs
+[2026-02-26 08:26:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:26:53] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:26:53] Hash validation PASSED
+[2026-02-26 08:26:53] User data decoded, user ID: 768732984
+[2026-02-26 08:48:58] validateInitData called, initData length: 648
+[2026-02-26 08:48:58] Bot token loaded from telegram_configs
+[2026-02-26 08:48:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:48:58] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:48:58] Hash validation PASSED
+[2026-02-26 08:48:58] User data decoded, user ID: 768732984
+[2026-02-26 08:49:00] validateInitData called, initData length: 648
+[2026-02-26 08:49:00] Bot token loaded from telegram_configs
+[2026-02-26 08:49:00] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:49:00] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:49:00] Hash validation PASSED
+[2026-02-26 08:49:00] User data decoded, user ID: 768732984
+[2026-02-26 08:49:21] validateInitData called, initData length: 648
+[2026-02-26 08:49:21] Bot token loaded from telegram_configs
+[2026-02-26 08:49:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:49:21] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:49:21] Hash validation PASSED
+[2026-02-26 08:49:21] User data decoded, user ID: 768732984
+[2026-02-26 08:53:53] validateInitData called, initData length: 648
+[2026-02-26 08:53:53] Bot token loaded from telegram_configs
+[2026-02-26 08:53:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:53:53] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:53:53] Hash validation PASSED
+[2026-02-26 08:53:53] User data decoded, user ID: 768732984
+[2026-02-26 08:54:02] validateInitData called, initData length: 648
+[2026-02-26 08:54:02] Bot token loaded from telegram_configs
+[2026-02-26 08:54:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:54:02] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:54:02] Hash validation PASSED
+[2026-02-26 08:54:02] User data decoded, user ID: 768732984
+[2026-02-26 08:56:53] validateInitData called, initData length: 648
+[2026-02-26 08:56:54] Bot token loaded from telegram_configs
+[2026-02-26 08:56:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:56:54] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:56:54] Hash validation PASSED
+[2026-02-26 08:56:54] User data decoded, user ID: 768732984
+[2026-02-26 08:57:07] validateInitData called, initData length: 648
+[2026-02-26 08:57:07] Bot token loaded from telegram_configs
+[2026-02-26 08:57:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:57:07] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:57:07] Hash validation PASSED
+[2026-02-26 08:57:07] User data decoded, user ID: 768732984
+[2026-02-26 08:57:39] validateInitData called, initData length: 648
+[2026-02-26 08:57:39] Bot token loaded from telegram_configs
+[2026-02-26 08:57:39] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:57:39] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:57:39] Hash validation PASSED
+[2026-02-26 08:57:39] User data decoded, user ID: 768732984
+[2026-02-26 08:57:49] validateInitData called, initData length: 648
+[2026-02-26 08:57:50] Bot token loaded from telegram_configs
+[2026-02-26 08:57:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 08:57:50] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 08:57:50] Hash validation PASSED
+[2026-02-26 08:57:50] User data decoded, user ID: 768732984
+[2026-02-26 09:07:55] validateInitData called, initData length: 648
+[2026-02-26 09:07:55] Bot token loaded from telegram_configs
+[2026-02-26 09:07:55] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 09:07:55] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 09:07:55] Hash validation PASSED
+[2026-02-26 09:07:55] User data decoded, user ID: 768732984
+[2026-02-26 09:08:17] validateInitData called, initData length: 648
+[2026-02-26 09:08:17] Bot token loaded from telegram_configs
+[2026-02-26 09:08:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 09:08:17] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 09:08:17] Hash validation PASSED
+[2026-02-26 09:08:17] User data decoded, user ID: 768732984
+[2026-02-26 09:19:29] validateInitData called, initData length: 648
+[2026-02-26 09:19:29] Bot token loaded from telegram_configs
+[2026-02-26 09:19:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 09:19:29] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 09:19:29] Hash validation PASSED
+[2026-02-26 09:19:29] User data decoded, user ID: 768732984
+[2026-02-26 09:42:04] validateInitData called, initData length: 648
+[2026-02-26 09:42:04] Bot token loaded from telegram_configs
+[2026-02-26 09:42:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 09:42:04] Hash check - received: 130fc3ad60..., calculated: 130fc3ad60...
+[2026-02-26 09:42:04] Hash validation PASSED
+[2026-02-26 09:42:04] User data decoded, user ID: 768732984
+[2026-02-26 12:30:19] validateInitData called, initData length: 648
+[2026-02-26 12:30:19] Bot token loaded from telegram_configs
+[2026-02-26 12:30:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 12:30:19] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 12:30:19] Hash validation PASSED
+[2026-02-26 12:30:19] User data decoded, user ID: 768732984
+[2026-02-26 12:36:27] validateInitData called, initData length: 648
+[2026-02-26 12:36:27] Bot token loaded from telegram_configs
+[2026-02-26 12:36:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 12:36:27] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 12:36:27] Hash validation PASSED
+[2026-02-26 12:36:27] User data decoded, user ID: 768732984
+[2026-02-26 12:36:32] validateInitData called, initData length: 648
+[2026-02-26 12:36:32] Bot token loaded from telegram_configs
+[2026-02-26 12:36:32] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 12:36:32] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 12:36:32] Hash validation PASSED
+[2026-02-26 12:36:32] User data decoded, user ID: 768732984
+[2026-02-26 12:43:21] validateInitData called, initData length: 648
+[2026-02-26 12:43:21] Bot token loaded from telegram_configs
+[2026-02-26 12:43:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 12:43:21] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 12:43:21] Hash validation PASSED
+[2026-02-26 12:43:21] User data decoded, user ID: 768732984
+[2026-02-26 12:43:26] validateInitData called, initData length: 648
+[2026-02-26 12:43:26] Bot token loaded from telegram_configs
+[2026-02-26 12:43:26] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 12:43:26] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 12:43:26] Hash validation PASSED
+[2026-02-26 12:43:26] User data decoded, user ID: 768732984
+[2026-02-26 13:06:02] validateInitData called, initData length: 648
+[2026-02-26 13:06:02] Bot token loaded from telegram_configs
+[2026-02-26 13:06:02] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:06:02] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:06:02] Hash validation PASSED
+[2026-02-26 13:06:02] User data decoded, user ID: 768732984
+[2026-02-26 13:06:04] validateInitData called, initData length: 648
+[2026-02-26 13:06:04] Bot token loaded from telegram_configs
+[2026-02-26 13:06:04] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:06:04] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:06:04] Hash validation PASSED
+[2026-02-26 13:06:04] User data decoded, user ID: 768732984
+[2026-02-26 13:06:06] validateInitData called, initData length: 648
+[2026-02-26 13:06:06] Bot token loaded from telegram_configs
+[2026-02-26 13:06:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:06:06] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:06:06] Hash validation PASSED
+[2026-02-26 13:06:06] User data decoded, user ID: 768732984
+[2026-02-26 13:06:12] validateInitData called, initData length: 648
+[2026-02-26 13:06:12] Bot token loaded from telegram_configs
+[2026-02-26 13:06:12] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:06:12] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:06:12] Hash validation PASSED
+[2026-02-26 13:06:12] User data decoded, user ID: 768732984
+[2026-02-26 13:07:13] validateInitData called, initData length: 648
+[2026-02-26 13:07:13] Bot token loaded from telegram_configs
+[2026-02-26 13:07:13] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:07:13] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:07:13] Hash validation PASSED
+[2026-02-26 13:07:13] User data decoded, user ID: 768732984
+[2026-02-26 13:07:16] validateInitData called, initData length: 648
+[2026-02-26 13:07:16] Bot token loaded from telegram_configs
+[2026-02-26 13:07:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:07:16] Hash check - received: b0d2baec45..., calculated: b0d2baec45...
+[2026-02-26 13:07:16] Hash validation PASSED
+[2026-02-26 13:07:16] User data decoded, user ID: 768732984
+[2026-02-26 13:08:15] validateInitData called, initData length: 648
+[2026-02-26 13:08:15] Bot token loaded from telegram_configs
+[2026-02-26 13:08:15] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:08:15] Hash check - received: 71fc5f1ad5..., calculated: 71fc5f1ad5...
+[2026-02-26 13:08:15] Hash validation PASSED
+[2026-02-26 13:08:15] User data decoded, user ID: 768732984
+[2026-02-26 13:08:19] validateInitData called, initData length: 648
+[2026-02-26 13:08:19] Bot token loaded from telegram_configs
+[2026-02-26 13:08:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-26 13:08:19] Hash check - received: 71fc5f1ad5..., calculated: 71fc5f1ad5...
+[2026-02-26 13:08:20] Hash validation PASSED
+[2026-02-26 13:08:20] User data decoded, user ID: 768732984
+[2026-02-27 01:46:03] validateInitData called, initData length: 648
+[2026-02-27 01:46:03] Bot token loaded from telegram_configs
+[2026-02-27 01:46:03] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:46:03] Hash check - received: c0a7f674e0..., calculated: c0a7f674e0...
+[2026-02-27 01:46:03] Hash validation PASSED
+[2026-02-27 01:46:03] User data decoded, user ID: 768732984
+[2026-02-27 01:46:33] validateInitData called, initData length: 648
+[2026-02-27 01:46:33] Bot token loaded from telegram_configs
+[2026-02-27 01:46:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:46:33] Hash check - received: c0a7f674e0..., calculated: c0a7f674e0...
+[2026-02-27 01:46:34] Hash validation PASSED
+[2026-02-27 01:46:34] User data decoded, user ID: 768732984
+[2026-02-27 01:46:38] validateInitData called, initData length: 648
+[2026-02-27 01:46:38] Bot token loaded from telegram_configs
+[2026-02-27 01:46:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:46:38] Hash check - received: c0a7f674e0..., calculated: c0a7f674e0...
+[2026-02-27 01:46:38] Hash validation PASSED
+[2026-02-27 01:46:38] User data decoded, user ID: 768732984
+[2026-02-27 01:51:24] validateInitData called, initData length: 648
+[2026-02-27 01:51:24] Bot token loaded from telegram_configs
+[2026-02-27 01:51:24] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:51:24] Hash check - received: c0a7f674e0..., calculated: c0a7f674e0...
+[2026-02-27 01:51:24] Hash validation PASSED
+[2026-02-27 01:51:24] User data decoded, user ID: 768732984
+[2026-02-27 01:52:33] validateInitData called, initData length: 648
+[2026-02-27 01:52:33] Bot token loaded from telegram_configs
+[2026-02-27 01:52:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:52:33] Hash check - received: ca479d3ca1..., calculated: ca479d3ca1...
+[2026-02-27 01:52:33] Hash validation PASSED
+[2026-02-27 01:52:33] User data decoded, user ID: 768732984
+[2026-02-27 01:56:42] validateInitData called, initData length: 648
+[2026-02-27 01:56:42] Bot token loaded from telegram_configs
+[2026-02-27 01:56:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:56:42] Hash check - received: 406ef12dbb..., calculated: 406ef12dbb...
+[2026-02-27 01:56:42] Hash validation PASSED
+[2026-02-27 01:56:42] User data decoded, user ID: 768732984
+[2026-02-27 01:56:45] validateInitData called, initData length: 648
+[2026-02-27 01:56:45] Bot token loaded from telegram_configs
+[2026-02-27 01:56:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:56:45] Hash check - received: 406ef12dbb..., calculated: 406ef12dbb...
+[2026-02-27 01:56:45] Hash validation PASSED
+[2026-02-27 01:56:45] User data decoded, user ID: 768732984
+[2026-02-27 01:56:48] validateInitData called, initData length: 648
+[2026-02-27 01:56:48] Bot token loaded from telegram_configs
+[2026-02-27 01:56:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:56:48] Hash check - received: 406ef12dbb..., calculated: 406ef12dbb...
+[2026-02-27 01:56:48] Hash validation PASSED
+[2026-02-27 01:56:48] User data decoded, user ID: 768732984
+[2026-02-27 01:57:45] validateInitData called, initData length: 648
+[2026-02-27 01:57:45] Bot token loaded from telegram_configs
+[2026-02-27 01:57:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 01:57:45] Hash check - received: b4845e191e..., calculated: b4845e191e...
+[2026-02-27 01:57:45] Hash validation PASSED
+[2026-02-27 01:57:45] User data decoded, user ID: 768732984
+[2026-02-27 02:02:46] validateInitData called, initData length: 648
+[2026-02-27 02:02:46] Bot token loaded from telegram_configs
+[2026-02-27 02:02:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:02:46] Hash check - received: 5faae9faf6..., calculated: 5faae9faf6...
+[2026-02-27 02:02:46] Hash validation PASSED
+[2026-02-27 02:02:46] User data decoded, user ID: 768732984
+[2026-02-27 02:03:00] validateInitData called, initData length: 648
+[2026-02-27 02:03:00] Bot token loaded from telegram_configs
+[2026-02-27 02:03:00] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:03:00] Hash check - received: 5faae9faf6..., calculated: 5faae9faf6...
+[2026-02-27 02:03:00] Hash validation PASSED
+[2026-02-27 02:03:00] User data decoded, user ID: 768732984
+[2026-02-27 02:03:21] validateInitData called, initData length: 648
+[2026-02-27 02:03:21] Bot token loaded from telegram_configs
+[2026-02-27 02:03:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:03:21] Hash check - received: 5faae9faf6..., calculated: 5faae9faf6...
+[2026-02-27 02:03:21] Hash validation PASSED
+[2026-02-27 02:03:21] User data decoded, user ID: 768732984
+[2026-02-27 02:07:40] validateInitData called, initData length: 648
+[2026-02-27 02:07:40] Bot token loaded from telegram_configs
+[2026-02-27 02:07:40] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:07:40] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:07:40] Hash validation PASSED
+[2026-02-27 02:07:40] User data decoded, user ID: 768732984
+[2026-02-27 02:08:40] validateInitData called, initData length: 648
+[2026-02-27 02:08:40] Bot token loaded from telegram_configs
+[2026-02-27 02:08:40] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:08:40] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:08:40] Hash validation PASSED
+[2026-02-27 02:08:40] User data decoded, user ID: 768732984
+[2026-02-27 02:08:43] validateInitData called, initData length: 648
+[2026-02-27 02:08:43] Bot token loaded from telegram_configs
+[2026-02-27 02:08:43] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:08:43] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:08:43] Hash validation PASSED
+[2026-02-27 02:08:43] User data decoded, user ID: 768732984
+[2026-02-27 02:08:45] validateInitData called, initData length: 648
+[2026-02-27 02:08:45] Bot token loaded from telegram_configs
+[2026-02-27 02:08:45] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:08:45] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:08:45] Hash validation PASSED
+[2026-02-27 02:08:45] User data decoded, user ID: 768732984
+[2026-02-27 02:08:58] validateInitData called, initData length: 648
+[2026-02-27 02:08:58] Bot token loaded from telegram_configs
+[2026-02-27 02:08:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:08:58] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:08:58] Hash validation PASSED
+[2026-02-27 02:08:58] User data decoded, user ID: 768732984
+[2026-02-27 02:09:53] validateInitData called, initData length: 648
+[2026-02-27 02:09:53] Bot token loaded from telegram_configs
+[2026-02-27 02:09:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:09:53] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:09:53] Hash validation PASSED
+[2026-02-27 02:09:53] User data decoded, user ID: 768732984
+[2026-02-27 02:13:21] validateInitData called, initData length: 648
+[2026-02-27 02:13:21] Bot token loaded from telegram_configs
+[2026-02-27 02:13:21] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:13:21] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:13:21] Hash validation PASSED
+[2026-02-27 02:13:21] User data decoded, user ID: 768732984
+[2026-02-27 02:17:48] validateInitData called, initData length: 648
+[2026-02-27 02:17:48] Bot token loaded from telegram_configs
+[2026-02-27 02:17:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:17:48] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:17:48] Hash validation PASSED
+[2026-02-27 02:17:48] User data decoded, user ID: 768732984
+[2026-02-27 02:21:47] validateInitData called, initData length: 648
+[2026-02-27 02:21:47] Bot token loaded from telegram_configs
+[2026-02-27 02:21:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:21:47] Hash check - received: e3b644ab9a..., calculated: e3b644ab9a...
+[2026-02-27 02:21:47] Hash validation PASSED
+[2026-02-27 02:21:47] User data decoded, user ID: 768732984
+[2026-02-27 02:30:07] validateInitData called, initData length: 648
+[2026-02-27 02:30:07] Bot token loaded from telegram_configs
+[2026-02-27 02:30:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:30:07] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:30:08] Hash validation PASSED
+[2026-02-27 02:30:08] User data decoded, user ID: 768732984
+[2026-02-27 02:31:16] validateInitData called, initData length: 648
+[2026-02-27 02:31:16] Bot token loaded from telegram_configs
+[2026-02-27 02:31:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:31:16] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:31:16] Hash validation PASSED
+[2026-02-27 02:31:16] User data decoded, user ID: 768732984
+[2026-02-27 02:42:55] validateInitData called, initData length: 648
+[2026-02-27 02:42:55] Bot token loaded from telegram_configs
+[2026-02-27 02:42:55] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:42:55] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:42:55] Hash validation PASSED
+[2026-02-27 02:42:55] User data decoded, user ID: 768732984
+[2026-02-27 02:43:51] validateInitData called, initData length: 648
+[2026-02-27 02:43:51] Bot token loaded from telegram_configs
+[2026-02-27 02:43:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:43:51] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:43:51] Hash validation PASSED
+[2026-02-27 02:43:51] User data decoded, user ID: 768732984
+[2026-02-27 02:43:55] validateInitData called, initData length: 648
+[2026-02-27 02:43:55] Bot token loaded from telegram_configs
+[2026-02-27 02:43:55] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:43:55] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:43:55] Hash validation PASSED
+[2026-02-27 02:43:55] User data decoded, user ID: 768732984
+[2026-02-27 02:55:31] validateInitData called, initData length: 648
+[2026-02-27 02:55:31] Bot token loaded from telegram_configs
+[2026-02-27 02:55:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:55:31] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:55:31] Hash validation PASSED
+[2026-02-27 02:55:31] User data decoded, user ID: 768732984
+[2026-02-27 02:55:34] validateInitData called, initData length: 648
+[2026-02-27 02:55:34] Bot token loaded from telegram_configs
+[2026-02-27 02:55:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:55:34] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:55:34] Hash validation PASSED
+[2026-02-27 02:55:34] User data decoded, user ID: 768732984
+[2026-02-27 02:55:35] validateInitData called, initData length: 648
+[2026-02-27 02:55:35] Bot token loaded from telegram_configs
+[2026-02-27 02:55:35] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 02:55:35] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 02:55:35] Hash validation PASSED
+[2026-02-27 02:55:35] User data decoded, user ID: 768732984
+[2026-02-27 03:00:32] validateInitData called, initData length: 648
+[2026-02-27 03:00:32] Bot token loaded from telegram_configs
+[2026-02-27 03:00:32] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:00:32] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:00:32] Hash validation PASSED
+[2026-02-27 03:00:32] User data decoded, user ID: 768732984
+[2026-02-27 03:00:41] validateInitData called, initData length: 648
+[2026-02-27 03:00:41] Bot token loaded from telegram_configs
+[2026-02-27 03:00:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:00:41] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:00:41] Hash validation PASSED
+[2026-02-27 03:00:41] User data decoded, user ID: 768732984
+[2026-02-27 03:00:51] validateInitData called, initData length: 648
+[2026-02-27 03:00:51] Bot token loaded from telegram_configs
+[2026-02-27 03:00:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:00:52] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:00:52] Hash validation PASSED
+[2026-02-27 03:00:52] User data decoded, user ID: 768732984
+[2026-02-27 03:00:54] validateInitData called, initData length: 648
+[2026-02-27 03:00:54] Bot token loaded from telegram_configs
+[2026-02-27 03:00:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:00:54] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:00:54] Hash validation PASSED
+[2026-02-27 03:00:54] User data decoded, user ID: 768732984
+[2026-02-27 03:00:58] validateInitData called, initData length: 648
+[2026-02-27 03:00:58] Bot token loaded from telegram_configs
+[2026-02-27 03:00:58] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:00:58] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:00:58] Hash validation PASSED
+[2026-02-27 03:00:58] User data decoded, user ID: 768732984
+[2026-02-27 03:20:42] validateInitData called, initData length: 648
+[2026-02-27 03:20:42] Bot token loaded from telegram_configs
+[2026-02-27 03:20:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:20:42] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:20:42] Hash validation PASSED
+[2026-02-27 03:20:42] User data decoded, user ID: 768732984
+[2026-02-27 03:20:42] validateInitData called, initData length: 648
+[2026-02-27 03:20:42] Bot token loaded from telegram_configs
+[2026-02-27 03:20:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:20:42] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:20:42] Hash validation PASSED
+[2026-02-27 03:20:42] User data decoded, user ID: 768732984
+[2026-02-27 03:20:43] validateInitData called, initData length: 648
+[2026-02-27 03:20:43] Bot token loaded from telegram_configs
+[2026-02-27 03:20:43] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:20:43] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:20:43] Hash validation PASSED
+[2026-02-27 03:20:43] User data decoded, user ID: 768732984
+[2026-02-27 03:20:52] validateInitData called, initData length: 648
+[2026-02-27 03:20:52] Bot token loaded from telegram_configs
+[2026-02-27 03:20:52] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:20:52] Hash check - received: 72b9ee2149..., calculated: 72b9ee2149...
+[2026-02-27 03:20:52] Hash validation PASSED
+[2026-02-27 03:20:52] User data decoded, user ID: 768732984
+[2026-02-27 03:20:52] createTicket routing start profile_role=staff requester_user_id=12 category_id=3
+[2026-02-27 03:20:52] Staff routing source user_id=0
+[2026-02-27 03:20:52] Final assignment user_id=1
+[2026-02-27 03:23:51] validateInitData called, initData length: 648
+[2026-02-27 03:23:51] Bot token loaded from telegram_configs
+[2026-02-27 03:23:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:23:51] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:23:51] Hash validation PASSED
+[2026-02-27 03:23:51] User data decoded, user ID: 768732984
+[2026-02-27 03:24:53] validateInitData called, initData length: 648
+[2026-02-27 03:24:53] Bot token loaded from telegram_configs
+[2026-02-27 03:24:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:24:54] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:24:54] Hash validation PASSED
+[2026-02-27 03:24:54] User data decoded, user ID: 768732984
+[2026-02-27 03:24:59] validateInitData called, initData length: 648
+[2026-02-27 03:24:59] Bot token loaded from telegram_configs
+[2026-02-27 03:24:59] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:24:59] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:24:59] Hash validation PASSED
+[2026-02-27 03:24:59] User data decoded, user ID: 768732984
+[2026-02-27 03:25:00] createTicket routing start profile_role=staff requester_user_id=12 category_id=3
+[2026-02-27 03:25:00] Category routing assignment resolved to user_id=2
+[2026-02-27 03:25:00] Staff routing source user_id=6
+[2026-02-27 03:25:00] Final assignment user_id=2
+[2026-02-27 03:25:25] validateInitData called, initData length: 648
+[2026-02-27 03:25:25] Bot token loaded from telegram_configs
+[2026-02-27 03:25:25] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:25:25] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:25:25] Hash validation PASSED
+[2026-02-27 03:25:25] User data decoded, user ID: 768732984
+[2026-02-27 03:25:46] validateInitData called, initData length: 648
+[2026-02-27 03:25:46] Bot token loaded from telegram_configs
+[2026-02-27 03:25:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:25:46] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:25:46] Hash validation PASSED
+[2026-02-27 03:25:46] User data decoded, user ID: 768732984
+[2026-02-27 03:27:00] validateInitData called, initData length: 648
+[2026-02-27 03:27:00] Bot token loaded from telegram_configs
+[2026-02-27 03:27:01] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:27:01] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:27:01] Hash validation PASSED
+[2026-02-27 03:27:01] User data decoded, user ID: 768732984
+[2026-02-27 03:27:06] validateInitData called, initData length: 648
+[2026-02-27 03:27:06] Bot token loaded from telegram_configs
+[2026-02-27 03:27:06] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:27:06] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:27:06] Hash validation PASSED
+[2026-02-27 03:27:06] User data decoded, user ID: 768732984
+[2026-02-27 03:27:13] validateInitData called, initData length: 648
+[2026-02-27 03:27:13] Bot token loaded from telegram_configs
+[2026-02-27 03:27:13] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:27:13] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:27:13] Hash validation PASSED
+[2026-02-27 03:27:13] User data decoded, user ID: 768732984
+[2026-02-27 03:27:13] createTicket routing start profile_role=staff requester_user_id=12 category_id=3
+[2026-02-27 03:27:13] Category routing assignment resolved to user_id=2
+[2026-02-27 03:27:13] Staff routing source user_id=6
+[2026-02-27 03:27:13] Final assignment user_id=2
+[2026-02-27 03:27:16] validateInitData called, initData length: 648
+[2026-02-27 03:27:16] Bot token loaded from telegram_configs
+[2026-02-27 03:27:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 03:27:16] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 03:27:16] Hash validation PASSED
+[2026-02-27 03:27:17] User data decoded, user ID: 768732984
+[2026-02-27 04:09:41] validateInitData called, initData length: 648
+[2026-02-27 04:09:41] Bot token loaded from telegram_configs
+[2026-02-27 04:09:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:09:41] Hash check - received: 7c1604de7e..., calculated: 7c1604de7e...
+[2026-02-27 04:09:41] Hash validation PASSED
+[2026-02-27 04:09:41] User data decoded, user ID: 768732984
+[2026-02-27 04:25:13] validateInitData called, initData length: 648
+[2026-02-27 04:25:13] Bot token loaded from telegram_configs
+[2026-02-27 04:25:13] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:25:13] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 04:25:13] Hash validation PASSED
+[2026-02-27 04:25:13] User data decoded, user ID: 768732984
+[2026-02-27 04:25:15] validateInitData called, initData length: 648
+[2026-02-27 04:25:15] Bot token loaded from telegram_configs
+[2026-02-27 04:25:15] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:25:15] Hash check - received: 75289ac836..., calculated: 75289ac836...
+[2026-02-27 04:25:15] Hash validation PASSED
+[2026-02-27 04:25:15] User data decoded, user ID: 768732984
+[2026-02-27 04:45:24] validateInitData called, initData length: 648
+[2026-02-27 04:45:24] Bot token loaded from telegram_configs
+[2026-02-27 04:45:24] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:24] Hash check - received: 00eee42450..., calculated: 00eee42450...
+[2026-02-27 04:45:24] Hash validation PASSED
+[2026-02-27 04:45:24] User data decoded, user ID: 768732984
+[2026-02-27 04:45:38] validateInitData called, initData length: 648
+[2026-02-27 04:45:38] Bot token loaded from telegram_configs
+[2026-02-27 04:45:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:38] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:38] Hash validation PASSED
+[2026-02-27 04:45:38] User data decoded, user ID: 768732984
+[2026-02-27 04:45:41] validateInitData called, initData length: 648
+[2026-02-27 04:45:41] Bot token loaded from telegram_configs
+[2026-02-27 04:45:41] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:41] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:41] Hash validation PASSED
+[2026-02-27 04:45:41] User data decoded, user ID: 768732984
+[2026-02-27 04:45:42] validateInitData called, initData length: 648
+[2026-02-27 04:45:42] Bot token loaded from telegram_configs
+[2026-02-27 04:45:42] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:42] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:42] Hash validation PASSED
+[2026-02-27 04:45:42] User data decoded, user ID: 768732984
+[2026-02-27 04:45:50] validateInitData called, initData length: 648
+[2026-02-27 04:45:50] Bot token loaded from telegram_configs
+[2026-02-27 04:45:50] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:50] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:50] Hash validation PASSED
+[2026-02-27 04:45:50] User data decoded, user ID: 768732984
+[2026-02-27 04:45:50] createTicket routing start profile_role=staff requester_user_id=13 category_id=3
+[2026-02-27 04:45:50] Staff routing source user_id=0
+[2026-02-27 04:45:50] Final assignment user_id=0
+[2026-02-27 04:45:53] validateInitData called, initData length: 648
+[2026-02-27 04:45:53] Bot token loaded from telegram_configs
+[2026-02-27 04:45:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:53] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:53] Hash validation PASSED
+[2026-02-27 04:45:54] User data decoded, user ID: 768732984
+[2026-02-27 04:45:54] validateInitData called, initData length: 648
+[2026-02-27 04:45:54] Bot token loaded from telegram_configs
+[2026-02-27 04:45:54] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:45:54] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:45:54] Hash validation PASSED
+[2026-02-27 04:45:54] User data decoded, user ID: 768732984
+[2026-02-27 04:46:33] validateInitData called, initData length: 648
+[2026-02-27 04:46:33] Bot token loaded from telegram_configs
+[2026-02-27 04:46:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:33] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:33] Hash validation PASSED
+[2026-02-27 04:46:33] User data decoded, user ID: 768732984
+[2026-02-27 04:46:36] validateInitData called, initData length: 648
+[2026-02-27 04:46:36] Bot token loaded from telegram_configs
+[2026-02-27 04:46:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:36] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:36] Hash validation PASSED
+[2026-02-27 04:46:36] User data decoded, user ID: 768732984
+[2026-02-27 04:46:47] validateInitData called, initData length: 648
+[2026-02-27 04:46:47] Bot token loaded from telegram_configs
+[2026-02-27 04:46:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:47] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:47] Hash validation PASSED
+[2026-02-27 04:46:47] User data decoded, user ID: 768732984
+[2026-02-27 04:46:47] createTicket routing start profile_role=staff requester_user_id=13 category_id=3
+[2026-02-27 04:46:47] Category routing assignment resolved to user_id=2
+[2026-02-27 04:46:47] Staff routing source user_id=6
+[2026-02-27 04:46:47] Final assignment user_id=2
+[2026-02-27 04:46:47] validateInitData called, initData length: 648
+[2026-02-27 04:46:47] Bot token loaded from telegram_configs
+[2026-02-27 04:46:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:47] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:47] Hash validation PASSED
+[2026-02-27 04:46:47] User data decoded, user ID: 768732984
+[2026-02-27 04:46:51] validateInitData called, initData length: 648
+[2026-02-27 04:46:51] Bot token loaded from telegram_configs
+[2026-02-27 04:46:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:51] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:51] Hash validation PASSED
+[2026-02-27 04:46:51] User data decoded, user ID: 768732984
+[2026-02-27 04:46:52] validateInitData called, initData length: 648
+[2026-02-27 04:46:52] Bot token loaded from telegram_configs
+[2026-02-27 04:46:52] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 04:46:52] Hash check - received: 21ff6702a8..., calculated: 21ff6702a8...
+[2026-02-27 04:46:52] Hash validation PASSED
+[2026-02-27 04:46:52] User data decoded, user ID: 768732984
+[2026-02-27 05:02:18] validateInitData called, initData length: 648
+[2026-02-27 05:02:18] Bot token loaded from telegram_configs
+[2026-02-27 05:02:18] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:18] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:18] Hash validation PASSED
+[2026-02-27 05:02:18] User data decoded, user ID: 768732984
+[2026-02-27 05:02:27] validateInitData called, initData length: 648
+[2026-02-27 05:02:27] Bot token loaded from telegram_configs
+[2026-02-27 05:02:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:27] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:27] Hash validation PASSED
+[2026-02-27 05:02:27] User data decoded, user ID: 768732984
+[2026-02-27 05:02:30] validateInitData called, initData length: 648
+[2026-02-27 05:02:30] Bot token loaded from telegram_configs
+[2026-02-27 05:02:30] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:30] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:30] Hash validation PASSED
+[2026-02-27 05:02:31] User data decoded, user ID: 768732984
+[2026-02-27 05:02:32] validateInitData called, initData length: 648
+[2026-02-27 05:02:32] Bot token loaded from telegram_configs
+[2026-02-27 05:02:32] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:32] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:32] Hash validation PASSED
+[2026-02-27 05:02:32] User data decoded, user ID: 768732984
+[2026-02-27 05:02:34] validateInitData called, initData length: 648
+[2026-02-27 05:02:34] Bot token loaded from telegram_configs
+[2026-02-27 05:02:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:34] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:34] Hash validation PASSED
+[2026-02-27 05:02:34] User data decoded, user ID: 768732984
+[2026-02-27 05:02:56] validateInitData called, initData length: 648
+[2026-02-27 05:02:56] Bot token loaded from telegram_configs
+[2026-02-27 05:02:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:02:56] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:02:56] Hash validation PASSED
+[2026-02-27 05:02:56] User data decoded, user ID: 768732984
+[2026-02-27 05:02:57] createTicket routing start profile_role=staff requester_user_id=13 category_id=3
+[2026-02-27 05:02:57] Category routing assignment resolved to user_id=2
+[2026-02-27 05:02:57] Staff routing source user_id=6
+[2026-02-27 05:02:57] Final assignment user_id=2
+[2026-02-27 05:03:31] validateInitData called, initData length: 648
+[2026-02-27 05:03:31] Bot token loaded from telegram_configs
+[2026-02-27 05:03:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:03:31] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:03:32] Hash validation PASSED
+[2026-02-27 05:03:32] User data decoded, user ID: 768732984
+[2026-02-27 05:03:34] validateInitData called, initData length: 648
+[2026-02-27 05:03:34] Bot token loaded from telegram_configs
+[2026-02-27 05:03:34] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:03:34] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:03:34] Hash validation PASSED
+[2026-02-27 05:03:34] User data decoded, user ID: 768732984
+[2026-02-27 05:03:36] validateInitData called, initData length: 648
+[2026-02-27 05:03:37] Bot token loaded from telegram_configs
+[2026-02-27 05:03:37] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:03:37] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:03:37] Hash validation PASSED
+[2026-02-27 05:03:37] User data decoded, user ID: 768732984
+[2026-02-27 05:03:47] validateInitData called, initData length: 648
+[2026-02-27 05:03:47] Bot token loaded from telegram_configs
+[2026-02-27 05:03:47] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:03:47] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:03:47] Hash validation PASSED
+[2026-02-27 05:03:47] User data decoded, user ID: 768732984
+[2026-02-27 05:03:47] createTicket routing start profile_role=customer requester_user_id=13 category_id=3
+[2026-02-27 05:03:47] Staff routing source user_id=0
+[2026-02-27 05:03:47] Final assignment user_id=0
+[2026-02-27 05:04:31] validateInitData called, initData length: 648
+[2026-02-27 05:04:31] Bot token loaded from telegram_configs
+[2026-02-27 05:04:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:04:31] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:04:31] Hash validation PASSED
+[2026-02-27 05:04:31] User data decoded, user ID: 768732984
+[2026-02-27 05:04:36] validateInitData called, initData length: 648
+[2026-02-27 05:04:36] Bot token loaded from telegram_configs
+[2026-02-27 05:04:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:04:36] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:04:36] Hash validation PASSED
+[2026-02-27 05:04:36] User data decoded, user ID: 768732984
+[2026-02-27 05:04:36] createTicket routing start profile_role=customer requester_user_id=13 category_id=3
+[2026-02-27 05:04:36] Staff routing source user_id=0
+[2026-02-27 05:04:36] Final assignment user_id=0
+[2026-02-27 05:05:19] validateInitData called, initData length: 648
+[2026-02-27 05:05:19] Bot token loaded from telegram_configs
+[2026-02-27 05:05:19] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:05:19] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:05:19] Hash validation PASSED
+[2026-02-27 05:05:19] User data decoded, user ID: 768732984
+[2026-02-27 05:05:22] validateInitData called, initData length: 648
+[2026-02-27 05:05:22] Bot token loaded from telegram_configs
+[2026-02-27 05:05:22] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:05:22] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:05:22] Hash validation PASSED
+[2026-02-27 05:05:22] User data decoded, user ID: 768732984
+[2026-02-27 05:05:24] validateInitData called, initData length: 648
+[2026-02-27 05:05:24] Bot token loaded from telegram_configs
+[2026-02-27 05:05:24] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:05:24] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:05:24] Hash validation PASSED
+[2026-02-27 05:05:24] User data decoded, user ID: 768732984
+[2026-02-27 05:05:30] validateInitData called, initData length: 648
+[2026-02-27 05:05:30] Bot token loaded from telegram_configs
+[2026-02-27 05:05:30] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:05:30] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:05:30] Hash validation PASSED
+[2026-02-27 05:05:30] User data decoded, user ID: 768732984
+[2026-02-27 05:05:30] createTicket routing start profile_role=staff requester_user_id=14 category_id=3
+[2026-02-27 05:05:30] Staff routing source user_id=0
+[2026-02-27 05:05:30] Final assignment user_id=0
+[2026-02-27 05:06:59] validateInitData called, initData length: 648
+[2026-02-27 05:06:59] Bot token loaded from telegram_configs
+[2026-02-27 05:06:59] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:06:59] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:06:59] Hash validation PASSED
+[2026-02-27 05:06:59] User data decoded, user ID: 768732984
+[2026-02-27 05:07:03] validateInitData called, initData length: 648
+[2026-02-27 05:07:03] Bot token loaded from telegram_configs
+[2026-02-27 05:07:03] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:07:03] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:07:03] Hash validation PASSED
+[2026-02-27 05:07:03] User data decoded, user ID: 768732984
+[2026-02-27 05:07:03] createTicket routing start profile_role=staff requester_user_id=14 category_id=3
+[2026-02-27 05:07:03] Category routing assignment resolved to user_id=2
+[2026-02-27 05:07:03] Staff routing source user_id=6
+[2026-02-27 05:07:03] Final assignment user_id=2
+[2026-02-27 05:28:51] validateInitData called, initData length: 648
+[2026-02-27 05:28:51] Bot token loaded from telegram_configs
+[2026-02-27 05:28:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:28:51] Hash check - received: 7cf76ec2a6..., calculated: 7cf76ec2a6...
+[2026-02-27 05:28:51] Hash validation PASSED
+[2026-02-27 05:28:51] User data decoded, user ID: 768732984
+[2026-02-27 05:28:53] validateInitData called, initData length: 648
+[2026-02-27 05:28:53] Bot token loaded from telegram_configs
+[2026-02-27 05:28:53] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:28:53] Hash check - received: 7cf76ec2a6..., calculated: 7cf76ec2a6...
+[2026-02-27 05:28:53] Hash validation PASSED
+[2026-02-27 05:28:53] User data decoded, user ID: 768732984
+[2026-02-27 05:29:07] validateInitData called, initData length: 648
+[2026-02-27 05:29:08] Bot token loaded from telegram_configs
+[2026-02-27 05:29:08] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:29:08] Hash check - received: 7cf76ec2a6..., calculated: 7cf76ec2a6...
+[2026-02-27 05:29:08] Hash validation PASSED
+[2026-02-27 05:29:08] User data decoded, user ID: 768732984
+[2026-02-27 05:29:08] createTicket routing start profile_role=staff requester_user_id=14 category_id=3
+[2026-02-27 05:29:08] Category routing assignment resolved to user_id=6
+[2026-02-27 05:29:08] Staff routing source user_id=6
+[2026-02-27 05:29:08] Final assignment user_id=6
+[2026-02-27 05:29:12] validateInitData called, initData length: 648
+[2026-02-27 05:29:12] Bot token loaded from telegram_configs
+[2026-02-27 05:29:12] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:29:12] Hash check - received: 7cf76ec2a6..., calculated: 7cf76ec2a6...
+[2026-02-27 05:29:12] Hash validation PASSED
+[2026-02-27 05:29:12] User data decoded, user ID: 768732984
+[2026-02-27 05:58:56] validateInitData called, initData length: 648
+[2026-02-27 05:58:56] Bot token loaded from telegram_configs
+[2026-02-27 05:58:56] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:58:56] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:58:56] Hash validation PASSED
+[2026-02-27 05:58:56] User data decoded, user ID: 768732984
+[2026-02-27 05:59:00] validateInitData called, initData length: 648
+[2026-02-27 05:59:00] Bot token loaded from telegram_configs
+[2026-02-27 05:59:00] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:59:00] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:59:00] Hash validation PASSED
+[2026-02-27 05:59:00] User data decoded, user ID: 768732984
+[2026-02-27 05:59:17] validateInitData called, initData length: 648
+[2026-02-27 05:59:17] Bot token loaded from telegram_configs
+[2026-02-27 05:59:17] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 05:59:17] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 05:59:17] Hash validation PASSED
+[2026-02-27 05:59:17] User data decoded, user ID: 768732984
+[2026-02-27 05:59:18] createTicket routing start profile_role=staff requester_user_id=14 category_id=2
+[2026-02-27 05:59:18] Category routing assignment resolved to user_id=15
+[2026-02-27 05:59:18] Staff routing source user_id=6
+[2026-02-27 05:59:18] Final assignment user_id=15
+[2026-02-27 06:13:16] validateInitData called, initData length: 648
+[2026-02-27 06:13:16] Bot token loaded from telegram_configs
+[2026-02-27 06:13:16] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:13:16] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:13:16] Hash validation PASSED
+[2026-02-27 06:13:16] User data decoded, user ID: 768732984
+[2026-02-27 06:13:33] validateInitData called, initData length: 648
+[2026-02-27 06:13:33] Bot token loaded from telegram_configs
+[2026-02-27 06:13:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:13:33] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:13:33] Hash validation PASSED
+[2026-02-27 06:13:33] User data decoded, user ID: 768732984
+[2026-02-27 06:13:33] createTicket routing start profile_role=staff requester_user_id=14 category_id=2
+[2026-02-27 06:13:33] Category routing assignment resolved to user_id=16
+[2026-02-27 06:13:33] Staff routing source user_id=6
+[2026-02-27 06:13:33] Final assignment user_id=16
+[2026-02-27 06:35:26] [PushService] Getting subscriptions for user IDs: [16]
+[2026-02-27 06:35:26] [PushService] Executing query: SELECT * FROM push_subscriptions WHERE user_id IN (?) AND is_active = 1 with params: [16]
+[2026-02-27 06:35:26] [PushService] Query returned 0 rows
+[2026-02-27 06:35:26] [PushService] NO SUBSCRIPTIONS FOUND for user IDs: [16]
+[2026-02-27 06:35:26] [PushService] Checking total subscriptions in database...
+[2026-02-27 06:35:26] [PushService] All subscriptions by user: [{"user_id":1,"count":2}]
+[2026-02-27 06:35:26] [PushService] Total push_subscriptions in DB: 2
+[2026-02-27 06:35:26] [PushService] Found 0 active subscriptions
+[2026-02-27 06:36:07] validateInitData called, initData length: 648
+[2026-02-27 06:36:07] Bot token loaded from telegram_configs
+[2026-02-27 06:36:07] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:36:07] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:36:07] Hash validation PASSED
+[2026-02-27 06:36:07] User data decoded, user ID: 768732984
+[2026-02-27 06:36:10] validateInitData called, initData length: 648
+[2026-02-27 06:36:10] Bot token loaded from telegram_configs
+[2026-02-27 06:36:10] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:36:10] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:36:10] Hash validation PASSED
+[2026-02-27 06:36:10] User data decoded, user ID: 768732984
+[2026-02-27 06:36:11] validateInitData called, initData length: 648
+[2026-02-27 06:36:11] Bot token loaded from telegram_configs
+[2026-02-27 06:36:12] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:36:12] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:36:12] Hash validation PASSED
+[2026-02-27 06:36:12] User data decoded, user ID: 768732984
+[2026-02-27 06:36:22] validateInitData called, initData length: 648
+[2026-02-27 06:36:22] Bot token loaded from telegram_configs
+[2026-02-27 06:36:22] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:36:22] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:36:22] Hash validation PASSED
+[2026-02-27 06:36:22] User data decoded, user ID: 768732984
+[2026-02-27 06:36:22] createTicket routing start profile_role=customer requester_user_id=14 category_id=3
+[2026-02-27 06:36:22] Staff routing source user_id=0
+[2026-02-27 06:36:22] Final assignment user_id=0
+[2026-02-27 06:40:51] validateInitData called, initData length: 648
+[2026-02-27 06:40:51] Bot token loaded from telegram_configs
+[2026-02-27 06:40:51] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:40:51] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:40:51] Hash validation PASSED
+[2026-02-27 06:40:51] User data decoded, user ID: 768732984
+[2026-02-27 06:40:55] validateInitData called, initData length: 648
+[2026-02-27 06:40:55] Bot token loaded from telegram_configs
+[2026-02-27 06:40:55] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 06:40:55] Hash check - received: bec2b86efe..., calculated: bec2b86efe...
+[2026-02-27 06:40:55] Hash validation PASSED
+[2026-02-27 06:40:55] User data decoded, user ID: 768732984
+[2026-02-27 07:03:27] validateInitData called, initData length: 648
+[2026-02-27 07:03:27] Bot token loaded from telegram_configs
+[2026-02-27 07:03:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 07:03:27] Hash check - received: 1b2a493527..., calculated: 1b2a493527...
+[2026-02-27 07:03:27] Hash validation PASSED
+[2026-02-27 07:03:27] User data decoded, user ID: 768732984
+[2026-02-27 07:03:30] validateInitData called, initData length: 648
+[2026-02-27 07:03:30] Bot token loaded from telegram_configs
+[2026-02-27 07:03:30] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 07:03:30] Hash check - received: 1b2a493527..., calculated: 1b2a493527...
+[2026-02-27 07:03:30] Hash validation PASSED
+[2026-02-27 07:03:30] User data decoded, user ID: 768732984
+[2026-02-27 07:03:36] validateInitData called, initData length: 648
+[2026-02-27 07:03:36] Bot token loaded from telegram_configs
+[2026-02-27 07:03:36] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 07:03:36] Hash check - received: 1b2a493527..., calculated: 1b2a493527...
+[2026-02-27 07:03:36] Hash validation PASSED
+[2026-02-27 07:03:36] User data decoded, user ID: 768732984
+[2026-02-27 07:03:36] createTicket routing start profile_role=customer requester_user_id=14 category_id=2
+[2026-02-27 07:03:36] Category routing assignment resolved to user_id=6
+[2026-02-27 07:03:36] Staff routing source user_id=0
+[2026-02-27 07:03:36] Final assignment user_id=6
+[2026-02-27 07:04:31] validateInitData called, initData length: 648
+[2026-02-27 07:04:31] Bot token loaded from telegram_configs
+[2026-02-27 07:04:31] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 07:04:31] Hash check - received: 1b2a493527..., calculated: 1b2a493527...
+[2026-02-27 07:04:31] Hash validation PASSED
+[2026-02-27 07:04:31] User data decoded, user ID: 768732984
+[2026-02-27 07:04:43] validateInitData called, initData length: 648
+[2026-02-27 07:04:43] Bot token loaded from telegram_configs
+[2026-02-27 07:04:43] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-02-27 07:04:43] Hash check - received: 1b2a493527..., calculated: 1b2a493527...
+[2026-02-27 07:04:43] Hash validation PASSED
+[2026-02-27 07:04:43] User data decoded, user ID: 768732984
+[2026-02-27 07:04:43] createTicket routing start profile_role=customer requester_user_id=14 category_id=2
+[2026-02-27 07:04:43] Category routing assignment resolved to user_id=15
+[2026-02-27 07:04:43] Staff routing source user_id=0
+[2026-02-27 07:04:43] Final assignment user_id=15
+[2026-03-04 01:53:33] validateInitData called, initData length: 648
+[2026-03-04 01:53:33] Bot token loaded from telegram_configs
+[2026-03-04 01:53:33] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:33] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:33] Hash validation PASSED
+[2026-03-04 01:53:33] User data decoded, user ID: 768732984
+[2026-03-04 01:53:37] validateInitData called, initData length: 648
+[2026-03-04 01:53:37] Bot token loaded from telegram_configs
+[2026-03-04 01:53:37] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:37] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:37] Hash validation PASSED
+[2026-03-04 01:53:37] User data decoded, user ID: 768732984
+[2026-03-04 01:53:38] validateInitData called, initData length: 648
+[2026-03-04 01:53:38] Bot token loaded from telegram_configs
+[2026-03-04 01:53:38] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:38] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:38] Hash validation PASSED
+[2026-03-04 01:53:38] User data decoded, user ID: 768732984
+[2026-03-04 01:53:46] validateInitData called, initData length: 648
+[2026-03-04 01:53:46] Bot token loaded from telegram_configs
+[2026-03-04 01:53:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:46] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:46] Hash validation PASSED
+[2026-03-04 01:53:46] User data decoded, user ID: 768732984
+[2026-03-04 01:53:46] validateInitData called, initData length: 648
+[2026-03-04 01:53:46] Bot token loaded from telegram_configs
+[2026-03-04 01:53:46] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:46] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:46] Hash validation PASSED
+[2026-03-04 01:53:46] User data decoded, user ID: 768732984
+[2026-03-04 01:53:48] validateInitData called, initData length: 648
+[2026-03-04 01:53:48] Bot token loaded from telegram_configs
+[2026-03-04 01:53:48] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 01:53:48] Hash check - received: 3ca0672c87..., calculated: 3ca0672c87...
+[2026-03-04 01:53:48] Hash validation PASSED
+[2026-03-04 01:53:48] User data decoded, user ID: 768732984
+[2026-03-04 03:22:09] validateInitData called, initData length: 648
+[2026-03-04 03:22:09] Bot token loaded from telegram_configs
+[2026-03-04 03:22:09] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:09] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:09] Hash validation PASSED
+[2026-03-04 03:22:09] User data decoded, user ID: 768732984
+[2026-03-04 03:22:10] validateInitData called, initData length: 648
+[2026-03-04 03:22:10] Bot token loaded from telegram_configs
+[2026-03-04 03:22:10] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:10] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:10] Hash validation PASSED
+[2026-03-04 03:22:10] User data decoded, user ID: 768732984
+[2026-03-04 03:22:23] validateInitData called, initData length: 648
+[2026-03-04 03:22:23] Bot token loaded from telegram_configs
+[2026-03-04 03:22:23] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:23] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:23] Hash validation PASSED
+[2026-03-04 03:22:23] User data decoded, user ID: 768732984
+[2026-03-04 03:22:24] createTicket routing start profile_role=customer requester_user_id=14 category_id=1
+[2026-03-04 03:22:24] Staff routing source user_id=0
+[2026-03-04 03:22:24] Final assignment user_id=6
+[2026-03-04 03:22:27] validateInitData called, initData length: 648
+[2026-03-04 03:22:27] Bot token loaded from telegram_configs
+[2026-03-04 03:22:27] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:27] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:28] Hash validation PASSED
+[2026-03-04 03:22:28] User data decoded, user ID: 768732984
+[2026-03-04 03:22:28] validateInitData called, initData length: 648
+[2026-03-04 03:22:28] Bot token loaded from telegram_configs
+[2026-03-04 03:22:28] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:28] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:28] Hash validation PASSED
+[2026-03-04 03:22:28] User data decoded, user ID: 768732984
+[2026-03-04 03:22:29] validateInitData called, initData length: 648
+[2026-03-04 03:22:29] Bot token loaded from telegram_configs
+[2026-03-04 03:22:29] initData parsed, keys: ["query_id","user","auth_date","signature","hash"]
+[2026-03-04 03:22:29] Hash check - received: 9ad1b8a8d7..., calculated: 9ad1b8a8d7...
+[2026-03-04 03:22:29] Hash validation PASSED
+[2026-03-04 03:22:29] User data decoded, user ID: 768732984

@@ -10,6 +10,8 @@ use App\Models\ActivityLog;
 use App\Services\AI\TicketClassifier;
 use App\Helpers\FileUploader;
 use App\Services\Telegram\TelegramAgentNotifier;
+use App\Services\Workflow\WorkflowRouter;
+use App\Services\Workflow\TicketWorkflowSnapshotService;
 
 class CustomerController extends Controller
 {
@@ -57,7 +59,13 @@ class CustomerController extends Controller
 
         // Validate
         if (empty($data['subject']) || empty($data['description'])) {
-            $this->response->withError('Subject and description are required')->withInput();
+            $this->response->withError(__('subject_and_description_required'))->withInput();
+            $this->redirect($this->app->url('customer/tickets/create'));
+            return;
+        }
+
+        if ((int) ($data['category_id'] ?? 0) <= 0) {
+            $this->response->withError(__('wf_category_required'))->withInput();
             $this->redirect($this->app->url('customer/tickets/create'));
             return;
         }
@@ -84,6 +92,21 @@ class CustomerController extends Controller
             $aiPriority = null;
         }
 
+        $selectedCategoryId = (int) ($data['category_id'] ?? 0);
+        $categoryId = $selectedCategoryId > 0
+            ? $selectedCategoryId
+            : ((int) ($aiClassification['category_id'] ?? 0) > 0 ? (int) $aiClassification['category_id'] : null);
+
+        $workflowResolved = null;
+        $assignedTo = null;
+        try {
+            $workflowRouter = new WorkflowRouter($this->db, $this->companyId());
+            $workflowResolved = $workflowRouter->resolveForTicket('web', $categoryId, (int) $this->auth->id());
+            $assignedTo = $workflowResolved['assignee_id'] ?? null;
+        } catch (\Throwable $e) {
+            error_log('[CustomerController] Web routing resolve failed: ' . $e->getMessage());
+        }
+
         $user = $this->auth->user();
 
         // Create ticket
@@ -95,7 +118,8 @@ class CustomerController extends Controller
             'status' => 'open',
             'priority' => $priority,
             'source' => 'web',
-            'category_id' => $data['category_id'] ?: ($aiClassification['category_id'] ?? null),
+            'category_id' => $categoryId,
+            'assigned_to' => $assignedTo,
             'requester_id' => $this->auth->id(),
             'requester_email' => $user['email'],
             'requester_name' => $user['name'],
@@ -103,6 +127,15 @@ class CustomerController extends Controller
             'ai_suggested_priority' => $aiPriority,
             'ai_confidence_score' => $aiClassification['confidence'] ?? null,
         ]);
+
+        if (is_array($workflowResolved)) {
+            try {
+                $workflowRouter ??= new WorkflowRouter($this->db, $this->companyId());
+                $workflowRouter->startTicketWorkflow($ticketId, (int) $this->auth->id(), $workflowResolved);
+            } catch (\Throwable $e) {
+                error_log('[CustomerController] Web routing start failed: ' . $e->getMessage());
+            }
+        }
 
         // Add initial message
         $messageModel->addReply(
@@ -123,7 +156,7 @@ class CustomerController extends Controller
             "Ticket {$ticketNumber} created via customer portal"
         );
 
-        $this->response->withSuccess("Your ticket {$ticketNumber} has been submitted. We'll get back to you soon!");
+        $this->response->withSuccess(__('customer_ticket_submitted', ['ticket' => $ticketNumber]));
         $this->redirect($this->app->url("customer/tickets/{$ticketId}"));
     }
 
@@ -146,9 +179,13 @@ class CustomerController extends Controller
         $messageModel = new TicketMessage($this->db);
         $messages = $messageModel->getByTicket((int) $id, false); // Don't include internal notes
 
+        $workflowState = (new TicketWorkflowSnapshotService($this->db, $this->companyId()))
+            ->getForTicket((int) $id);
+
         $this->view('customers/show_ticket', [
             'ticket' => $ticket,
             'messages' => $messages,
+            'workflowState' => $workflowState,
         ]);
     }
 
@@ -163,7 +200,7 @@ class CustomerController extends Controller
 
         // Verify ownership
         if (!$ticket || $ticket['requester_id'] != $this->auth->id()) {
-            $this->error('Ticket not found', 404);
+            $this->error(__('ticket_not_found'), 404);
             return;
         }
 
@@ -171,10 +208,10 @@ class CustomerController extends Controller
 
         if (empty($message) && empty($_FILES['attachments']['name'][0])) {
             if ($this->request->isAjax()) {
-                $this->error('Message or attachment is required', 422);
+                $this->error(__('message_or_attachment_required'), 422);
                 return;
             }
-            $this->response->withError('Message or attachment is required');
+            $this->response->withError(__('message_or_attachment_required'));
             $this->redirect($this->app->url("customer/tickets/{$id}"));
             return;
         }
@@ -200,7 +237,7 @@ class CustomerController extends Controller
                     ]);
                 }
             } catch (\Exception $e) {
-                $this->response->withError('File upload failed: ' . $e->getMessage());
+                $this->response->withError(__('file_upload_failed', ['error' => $e->getMessage()]));
                 $this->redirect($this->app->url("customer/tickets/{$id}"));
                 return;
             }
@@ -276,11 +313,11 @@ class CustomerController extends Controller
         }
 
         if ($this->request->isAjax()) {
-            $this->success([], 'Reply sent successfully');
+            $this->success([], __('reply_sent_success'));
             return;
         }
 
-        $this->response->withSuccess('Your reply has been sent');
+        $this->response->withSuccess(__('your_reply_sent'));
         $this->redirect($this->app->url("customer/tickets/{$id}"));
     }
 
@@ -309,14 +346,14 @@ class CustomerController extends Controller
         // Password change
         if (!empty($data['new_password'])) {
             if (empty($data['current_password'])) {
-                $this->response->withError('Current password is required to change password');
+                $this->response->withError(__('current_password_required_to_change'));
                 $this->redirect($this->app->url('customer/profile'));
                 return;
             }
 
             $user = $this->auth->user();
             if (!password_verify($data['current_password'], $user['password_hash'])) {
-                $this->response->withError('Current password is incorrect');
+                $this->response->withError(__('current_password_incorrect'));
                 $this->redirect($this->app->url('customer/profile'));
                 return;
             }
@@ -326,7 +363,7 @@ class CustomerController extends Controller
 
         if (!empty($updates)) {
             $this->db->update('users', $updates, 'id = ?', [$this->auth->id()]);
-            $this->response->withSuccess('Profile updated successfully');
+            $this->response->withSuccess(__('profile_updated_success'));
         }
 
         $this->redirect($this->app->url('customer/profile'));

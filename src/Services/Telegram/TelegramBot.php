@@ -26,6 +26,7 @@ class TelegramBot
             'text' => $text,
             'parse_mode' => 'HTML',
         ], $options);
+        $params = $this->normalizePayload($params);
 
         return $this->request('sendMessage', $params);
     }
@@ -77,11 +78,13 @@ class TelegramBot
      */
     public function answerCallbackQuery(string $callbackQueryId, string $text = '', bool $showAlert = false): array
     {
-        return $this->request('answerCallbackQuery', [
+        $params = [
             'callback_query_id' => $callbackQueryId,
             'text' => $text,
             'show_alert' => $showAlert,
-        ]);
+        ];
+        $params = $this->normalizePayload($params);
+        return $this->request('answerCallbackQuery', $params);
     }
 
     /**
@@ -95,6 +98,7 @@ class TelegramBot
             'text' => $text,
             'parse_mode' => 'HTML',
         ], $options);
+        $params = $this->normalizePayload($params);
 
         return $this->request('editMessageText', $params);
     }
@@ -287,5 +291,81 @@ class TelegramBot
         }
 
         return $text;
+    }
+
+    /**
+     * Normalize outgoing payload values to recover common mojibake text.
+     *
+     * This fixes strings like "ÃƒÂ¡..." back to readable Khmer/emoji without
+     * changing normal ASCII/UTF-8 text.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    private function normalizePayload($value)
+    {
+        if (is_string($value)) {
+            return $this->normalizeOutgoingText($value);
+        }
+
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $this->normalizePayload($item);
+            }
+        }
+
+        return $value;
+    }
+
+    private function normalizeOutgoingText(string $text): string
+    {
+        if ($text === '' || !preg_match('/[ÃÂâð]/u', $text)) {
+            return $text;
+        }
+
+        $candidates = [$text];
+        $current = $text;
+        for ($i = 0; $i < 4; $i++) {
+            if (!function_exists('mb_convert_encoding')) {
+                break;
+            }
+
+            $next = @mb_convert_encoding($current, 'Windows-1252', 'UTF-8');
+            if (!is_string($next) || $next === '' || $next === $current) {
+                break;
+            }
+
+            $candidates[] = $next;
+            $current = $next;
+        }
+
+        $best = $text;
+        $bestScore = $this->scoreNormalizedText($text);
+        foreach ($candidates as $candidate) {
+            $score = $this->scoreNormalizedText($candidate);
+            if ($score > $bestScore) {
+                $best = $candidate;
+                $bestScore = $score;
+            }
+        }
+
+        return $best;
+    }
+
+    private function scoreNormalizedText(string $text): int
+    {
+        $bad = $this->countMatches('/[ÃÂâð]/u', $text);
+        $khmer = $this->countMatches('/[\x{1780}-\x{17FF}]/u', $text);
+        $emoji = $this->countMatches('/[\x{1F300}-\x{1FAFF}]/u', $text);
+        $replacement = substr_count($text, '�');
+        $questionRuns = $this->countMatches('/\?{2,}/', $text);
+
+        return ($khmer * 10) + ($emoji * 3) - ($bad * 20) - ($replacement * 10) - ($questionRuns * 2);
+    }
+
+    private function countMatches(string $pattern, string $text): int
+    {
+        $count = @preg_match_all($pattern, $text, $matches);
+        return is_int($count) ? $count : 0;
     }
 }

@@ -97,20 +97,59 @@ class App
     {
         try {
             $this->router()->dispatch();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->handleException($e);
         }
     }
 
-    private function handleException(\Exception $e): void
+    private function isApiRequest(): bool
     {
+        $uri = $_SERVER['REQUEST_URI'] ?? '';
+        if (strpos($uri, '/api/') === 0 || strpos($uri, '/index.php/api/') === 0) {
+            return true;
+        }
+
+        $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+        $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+
+        if (stripos($accept, 'application/json') !== false) {
+            return true;
+        }
+
+        if (stripos($contentType, 'application/json') !== false) {
+            return true;
+        }
+
+        return strcasecmp($requestedWith, 'XMLHttpRequest') === 0;
+    }
+
+    private function handleException(\Throwable $e): void
+    {
+        http_response_code(500);
+
+        if ($this->isApiRequest()) {
+            header('Content-Type: application/json');
+
+            $payload = [
+                'success' => false,
+                'message' => __('an_error_occurred_try_again_later'),
+            ];
+
+            if ($this->config('app.debug')) {
+                $payload['message'] = $e->getMessage();
+            }
+
+            echo json_encode($payload);
+            return;
+        }
+
         if ($this->config('app.debug')) {
             echo '<h1>Error</h1>';
             echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
             echo '<pre>' . htmlspecialchars($e->getTraceAsString()) . '</pre>';
         } else {
-            http_response_code(500);
-            echo 'An error occurred. Please try again later.';
+            echo __('an_error_occurred_try_again_later');
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Write Article - Knowledge Base';
+$pageTitle = __('v_write_article_knowledge_base');
 ob_start();
 ?>
 
@@ -10,8 +10,8 @@ ob_start();
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
         <div>
-            <h2 class="text-lg font-semibold text-gray-800">Write Article</h2>
-            <p class="text-sm text-gray-500">Share your knowledge with the team</p>
+            <h2 class="text-lg font-semibold text-gray-800"><?= __('v_write_article') ?></h2>
+            <p class="text-sm text-gray-500"><?= __('v_share_your_knowledge_with_the_team') ?></p>
         </div>
         <a href="<?= $app->url('kb') ?>" class="text-gray-600 hover:text-gray-900">
             <i class="fas fa-times text-xl"></i>
@@ -22,18 +22,18 @@ ob_start();
         <div class="p-6 space-y-6">
             <!-- Title -->
             <div>
-                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title *</label>
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-1"><?= __('v_title') ?> *</label>
                 <input type="text" id="title" name="title" required
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
-                    placeholder="Enter article title...">
+                    placeholder="<?= __('v_enter_article_title') ?>">
             </div>
 
             <!-- Category -->
             <div>
-                <label for="category_id" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                <label for="category_id" class="block text-sm font-medium text-gray-700 mb-1"><?= __('v_category') ?></label>
                 <select id="category_id" name="category_id"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                    <option value="">Select a category (optional)</option>
+                    <option value=""><?= __('v_select_a_category_optional') ?></option>
                     <?php foreach ($categories as $cat): ?>
                     <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
                     <?php endforeach; ?>
@@ -42,18 +42,18 @@ ob_start();
 
             <!-- Content with Quill Editor -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Content *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1"><?= __('v_content') ?> *</label>
                 <div id="editor" class="bg-white" style="height: 400px;"></div>
                 <input type="hidden" name="content" id="content">
-                <p class="mt-1 text-sm text-gray-500">Use the toolbar to format your content.</p>
+                <p class="mt-1 text-sm text-gray-500"><?= __('v_use_the_toolbar_to_format_your_content') ?></p>
             </div>
 
             <!-- Tags -->
             <div>
-                <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">Tags</label>
+                <label for="tags" class="block text-sm font-medium text-gray-700 mb-1"><?= __('v_tags') ?></label>
                 <input type="text" id="tags" name="tags"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                    placeholder="tag1, tag2, tag3 (comma separated)">
+                    placeholder="<?= __('v_tag1_tag2_tag3_comma_separated') ?>">
             </div>
 
             <!-- Options -->
@@ -61,14 +61,14 @@ ob_start();
                 <label class="flex items-center">
                     <input type="checkbox" name="is_published" value="1" checked
                         class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                    <span class="ml-2 text-sm text-gray-700">Publish immediately</span>
+                    <span class="ml-2 text-sm text-gray-700"><?= __('v_publish_immediately') ?></span>
                 </label>
 
                 <?php if ($auth->isAgent()): ?>
                 <label class="flex items-center">
                     <input type="checkbox" name="is_featured" value="1"
                         class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                    <span class="ml-2 text-sm text-gray-700">Featured article</span>
+                    <span class="ml-2 text-sm text-gray-700"><?= __('v_featured_article') ?></span>
                 </label>
                 <?php endif; ?>
             </div>
@@ -76,9 +76,9 @@ ob_start();
 
         <!-- Footer -->
         <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-between">
-            <a href="<?= $app->url('kb') ?>" class="text-gray-600 hover:text-gray-900">Cancel</a>
+            <a href="<?= $app->url('kb') ?>" class="text-gray-600 hover:text-gray-900"><?= __('v_cancel') ?></a>
             <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
-                <i class="fas fa-paper-plane mr-2"></i> Publish Article
+                <i class="fas fa-paper-plane mr-2"></i> <?= __('v_publish_article') ?>
             </button>
         </div>
     </form>
@@ -90,7 +90,7 @@ ob_start();
     // Initialize Quill editor
     var quill = new Quill('#editor', {
         theme: 'snow',
-        placeholder: 'Write your article content here...',
+        placeholder: <?= json_encode(__('v_write_your_article_content_here')) ?>,
         modules: {
             toolbar: [
                 [{ 'header': [1, 2, 3, false] }],
@@ -113,7 +113,7 @@ ob_start();
         // Check if content is empty (just empty paragraph)
         if (content === '<p><br></p>' || content.trim() === '') {
             e.preventDefault();
-            alert('Please enter article content');
+            alert(<?= json_encode(__('v_please_enter_article_content')) ?>);
             return false;
         }
 

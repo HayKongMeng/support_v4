@@ -135,10 +135,21 @@ class Request
 
     public function ip(): string
     {
-        return $this->server['HTTP_X_FORWARDED_FOR']
-            ?? $this->server['HTTP_CLIENT_IP']
-            ?? $this->server['REMOTE_ADDR']
-            ?? '0.0.0.0';
+        // Only trust X-Forwarded-For if this server is behind a known proxy.
+        // Set TRUSTED_PROXIES=true in .env if using a load balancer/CDN.
+        $trustedProxy = ($_ENV['TRUSTED_PROXIES'] ?? 'false') === 'true';
+
+        if ($trustedProxy && !empty($this->server['HTTP_X_FORWARDED_FOR'])) {
+            // X-Forwarded-For can contain a chain; take the first (client) IP
+            $ips = explode(',', $this->server['HTTP_X_FORWARDED_FOR']);
+            return trim($ips[0]);
+        }
+
+        if ($trustedProxy && !empty($this->server['HTTP_CLIENT_IP'])) {
+            return $this->server['HTTP_CLIENT_IP'];
+        }
+
+        return $this->server['REMOTE_ADDR'] ?? '0.0.0.0';
     }
 
     public function userAgent(): string
@@ -189,55 +200,66 @@ class Request
 
     private function validateRule(string $field, $value, string $rule, array $params): ?string
     {
-        $label = ucfirst(str_replace('_', ' ', $field));
+        $label = $this->fieldLabel($field);
 
         switch ($rule) {
             case 'required':
                 if ($value === null || $value === '') {
-                    return "{$label} is required";
+                    return __('validation_required', ['field' => $label]);
                 }
                 break;
 
             case 'email':
                 if ($value && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                    return "{$label} must be a valid email address";
+                    return __('validation_email', ['field' => $label]);
                 }
                 break;
 
             case 'min':
                 $min = (int) ($params[0] ?? 0);
                 if (strlen($value) < $min) {
-                    return "{$label} must be at least {$min} characters";
+                    return __('validation_min', ['field' => $label, 'min' => $min]);
                 }
                 break;
 
             case 'max':
                 $max = (int) ($params[0] ?? 0);
                 if (strlen($value) > $max) {
-                    return "{$label} must not exceed {$max} characters";
+                    return __('validation_max', ['field' => $label, 'max' => $max]);
                 }
                 break;
 
             case 'numeric':
                 if ($value && !is_numeric($value)) {
-                    return "{$label} must be a number";
+                    return __('validation_numeric', ['field' => $label]);
                 }
                 break;
 
             case 'in':
                 if ($value && !in_array($value, $params)) {
-                    return "{$label} must be one of: " . implode(', ', $params);
+                    return __('validation_in', ['field' => $label, 'values' => implode(', ', $params)]);
                 }
                 break;
 
             case 'confirmed':
                 $all = $this->all();
                 if ($value !== ($all["{$field}_confirmation"] ?? null)) {
-                    return "{$label} confirmation does not match";
+                    return __('validation_confirmed', ['field' => $label]);
                 }
                 break;
         }
 
         return null;
+    }
+
+    private function fieldLabel(string $field): string
+    {
+        $key = 'field_' . $field;
+        $translated = __($key);
+        if ($translated !== $key) {
+            return $translated;
+        }
+
+        return ucfirst(str_replace('_', ' ', $field));
     }
 }

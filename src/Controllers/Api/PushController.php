@@ -15,13 +15,13 @@ class PushController extends Controller
         $user = $this->auth->user();
 
         if (!$user) {
-            return $this->response->json(['success' => false, 'error' => 'Unauthorized'], 401);
+            return $this->response->json(['success' => false, 'error' => __('unauthorized')], 401);
         }
 
         $data = json_decode(file_get_contents('php://input'), true);
 
         if (!$data || !isset($data['endpoint']) || !isset($data['keys'])) {
-            return $this->response->json(['success' => false, 'error' => 'Invalid subscription data'], 400);
+            return $this->response->json(['success' => false, 'error' => __('push_invalid_subscription_data')], 400);
         }
 
         try {
@@ -55,7 +55,7 @@ class PushController extends Controller
                 ]);
             }
 
-            return $this->response->json(['success' => true, 'message' => 'Push subscription successful']);
+            return $this->response->json(['success' => true, 'message' => __('push_subscription_successful')]);
         } catch (\Exception $e) {
             return $this->response->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
@@ -70,13 +70,13 @@ class PushController extends Controller
         $user = $this->auth->user();
 
         if (!$user) {
-            return $this->response->json(['success' => false, 'error' => 'Unauthorized'], 401);
+            return $this->response->json(['success' => false, 'error' => __('unauthorized')], 401);
         }
 
         $data = json_decode(file_get_contents('php://input'), true);
 
         if (!$data || !isset($data['endpoint'])) {
-            return $this->response->json(['success' => false, 'error' => 'Invalid request'], 400);
+            return $this->response->json(['success' => false, 'error' => __('invalid_request')], 400);
         }
 
         try {
@@ -87,7 +87,7 @@ class PushController extends Controller
                 [$user['id'], $data['endpoint']]
             );
 
-            return $this->response->json(['success' => true, 'message' => 'Push unsubscription successful']);
+            return $this->response->json(['success' => true, 'message' => __('push_unsubscription_successful')]);
         } catch (\Exception $e) {
             return $this->response->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
@@ -102,7 +102,7 @@ class PushController extends Controller
         $publicKey = $_ENV['PUSH_PUBLIC_KEY'] ?? null;
 
         if (!$publicKey) {
-            return $this->response->json(['success' => false, 'error' => 'Push notifications not configured'], 500);
+            return $this->response->json(['success' => false, 'error' => __('push_not_configured')], 500);
         }
 
         return $this->response->json(['success' => true, 'publicKey' => $publicKey]);
@@ -117,7 +117,7 @@ class PushController extends Controller
         $user = $this->auth->user();
 
         if (!$user) {
-            return $this->response->json(['success' => false, 'error' => 'Unauthorized'], 401);
+            return $this->response->json(['success' => false, 'error' => __('unauthorized')], 401);
         }
 
         try {
@@ -132,8 +132,8 @@ class PushController extends Controller
             return $this->response->json([
                 'success' => $result['success'],
                 'message' => $result['success'] 
-                    ? 'Test notification sent - check your browser/desktop!' 
-                    : 'Failed to send notification',
+                    ? __('push_test_notification_sent')
+                    : __('push_test_notification_failed'),
                 'details' => $result
             ]);
         } catch (\Exception $e) {

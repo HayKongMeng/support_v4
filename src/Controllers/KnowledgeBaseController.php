@@ -69,13 +69,13 @@ class KnowledgeBaseController extends Controller
         $article = $this->kbModel->findBySlug($slug);
 
         if (!$article) {
-            $this->error('Article not found', 404);
+            $this->error(__('article_not_found'), 404);
             return;
         }
 
         // Only show published articles to non-agents
         if (!$article['is_published'] && !$this->auth->isAgent()) {
-            $this->error('Article not found', 404);
+            $this->error(__('article_not_found'), 404);
             return;
         }
 
@@ -146,13 +146,13 @@ class KnowledgeBaseController extends Controller
 
         // Validate
         if (empty($data['title']) || strlen($data['title']) < 3) {
-            $this->response->withError('Title is required (minimum 3 characters)');
+            $this->response->withError(__('title_required_min_chars', ['min' => 3]));
             $this->redirect($this->app->url('kb/create'));
             return;
         }
 
         if (empty($data['content']) || strlen($data['content']) < 10) {
-            $this->response->withError('Content is required (minimum 10 characters)');
+            $this->response->withError(__('content_required_min_chars', ['min' => 10]));
             $this->redirect($this->app->url('kb/create'));
             return;
         }
@@ -194,7 +194,7 @@ class KnowledgeBaseController extends Controller
             'published_at' => date('Y-m-d H:i:s'),
         ]);
 
-        $this->response->withSuccess('Article published successfully');
+        $this->response->withSuccess(__('article_published_success'));
         $this->redirect($this->app->url("kb/{$slug}"));
     }
 
@@ -209,13 +209,13 @@ class KnowledgeBaseController extends Controller
         $article = $this->kbModel->findWithAuthor((int) $id);
 
         if (!$article) {
-            $this->error('Article not found', 404);
+            $this->error(__('article_not_found'), 404);
             return;
         }
 
         // Only author or agents can edit
         if ($article['author_id'] !== $this->auth->id() && !$this->auth->isAgent()) {
-            $this->error('Unauthorized', 403);
+            $this->error(__('unauthorized'), 403);
             return;
         }
 
@@ -238,13 +238,13 @@ class KnowledgeBaseController extends Controller
         $article = $this->kbModel->find((int) $id);
 
         if (!$article) {
-            $this->error('Article not found', 404);
+            $this->error(__('article_not_found'), 404);
             return;
         }
 
         // Only author or agents can edit
         if ($article['author_id'] !== $this->auth->id() && !$this->auth->isAgent()) {
-            $this->error('Unauthorized', 403);
+            $this->error(__('unauthorized'), 403);
             return;
         }
 
@@ -252,7 +252,7 @@ class KnowledgeBaseController extends Controller
 
         // Validate
         if (empty($data['title']) || strlen($data['title']) < 3) {
-            $this->response->withError('Title is required (minimum 3 characters)');
+            $this->response->withError(__('title_required_min_chars', ['min' => 3]));
             $this->redirect($this->app->url("kb/{$id}/edit"));
             return;
         }
@@ -296,7 +296,7 @@ class KnowledgeBaseController extends Controller
 
         $this->kbModel->update((int) $id, $updateData);
 
-        $this->response->withSuccess('Article updated successfully');
+        $this->response->withSuccess(__('article_updated_success'));
         $this->redirect($this->app->url("kb/{$slug}"));
     }
 
@@ -312,10 +312,10 @@ class KnowledgeBaseController extends Controller
 
         if (!$article) {
             if ($this->request->isAjax()) {
-                $this->error('Article not found', 404);
+                $this->error(__('article_not_found'), 404);
                 return;
             }
-            $this->response->withError('Article not found');
+            $this->response->withError(__('article_not_found'));
             $this->redirect($this->app->url('kb'));
             return;
         }
@@ -323,10 +323,10 @@ class KnowledgeBaseController extends Controller
         // Only author or agents can delete
         if ($article['author_id'] !== $this->auth->id() && !$this->auth->isAgent()) {
             if ($this->request->isAjax()) {
-                $this->error('Unauthorized', 403);
+                $this->error(__('unauthorized'), 403);
                 return;
             }
-            $this->response->withError('Unauthorized');
+            $this->response->withError(__('unauthorized'));
             $this->redirect($this->app->url('kb'));
             return;
         }
@@ -334,11 +334,11 @@ class KnowledgeBaseController extends Controller
         $this->kbModel->delete((int) $id);
 
         if ($this->request->isAjax()) {
-            $this->success([], 'Article deleted successfully');
+            $this->success([], __('article_deleted_success'));
             return;
         }
 
-        $this->response->withSuccess('Article deleted successfully');
+        $this->response->withSuccess(__('article_deleted_success'));
         $this->redirect($this->app->url('kb'));
     }
 

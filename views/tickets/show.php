@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Ticket #{$ticket['ticket_number']}";
+$pageTitle = __('ticket_number_title', ['number' => $ticket['ticket_number']]);
 ob_start();
 ?>
 
@@ -22,7 +22,7 @@ ob_start();
                                 default: echo 'bg-gray-100 text-gray-800';
                             }
                             ?>">
-                            <?= ucfirst(str_replace('_', ' ', $ticket['status'])) ?>
+                            <?= __((string)$ticket['status']) ?>
                         </span>
                         <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full
                             <?php
@@ -33,12 +33,16 @@ ob_start();
                                 default: echo 'bg-gray-100 text-gray-800';
                             }
                             ?>">
-                            <?= ucfirst($ticket['priority']) ?>
+                            <?= __((string)$ticket['priority']) ?>
                         </span>
                     </div>
                     <h1 class="text-xl font-semibold text-gray-900"><?= htmlspecialchars($ticket['subject']) ?></h1>
                 </div>
-                <span class="text-xs text-gray-500"><?= ucfirst($ticket['source']) ?></span>
+                <?php
+                $sourceKey = strtolower((string)($ticket['source'] ?? ''));
+                $sourceLabel = __($sourceKey);
+                ?>
+                <span class="text-xs text-gray-500"><?= $sourceLabel !== $sourceKey ? $sourceLabel : ucfirst((string)$ticket['source']) ?></span>
             </div>
 
             <div class="flex items-center gap-4 text-sm text-gray-500">
@@ -49,7 +53,7 @@ ob_start();
             <?php if ($ticket['ai_suggested_category'] && $ticket['ai_confidence_score']): ?>
             <div class="mt-4 p-3 bg-indigo-50 rounded-lg text-sm">
                 <i class="fas fa-robot text-indigo-600 mr-2"></i>
-                AI suggested category with <?= round($ticket['ai_confidence_score'] * 100) ?>% confidence
+                <?= __('ai_suggested_category_confidence', ['percent' => round($ticket['ai_confidence_score'] * 100)]) ?>
             </div>
             <?php endif; ?>
         </div>
@@ -57,7 +61,7 @@ ob_start();
         <!-- Messages Thread -->
         <div class="bg-white rounded-xl shadow-sm">
             <div class="p-4 border-b border-gray-200">
-                <h2 class="font-semibold text-gray-800">Conversation</h2>
+                <h2 class="font-semibold text-gray-800"><?= __('conversation') ?></h2>
             </div>
             <div class="divide-y divide-gray-100 max-h-[500px] overflow-y-auto">
                 <?php foreach ($messages as $msg): ?>
@@ -65,13 +69,13 @@ ob_start();
                     <div class="flex items-start gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0
                             <?= in_array($msg['user_role'] ?? '', ['admin', 'agent']) ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-600' ?>">
-                            <?= strtoupper(substr($msg['user_name'] ?? 'S', 0, 1)) ?>
+                            <?= strtoupper(substr($msg['user_name'] ?? __('system'), 0, 1)) ?>
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="font-medium text-gray-900"><?= htmlspecialchars($msg['user_name'] ?? 'System') ?></span>
+                                <span class="font-medium text-gray-900"><?= htmlspecialchars($msg['user_name'] ?? __('system')) ?></span>
                                 <?php if ($msg['is_internal']): ?>
-                                <span class="text-xs px-2 py-0.5 bg-yellow-200 text-yellow-800 rounded-full">Internal Note</span>
+                                <span class="text-xs px-2 py-0.5 bg-yellow-200 text-yellow-800 rounded-full"><?= __('internal_note') ?></span>
                                 <?php endif; ?>
                                 <span class="text-xs text-gray-500"><?= date('M j, g:i A', strtotime($msg['created_at'])) ?></span>
                             </div>
@@ -80,12 +84,18 @@ ob_start();
                             <?php if (!empty($msg['attachment_files'])): ?>
                             <!-- Attachments -->
                             <div class="mt-3 space-y-2">
-                                <p class="text-xs font-medium text-gray-500 uppercase tracking-wide">Attachments</p>
+                                <p class="text-xs font-medium text-gray-500 uppercase tracking-wide"><?= __('attachments') ?></p>
                                 <div class="flex flex-wrap gap-2">
                                     <?php foreach ($msg['attachment_files'] as $attachment): ?>
                                     <?php
-                                    $isImage = strpos($attachment['mime_type'], 'image/') === 0;
-                                    $isAudio = strpos($attachment['mime_type'], 'audio/') === 0;
+                                    $mimeType = strtolower((string)($attachment['mime_type'] ?? ''));
+                                    $fileName = strtolower((string)($attachment['original_name'] ?? $attachment['filename'] ?? ''));
+                                    $isImage = strpos($mimeType, 'image/') === 0;
+                                    $isAudio = strpos($mimeType, 'audio/') === 0
+                                        || $mimeType === 'video/webm'
+                                        || str_contains($mimeType, 'opus')
+                                        || str_contains($mimeType, 'ogg')
+                                        || (bool) preg_match('/\.(ogg|oga|opus|mp3|m4a|aac|wav|weba|webm)$/i', $fileName);
                                     $fileUrl = $app->url('uploads/' . $attachment['path']);
                                     ?>
                                     <?php if ($isImage): ?>
@@ -136,17 +146,17 @@ ob_start();
 
         <!-- Reply Form -->
         <div class="bg-white rounded-xl shadow-sm p-6" x-data="{ isInternal: false, message: '', files: [], dragover: false }">
-            <h3 class="font-semibold text-gray-800 mb-4">Reply</h3>
+            <h3 class="font-semibold text-gray-800 mb-4"><?= __('reply') ?></h3>
             <form action="<?= $app->url("tickets/{$ticket['id']}/reply") ?>" method="POST" enctype="multipart/form-data">
                 <div class="mb-4">
                     <textarea name="message" rows="4" x-model="message"
                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                              placeholder="Type your reply..."></textarea>
+                              placeholder="<?= __('type_your_message') ?>"></textarea>
                 </div>
 
                 <!-- File Upload -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Attachments</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('attachments') ?></label>
                     <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center transition-colors"
                          :class="{ 'border-indigo-500 bg-indigo-50': dragover }"
                          @dragover.prevent="dragover = true"
@@ -159,9 +169,9 @@ ob_start();
                         <label for="attachments" class="cursor-pointer">
                             <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
                             <p class="text-sm text-gray-600">
-                                <span class="text-indigo-600 font-medium">Click to upload</span> or drag and drop
+                                <span class="text-indigo-600 font-medium"><?= __('click_to_upload') ?></span> <?= __('or_drag_drop') ?>
                             </p>
-                            <p class="text-xs text-gray-500 mt-1">Images, PDFs, Documents up to 10MB each</p>
+                            <p class="text-xs text-gray-500 mt-1"><?= __('images_docs_limit') ?></p>
                         </label>
                     </div>
                     <!-- File Preview -->
@@ -185,10 +195,10 @@ ob_start();
                 <!-- Canned Responses -->
                 <?php if (!empty($cannedResponses)): ?>
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Quick Responses</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('quick_responses') ?></label>
                     <select class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm"
                             @change="if($event.target.value) { message = $event.target.value; $event.target.value = ''; }">
-                        <option value="">Select a canned response...</option>
+                        <option value=""><?= __('select_canned_response') ?></option>
                         <?php foreach ($cannedResponses as $cr): ?>
                         <option value="<?= htmlspecialchars($cr['content']) ?>">
                             <?= htmlspecialchars($cr['title']) ?>
@@ -203,13 +213,13 @@ ob_start();
                     <label class="flex items-center">
                         <input type="checkbox" name="is_internal" x-model="isInternal"
                                class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                        <span class="ml-2 text-sm text-gray-600">Internal note (hidden from customer)</span>
+                        <span class="ml-2 text-sm text-gray-600"><?= __('internal_note_hidden') ?></span>
                     </label>
                     <button type="submit"
                             class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
                             :class="{ 'bg-yellow-600 hover:bg-yellow-700': isInternal }">
-                        <span x-show="!isInternal">Send Reply</span>
-                        <span x-show="isInternal">Add Note</span>
+                        <span x-show="!isInternal"><?= __('send_reply') ?></span>
+                        <span x-show="isInternal"><?= __('add_note') ?></span>
                     </button>
                 </div>
             </form>
@@ -218,46 +228,124 @@ ob_start();
 
     <!-- Sidebar -->
     <div class="space-y-6">
+        <?php if (!empty($workflowState)): ?>
+        <?php
+        $workflowStatus = (string) ($workflowState['status'] ?? 'in_progress');
+        $workflowStatusClass = $workflowStatus === 'completed'
+            ? 'bg-green-100 text-green-700'
+            : ($workflowStatus === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-indigo-100 text-indigo-700');
+        $stepPosition = (int) ($workflowState['step_position'] ?? 0);
+        $totalSteps = (int) ($workflowState['total_steps'] ?? 0);
+        $progressPercent = $totalSteps > 0 ? min(100, max(0, (int) round(($stepPosition / $totalSteps) * 100))) : 0;
+        $remainingSeconds = isset($workflowState['remaining_seconds']) ? (int) $workflowState['remaining_seconds'] : null;
+        $formatDuration = static function (int $seconds): string {
+            $seconds = max(0, $seconds);
+            $hours = intdiv($seconds, 3600);
+            $minutes = intdiv($seconds % 3600, 60);
+            if ($hours > 0) {
+                return $hours . 'h ' . $minutes . 'm';
+            }
+            return max(1, $minutes) . 'm';
+        };
+        ?>
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="font-semibold text-gray-800"><?= __('wf_workflow') ?></h3>
+                <span class="inline-flex px-2.5 py-1 text-xs font-semibold rounded-full <?= $workflowStatusClass ?>">
+                    <?= htmlspecialchars(ucfirst(str_replace('_', ' ', $workflowStatus))) ?>
+                </span>
+            </div>
+
+            <?php if ($totalSteps > 0): ?>
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                    <span><?= __('wf_step_of', ['current' => max(1, $stepPosition), 'total' => $totalSteps]) ?></span>
+                    <span><?= $progressPercent ?>%</span>
+                </div>
+                <div class="mt-1 h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-indigo-500 rounded-full transition-all" style="width: <?= $progressPercent ?>%"></div>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="rounded-lg border border-gray-200 p-3">
+                    <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_current_step') ?></p>
+                    <p class="mt-1 font-medium text-gray-900">
+                        <?= htmlspecialchars($workflowState['current_step_name'] ?? __('wf_step_number', ['step' => (int) ($workflowState['current_step_order'] ?? 0)])) ?>
+                    </p>
+                </div>
+                <div class="rounded-lg border border-gray-200 p-3">
+                    <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_assigned') ?></p>
+                    <p class="mt-1 font-medium text-gray-900"><?= htmlspecialchars($workflowState['current_assignee_name'] ?? __('unassigned')) ?></p>
+                </div>
+                <div class="rounded-lg border border-gray-200 p-3 sm:col-span-2">
+                    <div class="flex flex-wrap items-center justify-between gap-1">
+                        <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_next_escalation') ?></p>
+                        <?php if (!empty($workflowState['due_at'])): ?>
+                        <span class="text-xs text-gray-500"><?= date('M j, Y g:i A', strtotime($workflowState['due_at'])) ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <p class="mt-1 font-medium <?= !empty($workflowState['is_overdue']) ? 'text-red-600' : 'text-gray-900' ?>">
+                        <?php if (empty($workflowState['due_at'])): ?>
+                            <?= __('wf_no_due_time') ?>
+                        <?php elseif (!empty($workflowState['is_overdue'])): ?>
+                            <?= __('wf_overdue_by', ['duration' => $formatDuration(abs($remainingSeconds ?? 0))]) ?>
+                        <?php else: ?>
+                            <?= __('wf_due_in', ['duration' => $formatDuration(max(0, $remainingSeconds ?? 0))]) ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+                <?php if (!empty($workflowState['next_step_name'])): ?>
+                <div class="rounded-lg border border-gray-200 p-3 sm:col-span-2">
+                    <p class="text-xs uppercase tracking-wide text-gray-500"><?= __('wf_next_step') ?></p>
+                    <p class="mt-1 font-medium text-gray-900"><?= htmlspecialchars($workflowState['next_step_name']) ?></p>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
         <!-- Properties -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="font-semibold text-gray-800 mb-4">Properties</h3>
+            <h3 class="font-semibold text-gray-800 mb-4"><?= __('properties') ?></h3>
 
             <!-- Status -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('status') ?></label>
                 <form action="<?= $app->url("tickets/{$ticket['id']}/status") ?>" method="POST">
                     <select name="status" onchange="this.form.submit()"
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                        <option value="open" <?= $ticket['status'] === 'open' ? 'selected' : '' ?>>Open</option>
-                        <option value="pending" <?= $ticket['status'] === 'pending' ? 'selected' : '' ?>>Pending</option>
-                        <option value="in_progress" <?= $ticket['status'] === 'in_progress' ? 'selected' : '' ?>>In Progress</option>
-                        <option value="resolved" <?= $ticket['status'] === 'resolved' ? 'selected' : '' ?>>Resolved</option>
-                        <option value="closed" <?= $ticket['status'] === 'closed' ? 'selected' : '' ?>>Closed</option>
+                        <option value="open" <?= $ticket['status'] === 'open' ? 'selected' : '' ?>><?= __('open') ?></option>
+                        <option value="pending" <?= $ticket['status'] === 'pending' ? 'selected' : '' ?>><?= __('pending') ?></option>
+                        <option value="in_progress" <?= $ticket['status'] === 'in_progress' ? 'selected' : '' ?>><?= __('in_progress') ?></option>
+                        <option value="resolved" <?= $ticket['status'] === 'resolved' ? 'selected' : '' ?>><?= __('resolved') ?></option>
+                        <option value="closed" <?= $ticket['status'] === 'closed' ? 'selected' : '' ?>><?= __('closed') ?></option>
                     </select>
                 </form>
             </div>
 
             <!-- Priority -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('priority') ?></label>
                 <form action="<?= $app->url("tickets/{$ticket['id']}/priority") ?>" method="POST">
                     <select name="priority" onchange="this.form.submit()"
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                        <option value="low" <?= $ticket['priority'] === 'low' ? 'selected' : '' ?>>Low</option>
-                        <option value="medium" <?= $ticket['priority'] === 'medium' ? 'selected' : '' ?>>Medium</option>
-                        <option value="high" <?= $ticket['priority'] === 'high' ? 'selected' : '' ?>>High</option>
-                        <option value="urgent" <?= $ticket['priority'] === 'urgent' ? 'selected' : '' ?>>Urgent</option>
+                        <option value="low" <?= $ticket['priority'] === 'low' ? 'selected' : '' ?>><?= __('low') ?></option>
+                        <option value="medium" <?= $ticket['priority'] === 'medium' ? 'selected' : '' ?>><?= __('medium') ?></option>
+                        <option value="high" <?= $ticket['priority'] === 'high' ? 'selected' : '' ?>><?= __('high') ?></option>
+                        <option value="urgent" <?= $ticket['priority'] === 'urgent' ? 'selected' : '' ?>><?= __('urgent') ?></option>
                     </select>
                 </form>
             </div>
 
             <!-- Category -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('category') ?></label>
                 <form action="<?= $app->url("tickets/{$ticket['id']}/category") ?>" method="POST">
                     <select name="category_id" onchange="this.form.submit()"
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                        <option value="">Uncategorized</option>
+                        <option value=""><?= __('uncategorized') ?></option>
                         <?php foreach ($categories as $cat): ?>
                         <option value="<?= $cat['id'] ?>" <?= $ticket['category_id'] == $cat['id'] ? 'selected' : '' ?>>
                             <?= htmlspecialchars($cat['name']) ?>
@@ -269,11 +357,11 @@ ob_start();
 
             <!-- Assigned To -->
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Assigned To</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2"><?= __('assign_to') ?></label>
                 <form action="<?= $app->url("tickets/{$ticket['id']}/assign") ?>" method="POST">
                     <select name="assigned_to" onchange="this.form.submit()"
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                        <option value="">Unassigned</option>
+                        <option value=""><?= __('unassigned') ?></option>
                         <?php foreach ($agents as $agent): ?>
                         <option value="<?= $agent['id'] ?>" <?= $ticket['assigned_to'] == $agent['id'] ? 'selected' : '' ?>>
                             <?= htmlspecialchars($agent['name']) ?>
@@ -286,7 +374,7 @@ ob_start();
 
         <!-- Requester Info -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="font-semibold text-gray-800 mb-4">Requester</h3>
+            <h3 class="font-semibold text-gray-800 mb-4"><?= __('requester') ?></h3>
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-medium">
                     <?= strtoupper(substr($ticket['requester_name'], 0, 1)) ?>
@@ -301,7 +389,7 @@ ob_start();
         <?php if (!empty($survey)): ?>
         <!-- Customer Satisfaction -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="font-semibold text-gray-800 mb-4">Customer Satisfaction</h3>
+            <h3 class="font-semibold text-gray-800 mb-4"><?= __('customer_satisfaction') ?></h3>
             <?php if ($survey['rating']): ?>
             <div class="text-center">
                 <div class="text-3xl mb-2">
@@ -309,26 +397,26 @@ ob_start();
                 </div>
                 <p class="text-sm text-gray-600">
                     <?php
-                    $labels = [1 => 'Very Poor', 2 => 'Poor', 3 => 'Okay', 4 => 'Good', 5 => 'Excellent'];
+                    $labels = [1 => __('very_poor'), 2 => __('poor'), 3 => __('okay'), 4 => __('good'), 5 => __('excellent')];
                     echo $labels[$survey['rating']] ?? '';
                     ?>
                 </p>
                 <?php if ($survey['comment']): ?>
                 <div class="mt-3 p-3 bg-gray-50 rounded-lg text-left">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Customer Feedback</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1"><?= __('customer_feedback') ?></p>
                     <p class="text-sm text-gray-700"><?= htmlspecialchars($survey['comment']) ?></p>
                 </div>
                 <?php endif; ?>
                 <p class="text-xs text-gray-400 mt-3">
-                    Rated on <?= date('M j, Y', strtotime($survey['rated_at'])) ?>
+                    <?= __('rated_on') ?> <?= date('M j, Y', strtotime($survey['rated_at'])) ?>
                 </p>
             </div>
             <?php else: ?>
             <div class="text-center text-sm text-gray-500">
                 <i class="fas fa-clock text-gray-400 text-2xl mb-2"></i>
-                <p>Survey sent, awaiting response</p>
+                <p><?= __('survey_sent_awaiting') ?></p>
                 <p class="text-xs text-gray-400 mt-1">
-                    Sent on <?= date('M j, Y', strtotime($survey['survey_sent_at'])) ?>
+                    <?= __('sent_on') ?> <?= date('M j, Y', strtotime($survey['survey_sent_at'])) ?>
                 </p>
             </div>
             <?php endif; ?>
@@ -337,7 +425,7 @@ ob_start();
 
         <!-- Activity Log -->
         <div class="bg-white rounded-xl shadow-sm p-6">
-            <h3 class="font-semibold text-gray-800 mb-4">Activity</h3>
+            <h3 class="font-semibold text-gray-800 mb-4"><?= __('activity') ?></h3>
             <div class="space-y-3 max-h-64 overflow-y-auto">
                 <?php foreach (array_slice($activities, 0, 10) as $activity): ?>
                 <div class="flex items-start text-sm">
@@ -345,7 +433,7 @@ ob_start();
                     <div>
                         <p class="text-gray-700"><?= htmlspecialchars($activity['description'] ?? $activity['action']) ?></p>
                         <p class="text-xs text-gray-500">
-                            <?= $activity['user_name'] ?? 'System' ?> &bull;
+                            <?= $activity['user_name'] ?? __('system') ?> &bull;
                             <?= date('M j, g:i A', strtotime($activity['created_at'])) ?>
                         </p>
                     </div>
